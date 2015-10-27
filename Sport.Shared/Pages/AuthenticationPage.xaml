@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:AuthenticationPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.AuthenticationPage"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	BackgroundColor="{StaticResource bluePrimary}">
+    <local:AuthenticationPageXaml.Content>
+
+    	<Grid>
+    		<Grid.RowDefinitions>
+    			<RowDefinition Height="5*" />
+    			<RowDefinition Height="5*" />
+    			<RowDefinition Height="Auto" />
+    		</Grid.RowDefinitions>
+
+			<ActivityIndicator StyleId="activity" IsRunning="{Binding IsBusy}" Color="White" VerticalOptions="End" />
+			<Label Grid.Row="1" StyleId="status" TextColor="White" FontSize="Large" Style="{StaticResource header}" Text="{Binding AuthenticationStatus, StringFormat='\{0\}...'}"
+				IsVisible="{Binding AuthenticationStatus, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}" XAlign="Center" YAlign="Center" VerticalOptions="Start" />
+
+			<StackLayout Spacing="0" Grid.Row="2" VerticalOptions="End" Padding="24">
+				<local:SportButton x:Name="btnAuthenticate" StyleId="authButton" Text="TRY AGAIN" IsVisible="false"
+					BackgroundColor="{StaticResource blueLight}" VerticalOptions="EndAndExpand" TextColor="White"
+					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+			</StackLayout>
+
+    	</Grid>
+
+	</local:AuthenticationPageXaml.Content>
+</local:AuthenticationPageXaml>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:SetAliasPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.SetAliasPage"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+    <local:SetAliasPageXaml.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource whiteLabelStyle}" />
+		</ResourceDictionary>
+    </local:SetAliasPageXaml.Resources>
+    <local:SetAliasPageXaml.Content>
+    	<ScrollView>
+
+		<Grid VerticalOptions="Fill">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
+
+			<Grid VerticalOptions="Fill" Grid.Row="1">
+
+				<StackLayout x:Name="label1" Padding="24,0" Scale="0" HorizontalOptions="Center" VerticalOptions="Center">
+					<Label StyleId="label1" Text="{Binding Athlete.Name, StringFormat='Greetings \{0\}. It behooves you to specify an alias.'}"
+						FontSize="Medium" XAlign="Center" />
+				</StackLayout>
+
+				<StackLayout Grid.Row="1" x:Name="aliasBox" Scale="0" Spacing="0" VerticalOptions="Center">
+					<ContentView BackgroundColor="{StaticResource redDark}" HeightRequest=".5" HorizontalOptions="Fill" />
+					<StackLayout Orientation="Horizontal" Spacing="20" Padding="48,0" HeightRequest="56" HorizontalOptions="Fill">
+						<Label Text="Alias:" TextColor="White" VerticalOptions="Center" FontSize="Large" />
+
+						<ContentView Padding="0,5,0,0" HorizontalOptions="FillAndExpand">
+							<local:SportEntry x:Name="txtAlias" StyleId="aliasText" Text="{Binding Athlete.Alias}" Font="Large" TextColor="White" Opacity=".7"
+								HasBorder="false" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Fill" MaxLength="14" />
+						</ContentView>
+					</StackLayout>
+					<ContentView BackgroundColor="{StaticResource redDark}" HeightRequest=".5" HorizontalOptions="Fill" />
+				</StackLayout>
+
+				<StackLayout Grid.Row="2" x:Name="label2" VerticalOptions="Center" Padding="24,0" Scale="0" HorizontalOptions="Center">
+					<Label StyleId="label2" Text="Your alias will show on the leaderboard and in challenges so make it count!"
+						FontSize="Medium" XAlign="Center" />
+				</StackLayout>
+			</Grid>
+
+			<StackLayout x:Name="buttonStack" Padding="24" Grid.Row="2" Scale="0" VerticalOptions="End" Spacing="10" HeightRequest="60">
+				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
+					VerticalOptions="End" />
+
+				<Label Text="Saving profile..." IsVisible="{Binding IsBusy}" FontSize="Medium" XAlign="Center" YAlign="Center" VerticalOptions="End" />
+
+				<local:SportButton x:Name="btnSave" Text="SAVE &amp; CONTINUE" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
+					BackgroundColor="{StaticResource redLight}" StyleId="saveButton"
+					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+			</StackLayout>
+		</Grid>
+
+    	</ScrollView>
+
+	</local:SetAliasPageXaml.Content>
+</local:SetAliasPageXaml>

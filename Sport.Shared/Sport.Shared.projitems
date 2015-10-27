@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{B2889C9F-D3F9-4DCC-AA61-D1548DA57BEE}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Sport.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Admin\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Admin\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Renderers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AuthenticationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GameResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\League.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Athlete.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Membership.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Admin\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Admin\LeagueLandingPage.cs">
+      <DependentUpon>LeagueLandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\AvailableLeaguesPage.xaml.cs">
+      <DependentUpon>AvailableLeaguesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AvailableLeaguesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Admin\AdminViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Admin\LeagueLandingViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LeagueListView.xaml.cs">
+      <DependentUpon>LeagueListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Admin\LeagueEditPage.xaml.cs">
+      <DependentUpon>LeagueEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\LeagueDetailsPage.xaml.cs">
+      <DependentUpon>LeagueDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Admin\AthleteEditViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Admin\LeagueEditViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LeagueDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\MembershipDetailsPage.xaml.cs">
+      <DependentUpon>MembershipDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MembershipDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Challenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChallengeDetailsPage.xaml.cs">
+      <DependentUpon>ChallengeDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChallengeDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\AthleteLeaguesPage.xaml.cs">
+      <DependentUpon>AthleteLeaguesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\GameResultFormView.xaml.cs">
+      <DependentUpon>GameResultFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SharedExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\FlikrService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FlikrResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Admin\PhotoSelectionPage.xaml.cs">
+      <DependentUpon>PhotoSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Admin\PhotoSelectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MatchResultFormViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseNotify.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHUDProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\AthleteProfilePage.xaml.cs">
+      <DependentUpon>AthleteProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AthleteProfileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Admin\AthleteListPage.cs">
+      <DependentUpon>AthleteListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Admin\AthleteListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\WelcomeStartPage.xaml.cs">
+      <DependentUpon>WelcomeStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPushNotifications.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\SetAliasPage.xaml.cs">
+      <DependentUpon>SetAliasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AuthenticationView.xaml.cs">
+      <DependentUpon>AuthenticationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\AuthenticationPage.xaml.cs">
+      <DependentUpon>AuthenticationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChallengeDatePage.xaml.cs">
+      <DependentUpon>ChallengeDatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChallengeDateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\GoogleApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AzureService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IToastNotifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChallengeCardView.xaml.cs">
+      <DependentUpon>ChallengeCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AthleteViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LeagueViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LeaderboardViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\EnablePushPage.xaml.cs">
+      <DependentUpon>EnablePushPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CardView.xaml.cs">
+      <DependentUpon>CardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\MatchResultsFormPage.xaml.cs">
+      <DependentUpon>MatchResultsFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MembershipViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RankStripView.xaml.cs">
+      <DependentUpon>RankStripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProfileStripView.cs">
+      <DependentUpon>ProfileStripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton.xaml.cs">
+      <DependentUpon>ImageButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\AboutPage.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Keys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SportButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChallengeHistoryPage.xaml.cs">
+      <DependentUpon>ChallengeHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChallengeHistoryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChallengeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AthleteLeaguesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderers\ThememedNavigationPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderers\SportEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChallengeProfileStripView.xaml.cs">
+      <DependentUpon>ChallengeProfileStripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseContentPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAuthentication.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InsightsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GoogleUserProfile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Admin\AdminPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Admin\LeagueLandingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\AvailableLeaguesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LeagueListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Admin\LeagueEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\LeagueDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\MembershipDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\ChallengeDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\AthleteLeaguesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GameResultFormView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Admin\PhotoSelectionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\AthleteProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Admin\AthleteListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\WelcomeStartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\SetAliasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AuthenticationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\AuthenticationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\ChallengeDatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChallengeCardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\LeaderboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\EnablePushPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\MatchResultsFormPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RankStripView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProfileStripView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ImageButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\ChallengeHistoryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChallengeProfileStripView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

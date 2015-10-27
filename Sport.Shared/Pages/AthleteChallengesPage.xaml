@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:AthleteChallengesXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="SportChallengeMatchRank.Shared.AthleteChallengesPage"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+	xmlns:local="clr-namespace:SportChallengeMatchRank.Shared;assembly=SportChallengeMatchRank">
+	<local:AthleteChallengesXaml.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource listLabelStyle}" />
+		</ResourceDictionary>
+	</local:AthleteChallengesXaml.Resources>
+	<local:AthleteChallengesXaml.Content>
+		<ListView x:Name="list" ItemsSource="{Binding ChallengeGroups}" RefreshCommand="{Binding GetChallengesCommand}"
+			IsRefreshing="{Binding IsBusy, Mode=OneWay}" HasUnevenRows="true" SeparatorVisibility="None" BackgroundColor="{StaticResource bluePrimary}">
+			<ListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell Height="45">
+						<ViewCell.View>
+							<AbsoluteLayout BackgroundColor="Black">
+								<StackLayout Orientation="Horizontal" Padding="30,10" BackgroundColor="#202d3b"
+									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+									IsVisible="{Binding Title, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
+									<Label Text="{Binding Title}" VerticalOptions="Center" TextColor="White" />
+								</StackLayout>
+							</AbsoluteLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.GroupHeaderTemplate>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell Height="66">
+						<ViewCell.View>
+							<Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+								<StackLayout x:Name="emptyStack" Padding="20,10" Orientation="Horizontal" Spacing="20" HorizontalOptions="CenterAndExpand" 
+									IsVisible="{Binding Id, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
+
+									<Label Text="{Binding Title}" FontSize="18" HorizontalOptions="CenterAndExpand"
+										XAlign="Center" YAlign="Center" VerticalOptions="Center"  />
+								</StackLayout>
+
+								<StackLayout Padding="30,5,10,5" Orientation="Horizontal" Spacing="20" HeightRequest="{Binding Height}"
+									IsVisible="{Binding Id, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
+
+									<controls:CircleImage x:Name="photoImage" Source="{Binding League.ImageUrl}"
+										HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFill">
+											<controls:CircleImage.WidthRequest>
+												<OnPlatform x:TypeArguments="x:Double">
+													<OnPlatform.iOS>50</OnPlatform.iOS>
+													<OnPlatform.Android>70</OnPlatform.Android>
+												</OnPlatform>
+											</controls:CircleImage.WidthRequest>
+											<controls:CircleImage.HeightRequest>
+												<OnPlatform x:TypeArguments="x:Double">
+													<OnPlatform.iOS>50</OnPlatform.iOS>
+													<OnPlatform.Android>70</OnPlatform.Android>
+												</OnPlatform>
+											</controls:CircleImage.HeightRequest>
+										</controls:CircleImage>
+
+									<StackLayout Spacing="1" VerticalOptions="Center">
+										<Label Text="{Binding PreSummary}" FontSize="10" VerticalOptions="Center" HorizontalOptions="Start" />
+										<Label Text="{Binding Summary}" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Start" />
+									</StackLayout>
+								</StackLayout>
+							</Grid>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</local:AthleteChallengesXaml.Content>
+
+</local:AthleteChallengesXaml>

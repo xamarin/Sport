@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:AthleteLeaguesXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.AthleteLeaguesPage"
+	BackgroundColor="{StaticResource grayLight}"
+	Icon="transparent"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:AthleteLeaguesXaml.Content>
+		<local:LeagueListView x:Name="list" ItemsSource="{Binding Leagues}" RefreshCommand="{Binding GetLeaguesCommand}"
+				IsRefreshing="{Binding IsBusy, Mode=OneWay}" />
+	</local:AthleteLeaguesXaml.Content>
+
+	<local:AthleteLeaguesXaml.ToolbarItems>
+		<ToolbarItem x:Name="btnJoin" Icon="ic_add_white" StyleId="joinLeagueButton" />
+		<ToolbarItem Icon="ic_more_vert_white" Clicked="OnMoreClicked" StyleId="moreButton" />
+	</local:AthleteLeaguesXaml.ToolbarItems>
+
+</local:AthleteLeaguesXaml>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:LeagueEditXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.LeagueEditPage"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:LeagueEditXaml.Content>
+	<ScrollView>
+		<Grid Padding="20,10,20,20">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<StackLayout Grid.Row="0" Spacing="10" VerticalOptions="Center">
+
+				<Entry x:Name="name" Text="{Binding League.Name}" Placeholder="League name" HeightRequest="40" />
+				<Entry Text="{Binding League.Sport}" Placeholder="League sport" HeightRequest="40" />
+
+				<Editor Text="{Binding League.Description}" HeightRequest="80" BackgroundColor="Transparent" />
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Enabled" HorizontalOptions="StartAndExpand" />
+					<Switch IsToggled="{Binding League.IsEnabled}" HorizontalOptions="End" />
+				</StackLayout>
+
+<!--				<StackLayout Orientation="Horizontal">
+					<Label Text="Max challenge range" HorizontalOptions="StartAndExpand" />
+					<Entry Text="{Binding League.MaxChallengeRange}" WidthRequest="40" HeightRequest="40" />
+				</StackLayout>-->
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Match game count" HorizontalOptions="StartAndExpand" />
+					<Entry Text="{Binding League.MatchGameCount}" WidthRequest="40" HeightRequest="40" />
+				</StackLayout>
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Min hours between challenges" HorizontalOptions="StartAndExpand" />
+					<Entry Text="{Binding League.MinHoursBetweenChallenge}" WidthRequest="40" HeightRequest="40" />
+				</StackLayout>
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Accept new members" HorizontalOptions="StartAndExpand" />
+					<Switch IsToggled="{Binding League.IsAcceptingMembers}" HorizontalOptions="End" />
+				</StackLayout>
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Start date" HorizontalOptions="StartAndExpand" />
+					<DatePicker Date="{Binding League.StartDate}" HorizontalOptions="End" />
+				</StackLayout>
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="End date" HorizontalOptions="StartAndExpand" />
+					<DatePicker Date="{Binding League.EndDate}" HorizontalOptions="End" />
+				</StackLayout>
+
+				<StackLayout x:Name="joinLeagueLayout" Orientation="Horizontal">
+					<Label Text="Is member" HorizontalOptions="StartAndExpand" />
+					<Switch IsToggled="{Binding IsMember}" HorizontalOptions="End" />
+				</StackLayout>
+
+				<Image Source="{Binding League.ImageUrl}" HeightRequest="50" WidthRequest="70" />
+				<local:SportButton Text="Select Image" Clicked="OnSelectPhotoButtonClicked" />
+
+				<local:SportButton x:Name="btnSaveLeague" Text="Save League" VerticalOptions="End"
+						IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+
+				<local:SportButton x:Name="btnStartLeague" Text="Start League" VerticalOptions="End"
+						IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+						IsVisible="{Binding CanStartLeague}" />
+
+				<local:SportButton x:Name="btnDeleteLeague" Text="Delete League" Style="{StaticResource deleteButtonStyle}"
+						IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" VerticalOptions="End"
+						IsVisible="{Binding League.Id, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}" />
+
+			</StackLayout>
+
+		</Grid>
+	</ScrollView>
+
+	</local:LeagueEditXaml.Content>
+</local:LeagueEditXaml>

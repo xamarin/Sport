@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:AthleteListPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.AthleteListPage"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:AthleteListPageXaml.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource listLabelStyle}" />
+		</ResourceDictionary>
+	</local:AthleteListPageXaml.Resources>
+
+	<local:AthleteListPageXaml.Content>
+		<ListView x:Name="list" ItemsSource="{Binding AllAthletes}" RowHeight="60" RefreshCommand="{Binding GetAllAthletesCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<StackLayout Padding="40,10,10,10" Spacing="20" Orientation="Horizontal" VerticalOptions="Center">
+								<controls:CircleImage x:Name="photoImage" Source="{Binding ProfileImageUrl}"
+									HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFill" WidthRequest="40" HeightRequest="40"  />
+
+								<Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" />
+								<Label Text="{Binding Alias}" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" />
+							</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</local:AthleteListPageXaml.Content>
+
+</local:AthleteListPageXaml>

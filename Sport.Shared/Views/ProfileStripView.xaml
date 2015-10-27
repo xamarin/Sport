@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.ProfileStripView"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	BackgroundColor="Transparent">
+
+	<Grid x:Name="root">
+		<BoxView BackgroundColor="{Binding Theme.Light}" HeightRequest="100" VerticalOptions="Start"/>
+
+		<StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center" Padding="0,22,0,20">
+			<ContentView Padding="0,10,0,0">
+				<controls:CircleImage Source="{Binding Athlete.ProfileImageUrl}"
+					HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFill" WidthRequest="96" HeightRequest="96" />
+			</ContentView>
+
+			<StackLayout Padding="0,12,0,0" HorizontalOptions="Start" VerticalOptions="Start">
+				<Label Text="{Binding Athlete.Name}" FontSize="Large" Style="{StaticResource header}" HorizontalOptions="StartAndExpand" TextColor="{Binding Theme.Dark}" />
+				<Label Text="{Binding Athlete.Email}" FontSize="Micro" HorizontalOptions="StartAndExpand" TextColor="{Binding Theme.Primary}" />
+
+				<ContentView Padding="0,16,0,0">
+					<Label Text="{Binding Athlete.Alias, StringFormat='AKA \{0\}'}" FontSize="Small" TextColor="{Binding Theme.Dark}" />
+				</ContentView>
+			</StackLayout>
+		</StackLayout>
+	</Grid>
+</ContentView>

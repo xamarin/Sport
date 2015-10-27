@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:LeaderboardXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.LeaderboardPage"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:LeaderboardXaml.Content>
+		<ListView x:Name="list" ItemsSource="{Binding Memberships}" BackgroundColor="White" RowHeight="80" SeparatorColor="{StaticResource grayPrimary}"
+			IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding GetLeaderboardCommand}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+					<!--<ViewCell.ContextActions>
+						    <MenuItem Clicked="OnChallengeClicked" Text="Challenge" />
+						</ViewCell.ContextActions>-->
+						<ViewCell.View>
+							<Grid StyleId="memberItemRoot">
+								<AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
+
+									<Label Text="{Binding EmptyMessage}" FontSize="Large" Style="{StaticResource header}" XAlign="Center"
+										TextColor="{StaticResource grayPrimary}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" />
+								</AbsoluteLayout>
+
+								<StackLayout Padding="24,16,16,16" Spacing="20" Orientation="Horizontal" VerticalOptions="Center"
+									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
+
+									<Label Text="{Binding Membership.CurrentRankDisplay}" VerticalOptions="Center" FontSize="28" YAlign="Center" TextColor="{StaticResource grayDark}" />
+
+									<StackLayout Spacing="20" Orientation="Horizontal">
+										<AbsoluteLayout WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" VerticalOptions="Center">
+											<Button BackgroundColor="{Binding Membership.League.Theme.Light}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" 
+												BorderRadius="24" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsFirstPlace}" />
+											<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Membership.Athlete.ProfileImageUrl}"
+												HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"
+												AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" />
+										</AbsoluteLayout>
+
+										<StackLayout Spacing="0" VerticalOptions="Center">
+											<Label Text="{Binding Alias}" FontSize="Medium" LineBreakMode="TailTruncation" />
+											<Label Text="{Binding Membership.Athlete.Name}" FontSize="Micro" TextColor="{StaticResource grayPrimary}"  LineBreakMode="TailTruncation" />
+										</StackLayout>
+									</StackLayout>
+
+									<AbsoluteLayout IsVisible="{Binding Membership.OngoingChallenge, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}" HorizontalOptions="EndAndExpand">
+										<local:SportButton BorderRadius="2" BackgroundColor="{StaticResource grayPrimary}" HeightRequest="36" WidthRequest="36"
+											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" TextColor="White" />
+										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5"/>
+									</AbsoluteLayout>
+								</StackLayout>
+							</Grid>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</local:LeaderboardXaml.Content>
+</local:LeaderboardXaml>

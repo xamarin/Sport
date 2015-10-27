@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:WelcomeStartPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.WelcomeStartPage"
+	xmlns:local="clr-namespace:Sport.Shared">
+    <local:WelcomeStartPageXaml.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource whiteLabelStyle}" />
+		</ResourceDictionary>
+    </local:WelcomeStartPageXaml.Resources>
+
+    <local:WelcomeStartPageXaml.Content>
+		<Grid VerticalOptions="Fill" HorizontalOptions="Fill" Padding="24">
+			<StackLayout x:Name="label1" Padding="24,0" Scale="0" VerticalOptions="Center">
+				<Label StyleId="label1" Text="It looks like this is your first time challenging sport and ranking match. Let's get you registered, athlete!"
+					FontSize="Medium" XAlign="Center" />
+			</StackLayout>
+
+			<StackLayout x:Name="label2" Grid.Row="1" Padding="24,0" Scale="0" VerticalOptions="Center">
+				<Label StyleId="label2" Text="First thing's first, you must log into the mainframe." FontSize="Medium" XAlign="Center" />
+			</StackLayout>
+
+			<StackLayout x:Name="buttonStack" Spacing="0" Scale="0" Grid.Row="2" VerticalOptions="End">
+				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
+					VerticalOptions="EndAndExpand" />
+
+				<Label Text="{Binding AuthenticationStatus, StringFormat='\{0\}...'}" IsVisible="{Binding IsBusy}" FontSize="Medium"
+					XAlign="Center" YAlign="Center" VerticalOptions="EndAndExpand" HeightRequest="70" />
+
+				<local:SportButton x:Name="btnAuthenticate" StyleId="authButton" Text="LOG IN"
+					BackgroundColor="{StaticResource blueLight}" VerticalOptions="EndAndExpand" TextColor="White"
+					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+
+			</StackLayout>
+		</Grid>
+
+	</local:WelcomeStartPageXaml.Content>
+</local:WelcomeStartPageXaml>

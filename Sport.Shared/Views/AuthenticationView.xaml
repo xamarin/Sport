@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.AuthenticationView"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#99000000">
+
+	<StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+		<ActivityIndicator IsRunning="{Binding IsBusy}" />
+		<Label FontSize="Large" Style="{StaticResource header}" Text="{Binding AuthenticationStatus" />
+	</StackLayout>
+
+</ContentView>

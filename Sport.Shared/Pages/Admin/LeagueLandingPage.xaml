@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:LeagueLandingXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.LeagueLandingPage"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:LeagueLandingXaml.Content>
+		<local:LeagueListView x:Name="list" ItemsSource="{Binding AllLeagues}" RefreshCommand="{Binding GetAllLeaguesCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" />
+	</local:LeagueLandingXaml.Content>
+
+	<local:LeagueLandingXaml.ToolbarItems>
+		<ToolbarItem x:Name="btnAdd" Text="Add" />
+	</local:LeagueLandingXaml.ToolbarItems>
+
+</local:LeagueLandingXaml>

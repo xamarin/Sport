@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:LeagueDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	BackgroundColor="{StaticResource grayLight}"
+	x:Class="Sport.Shared.LeagueDetailsPage">
+
+	<local:LeagueDetailsXaml.ToolbarItems>
+		<ToolbarItem x:Name="btnRefresh" Text="Refresh" StyleId="refreshButton" Icon="ic_refresh_white" />
+		<ToolbarItem x:Name="btnMore" Icon="ic_more_vert_white" Clicked="OnMoreClicked" StyleId="moreButton" />
+	</local:LeagueDetailsXaml.ToolbarItems>
+
+	<local:LeagueDetailsXaml.Content>
+	<ScrollView x:Name="scrollView" StyleId="scrollView">
+		<Grid x:Name="root" VerticalOptions="Fill">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<ContentView Padding="0,0,0,0">
+				<Grid>
+					<Image Source="ic_missing_photo_white" StyleId="leaguePhoto" HorizontalOptions="Center" VerticalOptions="Center" />
+					<Image x:Name="photoImage" Source="{Binding League.ImageUrl}" HorizontalOptions="Fill" HeightRequest="200"
+						VerticalOptions="Center" Aspect="AspectFill" />
+
+					<StackLayout IsVisible="{Binding IsFirstPlace}" Orientation="Horizontal" VerticalOptions="End">
+						<AbsoluteLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1" Padding="10">
+							<local:SportButton BorderRadius="2" BackgroundColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36"
+								AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" TextColor="White" />
+							<Image Source="ic_trophy_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5"/>
+						</AbsoluteLayout>
+						<Label TextColor="White" Text="{Binding PraisePhrase}" FontSize="Medium" YAlign="Center" HorizontalOptions="Start" FontAttributes="Bold" />
+					</StackLayout>
+				</Grid>
+			</ContentView>
+
+			<StackLayout Grid.Row="1" Orientation="Vertical" Spacing="14" VerticalOptions="Fill" BackgroundColor="{StaticResource grayLight}">
+				<StackLayout Padding="24,8,24,0" Spacing="4" IsVisible="{Binding League.HasStarted}">
+					<Label Text="{Binding League.Name}" FontSize="Large" TextColor="{Binding League.Theme.Dark}" VerticalOptions="CenterAndExpand" />
+				</StackLayout>
+
+				<StackLayout Padding="24,14,24,14" Spacing="4" IsVisible="{Binding League.HasStarted, Converter={x:Static local:InverseBoolConverter.Instance}}">
+					<Label Text="{Binding League.StartDate, StringFormat='This league is slated to begin on \{0:D\}'}" Style="{StaticResource sub}" />
+					<Label Text="{Binding League.MemberCount}" Style="{StaticResource sub}" />
+				</StackLayout>
+
+				<StackLayout Padding="24,0,24,14" Spacing="10" IsVisible="{Binding League.HasStarted}">
+					<ContentView IsVisible="{Binding IsMember}">
+						<Grid Padding="0,0,0,6" IsVisible="{Binding League.HasStarted}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="44" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<AbsoluteLayout HeightRequest="36" WidthRequest="36" HorizontalOptions="Start">
+								<local:SportButton BorderRadius="18" BackgroundColor="{Binding League.Theme.Primary}"
+									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" />
+								<Label Text="{Binding CurrentMembership.CurrentRankOrdinal}" FontSize="Small" TextColor="White"
+									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" XAlign="Center" YAlign="Center" />
+							</AbsoluteLayout>
+							<Label Grid.Column="1" Text="{Binding CurrentMembership.RankDescription, StringFormat='You\'ve been ranked \{0\}'}"
+								VerticalOptions="Center" Style="{StaticResource sub}" IsVisible="true" />
+						</Grid>
+					</ContentView>
+					<ContentView IsVisible="{Binding HasLeaderOtherThanSelf}">
+						<Grid Padding="0,0,0,6">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="44" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<AbsoluteLayout HeightRequest="36" WidthRequest="36" HorizontalOptions="Start">
+								<local:SportButton BorderRadius="18" BackgroundColor="{StaticResource grayPrimary}"
+									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" />
+								<Label Text="{Binding LeaderMembership.CurrentRankOrdinal}" FontSize="Small" TextColor="White"
+									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" XAlign="Center" YAlign="Center" />
+							</AbsoluteLayout>
+							<Label Grid.Column="1" Text="{Binding League.LeaderRankDescription}"
+								VerticalOptions="Center" Style="{StaticResource sub}" IsVisible="true" />
+						</Grid>
+					</ContentView>
+
+					<ContentView Padding="0,10" IsVisible="{Binding IsMember}">
+						<local:RankStripView x:Name="rankStrip" />
+					</ContentView>
+
+					<ContentView Padding="0" IsVisible="{Binding OngoingChallengeViewModel, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
+						<local:ChallengeCardView x:Name="ongoingCard" ViewModel="{Binding OngoingChallengeViewModel}" />
+					</ContentView>
+				</StackLayout>
+			</StackLayout>
+
+			<StackLayout Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="Fill">
+				<StackLayout Padding="24,24,24,14" Spacing="14"	IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}">
+
+					<local:SportButton Text="CHALLENGE" StyleId="challengeButton" HorizontalOptions="FillAndExpand"
+						BackgroundColor="{Binding League.Theme.Dark}" Clicked="HandleChallengeClicked" IsVisible="{Binding CanChallenge}" />
+
+					<local:SportButton Text="LEADERBOARD" StyleId="leaderboardButton" HorizontalOptions="FillAndExpand"
+						Clicked="HandleRankingsClicked" />
+
+					<local:SportButton Text="JOIN LEAGUE" StyleId="joinButton" HorizontalOptions="FillAndExpand" Clicked="HandleJoinClicked"
+						BackgroundColor="{Binding League.Theme.Dark}" IsVisible="{Binding IsMember, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+				</StackLayout>
+
+				<StackLayout BackgroundColor="{StaticResource grayMedium}" Padding="18,14,24,0">
+					<Label Text="{Binding League.LeagueDetails}" TextColor="{StaticResource grayLight}" FontSize="Micro" />
+				</StackLayout>
+			</StackLayout>
+		</Grid>
+	</ScrollView>
+
+	</local:LeagueDetailsXaml.Content>
+</local:LeagueDetailsXaml>

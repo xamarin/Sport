@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.ChallengeProfileStripView"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	BackgroundColor="Transparent">
+
+	<StackLayout Spacing="0">
+		<StackLayout x:Name="root" Padding="14,0,14,0" Spacing="30" BackgroundColor="{StaticResource grayLight}">
+			<Grid HorizontalOptions="Center" Padding="0,20,0,20">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="4*" />
+					<ColumnDefinition Width="10" />
+					<ColumnDefinition Width="6*" />
+				</Grid.ColumnDefinitions>
+
+				<StackLayout Spacing="6" Padding="0,-4,0,0" HorizontalOptions="End">
+					<ContentView HorizontalOptions="Center">
+						<Grid WidthRequest="56" HeightRequest="56">
+							<Button BackgroundColor="{Binding Challenge.League.Theme.Light}" WidthRequest="56" HeightRequest="56" BorderRadius="28"
+								VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding Challenge.IsChallengerWinningAthlete}" />
+							<controls:CircleImage WidthRequest="44" HeightRequest="44" Source="{Binding Challenge.ChallengerAthlete.ProfileImageUrl}"
+								HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" />
+						</Grid>
+					</ContentView>
+
+					<ContentView HorizontalOptions="Center">
+						<Label Text=" " HorizontalOptions="Center" FontSize="10" YAlign="Center" XAlign="Center" VerticalOptions="Center"  />
+					</ContentView>
+
+					<ContentView HorizontalOptions="Center">
+						<Grid WidthRequest="56" HeightRequest="56">
+							<Button BackgroundColor="{Binding Challenge.League.Theme.Light}" WidthRequest="56" HeightRequest="56" BorderRadius="28"
+								VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding Challenge.IsChallengeeWinningAthlete}" />
+							<controls:CircleImage WidthRequest="44" HeightRequest="44" Source="{Binding Challenge.ChallengeeAthlete.ProfileImageUrl}"
+								HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" />
+						</Grid>
+					</ContentView>
+				</StackLayout>
+
+				<StackLayout Spacing="6" Grid.Column="2" HorizontalOptions="Start">
+					<StackLayout Spacing="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="56">
+						<Label Text="{Binding Challenge.ChallengerAthlete.Alias}" FontSize="Large"
+							Style="{StaticResource header}" HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
+						<Label Text="{Binding Challenge.ChallengerAthlete.Name}" FontSize="Micro" TextColor="{StaticResource grayDark}"
+							HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
+					</StackLayout>
+
+					<ContentView HorizontalOptions="Center" VerticalOptions="Center">
+						<Label Text="vs" HorizontalOptions="Center" FontSize="10" YAlign="Center" XAlign="Center" VerticalOptions="Center"  />
+					</ContentView>
+
+					<StackLayout Spacing="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="56">
+						<Label Text="{Binding Challenge.ChallengeeAthlete.Alias}" FontSize="Large"
+							Style="{StaticResource header}" HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
+						<Label Text="{Binding Challenge.ChallengeeAthlete.Name}" FontSize="Micro" TextColor="{StaticResource grayDark}"
+							HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
+					</StackLayout>
+				</StackLayout>
+			</Grid>
+		</StackLayout>
+		<ContentView BackgroundColor="{StaticResource grayPrimary}" HeightRequest=".5" HorizontalOptions="Fill" VerticalOptions="End" />
+	</StackLayout>
+
+</ContentView>

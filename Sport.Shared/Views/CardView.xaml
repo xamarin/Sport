@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Layout xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.CardView"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<Layout.Chrome>
+	<StackLayout x:Name="root" Orientation="Vertical" Spacing="0" VerticalOptions="Fill"
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0">
+
+			<StackLayout BackgroundColor="{StaticResource grayPrimary}" Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand" Padding="14">
+				<Label x:Name="title" FontSize="Medium" TextColor="White" VerticalOptions="Center" LineBreakMode="NoWrap" />
+				<Label x:Name="subtitle" FontSize="Medium" TextColor="White"
+					HorizontalOptions="EndAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+			</StackLayout>
+
+			<ContentView x:Name="view" />
+		</StackLayout>
+	</Layout.Chrome>
+</Layout>

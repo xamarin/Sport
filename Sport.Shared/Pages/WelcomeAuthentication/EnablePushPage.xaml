@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:EnablePushPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.EnablePushPage"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+    <local:EnablePushPageXaml.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource whiteLabelStyle}" />
+		</ResourceDictionary>
+    </local:EnablePushPageXaml.Resources>
+    <local:EnablePushPageXaml.Content>
+		<Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<StackLayout>
+				<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
+
+				<ContentView x:Name="label1" Scale="0" Padding="40">
+					<Label Text="Much obliged if you'd kindly enable push notifications." FontSize="Medium" XAlign="Center" />
+				</ContentView>
+			</StackLayout>
+
+			<StackLayout x:Name="buttonStack" Grid.Row="1" Spacing="14" Scale="0" VerticalOptions="End" Padding="24">
+				<local:SportButton x:Name="btnPush" StyleId="pushButton" Text="ALLOW PUSH NOTIFICATIONS" BackgroundColor="{StaticResource purpleDark}"
+					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					TextColor="White" VerticalOptions="EndAndExpand" />
+
+				<local:SportButton x:Name="btnCont" StyleId="continueButton" Text="CONTINUE"
+					BackgroundColor="{StaticResource purpleLight}"
+					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" VerticalOptions="End" />
+			</StackLayout>
+		</Grid>
+	</local:EnablePushPageXaml.Content>
+</local:EnablePushPageXaml>

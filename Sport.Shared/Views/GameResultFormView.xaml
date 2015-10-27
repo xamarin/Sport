@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.GameResultFormView"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="46" />
+			<RowDefinition Height="38" />
+			<RowDefinition Height="80" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<StackLayout BackgroundColor="{StaticResource grayPrimary}" HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand" Grid.ColumnSpan="2" Padding="8">
+
+			<Label Text="{Binding GameIndex}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30" FontSize="Large" Style="{StaticResource header}"
+				TextColor="White" />
+		</StackLayout>
+
+		<Label Text="{Binding Challenge.ChallengerAthlete.Alias}" Grid.Row="1" HorizontalOptions="FillAndExpand"  TextColor="{StaticResource grayDark}"
+			FontSize="Medium" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource grayLight}" XAlign="Center" YAlign="Center" />
+		<Label Text="{Binding Challenge.ChallengeeAthlete.Alias}" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" TextColor="{StaticResource grayDark}"
+			FontSize="Medium" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource grayLight}" XAlign="Center" YAlign="Center" />
+
+		<ContentView Padding="0,10,0,0" Grid.Row="2" HorizontalOptions="Center">
+			<local:SportEntry Text="{Binding GameResult.ChallengerScore, Converter={x:Static local:NullIntValueConverter.Instance}, Mode=TwoWay}"
+				TextColor="{Binding Challenge.League.Theme.Dark}" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" MaxLength="2"
+				BackgroundColor="{Binding Challenge.League.Theme.Light}" HasBorder="false" Font="36" XAlign="Center" TextChanged="TextChanged"
+				Keyboard="Numeric" />
+		</ContentView>
+
+		<ContentView Padding="0,10,0,0" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center">
+			<local:SportEntry Text="{Binding GameResult.ChallengeeScore, Converter={x:Static local:NullIntValueConverter.Instance}, Mode=TwoWay}"
+				TextColor="{Binding Challenge.League.Theme.Dark}" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" MaxLength="2" Keyboard="Numeric"
+				BackgroundColor="{Binding Challenge.League.Theme.Light}" HasBorder="false" Font="36" XAlign="Center" TextChanged="TextChanged"  />
+		</ContentView>
+	</Grid>
+</ContentView>

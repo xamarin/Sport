@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.RankStripView"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	HeightRequest="80">
+
+	<StackLayout x:Name="root" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+		<AbsoluteLayout IsVisible="{Binding UpperMembership, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
+			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+			<local:SportButton BackgroundColor="{Binding DarkColor}" BorderRadius="3"
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" Spacing="0">
+				<Label Text="{Binding UpperMembership.CurrentRankOrdinal}" FontSize="28" TextColor="{Binding Membership.League.Theme.Dark}"
+					VerticalOptions="Center" HorizontalOptions="Center" />
+				<Label Text="{Binding UpperMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Medium" LineBreakMode="TailTruncation" />
+			</StackLayout>
+
+			<local:SportButton x:Name="btnUpper" BackgroundColor="Transparent" BorderRadius="3" Clicked="HandleAthleteClicked"
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" CommandParameter="{Binding UpperMembership}" />
+		</AbsoluteLayout>
+
+		<AbsoluteLayout IsVisible="{Binding Membership, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
+			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+			<local:SportButton BackgroundColor="{Binding Membership.League.Theme.Light}" BorderRadius="3"
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" Spacing="0">
+				<Label Text="{Binding Membership.CurrentRankOrdinal}" FontSize="28" TextColor="{Binding Membership.League.Theme.Dark}"
+					VerticalOptions="Center" HorizontalOptions="Center" />
+				<Label Text="*You*" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Medium" LineBreakMode="TailTruncation" />
+			</StackLayout>
+
+			<local:SportButton x:Name="btnSelf" BackgroundColor="Transparent" BorderRadius="3" Clicked="HandleAthleteClicked"
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" CommandParameter="{Binding Membership}" />
+
+		</AbsoluteLayout>
+
+		<AbsoluteLayout IsVisible="{Binding LowerMembership, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
+			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+			<local:SportButton  BackgroundColor="{Binding LightColor}" BorderRadius="3" 
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" Spacing="0">
+				<Label Text="{Binding LowerMembership.CurrentRankOrdinal}" FontSize="28" TextColor="{Binding Membership.League.Theme.Dark}"
+					VerticalOptions="Center" HorizontalOptions="Center" />
+				<Label Text="{Binding LowerMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Medium" LineBreakMode="TailTruncation" />
+			</StackLayout>
+
+			<local:SportButton x:Name="btnLower" BackgroundColor="Transparent" BorderRadius="3" Clicked="HandleAthleteClicked"
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" CommandParameter="{Binding LowerMembership}" />
+		</AbsoluteLayout>
+
+	</StackLayout>
+</ContentView>

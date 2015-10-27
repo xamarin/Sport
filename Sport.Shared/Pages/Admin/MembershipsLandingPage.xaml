@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:MembershipsLandingXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="SportChallengeMatchRank.Shared.MembershipsLandingPage"
+	xmlns:local="clr-namespace:SportChallengeMatchRank.Shared;assembly=SportChallengeMatchRank">
+	<local:MembershipsLandingXaml.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource blackLabelStyle}" />
+		</ResourceDictionary>
+	</local:MembershipsLandingXaml.Resources>
+
+	<local:MembershipsLandingXaml.Content>
+		<ListView x:Name="list" RowHeight="60" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+						<StackLayout Padding="20,10,10,10" Spacing="5">
+							<StackLayout Orientation="Horizontal" Spacing="10">
+								<Label Text="{Binding League.Name}" FontSize="13" />
+								<Label Text="Rank:" FontSize="13" />
+								<Label Text="{Binding CurrentRank}" FontSize="13" />
+								<Label Text="{Binding DateCreated}" FontSize="11" />
+							</StackLayout>
+							<StackLayout Orientation="Horizontal" Spacing="10">
+							<Label Text="{Binding Athlete.Name}" FontSize="11" />
+							<Label Text="{Binding Athlete.Email}" FontSize="11" />
+							</StackLayout>
+						</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</local:MembershipsLandingXaml.Content>
+</local:MembershipsLandingXaml>

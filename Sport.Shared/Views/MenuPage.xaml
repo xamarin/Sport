@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage WidthRequest="150" xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="SportChallengeMatchRank.Shared.MenuPage"
+	Icon="ic_menu_white">
+	<ContentPage.Content>
+		<StackLayout BackgroundColor="{StaticResource blueLight}">
+			<StackLayout.Padding>
+				<OnPlatform x:TypeArguments="Thickness">
+					<OnPlatform.iOS>0, 100, 0, 0</OnPlatform.iOS>
+					<OnPlatform.Android>0, 50, 0, 0</OnPlatform.Android>
+				</OnPlatform>
+		    </StackLayout.Padding>
+			<ListView x:Name="listView" WidthRequest="150" RowHeight="120" HeightRequest="500" BackgroundColor="Transparent" SeparatorVisibility="None">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout Padding="60,20,40,20">
+									<Label Text="{Binding Key}" VerticalOptions="CenterAndExpand">
+										<Label.FontSize>
+					                		<OnPlatform x:TypeArguments="x:Double">
+												<OnPlatform.iOS>28</OnPlatform.iOS>
+												<OnPlatform.Android>26</OnPlatform.Android>
+											</OnPlatform>
+										</Label.FontSize>
+									</Label>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

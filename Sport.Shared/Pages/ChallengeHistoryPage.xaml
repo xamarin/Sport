@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:ChallengeHistoryPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.ChallengeHistoryPage"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:ChallengeHistoryPageXaml.Content>
+		<ListView x:Name="list" ItemsSource="{Binding Challenges}" BackgroundColor="White" RowHeight="86" SeparatorColor="{StaticResource grayPrimary}"
+			IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding GetChallengeHistoryCommand}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<Grid StyleId="challengeItemRoot">
+								<AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20,0"
+									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
+
+									<Label Text="{Binding EmptyMessage}" FontSize="Large" Style="{StaticResource header}" XAlign="Center"
+										TextColor="{StaticResource grayPrimary}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" />
+								</AbsoluteLayout>
+
+								<StackLayout Orientation="Horizontal" VerticalOptions="Center"
+									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
+
+									<StackLayout StyleId="resultItemRoot" Padding="24,4" Spacing="10" Orientation="Horizontal">
+										<Grid VerticalOptions="Center">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="50" />
+												<ColumnDefinition Width="10" />
+												<ColumnDefinition Width="50" />
+											</Grid.ColumnDefinitions>
+
+											<StackLayout Spacing="0" VerticalOptions="Center" HorizontalOptions="Center">
+												<Grid WidthRequest="48" HeightRequest="48">
+													<Button BackgroundColor="{Binding Challenge.League.Theme.Light}" WidthRequest="48" HeightRequest="48" BorderRadius="24"
+														VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding Challenge.IsChallengerWinningAthlete}" />
+													<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Challenge.ChallengerAthlete.ProfileImageUrl}"
+														HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" />
+												</Grid>
+												<Label Text="{Binding Challenge.ChallengerAthlete.Alias}" FontSize="9" LineBreakMode="TailTruncation"
+													TextColor="{Binding Challenge.League.Theme.Dark}" XAlign="Center" YAlign="End" VerticalOptions="End" />
+											</StackLayout>
+
+											<Label Grid.Column="1" Text="vs" HorizontalOptions="Center" FontSize="10" YAlign="Center" XAlign="Center" VerticalOptions="Center"  />
+
+											<StackLayout Grid.Column="2" Spacing="0" VerticalOptions="Center" HorizontalOptions="Center">
+												<Grid WidthRequest="48" HeightRequest="48">
+													<Button BackgroundColor="{Binding Challenge.League.Theme.Light}" WidthRequest="48" HeightRequest="48" BorderRadius="24"
+														VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding Challenge.IsChallengeeWinningAthlete}" />
+													<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Challenge.ChallengeeAthlete.ProfileImageUrl}"
+														HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" />
+												</Grid>
+												<Label Text="{Binding Challenge.ChallengeeAthlete.Alias}" FontSize="9" LineBreakMode="TailTruncation" VerticalOptions="End"
+													TextColor="{Binding Challenge.League.Theme.Dark}" XAlign="Center" YAlign="End" />
+											</StackLayout>
+										</Grid>
+
+										<StackLayout Spacing="0" VerticalOptions="Center">
+											<Label Text="{Binding Challenge.MatchResultSummary}" FontSize="Small" TextColor="{Binding Challenge.League.Theme.Dark}" />
+											<Label Text="{Binding Challenge.BattleForPlace}" FontSize="10" TextColor="{Binding Challenge.League.Theme.Primary}" />
+											<Label Text="{Binding Challenge.DateCompleted, StringFormat='completed on \{0:ddd, MMM d \\a\\t h:mm tt\}'}"
+												FontSize="10" TextColor="{Binding Challenge.League.Theme.Primary}" />
+										</StackLayout>
+									</StackLayout>
+								</StackLayout>
+							</Grid>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</local:ChallengeHistoryPageXaml.Content>
+</local:ChallengeHistoryPageXaml>

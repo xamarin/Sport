@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:MembershipDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.MembershipDetailsPage"
+	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+	<local:MembershipDetailsXaml.Content>
+		<ScrollView StyleId="scrollView">
+			<Grid VerticalOptions="Fill" StyleId="memberDetailsRoot">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+			
+				<StackLayout>
+					<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Membership.Athlete}" />
+
+					<StackLayout Padding="24,48,24,0" Spacing="8">
+						<Label FontSize="Medium" Text="ATHLETE STATS" TextColor="{StaticResource grayDark}" />
+						<BoxView BackgroundColor="{StaticResource grayPrimary}" HeightRequest=".5" HorizontalOptions="FillAndExpand" />
+						<StackLayout Orientation="Horizontal">
+							<Label FontSize="Small" Text="Rank" TextColor="{StaticResource grayDark}" />
+							<Label FontSize="Small" Text="{Binding Membership.RankDescription}" TextColor="{StaticResource grayDark}" HorizontalOptions="EndAndExpand" />
+						</StackLayout>
+						<BoxView BackgroundColor="{StaticResource grayPrimary}" HeightRequest=".5" HorizontalOptions="FillAndExpand" />
+						<StackLayout Orientation="Horizontal">
+							<Label FontSize="Small" Text="Stats" TextColor="{StaticResource grayDark}" />
+							<Label FontSize="Small" Text="{Binding Stats}" TextColor="{StaticResource grayDark}" HorizontalOptions="EndAndExpand" />
+						</StackLayout>
+						<BoxView BackgroundColor="{StaticResource grayPrimary}" HeightRequest=".5" HorizontalOptions="FillAndExpand" />
+					</StackLayout>
+				</StackLayout>
+			
+				<StackLayout Grid.Row="1" Padding="24" VerticalOptions="EndAndExpand">
+					<local:SportButton x:Name="btnChallenge" Text="CHALLENGE" StyleId="challengeButton"
+						BackgroundColor="{Binding Membership.League.Theme.Dark}" HorizontalOptions="FillAndExpand"
+						IsVisible="{Binding CanChallenge}"
+						IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+
+					<local:SportButton x:Name="btnPast" Text="PAST CHALLENGES" StyleId="pastButton" HorizontalOptions="FillAndExpand"
+						IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+
+				</StackLayout>
+			</Grid>
+		</ScrollView>
+	</local:MembershipDetailsXaml.Content>
+</local:MembershipDetailsXaml>

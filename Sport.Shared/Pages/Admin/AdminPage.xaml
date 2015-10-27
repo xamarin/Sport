@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:AdminPageXaml xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Shared.AdminPage" xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
+	<local:AdminPageXaml.Content>
+
+		<StackLayout Padding="40" Spacing="20" VerticalOptions="Center" IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}">
+			<local:SportButton x:Name="btnLeagues" Text="Leagues" />
+			<local:SportButton x:Name="btnAthletes" Text="Athletes" />
+		</StackLayout>
+
+	</local:AdminPageXaml.Content>
+</local:AdminPageXaml>
