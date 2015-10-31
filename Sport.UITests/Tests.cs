@@ -92,7 +92,7 @@ namespace Sport.UITests
 			app.WaitForElement(e => e.Marked("leagueRow"));
 
 			if(TestEnvironment.IsTestCloud)
-				Thread.Sleep(10000); //Need to wait for list to load
+				Thread.Sleep(10000); //Need to wait for list images to load
 			
 			app.Screenshot("Then I should see a list of leagues to join");
 
