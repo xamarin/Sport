@@ -87,11 +87,19 @@ namespace Sport.Service.Controllers
 					if(list.Count > WebApiConfig.MaxLeagueMembershipCount)
 					{
 						var diff = list.Count - WebApiConfig.MaxLeagueMembershipCount;
-						var oldest = list.OrderBy(m => m.CreatedAt).Take(diff);
+						var oldest = list.OrderBy(m => m.CreatedAt).Take(diff).ToList();
 
 						foreach(var m in oldest)
 						{
-							await DeleteMembership(m.Id);
+							try
+							{
+								await DeleteMembershipInternal(m.Id);
+							}
+							catch(Exception ex)
+							{
+								//TODO log to Insights
+								Console.WriteLine(ex);
+							}
 						}
 					}
 				}
@@ -113,12 +121,17 @@ namespace Sport.Service.Controllers
 			return CreatedAtRoute("Tables", new { id = current.Id }, current);
 		}
 
-        // DELETE tables/Member/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        async public Task DeleteMembership(string id)
+		// DELETE tables/Member/48D68C86-6EA6-4C25-AA33-223FC9A27959
+		async public Task DeleteMembership(string id)
+		{
+			var membership = _context.Memberships.SingleOrDefault(m => m.Id == id);
+			_authController.EnsureHasPermission(membership.Athlete, Request);
+			await DeleteMembershipInternal(id);
+		}
+
+		async Task DeleteMembershipInternal(string id)
         {
 			var membership = _context.Memberships.SingleOrDefault(m => m.Id == id);
-
-			_authController.EnsureHasPermission(membership.Athlete, Request);
 
 			//Need to remove all the ongoing challenges (not past challenges since those should be locked and sealed in time for all to see for eternity)
 			var challenges = _context.Challenges.Where(c => c.LeagueId == membership.LeagueId && c.DateCompleted == null

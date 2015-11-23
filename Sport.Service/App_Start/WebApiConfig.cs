@@ -31,13 +31,13 @@ namespace Sport.Service
 
 			bool isDemoMode;
 			var boolString = System.Configuration.ConfigurationManager.AppSettings["IsDemoMode"];
-			bool.TryParse(boolString, out isDemoMode);
-			IsDemoMode = isDemoMode;
+			if(bool.TryParse(boolString, out isDemoMode))
+				IsDemoMode = isDemoMode;
 
 			int maxCount;
 			var intString = System.Configuration.ConfigurationManager.AppSettings["MaxLeagueMembershipCount"];
-			int.TryParse(intString, out maxCount);
-			MaxLeagueMembershipCount = maxCount;
+			if(int.TryParse(intString, out maxCount))
+				MaxLeagueMembershipCount = maxCount;
 
 			//config.SetIsHosted(true);
 			// To display errors in the browser during development, uncomment the following
