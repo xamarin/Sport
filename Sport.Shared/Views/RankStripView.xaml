@@ -11,7 +11,7 @@
 			<local:SportButton BackgroundColor="{Binding DarkColor}" BorderRadius="3"
 				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
 
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" Spacing="0">
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
 				<Label Text="{Binding UpperMembership.CurrentRankOrdinal}" FontSize="28" TextColor="{Binding Membership.League.Theme.Dark}"
 					VerticalOptions="Center" HorizontalOptions="Center" />
 				<Label Text="{Binding UpperMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Medium" LineBreakMode="TailTruncation" />
@@ -26,7 +26,7 @@
 			<local:SportButton BackgroundColor="{Binding Membership.League.Theme.Light}" BorderRadius="3"
 				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
 
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" Spacing="0">
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
 				<Label Text="{Binding Membership.CurrentRankOrdinal}" FontSize="28" TextColor="{Binding Membership.League.Theme.Dark}"
 					VerticalOptions="Center" HorizontalOptions="Center" />
 				<Label Text="*You*" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Medium" LineBreakMode="TailTruncation" />
@@ -42,7 +42,7 @@
 			<local:SportButton  BackgroundColor="{Binding LightColor}" BorderRadius="3" 
 				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
 
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" Spacing="0">
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
 				<Label Text="{Binding LowerMembership.CurrentRankOrdinal}" FontSize="28" TextColor="{Binding Membership.League.Theme.Dark}"
 					VerticalOptions="Center" HorizontalOptions="Center" />
 				<Label Text="{Binding LowerMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Medium" LineBreakMode="TailTruncation" />

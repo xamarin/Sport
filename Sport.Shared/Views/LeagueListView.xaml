@@ -3,8 +3,11 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Shared.LeagueListView"
 	x:Name="list" StyleId="leagueList"
-	IsRefreshing="{Binding IsBusy, Mode=OneWay}" IsPullToRefreshEnabled="true"
-	BackgroundColor="{StaticResource grayLight}" SeparatorVisibility="None" HasUnevenRows="true"
+	IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+	IsPullToRefreshEnabled="true"
+	BackgroundColor="{StaticResource grayLight}"
+	SeparatorVisibility="None"
+	HasUnevenRows="true"
 	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
 	<ListView.ItemTemplate>
 		<DataTemplate>
@@ -24,23 +27,23 @@
 
 							<StackLayout StyleId="leagueRow" Orientation="Vertical" BackgroundColor="White" Spacing="0" VerticalOptions="FillAndExpand">
 								<AbsoluteLayout HeightRequest="150">
-									<Image Source="ic_missing_photo_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5"
+									<Image Source="ic_missing_photo_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"
 										HeightRequest="24" WidthRequest="24" />
 									<Image x:Name="photoImage" Source="{Binding League.ImageUrl}" Aspect="AspectFill"
 										AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"/>
 
 									<AbsoluteLayout IsVisible="{Binding HasChallenge}"
-										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1" Padding="10">
+										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1,-1,-1" Padding="10">
 										<local:SportButton BorderRadius="2" BackgroundColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36"
-											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" TextColor="White" />
-										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5"/>
+											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" TextColor="White" />
+										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
 									</AbsoluteLayout>
 
 									<AbsoluteLayout IsVisible="{Binding IsFirstPlace}"
-										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1" Padding="10">
+										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,-1,-1" Padding="10">
 										<local:SportButton BorderRadius="2" BackgroundColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36"
-											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" TextColor="White" />
-										<Image Source="ic_trophy_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5"/>
+											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" TextColor="White" />
+										<Image Source="ic_trophy_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
 									</AbsoluteLayout>
 								</AbsoluteLayout>
 

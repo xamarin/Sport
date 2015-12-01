@@ -19,7 +19,7 @@
 									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
 
 									<Label Text="{Binding EmptyMessage}" FontSize="Large" Style="{StaticResource header}" XAlign="Center"
-										TextColor="{StaticResource grayPrimary}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" />
+										TextColor="{StaticResource grayPrimary}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
 								</AbsoluteLayout>
 
 								<StackLayout Padding="24,16,16,16" Spacing="20" Orientation="Horizontal" VerticalOptions="Center"
@@ -33,7 +33,7 @@
 												BorderRadius="24" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsFirstPlace}" />
 											<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Membership.Athlete.ProfileImageUrl}"
 												HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"
-												AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" />
+												AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
 										</AbsoluteLayout>
 
 										<StackLayout Spacing="0" VerticalOptions="Center">
@@ -44,8 +44,8 @@
 
 									<AbsoluteLayout IsVisible="{Binding Membership.OngoingChallenge, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}" HorizontalOptions="EndAndExpand">
 										<local:SportButton BorderRadius="2" BackgroundColor="{StaticResource grayPrimary}" HeightRequest="36" WidthRequest="36"
-											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5" TextColor="White" />
-										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5"/>
+											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" TextColor="White" />
+										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
 									</AbsoluteLayout>
 								</StackLayout>
 							</Grid>

@@ -6,7 +6,7 @@ namespace Sport.Shared
 {
 	public partial class LeagueListView : ListView
 	{
-		public LeagueListView()
+		public LeagueListView() : base(ListViewCachingStrategy.RecycleElement)
 		{
 			InitializeComponent();
 		}

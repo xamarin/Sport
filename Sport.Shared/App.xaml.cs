@@ -7,6 +7,9 @@ using Connectivity.Plugin;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 
 namespace Sport.Shared
 {
