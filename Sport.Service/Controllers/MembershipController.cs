@@ -79,27 +79,36 @@ namespace Sport.Service.Controllers
 					item.CurrentRank = prior.CurrentRank + 1;
 
 				current = await InsertAsync(item.ToMembership());
+			}
 
-				if (WebApiConfig.IsDemoMode)
+			var result = CreatedAtRoute("Tables", new { id = current.Id }, current);
+
+			if(WebApiConfig.IsDemoMode)
+			{
+				//Keep the lists to a reasonable amount for the public-facing service
+				var query = _context.Memberships.Where(m => m.LeagueId == item.LeagueId && m.AbandonDate == null);
+				var list = ConvertMembershipToDto(query).ToList();
+
+				if(list.Count > WebApiConfig.MaxLeagueMembershipCount)
 				{
-					//Keep the lists to a reasonable amount
-					var list = _context.Memberships.Where(m => m.LeagueId == item.LeagueId && m.AbandonDate == null).ToList();
-					if(list.Count > WebApiConfig.MaxLeagueMembershipCount)
-					{
-						var diff = list.Count - WebApiConfig.MaxLeagueMembershipCount;
-						var oldest = list.OrderBy(m => m.CreatedAt).Take(diff).ToList();
+					var diff = list.Count - WebApiConfig.MaxLeagueMembershipCount;
+					var oldest = list.OrderBy(m => m.CreatedAt).Take(diff).Select(m => m.Id).ToList();
 
-						foreach(var m in oldest)
+					foreach(var mId in oldest)
+					{
+						if(mId == current.Id)
 						{
-							try
-							{
-								await DeleteMembershipInternal(m.Id);
-							}
-							catch(Exception ex)
-							{
-								//TODO log to Insights
-								Console.WriteLine(ex);
-							}
+							continue;
+						}
+
+						try
+						{
+							await DeleteMembershipInternal(mId);
+						}
+						catch(Exception ex)
+						{
+							//TODO log to Insights
+							Console.WriteLine(ex);
 						}
 					}
 				}
@@ -118,7 +127,7 @@ namespace Sport.Service.Controllers
 				Console.WriteLine(e);
 			}
             
-			return CreatedAtRoute("Tables", new { id = current.Id }, current);
+			return result;
 		}
 
 		// DELETE tables/Member/48D68C86-6EA6-4C25-AA33-223FC9A27959
@@ -142,6 +151,7 @@ namespace Sport.Service.Controllers
 				&& m.LeagueId == membership.LeagueId && m.AbandonDate == null).ToList();
 			membershipsToAlter.ForEach(m => m.CurrentRank -= 1);
 
+			/*
 			foreach(var c in challenges)
 			{
 				try
@@ -161,6 +171,7 @@ namespace Sport.Service.Controllers
 					Console.WriteLine(e);
 				}
 			}
+			*/
 
 			membership.AbandonDate = DateTime.UtcNow;
 			challenges.ForEach(c => _context.Entry(c).State = EntityState.Deleted);
