@@ -48,7 +48,8 @@ namespace Sport.UITests
 
 			if(TestEnvironment.IsTestCloud)
 				Thread.Sleep(10000); //Need to wait for form fields to animate over
-			
+
+			app.Tap(e => e.Css("#Passwd"));
 			app.EnterText(e => e.Css("#Passwd"), Keys.TestPassword, "And I enter my super secret password");
 			app.DismissKeyboard();
 
@@ -64,6 +65,7 @@ namespace Sport.UITests
 				app.ScrollDownTo(e => e.Css("#submit_approve_access"));
 				app.Tap("And I accept the terms", e => e.Css("#submit_approve_access"));
 			}
+
 
 			app.WaitForElement(e => e.Marked("aliasText"));
 			app.ClearText(e => e.Marked("aliasText"));
@@ -117,8 +119,12 @@ namespace Sport.UITests
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			var result = app.Query("*You*")[0];
-			app.TapCoordinates(result.Rect.X, result.Rect.Y - result.Rect.Height); //Select player above self
+			app.ScrollDownTo(e => e.Text ("Rob TestCloud"));
+
+			Thread.Sleep(1000); //Let scrolling settle
+
+			var result = app.Query(e => e.Text("Rob TestCloud"))[0];
+			app.TapCoordinates(result.Rect.X, result.Rect.Y - 100); //Select player above self
 			app.WaitForElement("memberDetailsRoot");
 			app.Screenshot("Member details page");
 

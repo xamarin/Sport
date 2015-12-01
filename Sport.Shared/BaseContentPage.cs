@@ -237,7 +237,7 @@ namespace Sport.Shared
 			await Task.Delay(300);
 			var success = await authPage.AttemptToAuthenticateAthlete();
 
-			if(success)
+			if(success && Navigation.ModalStack.Count > 0)
 			{
 				await Navigation.PopModalAsync();
 			}

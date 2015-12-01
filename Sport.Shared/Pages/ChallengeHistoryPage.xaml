@@ -6,7 +6,7 @@
 	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
 	<local:ChallengeHistoryPageXaml.Content>
 		<ListView x:Name="list" ItemsSource="{Binding Challenges}" BackgroundColor="White" RowHeight="86" SeparatorColor="{StaticResource grayPrimary}"
-			IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding GetChallengeHistoryCommand}">
+			IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding GetChallengeHistoryCommand}" IsPullToRefreshEnabled="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>

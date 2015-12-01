@@ -25,8 +25,6 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchI18n>
-    </MtouchI18n>
     <CustomCommands>
       <CustomCommands>
         <Command type="Custom" name="Run in XTC" command="sh run_iOS_XTC.sh" workingdir="${SolutionDir}" />
@@ -45,8 +43,6 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchI18n>
-    </MtouchI18n>
     <IpaPackageName>
     </IpaPackageName>
     <BuildIpa>true</BuildIpa>
@@ -81,8 +77,6 @@
     <MtouchDebug>true</MtouchDebug>
     <BuildIpa>true</BuildIpa>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchI18n>
-    </MtouchI18n>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchLink>None</MtouchLink>

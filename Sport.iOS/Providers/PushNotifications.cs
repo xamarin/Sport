@@ -16,8 +16,11 @@ namespace Sport.iOS
 			               | UIUserNotificationType.Sound, new NSSet());
 
 
-			UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
-			UIApplication.SharedApplication.RegisterForRemoteNotifications();
+			if (settings != null)
+			{
+				UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+				UIApplication.SharedApplication.RegisterForRemoteNotifications();
+			}
 		}
 
 		public bool IsRegistered

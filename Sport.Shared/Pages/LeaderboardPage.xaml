@@ -6,7 +6,7 @@
 	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
 	<local:LeaderboardXaml.Content>
 		<ListView x:Name="list" ItemsSource="{Binding Memberships}" BackgroundColor="White" RowHeight="80" SeparatorColor="{StaticResource grayPrimary}"
-			IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding GetLeaderboardCommand}">
+			IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding GetLeaderboardCommand}" IsPullToRefreshEnabled="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>

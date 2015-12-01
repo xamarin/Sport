@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Shared.LeagueListView"
 	x:Name="list" StyleId="leagueList"
-	IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+	IsRefreshing="{Binding IsBusy, Mode=OneWay}" IsPullToRefreshEnabled="true"
 	BackgroundColor="{StaticResource grayLight}" SeparatorVisibility="None" HasUnevenRows="true"
 	xmlns:local="clr-namespace:Sport.Shared;assembly=Sport">
 	<ListView.ItemTemplate>
@@ -12,7 +12,7 @@
 				<ViewCell.View>
 					<AbsoluteLayout Padding="{Binding IsLast, Converter={x:Static local:LeaguePaddingValueConverter.Instance}}">
 						<StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Fill"
-							AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="48"
+							AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="30"
 								IsVisible="{Binding League, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
 
 							<Label Text="{Binding EmptyMessage}" FontSize="Large" Style="{StaticResource header}" XAlign="Center" />
