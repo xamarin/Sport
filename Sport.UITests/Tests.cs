@@ -66,7 +66,6 @@ namespace Sport.UITests
 				app.Tap("And I accept the terms", e => e.Css("#submit_approve_access"));
 			}
 
-
 			app.WaitForElement(e => e.Marked("aliasText"));
 			app.ClearText(e => e.Marked("aliasText"));
 			app.EnterText(e => e.Marked("aliasText"), "XTC Tester", "And I enter my alias");

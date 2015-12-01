@@ -95,9 +95,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\SetAliasPage.xaml.cs">
       <DependentUpon>SetAliasPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AuthenticationView.xaml.cs">
-      <DependentUpon>AuthenticationView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\AuthenticationPage.xaml.cs">
       <DependentUpon>AuthenticationPage.xaml</DependentUpon>
     </Compile>
@@ -209,9 +206,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\WelcomeAuthentication\SetAliasPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AuthenticationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\AuthenticationPage.xaml">
