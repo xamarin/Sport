@@ -15,7 +15,6 @@ using System.Diagnostics;
 
 [assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
 [assembly: UsesPermission(Name = "android.permission.INTERNET")]
-[assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
 
 [assembly: Dependency(typeof(Sport.Android.PushNotifications))]
 
