@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Connectivity.Plugin;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Connectivity;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 

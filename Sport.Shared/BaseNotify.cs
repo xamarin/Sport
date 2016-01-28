@@ -12,7 +12,6 @@ namespace Sport.Shared
 
 		public BaseNotify()
 		{
-			PropertyChanged += OnPropertyChanged;
 		}
 
 		public virtual void Dispose()
@@ -30,16 +29,6 @@ namespace Sport.Shared
 			if(PropertyChanged != null)
 			{
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-
-		void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-		{
-			List<Action> actionList;
-
-			foreach(Action action in actionList)
-			{
-				action();
 			}
 		}
 
