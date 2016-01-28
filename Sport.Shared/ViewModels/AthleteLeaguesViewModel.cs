@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System;
 
-[assembly: Dependency(typeof(Sport.Shared.AthleteLeaguesViewModel))]
 namespace Sport.Shared
 {
 	public class AthleteLeaguesViewModel : BaseViewModel

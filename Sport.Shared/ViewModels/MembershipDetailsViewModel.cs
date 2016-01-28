@@ -3,8 +3,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 
-[assembly: Dependency(typeof(Sport.Shared.MembershipDetailsViewModel))]
-
 namespace Sport.Shared
 {
 	public class MembershipDetailsViewModel : MembershipViewModel

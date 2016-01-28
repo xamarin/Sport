@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Sport.Shared.LeagueLandingViewModel))]
 namespace Sport.Shared
 {
 	public class LeagueLandingViewModel : BaseViewModel

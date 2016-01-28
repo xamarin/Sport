@@ -6,8 +6,6 @@ using System.Linq;
 //using Google.Apis.Calendar.v3.Data;
 //using Google.Apis.Calendar.v3;
 
-[assembly: Dependency(typeof(Sport.Shared.ChallengeDetailsViewModel))]
-
 namespace Sport.Shared
 {
 	public class ChallengeDetailsViewModel : ChallengeViewModel

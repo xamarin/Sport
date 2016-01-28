@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System;
 using Xamarin;
 
-[assembly: Dependency(typeof(Sport.Shared.ChallengeHistoryViewModel))]
 namespace Sport.Shared
 {
 	public class ChallengeHistoryViewModel : BaseViewModel

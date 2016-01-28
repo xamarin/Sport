@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System;
 using Xamarin;
 
-[assembly: Dependency(typeof(Sport.Shared.LeaderboardViewModel))]
 namespace Sport.Shared
 {
 	public class LeaderboardViewModel : BaseViewModel

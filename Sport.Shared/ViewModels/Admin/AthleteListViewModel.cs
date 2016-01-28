@@ -6,7 +6,6 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using System.Linq;
 
-[assembly: Dependency(typeof(Sport.Shared.AthleteListViewModel))]
 namespace Sport.Shared
 {
 	public class AthleteListViewModel : BaseViewModel

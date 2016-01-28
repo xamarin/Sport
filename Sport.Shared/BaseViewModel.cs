@@ -144,24 +144,24 @@ namespace Sport.Shared
 		public Busy(BaseViewModel viewModel)
 		{
 			_viewModel = viewModel;
-			Device.BeginInvokeOnMainThread(() =>
-			{
+			//Device.BeginInvokeOnMainThread(() =>
+			//{
 				lock(_sync)
 				{
 					_viewModel.IsBusy = true;
 				}
-			});
+			//});
 		}
 
 		public void Dispose()
 		{
-			Device.BeginInvokeOnMainThread(() =>
-			{
+			//Device.BeginInvokeOnMainThread(() =>
+			//{
 				lock(_sync)
 				{
 					_viewModel.IsBusy = false;
 				}
-			});
+			//});
 		}
 	}
 

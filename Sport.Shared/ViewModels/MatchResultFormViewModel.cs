@@ -3,8 +3,6 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Linq;
 
-[assembly: Dependency(typeof(Sport.Shared.MatchResultFormViewModel))]
-
 namespace Sport.Shared
 {
 	public class MatchResultFormViewModel : BaseViewModel

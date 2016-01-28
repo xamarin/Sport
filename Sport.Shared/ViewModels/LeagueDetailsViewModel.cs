@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 
-[assembly: Dependency(typeof(Sport.Shared.LeagueDetailsViewModel))]
-
 namespace Sport.Shared
 {
 	public class LeagueDetailsViewModel : LeagueViewModel

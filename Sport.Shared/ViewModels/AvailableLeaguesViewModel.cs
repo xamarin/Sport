@@ -6,7 +6,6 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using System;
 
-[assembly: Dependency(typeof(Sport.Shared.AvailableLeaguesViewModel))]
 namespace Sport.Shared
 {
 	public class AvailableLeaguesViewModel : BaseViewModel

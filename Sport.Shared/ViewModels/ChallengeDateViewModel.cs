@@ -4,8 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Sport.Shared.ChallengeDateViewModel))]
-
 namespace Sport.Shared
 {
 	public class ChallengeDateViewModel : ChallengeViewModel

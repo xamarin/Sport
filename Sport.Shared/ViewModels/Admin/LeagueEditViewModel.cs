@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using System.Text;
 using System.Linq;
 
-[assembly: Dependency(typeof(Sport.Shared.LeagueEditViewModel))]
-
 namespace Sport.Shared
 {
 	public class LeagueEditViewModel : BaseViewModel

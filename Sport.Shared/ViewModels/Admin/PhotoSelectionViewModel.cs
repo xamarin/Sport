@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-[assembly: Dependency(typeof(Sport.Shared.PhotoSelectionViewModel))]
-
 namespace Sport.Shared
 {
 	public class PhotoSelectionViewModel : BaseViewModel

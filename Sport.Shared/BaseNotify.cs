@@ -8,8 +8,6 @@ namespace Sport.Shared
 {
 	public class BaseNotify : INotifyPropertyChanged, IDisposable
 	{
-		readonly Dictionary<string, List<Action>> _actions = new Dictionary<string, List<Action>>();
-
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public BaseNotify()
@@ -38,8 +36,6 @@ namespace Sport.Shared
 		void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
 		{
 			List<Action> actionList;
-			if(!_actions.TryGetValue(propertyChangedEventArgs.PropertyName, out actionList))
-				return;
 
 			foreach(Action action in actionList)
 			{
@@ -50,7 +46,6 @@ namespace Sport.Shared
 		public void ClearEvents()
 		{
 			//Super awesome trick to wipe attached event handlers - +1 Clancey
-			_actions.Clear();
 			if(PropertyChanged == null)
 				return;
 
