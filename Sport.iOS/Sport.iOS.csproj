@@ -108,9 +108,6 @@
     <Reference Include="ModernHttpClient">
       <HintPath>..\packages\modernhttpclient.2.4.2\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
     </Reference>
-    <Reference Include="MessageBarLib">
-      <HintPath>..\SupportingProjects\iOS\MessageBarLib\MessageBarLib.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -260,5 +257,11 @@
   <Import Project="..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SupportingProjects\iOS\MessageBarLib\MessageBarLib.csproj">
+      <Project>{2848ABC8-92CF-4D70-BFD1-218E6D00D8BD}</Project>
+      <Name>MessageBarLib</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
