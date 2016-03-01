@@ -26,19 +26,27 @@ namespace Sport.iOS
 
 		public override UIViewController PopViewController(bool animated)
 		{
-			var obj = Element.GetType().InvokeMember("StackCopy", BindingFlags.GetProperty | BindingFlags.NonPublic | BindingFlags.Instance, Type.DefaultBinder, Element, null);
-			if(obj != null)
+			try
 			{
-				var pages = obj as Stack<Page>;
-				if(pages != null && pages.Count >= 2)
+				var obj = Element.GetType().InvokeMember("StackCopy", BindingFlags.GetProperty | BindingFlags.NonPublic | BindingFlags.Instance, Type.DefaultBinder, Element, null);
+				if(obj != null)
 				{
-					var copy = new Page[pages.Count];
-					pages.CopyTo(copy, 0);
+					var pages = obj as Stack<Page>;
+					if(pages != null && pages.Count >= 2)
+					{
+						var copy = new Page[pages.Count];
+						pages.CopyTo(copy, 0);
 
-					var prev = copy[1];
-					ChangeTheme(prev);
+						var prev = copy[1];
+						ChangeTheme(prev);
+					}
 				}
 			}
+			catch(Exception e)
+			{
+				InsightsManager.Report(e);
+			}
+
 			return base.PopViewController(animated);
 		}
 

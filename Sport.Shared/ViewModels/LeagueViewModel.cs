@@ -186,6 +186,8 @@ namespace Sport.Shared
 				Membership best = null;
 				while(best == null && gap > 0 && CurrentMembership != null)
 				{
+					var ranks = League.Memberships.Select(e => e.CurrentRank).ToList();
+
 					best = League.Memberships.SingleOrDefault(m => m.CurrentRank == CurrentMembership.CurrentRank - gap);
 
 					if(best == null)

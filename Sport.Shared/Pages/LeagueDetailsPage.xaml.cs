@@ -88,6 +88,7 @@ namespace Sport.Shared
 
 			rankStrip.Membership = ViewModel.CurrentMembership; //Binding is not working in XAML for some reason
 			scrollView.Scrolled += (sender, e) => Parallax();
+
 			Parallax();
 
 			btnRefresh.Clicked += async(sender, e) =>

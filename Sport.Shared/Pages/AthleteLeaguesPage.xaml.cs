@@ -163,6 +163,9 @@ namespace Sport.Shared
 
 		async void OnProfileSelected()
 		{
+			if(App.CurrentAthlete == null || App.CurrentAthlete.Id == null)
+				return;
+
 			var page = new AthleteProfilePage(App.CurrentAthlete.Id);
 			page.OnSave = async() => await Navigation.PopModalAsync();
 			await Navigation.PushModalAsync(page.WithinNavigationPage());
