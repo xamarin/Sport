@@ -1,4 +1,21 @@
 # Sport
+
+
+____
+##Sport v2 compatible with the new Azure App Services
+and uses the latest of all libraries/SDKs. I have not done a super thorough job of testing yet so please keep that in mind. This includes a lot of changes to both the front and back ends.
+
+Changes include:
+
+Updated to Forms 2.3
+Azure App Service support
+Converted to use PCL instead of Shared Projects
+Local data store now uses Azure Offline Sync
+Other various updates to support the latest from 3rd party frameworks/libs
+https://www.dropbox.com/s/o2jeeq1ioowlrhh/Xamarin%20Sport2.0.zip?dl=0
+____
+
+
 Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office.
 Athletes can join leagues, get ranked and challenge other athletes to move up the ladder. As of 8/30/2015, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
 
