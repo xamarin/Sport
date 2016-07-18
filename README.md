@@ -3,7 +3,7 @@
 
 ____
 ##Sport v2 compatible with the new Azure App Services
-and uses the latest of all libraries/SDKs. I have not done a super thorough job of testing yet so please keep that in mind. This includes a lot of changes to both the front and back ends.
+I'm posting a very early build of Sport v2 that connects to Azure App Services and uses the latest of all libraries/SDKs. I have not done a super thorough job of testing yet so please keep that in mind. This includes a lot of changes to both the front and back ends.
 
 Changes include:
 
