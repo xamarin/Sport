@@ -12,7 +12,7 @@ Azure App Service support
 Converted to use PCL instead of Shared Projects
 Local data store now uses Azure Offline Sync
 Other various updates to support the latest from 3rd party frameworks/libs
-https://www.dropbox.com/s/o2jeeq1ioowlrhh/Xamarin%20Sport2.0.zip?dl=0
+https://www.dropbox.com/s/bporw05y5vjy5sd/Xamarin%20Sport2.0.zip?dl=0
 ____
 
 
