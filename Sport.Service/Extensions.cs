@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-using Sport;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 
 namespace Sport.Service
@@ -51,21 +48,11 @@ namespace Sport.Service
 				ChallengeeAthleteId = dto.ChallengeeAthleteId,
 				LeagueId = dto.LeagueId,
 				UpdatedAt = dto.UpdatedAt,
-				DateCreated = dto.CreatedAt,
 				BattleForRank = dto.BattleForRank,
 				ProposedTime = dto.ProposedTime,
 				DateAccepted = dto.DateAccepted,
 				DateCompleted = dto.DateCompleted,
 				CustomMessage = dto.CustomMessage,
-				MatchResult = dto.MatchResult.Select(r => new GameResultDto
-				{
-					Id = r.Id,
-					DateCreated = r.CreatedAt,
-					ChallengeId = r.ChallengeId,
-					ChallengeeScore = r.ChallengeeScore,
-					ChallengerScore = r.ChallengerScore,
-					Index = r.Index
-				}).ToList()
 			};
 		}
 
@@ -138,7 +125,6 @@ namespace Sport.Service
 				CurrentRank = dto.CurrentRank,
 				AthleteId = dto.AthleteId,
 				IsAdmin = dto.IsAdmin,
-				CreatedAt = dto.DateCreated,
 				LastRankChange = dto.LastRankChange,
 				LeagueId = dto.LeagueId,
 				AbandonDate = dto.AbandonDate,
@@ -152,14 +138,12 @@ namespace Sport.Service
 				Name = dto.Name,
 				Id = dto.Id,
 				UpdatedAt = dto.UpdatedAt,
-				DateCreated = dto.CreatedAt,
 				Email = dto.Email,
 				UserId = dto.UserId,
 				IsAdmin = dto.IsAdmin,
 				DeviceToken = dto.DeviceToken,
 				DevicePlatform = dto.DevicePlatform,
 				AuthenticationId = dto.AuthenticationId,
-				MembershipIds = dto.Memberships.Where(m => m.AbandonDate == null).Select(m => m.Id).ToList(),
 			};
 		}
 

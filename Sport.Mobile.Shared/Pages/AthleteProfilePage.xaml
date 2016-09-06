@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:AthleteProfilePageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Sport.Mobile.Shared.AthleteProfilePage"
+	xmlns:local="clr-namespace:Sport.Mobile.Shared"
+	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+    <local:AthleteProfilePageXaml.Content>
+	<ScrollView>
+		<Grid VerticalOptions="Fill">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+		
+			<StackLayout>
+				<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
+
+				<StackLayout Spacing="0" Padding="0,40">
+					<ContentView BackgroundColor="{StaticResource asphaltLight}" HeightRequest=".5" HorizontalOptions="Fill" />
+					<StackLayout Orientation="Horizontal" Spacing="20" Padding="48,0" HeightRequest="56">
+						<Label Text="Alias:" TextColor="{StaticResource asphaltLight}" VerticalOptions="Center" FontSize="Large" />
+						<local:SportEntry x:Name="txtAlias" AutomationId="aliasText" Text="{Binding Athlete.Alias}"
+							Font="Large" TextColor="{StaticResource asphaltDark}"
+							HasBorder="false" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="FillAndExpand" MaxLength="14" />
+					</StackLayout>
+					<ContentView BackgroundColor="{StaticResource asphaltLight}" HeightRequest=".5" HorizontalOptions="Fill" />
+				</StackLayout>
+			</StackLayout>
+
+			<StackLayout Padding="24" Grid.Row="1" Spacing="14">
+				<local:SportButton x:Name="btnRegister" Text="ENABLE PUSH NOTIFICATIONS" VerticalOptions="End" HorizontalOptions="FillAndExpand"
+					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					BackgroundColor="{StaticResource asphaltPrimary}" AutomationId="pushButton" />
+
+				<local:SportButton x:Name="btnSave" Text="SAVE" VerticalOptions="End" HorizontalOptions="FillAndExpand"
+					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					BackgroundColor="{StaticResource asphaltDark}" AutomationId="saveButton" />
+			</StackLayout>
+		</Grid>
+	</ScrollView>
+	</local:AthleteProfilePageXaml.Content>
+</local:AthleteProfilePageXaml>

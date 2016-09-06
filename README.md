@@ -26,9 +26,7 @@ Athletes can join leagues, get ranked and challenge other athletes to move up th
 
 #### This project excercises the following platforms, frameworks or features:
 * Xamarin.iOS
-  * Push notifications
 * Xamarin.Android
-  * Push notifications
 * Xamarin.Forms
   * XAML
   * Bindings
@@ -39,17 +37,18 @@ Athletes can join leagues, get ranked and challenge other athletes to move up th
   * IoC
   * Messaging Center
   * Custom Controls
-  * MessageBar library
-  * ImageCircle Plugin
-  * Connectivity Plugin
-* Xamarin Insights
+  * Cross Plugins
+* HockeyApp Crash Reporting
 * Xamarin Test Cloud
   * UITest
   * Extensions
-  * single code-base for iOS & Android
+  * Single code-base for iOS & Android
 * Azure Mobile Services
   * C# backend
-  * cross-platform templated push notifications
+  * WebAPI
+  * Entity Framework
+  * Offline Sync
+  * Cross-platform templated push notifications
 
 
 #### This project employs a few patterns listed below:

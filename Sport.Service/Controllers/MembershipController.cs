@@ -1,8 +1,8 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+﻿using Microsoft.Azure.Mobile.Server;
 using Sport.Service.Models;
 using Sport.Shared;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,17 +12,18 @@ using System.Web.Http.OData;
 
 namespace Sport.Service.Controllers
 {
-	[AuthorizeLevel(AuthorizationLevel.User)]
+	[Authorize]
 	public class MembershipController : TableController<Membership>
     {
+		Object _syncObject = new object();
 		AuthenticationController _authController = new AuthenticationController();
 		NotificationController _notificationController = new NotificationController();
-		AppContext _context = new AppContext();
+        MobileServiceContext _context = new MobileServiceContext();
 
 		protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            DomainManager = new EntityDomainManager<Membership>(_context, Request, Services);
+            DomainManager = new EntityDomainManager<Membership>(_context, Request, true);
         }
 
         // GET tables/Member
@@ -39,17 +40,19 @@ namespace Sport.Service.Controllers
 
 		IQueryable<MembershipDto> ConvertMembershipToDto(IQueryable<Membership> queryable)
 		{
-			return queryable.Select(m => new MembershipDto
+			return queryable.Select(dto => new MembershipDto
 			{
-				Id = m.Id,
-				UpdatedAt = m.UpdatedAt,
-				AthleteId = m.Athlete.Id,
-				LeagueId = m.League.Id,
-				IsAdmin = m.IsAdmin,
-				AbandonDate = m.AbandonDate,
-				CurrentRank = m.CurrentRank,
-				LastRankChange = m.LastRankChange,
-				DateCreated = m.CreatedAt,
+				Id = dto.Id,
+				UpdatedAt = dto.UpdatedAt,
+				AthleteId = dto.Athlete.Id,
+				LeagueId = dto.League.Id,
+				IsAdmin = dto.IsAdmin,
+				AbandonDate = dto.AbandonDate,
+                Deleted = dto.Deleted,
+                CreatedAt = dto.CreatedAt,
+                Version = dto.Version,
+                CurrentRank = dto.CurrentRank,
+				LastRankChange = dto.LastRankChange,
 			});
 		}
 
@@ -63,7 +66,7 @@ namespace Sport.Service.Controllers
         // POST tables/Member
 		public async Task<IHttpActionResult> PostMembership(MembershipDto item)
         {
-			Membership current;
+			Membership current = null;
 			var exists = _context.Memberships.FirstOrDefault(m => m.AthleteId == item.AthleteId && m.LeagueId == item.LeagueId && m.AbandonDate == null);
 			if(exists != null)
 			{
@@ -78,39 +81,53 @@ namespace Sport.Service.Controllers
 				if(prior != null)
 					item.CurrentRank = prior.CurrentRank + 1;
 
-				current = await InsertAsync(item.ToMembership());
+				try
+				{
+					var membership = item.ToMembership();
+					current = await InsertAsync(membership);
+				}
+				catch (Exception e)
+				{
+
+				}
 			}
 
 			var result = CreatedAtRoute("Tables", new { id = current.Id }, current);
 
-			if(WebApiConfig.IsDemoMode)
+			if(Startup.IsDemoMode)
 			{
+				var tasks = new List<Task>();
 				//Keep the lists to a reasonable amount for the public-facing service
-				var query = _context.Memberships.Where(m => m.LeagueId == item.LeagueId && m.AbandonDate == null);
-				var list = ConvertMembershipToDto(query).ToList();
-
-				if(list.Count > WebApiConfig.MaxLeagueMembershipCount)
+				lock (_syncObject)
 				{
-					var diff = list.Count - WebApiConfig.MaxLeagueMembershipCount;
-					var oldest = list.OrderBy(m => m.CreatedAt).Take(diff).Select(m => m.Id).ToList();
+					var query = _context.Memberships.Where(m => m.LeagueId == item.LeagueId && m.AbandonDate == null);
+					var list = ConvertMembershipToDto(query).ToList();
 
-					foreach(var mId in oldest)
+					if (list.Count > Startup.MaxLeagueMembershipCount)
 					{
-						if(mId == current.Id)
-						{
-							continue;
-						}
+						var diff = list.Count - Startup.MaxLeagueMembershipCount;
+						var oldest = list.OrderBy(m => m.CreatedAt).Take(diff).Select(m => m.Id).ToList();
 
-						try
+						foreach (var mId in oldest)
 						{
-							await DeleteMembershipInternal(mId);
-						}
-						catch(Exception ex)
-						{
-							//TODO log to Insights
-							Console.WriteLine(ex);
+							if (mId == current.Id)
+							{
+								continue;
+							}
+
+							tasks.Add(DeleteMembershipInternal(mId));
 						}
 					}
+				}
+
+				try
+				{
+					await Task.WhenAll(tasks);
+				}
+				catch (Exception ex)
+				{
+					//TODO log to Insights
+					Console.WriteLine(ex);
 				}
 			}
 
@@ -138,44 +155,55 @@ namespace Sport.Service.Controllers
 			await DeleteMembershipInternal(id);
 		}
 
+		object _deleteSync = new object();
 		async Task DeleteMembershipInternal(string id)
         {
-			var membership = _context.Memberships.SingleOrDefault(m => m.Id == id);
-
-			//Need to remove all the ongoing challenges (not past challenges since those should be locked and sealed in time for all to see for eternity)
-			var challenges = _context.Challenges.Where(c => c.LeagueId == membership.LeagueId && c.DateCompleted == null
-				&& (c.ChallengerAthleteId == membership.AthleteId || c.ChallengeeAthleteId == membership.AthleteId)).ToList();
-
-			//Need to rerank the leaderboard
-			var membershipsToAlter = _context.Memberships.Where(m => m.CurrentRank >= membership.CurrentRank
-				&& m.LeagueId == membership.LeagueId && m.AbandonDate == null).ToList();
-			membershipsToAlter.ForEach(m => m.CurrentRank -= 1);
-
-			/*
-			foreach(var c in challenges)
+			lock(_deleteSync)
 			{
-				try
-				{
-					var league = _context.Leagues.SingleOrDefault(l => l.Id == c.LeagueId);
-					var payload = new NotificationPayload
-					{
-						Action = PushActions.ChallengeDeclined,
-						Payload = { { "leagueId", c.LeagueId }, { "challengeId", c.Id } }
-					};
-					var message = "You challenge with {0} has ben removed because they abandoned the {1} league".Fmt(membership.Athlete.Alias, league.Name);
-					await _notificationController.NotifyByTag(message, c.Opponent(membership.AthleteId).Id, payload);
-				}
-				catch(Exception e)
-				{
-					//TODO log to Insights
-					Console.WriteLine(e);
-				}
-			}
-			*/
+				var membership = _context.Memberships.SingleOrDefault(m => m.Id == id);
 
-			membership.AbandonDate = DateTime.UtcNow;
-			challenges.ForEach(c => _context.Entry(c).State = EntityState.Deleted);
-			_context.SaveChanges();
-        }
+				//Need to remove all the ongoing challenges (not past challenges since those should be locked and sealed in time for all to see for eternity)
+				var challenges = _context.Challenges.Where(c => c.LeagueId == membership.LeagueId && c.DateCompleted == null
+					&& (c.ChallengerAthleteId == membership.AthleteId || c.ChallengeeAthleteId == membership.AthleteId)).ToList();
+
+				//Need to rerank the leaderboard
+				var membershipsToAlter = _context.Memberships.Where(m => m.CurrentRank >= membership.CurrentRank
+					&& m.LeagueId == membership.LeagueId && m.AbandonDate == null).ToList();
+
+				foreach(var m in membershipsToAlter)
+				{
+					m.CurrentRank = m.CurrentRank - 1;
+
+					if(m.CurrentRank < 0)
+					{
+						m.AbandonDate = DateTime.UtcNow;
+					}
+				}
+
+				foreach(var c in challenges)
+				{
+					try
+					{
+						var league = _context.Leagues.SingleOrDefault(l => l.Id == c.LeagueId);
+						var payload = new NotificationPayload
+						{
+							Action = PushActions.ChallengeDeclined,
+							Payload = { { "leagueId", c.LeagueId }, { "challengeId", c.Id } }
+						};
+						var message = "You challenge with {0} has ben removed because they abandoned the {1} league".Fmt(membership.Athlete.Alias, league.Name);
+						_notificationController.NotifyByTag(message, c.Opponent(membership.AthleteId).Id, payload);
+					}
+					catch(Exception e)
+					{
+						//TODO log to Insights
+						Console.WriteLine(e);
+					}
+				}
+				
+				membership.AbandonDate = DateTime.UtcNow;
+				challenges.ForEach(c => c.Deleted = true);
+				_context.SaveChanges();
+			}
+		}
 	}
 }

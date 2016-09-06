@@ -9,7 +9,7 @@ namespace MessageBar
 	{
 		UILabel _label;
 
-		public string Description
+		public string Message
 		{
 			get;
 			set;
@@ -72,7 +72,7 @@ namespace MessageBar
 			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 200);
 			ClipsToBounds = false;
 			UserInteractionEnabled = true;
-			Description = description;
+			Message = description;
 			MessageType = type;
 			Width = GetStatusBarFrame().Width - Margin * 2;
 			Height = 60f;
@@ -89,9 +89,12 @@ namespace MessageBar
 			{
 				_label = new UILabel(new CGRect(Padding, Padding / 2, Width - Padding * 2, Height - Padding));
 				_label.AdjustsFontSizeToFitWidth = true;
-				_label.Lines = 2;
 				_label.LineBreakMode = UILineBreakMode.TailTruncation;
-				_label.Font = UIFont.FromName("HelveticaNeue", 16f);
+				_label.Font = UIFont.SystemFontOfSize(16);
+
+				var desc = new NSString(Message);
+				var size = desc.StringSize(_label.Font);
+				_label.Lines = size.Width > _label.Frame.Width ? 2 : 1;
 
 				if(MessageType == MessageType.Error)
 				{
@@ -105,7 +108,7 @@ namespace MessageBar
 				Add(_label);
 			}
 
-			_label.Text = Description;
+			_label.Text = Message;
 
 			base.LayoutSubviews();
 		}
@@ -117,7 +120,7 @@ namespace MessageBar
 
 			var messageView = (MessageView)obj;
 
-			return MessageType == messageView.MessageType && Description == messageView.Description;
+			return MessageType == messageView.MessageType && Message == messageView.Message;
 		}
 
 		CGRect GetStatusBarFrame()

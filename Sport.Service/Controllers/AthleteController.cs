@@ -1,10 +1,8 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
-using Newtonsoft.Json;
+﻿using Microsoft.Azure.Mobile.Server;
 using Sport.Service.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -12,39 +10,39 @@ using System.Web.Http.OData;
 
 namespace Sport.Service.Controllers
 {
-	[AuthorizeLevel(AuthorizationLevel.User)]
+	[Authorize]
 	public class AthleteController : TableController<Athlete>
 	{
-		AppContext _context = new AppContext();
+		MobileServiceContext _context = new MobileServiceContext();
 		AuthenticationController _authController = new AuthenticationController();
 
 		protected override void Initialize(HttpControllerContext controllerContext)
 		{
 			base.Initialize(controllerContext);
-			DomainManager = new EntityDomainManager<Athlete>(_context, Request, Services);
+			DomainManager = new EntityDomainManager<Athlete>(_context, Request);
 		}
 
 		IQueryable<AthleteDto> ConvertAthleteToDto(IQueryable<Athlete> queryable)
 		{
-			return queryable.Select(a => new AthleteDto
+			return queryable.Select(dto => new AthleteDto
 			{
-				Name = a.Name,
-				Id = a.Id,
-				Email = a.Email,
-				Alias = a.Alias,
-				DateCreated = a.CreatedAt,
-				IsAdmin = a.IsAdmin,
-				UserId = a.UserId,
-				UpdatedAt = a.UpdatedAt,
-				DeviceToken = a.DeviceToken,
-				DevicePlatform = a.DevicePlatform,
-				NotificationRegistrationId = a.NotificationRegistrationId,
-				ProfileImageUrl = a.ProfileImageUrl,
-				AuthenticationId = a.AuthenticationId,
-				MembershipIds = a.Memberships.Where(m => m.AbandonDate == null).Select(m => m.Id).ToList(),
+				Name = dto.Name,
+				Id = dto.Id,
+				Email = dto.Email,
+				Alias = dto.Alias,
+				Deleted = dto.Deleted,
+				CreatedAt = dto.CreatedAt,
+				Version = dto.Version,
+				IsAdmin = dto.IsAdmin,
+				UserId = dto.UserId,
+				UpdatedAt = dto.UpdatedAt,
+				DeviceToken = dto.DeviceToken,
+				DevicePlatform = dto.DevicePlatform,
+				NotificationRegistrationId = dto.NotificationRegistrationId,
+				ProfileImageUrl = dto.ProfileImageUrl,
+				AuthenticationId = dto.AuthenticationId,
 			});
 		}
-
 
 		// GET tables/Athlete
 		public IQueryable<AthleteDto> GetAllAthletes()
@@ -64,6 +62,7 @@ namespace Sport.Service.Controllers
 			var athlete = patch.GetEntity();
 			var saved = _context.Athletes.SingleOrDefault(a => a.Id == athlete.Id);
 
+			//TODO - TEMP
 			var c = _authController.IsCurrentUser(athlete);
 			var b = _authController.IsCurrentUser(saved);
 
@@ -73,28 +72,41 @@ namespace Sport.Service.Controllers
 			var exists = _context.Athletes.Any(l => l.Alias != null && l.Alias.Equals(athlete.Alias, StringComparison.InvariantCultureIgnoreCase)
 				&& l.Id != athlete.Id);
 
-			if(exists)
+			if (exists)
 			{
 				throw "The alias '{0}' is already in use.".Fmt(athlete.Alias).ToException(Request);
 			}
 
+			//Disacard any attempt to modify these properties by the client
 			athlete.IsAdmin = saved.IsAdmin;
+			athlete.UserId = saved.UserId;
+
 			return await UpdateAsync(id, patch);
 		}
 
 		// POST tables/Athlete
 		public async Task<IHttpActionResult> PostAthlete(AthleteDto item)
 		{
+			bool first = _context.Athletes.Count() == 0;
+
 			var exists = _context.Athletes.Any(l => l.Email.Equals(item.Email, StringComparison.InvariantCultureIgnoreCase)
 				|| (l.Alias != null && l.Alias.Equals(item.Alias, StringComparison.InvariantCultureIgnoreCase)));
 
-			if(exists)
+			if (exists)
 				return Conflict();
 
-			if((item.Alias == null || item.Alias.Trim() == string.Empty) && item.Name != null)
+			if ((item.Alias == null || item.Alias.Trim() == string.Empty) && item.Name != null)
 				item.Alias = item.Name.Split(' ')[0];
 
+			item.UserId = _authController.UserId;
 			Athlete athlete = await InsertAsync(item.ToAthlete());
+
+			if (first)
+			{
+				//Seed some leagues for the user to join
+				Seed(athlete);
+			}
+
 			return CreatedAtRoute("Tables", new
 			{
 				id = athlete.Id
@@ -105,7 +117,7 @@ namespace Sport.Service.Controllers
 		public Task DeleteAthlete(string id)
 		{
 			_authController.EnsureAdmin(Request);
-            return DeleteAsync(id);
+			return DeleteAsync(id);
 		}
 
 		[Route("api/getAthletesForLeague")]
@@ -119,6 +131,53 @@ namespace Sport.Service.Controllers
 						select a;
 
 			return ConvertAthleteToDto(query);
+		}
+
+		protected void Seed(Athlete athlete)
+		{
+			var leagues = new List<League>
+			{
+				new League
+				{
+				  Id = Guid.NewGuid().ToString(),
+					Name = "Table Tennis",
+					Description = "It's like tennis for giants",
+					ImageUrl = "https://c5.staticflickr.com/6/5151/14307225316_24c814660a_k.jpg",
+					MatchGameCount = 3,
+					MaxChallengeRange = 2,
+					IsEnabled = true,
+					HasStarted = true,
+					MinHoursBetweenChallenge = 24,
+					StartDate = DateTime.Now,
+					EndDate = DateTime.Now.AddMonths(3),
+					IsAcceptingMembers = true,
+					Season = 1,
+					RulesUrl = "http://www.ittf.com/ittf_handbook/2014/2014_EN_HBK_CHPT_2.pdf",
+					CreatedByAthlete = athlete,
+					Memberships = new List<Membership>(),
+					Challenges = new List<Challenge>()
+				},
+				new League
+				{
+					Id = Guid.NewGuid().ToString(),
+					Name = "Billiards",
+					Description = "Otherwise known as Pocketball and Stick",
+					ImageUrl = "https://c8.staticflickr.com/2/1690/24814543375_58e16dbfa3_b.jpg",
+					MatchGameCount = 1,
+					MaxChallengeRange = 2,
+					IsEnabled = true,
+					HasStarted = true,
+					MinHoursBetweenChallenge = 24,
+					StartDate = DateTime.Now,
+					EndDate = DateTime.Now.AddMonths(3),
+					IsAcceptingMembers = true,
+					Season = 1,
+					CreatedByAthlete = athlete,
+				}
+			};
+
+			leagues.ForEach(l => _context.Leagues.Add(l));
+			_context.SaveChanges();
 		}
 	}
 }

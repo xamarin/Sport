@@ -1,6 +1,5 @@
-﻿using Microsoft.ServiceBus.Messaging;
-using Microsoft.ServiceBus.Notifications;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+﻿using Microsoft.Azure.NotificationHubs;
+using Microsoft.Azure.NotificationHubs.Messaging;
 using Newtonsoft.Json;
 using Sport.Service.Models;
 using Sport.Shared;
@@ -14,10 +13,9 @@ using System.Web.Http.Controllers;
 
 namespace Sport.Service.Controllers
 {
-	[AuthorizeLevel(AuthorizationLevel.User)]
 	public class NotificationController : ApiController
 	{
-		AppContext _context = new AppContext();
+		MobileServiceContext  _context = new MobileServiceContext();
 		NotificationHubClient _hub = NotificationHubClient.CreateClientFromConnectionString(Constants.HubConnectionString, Constants.HubName);
 
 		protected override void Initialize(HttpControllerContext controllerContext)
@@ -29,7 +27,7 @@ namespace Sport.Service.Controllers
 
 		public async Task NotifyByTags(string message, List<string> tags, NotificationPayload payload = null, int? badgeCount = null)
 		{
-			if (WebApiConfig.IsDemoMode)
+			if (Startup.IsDemoMode)
 				return;
 
 			var notification = new Dictionary<string, string> { { "message", message } };
@@ -132,14 +130,14 @@ namespace Sport.Service.Controllers
 		[Route("api/sendTestPushNotification")]
 		public async Task SendTestPushNotification(string athleteId)
 		{
-			if(WebApiConfig.IsDemoMode)
+			if(Startup.IsDemoMode)
 			{
 				throw "Push notifications are disabled in DEMO mode".ToException(Request);
 			}
 
 			if(athleteId != null)
 			{
-				var message = "Push notifications are working for you - yay!";
+				var message = "Push notifications are working for you - excellent!";
 				await NotifyByTag(message, athleteId);
 			}
 		}

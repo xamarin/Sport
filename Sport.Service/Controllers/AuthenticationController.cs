@@ -1,43 +1,48 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+﻿using Microsoft.Azure.Mobile.Server;
+using Microsoft.Azure.Mobile.Server.Authentication;
 using Sport.Service.Models;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Sport.Service.Controllers
 {
-	[AuthorizeLevel(AuthorizationLevel.User)]
+    [Authorize]
 	public class AuthenticationController : TableController<Athlete>
 	{
-		AppContext _context = new AppContext();
+		MobileServiceContext _context = new MobileServiceContext();
 
-		[Route("api/getUserIdentity")]
-		public async Task<GoogleCredentials> GetUserIdentity()
+		[HttpGet, Route("api/getUserIdentity")]
+		public async Task<GoogleCredentials> GetUserIdentity(HttpRequestMessage request = null)
 		{
-			ServiceUser serviceUser = User as ServiceUser;
-			if(serviceUser != null)
-			{
-				var identity = await serviceUser.GetIdentitiesAsync();
-				var credentials = identity.OfType<GoogleCredentials>().FirstOrDefault();
-				return credentials;
-			}
-
-			return null;
-		}
+            try
+            {
+				var cp = User as ClaimsPrincipal;
+				var id = cp.FindFirst(ClaimTypes.NameIdentifier);
+                var creds = await User.GetAppServiceIdentityAsync<GoogleCredentials>(request ?? Request);
+                return creds;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
 
 		string _userId;
 		public string UserId
 		{
 			get
 			{
-				if(_userId == null) { }
+				if (_userId == null) { }
 				{
-					var identity = GetUserIdentity().Result;
-					if(identity != null)
-						_userId = identity.UserId;
+					var claimsUser = (ClaimsPrincipal)User;
+					var id = claimsUser?.FindFirst(ClaimTypes.NameIdentifier);
+					if(id != null)
+						_userId = id.Value;
 				}
 
 				return _userId;
@@ -49,11 +54,7 @@ namespace Sport.Service.Controllers
 			if(athlete == null)
 				return false;
 
-			var identity = GetUserIdentity().Result;
-			if(identity == null)
-				return false;
-
-			return athlete.UserId == identity.UserId;
+			return athlete.UserId == UserId;
 		}
 		public void EnsureHasPermission(Athlete athlete, HttpRequestMessage request)
 		{

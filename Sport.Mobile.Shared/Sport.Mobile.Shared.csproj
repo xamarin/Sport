@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E7A976D9-E1FB-48B3-A735-98F6D88BB42D}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UseMSBuildEngine>true</UseMSBuildEngine>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Sport.Mobile.Shared</RootNamespace>
+    <AssemblyName>Sport.Mobile.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml" />
+    <EmbeddedResource Include="Pages\AvailableLeaguesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AuthenticationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LeagueListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\LeagueDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RankStripView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ChallengeCardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ImageButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AthleteLeaguesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\WelcomeAuthentication\EnablePushPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\WelcomeAuthentication\SetAliasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\WelcomeAuthentication\WelcomeStartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ProfileStripView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\LeaderboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MembershipDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ChallengeDatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ChallengeProfileStripView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ChallengeHistoryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ChallengeDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MatchResultsFormPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GameResultFormView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AthleteProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="Models\IDirty.cs" />
+    <Compile Include="Models\Athlete.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Challenge.cs" />
+    <Compile Include="Models\FlikrResult.cs" />
+    <Compile Include="Models\GameResult.cs" />
+    <Compile Include="Models\GoogleUserProfile.cs" />
+    <Compile Include="Models\League.cs" />
+    <Compile Include="Models\Membership.cs" />
+    <Compile Include="Models\BaseNotify.cs" />
+    <Compile Include="Models\ColorTheme.cs" />
+    <Compile Include="ViewModels\AvailableLeaguesViewModel.cs" />
+    <Compile Include="Pages\AvailableLeaguesPage.xaml.cs">
+      <DependentUpon>AvailableLeaguesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LeagueViewModel.cs" />
+    <Compile Include="Services\AzureService.cs" />
+    <Compile Include="Interfaces\IAuthenticator.cs" />
+    <Compile Include="ViewModels\AuthenticationViewModel.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\TaskRunner.cs" />
+    <Compile Include="Helpers\Theming.cs" />
+    <Compile Include="Services\GoogleApiService.cs" />
+    <Compile Include="Interfaces\IToastNotifier.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Pages\AuthenticationPage.xaml.cs">
+		<DependentUpon>AuthenticationPage.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="Pages\BaseContentPage.cs" />
+    <Compile Include="Helpers\SharedExtensions.cs" />
+    <Compile Include="Converters.cs" />
+    <Compile Include="UserControls\LeagueListView.xaml.cs">
+		<DependentUpon>LeagueListView.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="UserControls\SportButton.cs" />
+    <Compile Include="Pages\LeagueDetailsPage.xaml.cs">
+      <DependentUpon>LeagueDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RankStripView.xaml.cs">
+      <DependentUpon>RankStripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChallengeCardView.xaml.cs">
+      <DependentUpon>ChallengeCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ChallengeDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ChallengeViewModel.cs" />
+    <Compile Include="UserControls\ImageButton.xaml.cs">
+      <DependentUpon>ImageButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LeagueDetailsViewModel.cs" />
+    <Compile Include="ViewModels\MembershipDetailsViewModel.cs" />
+    <Compile Include="ViewModels\MembershipViewModel.cs" />
+    <Compile Include="Interfaces\IHUDProvider.cs" />
+    <Compile Include="Renderers\SportEntryRenderer.cs" />
+    <Compile Include="Renderers\ThememedNavigationPageRenderer.cs" />
+    <Compile Include="Pages\AthleteLeaguesPage.xaml.cs">
+      <DependentUpon>AthleteLeaguesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AthleteViewModel.cs" />
+    <Compile Include="ViewModels\AthleteLeaguesViewModel.cs" />
+    <Compile Include="Pages\WelcomeAuthentication\EnablePushPage.xaml.cs">
+      <DependentUpon>EnablePushPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WelcomeAuthentication\SetAliasPage.xaml.cs">
+      <DependentUpon>SetAliasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WelcomeAuthentication\WelcomeStartPage.xaml.cs">
+      <DependentUpon>WelcomeStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AthleteProfileViewModel.cs" />
+    <Compile Include="UserControls\ProfileStripView.xaml.cs">
+      <DependentUpon>ProfileStripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LeaderboardPage.xaml.cs">
+      <DependentUpon>LeaderboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MembershipDetailsPage.xaml.cs">
+      <DependentUpon>MembershipDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChallengeDatePage.xaml.cs">
+      <DependentUpon>ChallengeDatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LeaderboardViewModel.cs" />
+    <Compile Include="ViewModels\ChallengeDateViewModel.cs" />
+    <Compile Include="UserControls\ChallengeProfileStripView.xaml.cs">
+      <DependentUpon>ChallengeProfileStripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChallengeHistoryPage.xaml.cs">
+      <DependentUpon>ChallengeHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChallengeDetailsPage.xaml.cs">
+      <DependentUpon>ChallengeDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ChallengeHistoryViewModel.cs" />
+    <Compile Include="ViewModels\MatchResultFormViewModel.cs" />
+    <Compile Include="Pages\MatchResultsFormPage.xaml.cs">
+      <DependentUpon>MatchResultsFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GameResultFormView.xaml.cs">
+      <DependentUpon>GameResultFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Keys.cs" />
+    <Compile Include="Pages\AthleteProfilePage.xaml.cs">
+      <DependentUpon>AthleteProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IPushNotifications.cs" />
+    <Compile Include="Services\Managers\LeagueManager.cs" />
+    <Compile Include="Services\Managers\BaseManager.cs" />
+    <Compile Include="Services\Managers\MembershipManager.cs" />
+    <Compile Include="Services\Managers\AthleteManager.cs" />
+    <Compile Include="Services\Managers\ChallengeManager.cs" />
+    <Compile Include="Services\Managers\GameResultManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ModernHttpClient">
+      <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Version.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Version.1.0.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Version.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Version.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Version.1.0.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Version.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL">
+      <HintPath>..\packages\SQLitePCL.3.8.7.2\lib\portable-net45+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\SQLitePCL.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.3.0.107\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.3.0.107\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.3.0.107\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.2.2.12\lib\portable-net45+wp80+wp81+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+Xamarin.Mac20+UAP10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.2.2.12\lib\portable-net45+wp80+wp81+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+Xamarin.Mac20+UAP10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.2.1.1\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.SQLiteStore">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.2.1.1\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Forms.ImageCircle.1.6.1\lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="UserControls\" />
+    <Folder Include="Renderers\" />
+    <Folder Include="Pages\WelcomeAuthentication\" />
+    <Folder Include="Services\Managers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+</Project>

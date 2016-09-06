@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+﻿using Microsoft.Azure.Mobile.Server;
 using Sport.Service.Models;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,15 +8,16 @@ using System.Web.Http.OData;
 
 namespace Sport.Service.Controllers
 {
-	[AuthorizeLevel(AuthorizationLevel.User)]
+	[Authorize]
 	public class GameResultController : TableController<GameResult>
 	{
-		AppContext _context = new AppContext();
+        MobileServiceContext _context;
 
 		protected override void Initialize(HttpControllerContext controllerContext)
 		{
 			base.Initialize(controllerContext);
-			DomainManager = new EntityDomainManager<GameResult>(_context, Request, Services);
+            _context = new MobileServiceContext();
+            DomainManager = new EntityDomainManager<GameResult>(_context, Request);
 		}
 
 		IQueryable<GameResultDto> ConvertGameResultToDto(IQueryable<GameResult> queryable)
@@ -25,9 +25,11 @@ namespace Sport.Service.Controllers
 			return queryable.Select(dto => new GameResultDto
 			{
 				Id = dto.Id,
-				DateCreated = dto.CreatedAt,
 				ChallengeId = dto.ChallengeId,
 				UpdatedAt = dto.UpdatedAt,
+                Deleted = dto.Deleted,
+                CreatedAt = dto.CreatedAt,
+                Version = dto.Version,
 				ChallengeeScore = dto.ChallengeeScore,
 				ChallengerScore = dto.ChallengerScore,
 				Index = dto.Index
