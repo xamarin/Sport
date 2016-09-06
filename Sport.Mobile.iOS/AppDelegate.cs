@@ -19,9 +19,10 @@ namespace Sport.Mobile.Shared.iOS
 			Xamarin.Calabash.Start();
             #endif
 
-            var manager = BITHockeyManager.SharedHockeyManager;
-            manager.Configure(Keys.HockeyAppId_iOS);
-            manager.StartManager();
+			//Uncomment when a HockeyApp iOS App ID is provided in Keys.cs
+            //var manager = BITHockeyManager.SharedHockeyManager;
+            //manager.Configure(Keys.HockeyAppId_iOS);
+            //manager.StartManager();
 
             CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
@@ -43,6 +44,7 @@ namespace Sport.Mobile.Shared.iOS
 				}
 				catch
 				{
+					throw;
 				}
 			};
 

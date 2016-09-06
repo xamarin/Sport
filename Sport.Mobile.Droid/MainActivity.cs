@@ -24,7 +24,8 @@ namespace Sport.Mobile.Droid
 
 		protected override void OnCreate(global::Android.OS.Bundle bundle)
 		{
-            CrashManager.Register(this, Keys.HockeyAppId_Android);
+			//Uncomment when a HockeyApp iOS App ID is provided in Keys.cs
+			//CrashManager.Register(this, Keys.HockeyAppId_Android);
 
             AppDomain.CurrentDomain.UnhandledException += (sender, e) => {
 				try
@@ -35,6 +36,7 @@ namespace Sport.Mobile.Droid
 				}
 				catch
 				{
+					throw;
 				}
 			};
 
