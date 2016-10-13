@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:SetAliasPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.SetAliasPage"
@@ -9,8 +9,9 @@
 			<Style TargetType="Label" BasedOn="{StaticResource whiteLabelStyle}" />
 		</ResourceDictionary>
     </local:SetAliasPageXaml.Resources>
+	
     <local:SetAliasPageXaml.Content>
-    	<ScrollView>
+    	<ScrollView AutomationId="scrollView">
 
 		<Grid VerticalOptions="Fill">
 			<Grid.RowDefinitions>

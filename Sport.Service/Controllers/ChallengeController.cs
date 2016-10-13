@@ -67,42 +67,23 @@ namespace Sport.Service.Controllers
 			_authController.EnsureHasPermission(challenger, Request);
 
 			if (challenger == null || challengee == null)
-				throw "The opponent in this challenge no longer belongs to this league".ToException(Request);
+				throw "The opponent in this challenge no longer belongs to this league.".ToException(Request);
 
 			var challengerMembership = _context.Memberships.SingleOrDefault(m => m.AbandonDate == null && m.AthleteId == challenger.Id && m.LeagueId == item.LeagueId);
 			var challengeeMembership = _context.Memberships.SingleOrDefault(m => m.AbandonDate == null && m.AthleteId == challengee.Id && m.LeagueId == item.LeagueId);
 
 			if (challengerMembership == null || challengeeMembership == null)
-				throw "The opponent in this challenge no longer belongs to this league".ToException(Request);
+				throw "The opponent in this challenge no longer belongs to this league.".ToException(Request);
 
-			//Check to see if there are any ongoing challenges between either athlete
+			//Check to see if there are any ongoing challenges between both athletes
 			var challengeeOngoing = _context.Challenges.Where(c => ((c.ChallengeeAthleteId == item.ChallengeeAthleteId || c.ChallengerAthleteId == item.ChallengeeAthleteId)
-				&& c.LeagueId == item.LeagueId && c.DateCompleted == null) && !c.Deleted);
+                && (c.ChallengeeAthleteId == item.ChallengerAthleteId || c.ChallengerAthleteId == item.ChallengerAthleteId)
+                && c.LeagueId == item.LeagueId && c.DateCompleted == null) && !c.Deleted);
 
 			if (challengeeOngoing.Count() > 0)
-				throw "{0} already has an existing challenge underway.".Fmt(challengee.Alias).ToException(Request);
-
-			var challengerOngoing = _context.Challenges.Where(c => ((c.ChallengerAthleteId == item.ChallengerAthleteId || c.ChallengeeAthleteId == item.ChallengerAthleteId)
-				&& c.LeagueId == item.LeagueId && c.DateCompleted == null) && !c.Deleted);
-
-			if (challengerOngoing.Count() > 0)
-				throw "You already have an existing challenge underway.".ToException(Request);
-
-			//Check to see if there is already a challenge between the two athletes for this league
-			var history = _context.Challenges.Where(c => (((c.ChallengeeAthleteId == item.ChallengeeAthleteId && c.ChallengerAthleteId == item.ChallengerAthleteId)
-				|| (c.ChallengeeAthleteId == item.ChallengerAthleteId && c.ChallengerAthleteId == item.ChallengeeAthleteId))
-				&& c.LeagueId == item.LeagueId) && !c.Deleted).OrderByDescending(c => c.DateCompleted);
+				throw "{0} already has an existing challenge underway with {1}.".Fmt(challengee.Alias, challenger.Alias).ToException(Request);
 
 			var league = _context.Leagues.SingleOrDefault(l => l.Id == item.LeagueId);
-			var lastChallenge = history.FirstOrDefault();
-
-			if (lastChallenge != null && lastChallenge.DateCompleted != null
-				&& lastChallenge.ChallengerAthleteId == item.ChallengerAthleteId //is it the same athlete challenging again
-				&& lastChallenge.GetChallengerWinningGames().Count() < lastChallenge.GetChallengeeWinningGames().Count() //did the challenger lose the previous match
-				&& DateTime.UtcNow.Subtract(lastChallenge.DateCompleted.Value.UtcDateTime).TotalHours < league.MinHoursBetweenChallenge) //has enough time passed
-			{
-				throw "You must wait at least {0} hours before challenging again".Fmt(league.MinHoursBetweenChallenge).ToException(Request);
-			}
 
 			try
 			{
@@ -257,43 +238,27 @@ namespace Sport.Service.Controllers
 			tempChallenge = null;
 			challenge.DateCompleted = DateTime.UtcNow;
 			var dto = challenge.ToChallengeDto();
-			//dto.MatchResult = new List<GameResultDto>();
 
 			foreach (var result in results)
 			{
 				result.Id = Guid.NewGuid().ToString();
 				_context.GameResults.Add(result.ToGameResult());
-				//dto.MatchResult.Add(result);
 			}
 
 			try
 			{
+				var prevChallengeeRating = challengeeMembership.CurrentRating;
+				var prevChallengerRating = challengerMembership.CurrentRating;
+				var wasChallengeeRatedHigher = prevChallengeeRating > prevChallengerRating;
+				
+				var challengeeIsWinner = DetermineWinnerAndUpdateRating(challenge);
 				_context.SaveChanges();
-				var challengerWins = challenge.GetChallengerWinningGames();
-				var challengeeWins = challenge.GetChallengeeWinningGames();
-				var winningRank = challengeeMembership.CurrentRank;
 
-				Athlete winner = challenge.ChallengeeAthlete;
-				Athlete loser = challenge.ChallengerAthlete;
-
-				if (challengerWins.Length > challengeeWins.Length)
-				{
-					winner = challenge.ChallengerAthlete;
-					loser = challenge.ChallengeeAthlete;
-
-					var oldRank = challengerMembership.CurrentRank;
-					challengerMembership.CurrentRank = challengeeMembership.CurrentRank;
-					challengeeMembership.CurrentRank = oldRank;
-					challengerMembership.LastRankChange = DateTime.UtcNow;
-					challengeeMembership.LastRankChange = DateTime.UtcNow;
-					winningRank = challengerMembership.CurrentRank;
-
-					_context.SaveChanges();
-				}
-
-				var maintain = winner.Id == challenge.ChallengerAthlete.Id ? "bequeath" : "retain";
-				var newRank = winningRank + 1;
-				var message = "{0} victors over {1} to {2} the righteous rank of {3} place in {4}".Fmt(winner.Alias, loser.Alias, maintain, newRank.ToOrdinal(), league.Name);
+				var winner = challengeeIsWinner ? challenge.ChallengeeAthlete : challenge.ChallengerAthlete;
+				var loser = challengeeIsWinner ? challenge.ChallengerAthlete : challenge.ChallengeeAthlete;
+				var mems = challenge.League.Memberships.OrderByDescending(m => m.CurrentRating).ToList();
+                var newRank = mems.IndexOf(mems.Single(m => m.AthleteId == winner.Id)) + 1;
+				var message = $"{winner.Alias} victors over {loser.Alias} and is now in {newRank.ToOrdinal()} place in {league.Name}.";
 				var payload = new NotificationPayload
 				{
 					Action = PushActions.ChallengeCompleted,
@@ -329,6 +294,79 @@ namespace Sport.Service.Controllers
 			}
 
 			return dto;
+		}
+
+		bool DetermineWinnerAndUpdateRating(Challenge challenge)
+		{
+			var player1Membership = (from membership in challenge.ChallengeeAthlete.Memberships
+									 where membership.LeagueId == challenge.LeagueId
+									 select membership).FirstOrDefault();
+
+			var player2Membership = (from membership in challenge.ChallengerAthlete.Memberships
+									 where membership.LeagueId == challenge.LeagueId
+									 select membership).FirstOrDefault();
+
+			IncreaseGameCounts(challenge, player1Membership, player2Membership);
+
+			var player1Rating = player1Membership.CurrentRating;
+			var player2Rating = player2Membership.CurrentRating;
+
+			var r1 = Math.Pow(10, player1Rating / 400.0);
+			var r2 = Math.Pow(10, player2Rating / 400.0);
+
+			var e1 = (float)(r1 / (r1 + r2));
+			var e2 = (float)(r2 / (r1 + r2));
+
+			var s1 = S(challenge, challenge.ChallengeeAthlete);
+			var s2 = S(challenge, challenge.ChallengerAthlete);
+
+			var k1 = K(player1Membership);
+			var k2 = K(player2Membership);
+
+			player1Membership.CurrentRating = (float)Math.Round(player1Rating + k1 * (s1 - e1));
+			player2Membership.CurrentRating = (float)Math.Round(player2Rating + k2 * (s2 - e2));
+
+			Console.WriteLine($"player1 rating = {player1Membership.CurrentRating}\nplayer2 rating = {player2Membership.CurrentRating}");
+			return s1 > s2;
+		}
+
+		public static float K(Membership membership)
+		{
+			if (membership.NumberOfGamesPlayed < 30)
+				return 40f;
+			else if (membership.CurrentRating > 2400)
+				return 10f;
+			else
+				return 20f;
+		}
+
+		public static float S(Challenge challenge, Athlete player)
+		{
+			var challengeeWins = (from game in challenge.MatchResult
+								  where game.ChallengeeScore > game.ChallengerScore
+								  select 1).Sum();
+
+			var challengerWins = (from game in challenge.MatchResult
+								  where game.ChallengerScore > game.ChallengeeScore
+								  select 1).Sum();
+
+			Console.WriteLine($"Challengee wins = {challengeeWins}\tChallenger wins= {challengerWins}");
+
+			if (challengeeWins == challengerWins)
+				return 0.5f;
+
+			var winner = challengeeWins > challengerWins ? challenge.ChallengeeAthlete : challenge.ChallengerAthlete;
+
+			if (winner.UserId == player.UserId) // is this good enough to compare?
+				return 1f;
+
+			return 0f;
+		}
+
+		public static void IncreaseGameCounts(Challenge challenge, Membership player1Membership, Membership player2Membership)
+		{
+			player1Membership.NumberOfGamesPlayed++;
+			player2Membership.NumberOfGamesPlayed++;
 		}
 
 		[HttpGet]

@@ -33,6 +33,7 @@ namespace Sport.Mobile.Shared.iOS
 			catch(Exception e)
 			{
 				Debug.WriteLine(e);
+				MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
 				//InsightsManager.Report(e);
 			}
 

@@ -131,7 +131,7 @@ namespace Sport.Mobile.Shared
 
 		public void NotifyException(Exception exception)
 		{
-			MessagingCenter.Send(this, Messages.ExceptionOccurred, exception);
+			MessagingCenter.Send(new object(), Messages.ExceptionOccurred, exception);
 		}
 
 		public class Busy : IDisposable

@@ -7,7 +7,7 @@ namespace Sport.Mobile.Shared
 {
 	public class LeagueViewModel : BaseViewModel
 	{
-		public League League
+		public virtual League League
 		{
 			get;
 			set;
@@ -25,7 +25,7 @@ namespace Sport.Mobile.Shared
 		{
 			get
 			{
-				return CurrentMembership != null && CurrentMembership.OngoingChallenge != null;
+				return CurrentMembership?.OngoingChallenges?.Count() > 0;
 			}
 		}
 
@@ -156,48 +156,48 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public bool CanChallenge
-		{
-			get
-			{
-				return GetBestChallengee != null;
-			}
-		}
+		//public bool CanChallenge
+		//{
+		//	get
+		//	{
+		//		return GetBestChallengee != null;
+		//	}
+		//}
 
-		public Membership GetBestChallengee
-		{
-			get
-			{
-				if(League == null)
-					return null;
+		//public Membership GetBestChallengee
+		//{
+		//	get
+		//	{
+		//		if(League == null)
+		//			return null;
 				
-				if(!League.HasStarted && CurrentMembership != null)
-					return null;
+		//		if(!League.HasStarted && CurrentMembership != null)
+		//			return null;
 
-				var gap = League?.MaxChallengeRange;
-				Membership best = null;
-				while(best == null && gap > 0 && CurrentMembership != null)
-				{
-					var delta = CurrentMembership.CurrentRank - gap;
-					best = League?.Memberships.SingleOrDefault(m => m.CurrentRank == delta);
+		//		var gap = League?.MaxChallengeRange;
+		//		Membership best = null;
+		//		while(best == null && gap > 0 && CurrentMembership != null)
+		//		{
+		//			var delta = CurrentMembership.CurrentRank - gap;
+		//			best = League?.Memberships.SingleOrDefault(m => m.CurrentRank == delta);
 
-					if(delta >= 0)
-					{
-						if(best == null)
-							return null;
+		//			if(delta >= 0)
+		//			{
+		//				if(best == null)
+		//					return null;
 
-						//Ensure no issues with player
-						var conflict = best.GetChallengeConflictReason(CurrentMembership.Athlete);
-						if(best != null && conflict != null)
-							best = null;
-					}
+		//				//Ensure no issues with player
+		//				var conflict = best.GetChallengeConflictReason(CurrentMembership.Athlete);
+		//				if(best != null && conflict != null)
+		//					best = null;
+		//			}
 
-					gap--;
-				}
+		//			gap--;
+		//		}
 
-				return best;
-			}
-		}
+		//		return best;
+		//	}
+		//}
 
 		public string DateRange
 		{

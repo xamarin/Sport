@@ -93,23 +93,6 @@ namespace Sport.Service.Controllers
 			league.HasStarted = true;
 			league.StartDate = DateTime.Now.ToUniversalTime();
 
-			var memberships = _context.Memberships.Where(m => m.LeagueId == id && m.AbandonDate == null).ToList();
-
-			if (memberships.Count < 2)
-			{
-				//TODO Enable this validation
-				//return Conflict("Must have at least 2 members before starting a league.");
-			}
-
-			memberships.Shuffle();
-
-			//Randomize the athlete rankage when the league kicks off
-			var i = 0;
-			foreach (var m in memberships)
-			{
-				m.CurrentRank = i;
-				i++;
-			}
 			_context.SaveChanges();
 
 			var message = "The {0} league has officially started!".Fmt(league.Name);

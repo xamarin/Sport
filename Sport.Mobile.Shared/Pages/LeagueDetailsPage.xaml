@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:LeagueDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:Sport.Mobile.Shared"
@@ -86,17 +86,12 @@
 						<local:RankStripView x:Name="rankStrip" Margin="0,10" />
 					</ContentView>
 
-					<ContentView Padding="0" IsVisible="{Binding OngoingChallengeViewModel, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
-						<local:ChallengeCardView x:Name="ongoingCard" ViewModel="{Binding OngoingChallengeViewModel}" />
-					</ContentView>
+					<ContentView x:Name="controlView" Padding="0" />
 				</StackLayout>
 			</StackLayout>
 
 			<StackLayout Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="Fill">
 				<StackLayout Padding="24,24,24,14" Spacing="14"	IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}">
-
-					<local:SportButton Text="CHALLENGE" AutomationId="challengeButton" HorizontalOptions="FillAndExpand"
-						BackgroundColor="{Binding League.Theme.Dark}" Clicked="HandleChallengeClicked" IsVisible="{Binding CanChallenge}" />
 
 					<local:SportButton Text="LEADERBOARD" AutomationId="leaderboardButton" HorizontalOptions="FillAndExpand"
 						Clicked="HandleRankingsClicked" />

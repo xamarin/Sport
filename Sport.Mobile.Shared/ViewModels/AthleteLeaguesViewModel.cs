@@ -42,6 +42,8 @@ namespace Sport.Mobile.Shared
 			{
 				var leagues = await AzureService.Instance.LeagueManager.GetItemsAsync(forceRefresh);
 				await AzureService.Instance.MembershipManager.GetItemsAsync(forceRefresh);
+				await AzureService.Instance.AthleteManager.GetItemsAsync(forceRefresh);
+
 				App.Instance.CurrentAthlete.LocalRefresh();
 
 				var leagueIds = App.Instance.CurrentAthlete.Memberships.Select(m => m.LeagueId);
@@ -53,6 +55,7 @@ namespace Sport.Mobile.Shared
 					foreach(var i in joined)
 					{
 						var l = new LeagueViewModel { League = i };
+						Debug.WriteLine(i.Name);
 						Leagues.Add(l);
 					}
 

@@ -12,10 +12,10 @@ namespace Sport.Mobile.Shared
 			InitializeComponent();
 			root.BindingContext = this;
 
-			root.GestureRecognizers.Add(new TapGestureRecognizer((view) =>
+			root.GestureRecognizers.Add(new TapGestureRecognizer
 			{
-				((ChallengeCardView)root.Parent).OnClicked?.Invoke();
-			}));
+				Command = new Command((arg) => { ((ChallengeCardView)root.Parent).OnClicked?.Execute(ViewModel); })
+			});
 		}
 
 		public static readonly BindableProperty ViewModelProperty =
@@ -33,31 +33,31 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public Action OnClicked
+		public Command OnClicked
 		{
 			get;
 			set;
 		}
 
-		public Action OnPostResults
+		public Command OnPostResults
 		{
 			get;
 			set;
 		}
 
-		public Action OnNudge
+		public Command OnNudge
 		{
 			get;
 			set;
 		}
 
-		public Action OnAccepted
+		public Command OnAccepted
 		{
 			get;
 			set;
 		}
 
-		public Action OnDeclined
+		public Command OnDeclined
 		{
 			get;
 			set;
@@ -65,22 +65,22 @@ namespace Sport.Mobile.Shared
 
 		void HandlePostResults(object sender, EventArgs e)
 		{
-			OnPostResults?.Invoke();
+			OnPostResults?.Execute(ViewModel);
 		}
 
 		void HandleDeclined(object sender, EventArgs e)
 		{
-			OnDeclined?.Invoke();
+			OnDeclined?.Execute(ViewModel);
 		}
 
 		void HandleAccepted(object sender, EventArgs e)
 		{
-			OnAccepted?.Invoke();
+			OnAccepted?.Execute(ViewModel);
 		}
 
 		void HandleNudgeAthlete(object sender, EventArgs e)
 		{
-			OnNudge?.Invoke();
+			OnNudge?.Execute(ViewModel);
 		}
 	}
 }

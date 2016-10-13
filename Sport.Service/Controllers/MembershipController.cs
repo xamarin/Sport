@@ -15,7 +15,7 @@ namespace Sport.Service.Controllers
 	[Authorize]
 	public class MembershipController : TableController<Membership>
     {
-		Object _syncObject = new object();
+		object _syncObject = new object();
 		AuthenticationController _authController = new AuthenticationController();
 		NotificationController _notificationController = new NotificationController();
         MobileServiceContext _context = new MobileServiceContext();
@@ -51,7 +51,8 @@ namespace Sport.Service.Controllers
                 Deleted = dto.Deleted,
                 CreatedAt = dto.CreatedAt,
                 Version = dto.Version,
-                CurrentRank = dto.CurrentRank,
+                CurrentRating = dto.CurrentRating,
+				NumberOfGamesPlayed = dto.NumberOfGamesPlayed,
 				LastRankChange = dto.LastRankChange,
 			});
 		}
@@ -75,12 +76,6 @@ namespace Sport.Service.Controllers
 			}
 			else
 			{
-				var prior = _context.Memberships.Where(m => m.LeagueId == item.LeagueId && m.AbandonDate == null)
-					.OrderByDescending(m => m.CurrentRank).FirstOrDefault();
-
-				if(prior != null)
-					item.CurrentRank = prior.CurrentRank + 1;
-
 				try
 				{
 					var membership = item.ToMembership();
@@ -88,7 +83,7 @@ namespace Sport.Service.Controllers
 				}
 				catch (Exception e)
 				{
-
+					Console.WriteLine(e);
 				}
 			}
 
@@ -162,23 +157,9 @@ namespace Sport.Service.Controllers
 			{
 				var membership = _context.Memberships.SingleOrDefault(m => m.Id == id);
 
-				//Need to remove all the ongoing challenges (not past challenges since those should be locked and sealed in time for all to see for eternity)
+				//Need to remove all the ongoing challenges (not past challenges since those should be locked and sealed in time for eternity for all to see)
 				var challenges = _context.Challenges.Where(c => c.LeagueId == membership.LeagueId && c.DateCompleted == null
 					&& (c.ChallengerAthleteId == membership.AthleteId || c.ChallengeeAthleteId == membership.AthleteId)).ToList();
-
-				//Need to rerank the leaderboard
-				var membershipsToAlter = _context.Memberships.Where(m => m.CurrentRank >= membership.CurrentRank
-					&& m.LeagueId == membership.LeagueId && m.AbandonDate == null).ToList();
-
-				foreach(var m in membershipsToAlter)
-				{
-					m.CurrentRank = m.CurrentRank - 1;
-
-					if(m.CurrentRank < 0)
-					{
-						m.AbandonDate = DateTime.UtcNow;
-					}
-				}
 
 				foreach(var c in challenges)
 				{

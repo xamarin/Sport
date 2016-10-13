@@ -83,25 +83,20 @@ namespace Sport.Mobile.Shared
 				{
 					var handler = new NativeMessageHandler();
 
-#if __IOS__
-
+					#if __IOS__
 					//Use ModernHttpClient for caching and to allow traffic to be routed through Charles/Fiddler/etc
 					handler = new ModernHttpClient.NativeMessageHandler() {
 						Proxy = CoreFoundation.CFNetwork.GetDefaultProxy(),
 						UseProxy = true,
 					};
-
-#endif
+					#endif
 
 					_client = new MobileServiceClient(Keys.AzureDomain, new HttpMessageHandler[] {
-						//new LeagueExpandHandler(),
-						//new ChallengeExpandHandler(),
 						handler,
 					});
-
-					_client.AlternateLoginHost = new Uri("https://xamarin-sport.azurewebsites.net/");
 				}
 
+				_client.AlternateLoginHost = new Uri(Keys.AzureDomainRemote);
 				return _client;
 			}			
 		}

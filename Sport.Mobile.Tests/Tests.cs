@@ -111,13 +111,13 @@ namespace Sport.Mobile.Tests
 
 			app.WaitForElement("leaguePhoto");
 			app.Screenshot("Then I should see the league details");
-			app.ScrollDownTo("leaderboardButton");
+			app.ScrollDownTo("leaderboardButton", "scrollView");
 			app.Tap("leaderboardButton");
 
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			app.ScrollDownTo(e => e.Text("Rob TestCloud"));
+			app.ScrollDownTo("Rob TestCloud", "leaderboardList");
 
 			Thread.Sleep(1000); //Let scrolling settle
 
@@ -127,7 +127,7 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("memberDetailsRoot");
 			app.Screenshot("Member details page");
 
-			app.ScrollDownTo("pastButton");
+			app.ScrollDownTo("pastButton", "scrollView");
 			app.Tap("Bottom of member details page", e => e.Marked("pastButton"));
 
 			app.WaitForElement("challengeItemRoot");
@@ -142,7 +142,7 @@ namespace Sport.Mobile.Tests
 				app.WaitForElement("challengeRoot");
 				app.Screenshot("Challenge result page");
 
-				app.ScrollDownTo("winningLabel");
+				app.ScrollDownTo("winningLabel", "scrollView");
 				app.Screenshot("Challenge result page bottom");
 				app.Back(platform);
 				app.Tap("Done");
@@ -173,22 +173,6 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("Leaderboard");
 			app.Back(platform);
 
-			app.WaitForElement("challengeButton");
-			app.Tap("challengeButton");
-			app.Screenshot("Challenge date page");
-
-			app.Tap("datePicker");
-			app.Screenshot("Challenge date picker");
-			DismissPicker();
-			app.Screenshot("End");
-
-			app.Tap("timePicker");
-			app.Screenshot("Challenge time picker");
-			DismissPicker();
-			app.Tap("Cancel");
-
-			app.Screenshot("Back");
-
 			app.Tap(menuButton);
 			app.Tap("Cowardly Abandon League");
 
@@ -203,14 +187,14 @@ namespace Sport.Mobile.Tests
 			app.Tap(e => e.Marked("About"), "About page");
 
 			app.WaitForElement("aboutPage");
-			app.ScrollDownTo("sourceButton", "aboutScroll");
+			app.ScrollDownTo("sourceButton", "scrollView");
 			app.Screenshot("Bottom of About page");
 
 			app.Tap("Done");
 
 			app.Tap(menuButton);
 			app.Tap(e => e.Marked("My Profile"), "Profile page");
-			app.ScrollTo("saveButton");
+			app.ScrollDownTo("saveButton", "scrollView");
 			app.Tap("Saving profile", e => e.Marked("saveButton"));
 
 			app.WaitForElement(e => e.Marked("leagueRow"));

@@ -26,6 +26,44 @@ namespace Sport.Mobile.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::AndroidHUD.Resource.Attribute.ahBarColor = global::Sport.Mobile.Droid.Resource.Attribute.ahBarColor;
+			global::AndroidHUD.Resource.Attribute.ahBarLength = global::Sport.Mobile.Droid.Resource.Attribute.ahBarLength;
+			global::AndroidHUD.Resource.Attribute.ahBarWidth = global::Sport.Mobile.Droid.Resource.Attribute.ahBarWidth;
+			global::AndroidHUD.Resource.Attribute.ahCircleColor = global::Sport.Mobile.Droid.Resource.Attribute.ahCircleColor;
+			global::AndroidHUD.Resource.Attribute.ahDelayMillis = global::Sport.Mobile.Droid.Resource.Attribute.ahDelayMillis;
+			global::AndroidHUD.Resource.Attribute.ahRadius = global::Sport.Mobile.Droid.Resource.Attribute.ahRadius;
+			global::AndroidHUD.Resource.Attribute.ahRimColor = global::Sport.Mobile.Droid.Resource.Attribute.ahRimColor;
+			global::AndroidHUD.Resource.Attribute.ahRimWidth = global::Sport.Mobile.Droid.Resource.Attribute.ahRimWidth;
+			global::AndroidHUD.Resource.Attribute.ahSpinSpeed = global::Sport.Mobile.Droid.Resource.Attribute.ahSpinSpeed;
+			global::AndroidHUD.Resource.Attribute.ahText = global::Sport.Mobile.Droid.Resource.Attribute.ahText;
+			global::AndroidHUD.Resource.Attribute.ahTextColor = global::Sport.Mobile.Droid.Resource.Attribute.ahTextColor;
+			global::AndroidHUD.Resource.Attribute.ahTextSize = global::Sport.Mobile.Droid.Resource.Attribute.ahTextSize;
+			global::AndroidHUD.Resource.Drawable.ic_errorstatus = global::Sport.Mobile.Droid.Resource.Drawable.ic_errorstatus;
+			global::AndroidHUD.Resource.Drawable.ic_successstatus = global::Sport.Mobile.Droid.Resource.Drawable.ic_successstatus;
+			global::AndroidHUD.Resource.Drawable.roundedbg = global::Sport.Mobile.Droid.Resource.Drawable.roundedbg;
+			global::AndroidHUD.Resource.Drawable.roundedbgdark = global::Sport.Mobile.Droid.Resource.Drawable.roundedbgdark;
+			global::AndroidHUD.Resource.Id.loadingImage = global::Sport.Mobile.Droid.Resource.Id.loadingImage;
+			global::AndroidHUD.Resource.Id.loadingProgressBar = global::Sport.Mobile.Droid.Resource.Id.loadingProgressBar;
+			global::AndroidHUD.Resource.Id.loadingProgressWheel = global::Sport.Mobile.Droid.Resource.Id.loadingProgressWheel;
+			global::AndroidHUD.Resource.Id.textViewStatus = global::Sport.Mobile.Droid.Resource.Id.textViewStatus;
+			global::AndroidHUD.Resource.Layout.loading = global::Sport.Mobile.Droid.Resource.Layout.loading;
+			global::AndroidHUD.Resource.Layout.loadingimage = global::Sport.Mobile.Droid.Resource.Layout.loadingimage;
+			global::AndroidHUD.Resource.Layout.loadingprogress = global::Sport.Mobile.Droid.Resource.Layout.loadingprogress;
+			global::AndroidHUD.Resource.String.library_name = global::Sport.Mobile.Droid.Resource.String.library_name;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarLength = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarLength;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarWidth = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahCircleColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahCircleColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahDelayMillis = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahDelayMillis;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRadius = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRadius;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRimColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimWidth = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRimWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahSpinSpeed = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahSpinSpeed;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahText;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Gcm.Client.Resource.String.library_name = global::Sport.Mobile.Droid.Resource.String.library_name;
 			global::HockeyApp.Resource.Color.hockeyapp_background_header = global::Sport.Mobile.Droid.Resource.Color.hockeyapp_background_header;
 			global::HockeyApp.Resource.Color.hockeyapp_background_light = global::Sport.Mobile.Droid.Resource.Color.hockeyapp_background_light;
 			global::HockeyApp.Resource.Color.hockeyapp_background_white = global::Sport.Mobile.Droid.Resource.Color.hockeyapp_background_white;
@@ -146,45 +184,7 @@ namespace Sport.Mobile.Droid
 			global::HockeyApp.Resource.Style.HockeyApp_ButtonStyle = global::Sport.Mobile.Droid.Resource.Style.HockeyApp_ButtonStyle;
 			global::HockeyApp.Resource.Style.HockeyApp_EditTextStyle = global::Sport.Mobile.Droid.Resource.Style.HockeyApp_EditTextStyle;
 			global::HockeyApp.Resource.Style.HockeyApp_SingleLineInputStyle = global::Sport.Mobile.Droid.Resource.Style.HockeyApp_SingleLineInputStyle;
-			global::AndroidHUD.Resource.Attribute.ahBarColor = global::Sport.Mobile.Droid.Resource.Attribute.ahBarColor;
-			global::AndroidHUD.Resource.Attribute.ahBarLength = global::Sport.Mobile.Droid.Resource.Attribute.ahBarLength;
-			global::AndroidHUD.Resource.Attribute.ahBarWidth = global::Sport.Mobile.Droid.Resource.Attribute.ahBarWidth;
-			global::AndroidHUD.Resource.Attribute.ahCircleColor = global::Sport.Mobile.Droid.Resource.Attribute.ahCircleColor;
-			global::AndroidHUD.Resource.Attribute.ahDelayMillis = global::Sport.Mobile.Droid.Resource.Attribute.ahDelayMillis;
-			global::AndroidHUD.Resource.Attribute.ahRadius = global::Sport.Mobile.Droid.Resource.Attribute.ahRadius;
-			global::AndroidHUD.Resource.Attribute.ahRimColor = global::Sport.Mobile.Droid.Resource.Attribute.ahRimColor;
-			global::AndroidHUD.Resource.Attribute.ahRimWidth = global::Sport.Mobile.Droid.Resource.Attribute.ahRimWidth;
-			global::AndroidHUD.Resource.Attribute.ahSpinSpeed = global::Sport.Mobile.Droid.Resource.Attribute.ahSpinSpeed;
-			global::AndroidHUD.Resource.Attribute.ahText = global::Sport.Mobile.Droid.Resource.Attribute.ahText;
-			global::AndroidHUD.Resource.Attribute.ahTextColor = global::Sport.Mobile.Droid.Resource.Attribute.ahTextColor;
-			global::AndroidHUD.Resource.Attribute.ahTextSize = global::Sport.Mobile.Droid.Resource.Attribute.ahTextSize;
-			global::AndroidHUD.Resource.Drawable.ic_errorstatus = global::Sport.Mobile.Droid.Resource.Drawable.ic_errorstatus;
-			global::AndroidHUD.Resource.Drawable.ic_successstatus = global::Sport.Mobile.Droid.Resource.Drawable.ic_successstatus;
-			global::AndroidHUD.Resource.Drawable.roundedbg = global::Sport.Mobile.Droid.Resource.Drawable.roundedbg;
-			global::AndroidHUD.Resource.Drawable.roundedbgdark = global::Sport.Mobile.Droid.Resource.Drawable.roundedbgdark;
-			global::AndroidHUD.Resource.Id.loadingImage = global::Sport.Mobile.Droid.Resource.Id.loadingImage;
-			global::AndroidHUD.Resource.Id.loadingProgressBar = global::Sport.Mobile.Droid.Resource.Id.loadingProgressBar;
-			global::AndroidHUD.Resource.Id.loadingProgressWheel = global::Sport.Mobile.Droid.Resource.Id.loadingProgressWheel;
-			global::AndroidHUD.Resource.Id.textViewStatus = global::Sport.Mobile.Droid.Resource.Id.textViewStatus;
-			global::AndroidHUD.Resource.Layout.loading = global::Sport.Mobile.Droid.Resource.Layout.loading;
-			global::AndroidHUD.Resource.Layout.loadingimage = global::Sport.Mobile.Droid.Resource.Layout.loadingimage;
-			global::AndroidHUD.Resource.Layout.loadingprogress = global::Sport.Mobile.Droid.Resource.Layout.loadingprogress;
-			global::AndroidHUD.Resource.String.library_name = global::Sport.Mobile.Droid.Resource.String.library_name;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarLength = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarLength;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarWidth = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarWidth;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahCircleColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahCircleColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahDelayMillis = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahDelayMillis;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRadius = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRadius;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRimColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimWidth = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRimWidth;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahSpinSpeed = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahSpinSpeed;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahText;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Sport.Mobile.Droid.Resource.Attribute.actionBarSize;
-			global::Gcm.Client.Resource.String.library_name = global::Sport.Mobile.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Animation
@@ -3794,221 +3794,221 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f07001b
 			public const int common_signin_button_text_long = 2131165211;
 			
+			// aapt resource value: 0x7f070045
+			public const int hockeyapp_crash_dialog_app_name_fallback = 2131165253;
+			
 			// aapt resource value: 0x7f070046
-			public const int hockeyapp_crash_dialog_app_name_fallback = 2131165254;
+			public const int hockeyapp_crash_dialog_message = 2131165254;
 			
 			// aapt resource value: 0x7f070047
-			public const int hockeyapp_crash_dialog_message = 2131165255;
+			public const int hockeyapp_crash_dialog_negative_button = 2131165255;
 			
 			// aapt resource value: 0x7f070048
-			public const int hockeyapp_crash_dialog_negative_button = 2131165256;
+			public const int hockeyapp_crash_dialog_neutral_button = 2131165256;
 			
 			// aapt resource value: 0x7f070049
-			public const int hockeyapp_crash_dialog_neutral_button = 2131165257;
+			public const int hockeyapp_crash_dialog_positive_button = 2131165257;
 			
 			// aapt resource value: 0x7f07004a
-			public const int hockeyapp_crash_dialog_positive_button = 2131165258;
+			public const int hockeyapp_crash_dialog_title = 2131165258;
 			
 			// aapt resource value: 0x7f07004b
-			public const int hockeyapp_crash_dialog_title = 2131165259;
+			public const int hockeyapp_dialog_error_message = 2131165259;
 			
 			// aapt resource value: 0x7f07004c
-			public const int hockeyapp_dialog_error_message = 2131165260;
+			public const int hockeyapp_dialog_error_title = 2131165260;
 			
 			// aapt resource value: 0x7f07004d
-			public const int hockeyapp_dialog_error_title = 2131165261;
+			public const int hockeyapp_dialog_negative_button = 2131165261;
 			
 			// aapt resource value: 0x7f07004e
-			public const int hockeyapp_dialog_negative_button = 2131165262;
+			public const int hockeyapp_dialog_positive_button = 2131165262;
 			
 			// aapt resource value: 0x7f07004f
-			public const int hockeyapp_dialog_positive_button = 2131165263;
+			public const int hockeyapp_download_failed_dialog_message = 2131165263;
 			
 			// aapt resource value: 0x7f070050
-			public const int hockeyapp_download_failed_dialog_message = 2131165264;
+			public const int hockeyapp_download_failed_dialog_negative_button = 2131165264;
 			
 			// aapt resource value: 0x7f070051
-			public const int hockeyapp_download_failed_dialog_negative_button = 2131165265;
+			public const int hockeyapp_download_failed_dialog_positive_button = 2131165265;
 			
 			// aapt resource value: 0x7f070052
-			public const int hockeyapp_download_failed_dialog_positive_button = 2131165266;
+			public const int hockeyapp_download_failed_dialog_title = 2131165266;
 			
 			// aapt resource value: 0x7f070053
-			public const int hockeyapp_download_failed_dialog_title = 2131165267;
+			public const int hockeyapp_error_no_network_message = 2131165267;
 			
 			// aapt resource value: 0x7f070054
-			public const int hockeyapp_error_no_network_message = 2131165268;
+			public const int hockeyapp_expiry_info_text = 2131165268;
 			
 			// aapt resource value: 0x7f070055
-			public const int hockeyapp_expiry_info_text = 2131165269;
+			public const int hockeyapp_expiry_info_title = 2131165269;
 			
 			// aapt resource value: 0x7f070056
-			public const int hockeyapp_expiry_info_title = 2131165270;
+			public const int hockeyapp_feedback_attach_file = 2131165270;
 			
 			// aapt resource value: 0x7f070057
-			public const int hockeyapp_feedback_attach_file = 2131165271;
+			public const int hockeyapp_feedback_attach_picture = 2131165271;
 			
 			// aapt resource value: 0x7f070058
-			public const int hockeyapp_feedback_attach_picture = 2131165272;
+			public const int hockeyapp_feedback_attachment_button_text = 2131165272;
 			
 			// aapt resource value: 0x7f070059
-			public const int hockeyapp_feedback_attachment_button_text = 2131165273;
+			public const int hockeyapp_feedback_attachment_error = 2131165273;
 			
 			// aapt resource value: 0x7f07005a
-			public const int hockeyapp_feedback_attachment_error = 2131165274;
+			public const int hockeyapp_feedback_attachment_loading = 2131165274;
 			
 			// aapt resource value: 0x7f07005b
-			public const int hockeyapp_feedback_attachment_loading = 2131165275;
+			public const int hockeyapp_feedback_email_hint = 2131165275;
 			
 			// aapt resource value: 0x7f07005c
-			public const int hockeyapp_feedback_email_hint = 2131165276;
+			public const int hockeyapp_feedback_failed_text = 2131165276;
 			
 			// aapt resource value: 0x7f07005d
-			public const int hockeyapp_feedback_failed_text = 2131165277;
+			public const int hockeyapp_feedback_failed_title = 2131165277;
 			
 			// aapt resource value: 0x7f07005e
-			public const int hockeyapp_feedback_failed_title = 2131165278;
+			public const int hockeyapp_feedback_fetching_feedback_text = 2131165278;
 			
 			// aapt resource value: 0x7f07005f
-			public const int hockeyapp_feedback_fetching_feedback_text = 2131165279;
+			public const int hockeyapp_feedback_generic_error = 2131165279;
 			
 			// aapt resource value: 0x7f070060
-			public const int hockeyapp_feedback_generic_error = 2131165280;
+			public const int hockeyapp_feedback_last_updated_text = 2131165280;
 			
 			// aapt resource value: 0x7f070061
-			public const int hockeyapp_feedback_last_updated_text = 2131165281;
+			public const int hockeyapp_feedback_max_attachments_allowed = 2131165281;
 			
 			// aapt resource value: 0x7f070062
-			public const int hockeyapp_feedback_max_attachments_allowed = 2131165282;
+			public const int hockeyapp_feedback_message_hint = 2131165282;
 			
 			// aapt resource value: 0x7f070063
-			public const int hockeyapp_feedback_message_hint = 2131165283;
+			public const int hockeyapp_feedback_name_hint = 2131165283;
 			
 			// aapt resource value: 0x7f070064
-			public const int hockeyapp_feedback_name_hint = 2131165284;
+			public const int hockeyapp_feedback_refresh_button_text = 2131165284;
 			
 			// aapt resource value: 0x7f070065
-			public const int hockeyapp_feedback_refresh_button_text = 2131165285;
+			public const int hockeyapp_feedback_response_button_text = 2131165285;
 			
 			// aapt resource value: 0x7f070066
-			public const int hockeyapp_feedback_response_button_text = 2131165286;
+			public const int hockeyapp_feedback_select_file = 2131165286;
 			
 			// aapt resource value: 0x7f070067
-			public const int hockeyapp_feedback_select_file = 2131165287;
+			public const int hockeyapp_feedback_select_picture = 2131165287;
 			
 			// aapt resource value: 0x7f070068
-			public const int hockeyapp_feedback_select_picture = 2131165288;
+			public const int hockeyapp_feedback_send_button_text = 2131165288;
 			
 			// aapt resource value: 0x7f070069
-			public const int hockeyapp_feedback_send_button_text = 2131165289;
+			public const int hockeyapp_feedback_send_generic_error = 2131165289;
 			
 			// aapt resource value: 0x7f07006a
-			public const int hockeyapp_feedback_send_generic_error = 2131165290;
+			public const int hockeyapp_feedback_send_network_error = 2131165290;
 			
 			// aapt resource value: 0x7f07006b
-			public const int hockeyapp_feedback_send_network_error = 2131165291;
+			public const int hockeyapp_feedback_sending_feedback_text = 2131165291;
 			
 			// aapt resource value: 0x7f07006c
-			public const int hockeyapp_feedback_sending_feedback_text = 2131165292;
+			public const int hockeyapp_feedback_subject_hint = 2131165292;
 			
 			// aapt resource value: 0x7f07006d
-			public const int hockeyapp_feedback_subject_hint = 2131165293;
+			public const int hockeyapp_feedback_title = 2131165293;
 			
 			// aapt resource value: 0x7f07006e
-			public const int hockeyapp_feedback_title = 2131165294;
+			public const int hockeyapp_feedback_validate_email_empty = 2131165294;
 			
 			// aapt resource value: 0x7f07006f
-			public const int hockeyapp_feedback_validate_email_empty = 2131165295;
+			public const int hockeyapp_feedback_validate_email_error = 2131165295;
 			
 			// aapt resource value: 0x7f070070
-			public const int hockeyapp_feedback_validate_email_error = 2131165296;
+			public const int hockeyapp_feedback_validate_name_error = 2131165296;
 			
 			// aapt resource value: 0x7f070071
-			public const int hockeyapp_feedback_validate_name_error = 2131165297;
+			public const int hockeyapp_feedback_validate_subject_error = 2131165297;
 			
 			// aapt resource value: 0x7f070072
-			public const int hockeyapp_feedback_validate_subject_error = 2131165298;
+			public const int hockeyapp_feedback_validate_text_error = 2131165298;
 			
 			// aapt resource value: 0x7f070073
-			public const int hockeyapp_feedback_validate_text_error = 2131165299;
+			public const int hockeyapp_login_email_hint = 2131165299;
 			
 			// aapt resource value: 0x7f070074
-			public const int hockeyapp_login_email_hint = 2131165300;
+			public const int hockeyapp_login_headline_text = 2131165300;
 			
 			// aapt resource value: 0x7f070075
-			public const int hockeyapp_login_headline_text = 2131165301;
+			public const int hockeyapp_login_headline_text_email_only = 2131165301;
 			
 			// aapt resource value: 0x7f070076
-			public const int hockeyapp_login_headline_text_email_only = 2131165302;
+			public const int hockeyapp_login_login_button_text = 2131165302;
 			
 			// aapt resource value: 0x7f070077
-			public const int hockeyapp_login_login_button_text = 2131165303;
+			public const int hockeyapp_login_missing_credentials_toast = 2131165303;
 			
 			// aapt resource value: 0x7f070078
-			public const int hockeyapp_login_missing_credentials_toast = 2131165304;
+			public const int hockeyapp_login_password_hint = 2131165304;
 			
 			// aapt resource value: 0x7f070079
-			public const int hockeyapp_login_password_hint = 2131165305;
+			public const int hockeyapp_paint_dialog_message = 2131165305;
 			
 			// aapt resource value: 0x7f07007a
-			public const int hockeyapp_paint_dialog_message = 2131165306;
+			public const int hockeyapp_paint_dialog_negative_button = 2131165306;
 			
 			// aapt resource value: 0x7f07007b
-			public const int hockeyapp_paint_dialog_negative_button = 2131165307;
+			public const int hockeyapp_paint_dialog_neutral_button = 2131165307;
 			
 			// aapt resource value: 0x7f07007c
-			public const int hockeyapp_paint_dialog_neutral_button = 2131165308;
+			public const int hockeyapp_paint_dialog_positive_button = 2131165308;
 			
 			// aapt resource value: 0x7f07007d
-			public const int hockeyapp_paint_dialog_positive_button = 2131165309;
+			public const int hockeyapp_paint_indicator_toast = 2131165309;
 			
 			// aapt resource value: 0x7f07007e
-			public const int hockeyapp_paint_indicator_toast = 2131165310;
+			public const int hockeyapp_paint_menu_clear = 2131165310;
 			
 			// aapt resource value: 0x7f07007f
-			public const int hockeyapp_paint_menu_clear = 2131165311;
+			public const int hockeyapp_paint_menu_save = 2131165311;
 			
 			// aapt resource value: 0x7f070080
-			public const int hockeyapp_paint_menu_save = 2131165312;
+			public const int hockeyapp_paint_menu_undo = 2131165312;
 			
 			// aapt resource value: 0x7f070081
-			public const int hockeyapp_paint_menu_undo = 2131165313;
+			public const int hockeyapp_permission_dialog_negative_button = 2131165313;
 			
 			// aapt resource value: 0x7f070082
-			public const int hockeyapp_permission_dialog_negative_button = 2131165314;
+			public const int hockeyapp_permission_dialog_positive_button = 2131165314;
 			
 			// aapt resource value: 0x7f070083
-			public const int hockeyapp_permission_dialog_positive_button = 2131165315;
+			public const int hockeyapp_permission_update_message = 2131165315;
 			
 			// aapt resource value: 0x7f070084
-			public const int hockeyapp_permission_update_message = 2131165316;
+			public const int hockeyapp_permission_update_title = 2131165316;
 			
 			// aapt resource value: 0x7f070085
-			public const int hockeyapp_permission_update_title = 2131165317;
+			public const int hockeyapp_update_button = 2131165317;
 			
 			// aapt resource value: 0x7f070086
-			public const int hockeyapp_update_button = 2131165318;
+			public const int hockeyapp_update_dialog_message = 2131165318;
 			
 			// aapt resource value: 0x7f070087
-			public const int hockeyapp_update_dialog_message = 2131165319;
+			public const int hockeyapp_update_dialog_negative_button = 2131165319;
 			
 			// aapt resource value: 0x7f070088
-			public const int hockeyapp_update_dialog_negative_button = 2131165320;
+			public const int hockeyapp_update_dialog_positive_button = 2131165320;
 			
 			// aapt resource value: 0x7f070089
-			public const int hockeyapp_update_dialog_positive_button = 2131165321;
+			public const int hockeyapp_update_dialog_title = 2131165321;
 			
 			// aapt resource value: 0x7f07008a
-			public const int hockeyapp_update_dialog_title = 2131165322;
+			public const int hockeyapp_update_mandatory_toast = 2131165322;
 			
 			// aapt resource value: 0x7f07008b
-			public const int hockeyapp_update_mandatory_toast = 2131165323;
+			public const int hockeyapp_update_version_details_label = 2131165323;
 			
 			// aapt resource value: 0x7f07008c
-			public const int hockeyapp_update_version_details_label = 2131165324;
-			
-			// aapt resource value: 0x7f070045
-			public const int library_name = 2131165253;
+			public const int library_name = 2131165324;
 			
 			// aapt resource value: 0x7f07001f
 			public const int mr_button_content_description = 2131165215;

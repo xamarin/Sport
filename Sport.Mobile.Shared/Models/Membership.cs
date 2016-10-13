@@ -95,19 +95,56 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		int _currentRank;
+		int _numberOfGamesPlayed;
+		public int NumberOfGamesPlayed
+		{
+			get
+			{
+				return _numberOfGamesPlayed;
+			}
+			set
+			{
+				SetPropertyChanged(ref _numberOfGamesPlayed, value);
+			}
+		}
 
+		float _currentRating = 1200f;
+
+		public float CurrentRating
+		{
+			get
+			{
+				return _currentRating;
+			}
+			set
+			{
+				SetPropertyChanged(ref _currentRating, value);
+			}
+		}
+
+		int? _currentRank;
+
+		[JsonIgnore]
 		public int CurrentRank
 		{
 			get
 			{
-				return _currentRank;
-			}
-			set
-			{
-				SetPropertyChanged(ref _currentRank, value);
-				SetPropertyChanged("CurrentRankDisplay");
-				SetPropertyChanged("CurrentRankOrdinal");
+				var changed = false;
+				if(_currentRank == null)
+				{
+					var list = League.Memberships.OrderByDescending(m => m.CurrentRating).ToList();
+					_currentRank = list.FindIndex(m => m.Id == Id);
+
+					changed = true;
+				}
+
+				if(changed)
+				{
+					SetPropertyChanged("CurrentRankDisplay");
+					SetPropertyChanged("CurrentRankOrdinal");
+				}
+
+				return _currentRank.Value;
 			}
 		}
 
@@ -144,12 +181,12 @@ namespace Sport.Mobile.Shared
 		}
 
 		[JsonIgnore]
-		public Challenge OngoingChallenge
+		public List<Challenge> OngoingChallenges
 		{
 			get
 			{
-				var challenge = League?.OngoingChallenges?.FirstOrDefault(c => c.InvolvesAthlete(AthleteId));
-				return challenge;
+				var challenges = League?.OngoingChallenges?.Where(c => c.InvolvesAthlete(AthleteId)).ToList();
+				return challenges;
 			}
 		}
 
@@ -200,14 +237,14 @@ namespace Sport.Mobile.Shared
 			SetPropertyChanged("LastRankChangeDate");
 			SetPropertyChanged("CurrentRank");
 			SetPropertyChanged("CurrentRankOrdinal");
-			SetPropertyChanged("OngoingChallenge");
+			//SetPropertyChanged("OngoingChallenge");
 		}
 
 		public Challenge GetOngoingChallenge(Athlete athlete)
 		{
 			//Check to see if they are part of the same league
 			var membership = athlete.Memberships.SingleOrDefault(m => m.LeagueId == LeagueId);
-			return membership != null ? League.OngoingChallenges?.InvolvingAthlete(athlete.Id) : null;
+			return membership != null ? membership.OngoingChallenges?.InvolvingAthlete(Athlete.Id)  : null;
 		}
 
 		public bool HasExistingChallengeWithAthlete(Athlete athlete)
@@ -238,10 +275,10 @@ namespace Sport.Mobile.Shared
 
 			var isEqual = x.Id == y.Id && x.UpdatedAt == y.UpdatedAt && x.CurrentRank == y.CurrentRank;
 
-			if(isEqual && x.OngoingChallenge != null && y.OngoingChallenge != null)
-				isEqual = x.OngoingChallenge.Id == y.OngoingChallenge.Id;
+			if(isEqual && x.OngoingChallenges != null && y.OngoingChallenges != null)
+				isEqual = x.OngoingChallenges.Count == y.OngoingChallenges.Count;
 
-			if((x.OngoingChallenge == null && y.OngoingChallenge != null) || (x.OngoingChallenge != null && y.OngoingChallenge == null))
+			if((x.OngoingChallenges == null && y.OngoingChallenges != null) || (x.OngoingChallenges != null && y.OngoingChallenges == null))
 				return false;
 
 			return isEqual;
@@ -257,10 +294,10 @@ namespace Sport.Mobile.Shared
 	{
 		public int Compare(MembershipViewModel x, MembershipViewModel y)
 		{
-			if(x.Membership.CurrentRank == y.Membership.CurrentRank)
+			if(x.Membership.CurrentRating == y.Membership.CurrentRating)
 				return 0;
 			
-			if(x.Membership.CurrentRank < y.Membership.CurrentRank)
+			if(x.Membership.CurrentRating > y.Membership.CurrentRating)
 				return -1;
 
 			return 1;

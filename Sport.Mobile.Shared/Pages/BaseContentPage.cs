@@ -59,6 +59,8 @@ namespace Sport.Mobile.Shared
 			SubscribeToAuthentication();
 			SubscribeToIncomingPayload();
 			_hasSubscribed = true;
+
+			SubscribeToMessages();
 		}
 
 		~MainBaseContentPage()
@@ -74,7 +76,7 @@ namespace Sport.Mobile.Shared
 				var self = (MainBaseContentPage)weakSelf.Target;
 				self.OnIncomingPayload(payload);
 			};
-			MessagingCenter.Subscribe(this, Messages.IncomingPayloadReceived, action);
+			MessagingCenter.Subscribe(weakSelf.Target, Messages.IncomingPayloadReceived, action);
 		}
 
 		void SubscribeToAuthentication()
@@ -108,6 +110,16 @@ namespace Sport.Mobile.Shared
 		{
 		}
 
+		protected virtual void SubscribeToMessages()
+		{
+			SubscribeToIncomingPayload();
+		}
+
+		protected virtual void UnsubscribeFromMessages()
+		{
+			MessagingCenter.Unsubscribe<AuthenticationViewModel>(this, Messages.IncomingPayloadReceived);
+		}
+
 		protected override void OnAppearing()
 		{
 			if(!_hasSubscribed)
@@ -136,11 +148,20 @@ namespace Sport.Mobile.Shared
 
 		protected override void OnDisappearing()
 		{
-			MessagingCenter.Unsubscribe<App, NotificationPayload>(this, Messages.IncomingPayloadReceived);
 			MessagingCenter.Unsubscribe<AuthenticationViewModel>(this, Messages.UserAuthenticated);
 			_hasSubscribed = false;
 
 			base.OnDisappearing();
+			EvaluateNavigationStack();
+		}
+
+		async Task EvaluateNavigationStack()
+		{
+			await Task.Delay(100);
+			if(Navigation.NavigationStack.Count == 0)
+			{
+				UnsubscribeFromMessages();
+			}
 		}
 
 		void OnAuthenticated()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -36,8 +37,10 @@ namespace Sport.Mobile.Shared
 
 		async public Task GetAvailableLeagues(bool forceRefresh = false)
 		{
+			Debug.WriteLine(IsBusy);
 			using(new Busy(this))
 			{
+				Debug.WriteLine(IsBusy);
 				try
 				{
 					var leagueIds = App.Instance.CurrentAthlete.Memberships.Select(m => m.LeagueId).ToList();
@@ -64,6 +67,7 @@ namespace Sport.Mobile.Shared
 					});
 				}
 			}
+			Debug.WriteLine(IsBusy);
 		}
 	}
 }

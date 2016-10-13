@@ -65,9 +65,13 @@ namespace Sport.Mobile.Shared
 			await Table.InsertAsync(item).ConfigureAwait(false);
 			var push = await SyncAsync().ConfigureAwait(false);
 
-			var updated = await GetItemAsync(item.Id, false).ConfigureAwait(false);
-			item.Version = updated.Version;
-			item.UpdatedAt = updated.UpdatedAt;
+			if(push)
+			{
+				var updated = await GetItemAsync(item.Id, false).ConfigureAwait(false);
+				item.Version = updated.Version;
+				item.UpdatedAt = updated.UpdatedAt;
+
+			}
 
 			return pull && push;
 		}
@@ -115,7 +119,7 @@ namespace Sport.Mobile.Shared
 			catch(Exception ex)
 			{
 				Debug.WriteLine($"Pull sync error for {Identifier}\n" + ex);
-				MessagingCenter.Send(this, Messages.ExceptionOccurred, ex);
+				MessagingCenter.Send(new object(), Messages.ExceptionOccurred, ex);
 				return false;
 			}
 			return true;

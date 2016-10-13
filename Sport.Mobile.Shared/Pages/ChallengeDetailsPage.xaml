@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:ChallengeDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.ChallengeDetailsPage"
@@ -12,7 +12,7 @@
 	</local:ChallengeDetailsXaml.ToolbarItems>
 	
     <local:ChallengeDetailsXaml.Content>
-	<ScrollView VerticalOptions="Fill">
+	<ScrollView VerticalOptions="Fill" AutomationId="scrollView">
 		<Grid VerticalOptions="Fill" AutomationId="challengeRoot">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />

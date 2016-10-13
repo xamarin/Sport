@@ -36,7 +36,7 @@ namespace Sport.Service
 			// Use Entity Framework Code First to create database tables based on your DbContext
 			MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-			if (string.IsNullOrEmpty(settings.HostName))
+			if(string.IsNullOrEmpty(settings.HostName))
 			{
 				app.UseAppServiceAuthentication(new AppServiceAuthenticationOptions
 				{

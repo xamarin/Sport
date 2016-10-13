@@ -97,32 +97,13 @@ namespace Sport.Mobile.Shared
 			//Check to see if they are part of the same league
 			var otherMembership = athlete.Memberships.SingleOrDefault(m => m.LeagueId == membership.LeagueId);
 
-			if(otherMembership != null)
-			{
-				//Ensure they are within range and lower in rank than the challengee
-				var diff = otherMembership.CurrentRank - membership.CurrentRank;
-				if(diff <= 0 || diff > membership.League.MaxChallengeRange)
-				{
-					return "{0} is not within a valid range of being challenged".Fmt(membership.Athlete.Alias);
-				}
-			}
-			else
-			{
+			if(otherMembership == null)
 				return "{0} is not a member of the {1} league".Fmt(membership.Athlete.Alias, membership.League.Name);
-			}
 
-			var challenge = membership.GetOngoingChallenge(membership.Athlete);
+			var challenge = membership.GetOngoingChallenge(athlete);
 			if(challenge != null)
 			{
-				return "{0} already has an ongoing challenge with {1}".Fmt(membership.Athlete.Alias, challenge.Opponent(membership.Athlete.Id).Alias);
-			}
-
-			//Athlete is within range but let's make sure there aren't already challenges out there 
-			challenge = membership.GetOngoingChallenge(athlete);
-			if(challenge != null)
-			{
-				var player = athlete.Id == App.Instance.CurrentAthlete.Id ? "You already have" : athlete.Alias + " already has";
-				return "{0} an ongoing challenge with {1}".Fmt(player, challenge.Opponent(athlete.Id).Alias);
+				return "{0} already has an ongoing challenge with {1}".Fmt(membership.Athlete.Alias, athlete.Alias);
 			}
 
 			return null;

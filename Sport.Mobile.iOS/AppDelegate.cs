@@ -39,7 +39,7 @@ namespace Sport.Mobile.Shared.iOS
 				{
 					var exception = ((Exception)e.ExceptionObject).GetBaseException();
 					Console.WriteLine("**SPORT UNHANDLED EXCEPTION**\n\n" + exception);
-					MessagingCenter.Send(this, Messages.ExceptionOccurred, exception);
+					MessagingCenter.Send(new object(), Messages.ExceptionOccurred, exception);
 					//InsightsManager.Report(ex, Xamarin.Insights.Severity.Critical);
 				}
 				catch

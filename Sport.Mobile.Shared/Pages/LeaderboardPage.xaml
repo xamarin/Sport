@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:LeaderboardXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.LeaderboardPage"
@@ -26,6 +26,7 @@
 									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
 
 									<Label Text="{Binding Membership.CurrentRankDisplay}" VerticalOptions="Center" FontSize="28" YAlign="Center" TextColor="{StaticResource grayDark}" />
+									<Label Text="{Binding Membership.CurrentRating}" VerticalOptions="Center" FontSize="12" YAlign="Center" TextColor="{StaticResource grayDark}" />
 
 									<StackLayout Spacing="20" Orientation="Horizontal">
 										<AbsoluteLayout WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" VerticalOptions="Center">
@@ -41,12 +42,6 @@
 											<Label Text="{Binding Membership.Athlete.Name}" FontSize="Micro" TextColor="{StaticResource grayPrimary}"  LineBreakMode="TailTruncation" />
 										</StackLayout>
 									</StackLayout>
-
-									<AbsoluteLayout IsVisible="{Binding Membership.OngoingChallenge, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}" HorizontalOptions="EndAndExpand">
-										<local:SportButton BorderRadius="2" BackgroundColor="{StaticResource grayPrimary}" HeightRequest="36" WidthRequest="36"
-											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" TextColor="White" />
-										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
-									</AbsoluteLayout>
 								</StackLayout>
 							</Grid>
 						</ViewCell.View>

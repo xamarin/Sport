@@ -1,6 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Sport.Mobile.Shared
 {
@@ -23,6 +25,11 @@ namespace Sport.Mobile.Shared
 
 			SetTheme(league);
 			Initialize();
+		}
+
+		~LeagueDetailsPage()
+		{
+			Debug.WriteLine("Destructor called");
 		}
 
 		#region Properties
@@ -75,6 +82,110 @@ namespace Sport.Mobile.Shared
 
 		#endregion
 
+
+		#region Commands
+
+		Command ClickedCommand
+		{
+			get
+			{
+				return new Command<ChallengeDetailsViewModel>((arg) => {
+					PushChallengeDetailsPage(arg.Challenge);
+				});
+			}
+		}
+
+		Command PostResultsCommand
+		{
+			get
+			{
+				return new Command<ChallengeDetailsViewModel>((arg) =>
+				{
+					if(arg == null)
+						return;
+
+					var challenge = arg.Challenge;
+					var page = new MatchResultsFormPage(arg.Challenge);
+					page.AddDoneButton("Cancel");
+
+					page.OnMatchResultsPosted = async () => {
+						_didPost = true;
+						ViewModel.NotifyPropertiesChanged();
+						challenge = await AzureService.Instance.ChallengeManager.GetItemAsync(arg.Challenge.Id);
+						PushChallengeDetailsPage(challenge, true);
+						rankStrip.Membership = ViewModel.CurrentMembership;
+					};
+
+					Navigation.PushModalAsync(page.WithinNavigationPage());
+				});
+			}
+		}
+
+		Command NudgeCommand
+		{
+			get
+			{
+				return new Command<ChallengeDetailsViewModel>(async(arg) =>
+				{
+					using(new HUD("Nudging..."))
+					{
+						await arg.NudgeAthlete();
+					}
+
+					"{0} has been nudged.".Fmt(arg.Opponent.Alias).ToToast();
+				});
+			}
+		}
+
+		Command AcceptedCommand
+		{
+			get
+			{
+				return new Command<ChallengeDetailsViewModel>(async(arg) =>
+				{
+					bool success;
+					using(new HUD("Accepting challenge..."))
+					{
+						success = await arg.AcceptChallenge();
+					}
+
+					if(success)
+					{
+						await ViewModel.RefreshLeague();
+						"Accepted - Game on!".ToToast();
+					}
+				});
+			}
+		}
+
+		Command DeclinedCommand
+		{
+			get
+			{
+				return new Command<ChallengeDetailsViewModel>(async(arg) =>
+				{
+					var decline = await DisplayAlert("Really?", "Are you sure you want to cowardly decline this honorable duel?", "Yes", "No");
+
+					if(!decline)
+						return;
+
+					bool success;
+					using(new HUD("Declining..."))
+					{
+						success = await arg.DeclineChallenge();
+					}
+
+					if(success)
+					{
+						await ViewModel.RefreshLeague();
+						"Challenge declined".ToToast();
+					}
+				});
+			}
+		}
+
+		#endregion
+
 		protected override void Initialize()
 		{
 			InitializeComponent();
@@ -85,93 +196,53 @@ namespace Sport.Mobile.Shared
 
 			Parallax();
 
-			btnRefresh.Clicked += async (sender, e) => {
-				using(new HUD("Refreshing..."))
+			btnRefresh.Clicked += async (sender, e) =>
+			{
+				using (new HUD("Refreshing..."))
 				{
 					await ViewModel.RefreshLeague(true);
 					rankStrip.Membership = ViewModel.CurrentMembership;
+					RefreshChallengeCardViews();
 				}
 			};
 
-			ongoingCard.OnClicked = () => {
-				PushChallengeDetailsPage(ViewModel.OngoingChallengeViewModel?.Challenge);
-			};
-
-			ongoingCard.OnPostResults = async () => {
-				var challenge = ViewModel.CurrentMembership.OngoingChallenge;
-				if(challenge == null)
-					return;
-
-				var page = new MatchResultsFormPage(challenge);
-				page.AddDoneButton("Cancel");
-
-				page.OnMatchResultsPosted = async () => {
-					_didPost = true;
-					ViewModel.NotifyPropertiesChanged();
-					challenge = await AzureService.Instance.ChallengeManager.GetItemAsync(challenge.Id);
-					PushChallengeDetailsPage(challenge, true);
-					rankStrip.Membership = ViewModel.CurrentMembership;
-				};
-
-				await Navigation.PushModalAsync(page.WithinNavigationPage());
-			};
-
-			ongoingCard.OnNudge = async () => {
-				using(new HUD("Nudging..."))
-				{
-					await ViewModel.OngoingChallengeViewModel.NudgeAthlete();
-				}
-
-				"{0} has been nudged.".Fmt(ViewModel.OngoingChallengeViewModel.Opponent.Alias).ToToast();
-			};
-
-			ongoingCard.OnAccepted = async () => {
-				bool success;
-				using(new HUD("Accepting challenge..."))
-				{
-					success = await ViewModel.OngoingChallengeViewModel.AcceptChallenge();
-				}
-
-				if(success)
-				{
-					await ViewModel.RefreshLeague();
-					"Accepted - Game on!".ToToast();
-				}
-			};
-
-			ongoingCard.OnDeclined = async () => {
-				var decline = await DisplayAlert("Really?", "Are you sure you want to cowardly decline this honorable duel?", "Yes", "No");
-
-				if(!decline)
-					return;
-
-				bool success;
-				using(new HUD("Declining..."))
-				{
-					success = await ViewModel.OngoingChallengeViewModel.DeclineChallenge();
-				}
-
-				if(success)
-				{
-					await ViewModel.RefreshLeague();
-					"Challenge declined".ToToast();
-				}
-			};
-
-			//if(ViewModel.League != null && ViewModel.League.CreatedByAthleteId != null && ViewModel.League.CreatedByAthlete == null)
-			//{
-			//	await ViewModel.LoadAthlete();
-			//}
-
-			rankStrip.OnAthleteClicked = async (membership) => {
+			rankStrip.OnAthleteClicked = async (membership) =>
+			{
 				var page = new MembershipDetailsPage(membership);
 				await Navigation.PushAsync(page);
 			};
 
-			if(ViewModel.CurrentMembership != null && ViewModel.CurrentMembership.CurrentRank == 0)
+			if (ViewModel.CurrentMembership != null && ViewModel.CurrentMembership.CurrentRank == 0)
 			{
 				HeapGloriousPraise();
 			}
+		}
+
+		void RefreshChallengeCardViews()
+		{
+			var stack = new StackLayout
+			{
+				Padding = 0,
+				Spacing = 16,
+				Orientation = StackOrientation.Vertical,
+			};
+
+			foreach(var challengeVm in ViewModel.OngoingChallengeViewModels)
+			{
+				var cardView = new ChallengeCardView
+				{
+					ViewModel = challengeVm,
+					OnClicked = ClickedCommand,
+					OnAccepted = AcceptedCommand,
+					OnDeclined = DeclinedCommand,
+					OnNudge = NudgeCommand,
+					OnPostResults = PostResultsCommand,
+				};
+				stack.Children.Add(cardView);
+			}
+
+			if(stack.Children.Count > 0)
+				controlView.Content = stack;
 		}
 
 		protected override void OnAppearing()
@@ -181,15 +252,22 @@ namespace Sport.Mobile.Shared
 
 			ViewModel.NotifyPropertiesChanged();
 			rankStrip.Membership = ViewModel.CurrentMembership;
-			MessagingCenter.Subscribe<App>(this, Messages.ChallengesUpdated, OnChallengesUpdated);
 
+			RefreshChallengeCardViews();
+			Debug.WriteLine("Nav stack count: " + Navigation.NavigationStack.Count);
 			base.OnAppearing();
 		}
 
-		protected override void OnDisappearing()
+		protected override void SubscribeToMessages()
 		{
+			base.SubscribeToMessages();
+			MessagingCenter.Subscribe<App>(this, Messages.ChallengesUpdated, OnChallengesUpdated);
+		}
+
+		protected override void UnsubscribeFromMessages()
+		{
+			base.UnsubscribeFromMessages();
 			MessagingCenter.Unsubscribe<App>(this, Messages.ChallengesUpdated);
-			base.OnDisappearing();
 		}
 
 		protected override void TrackPage(Dictionary<string, string> metadata)
@@ -203,6 +281,7 @@ namespace Sport.Mobile.Shared
 		void OnChallengesUpdated(App app)
 		{
 			ViewModel.NotifyPropertiesChanged();
+			RefreshChallengeCardViews();
 		}
 
 		async void PushChallengeDetailsPage(Challenge challenge, bool refresh = false)
@@ -229,6 +308,7 @@ namespace Sport.Mobile.Shared
 
 		protected override async void OnIncomingPayload(NotificationPayload payload)
 		{
+			Debug.WriteLine("Incoming Payload Received!");
 			base.OnIncomingPayload(payload);
 
 			string leagueId;
@@ -238,21 +318,23 @@ namespace Sport.Mobile.Shared
 			{
 				if(leagueId == ViewModel.League.Id)
 				{
-					var challenge = ViewModel.CurrentMembership?.OngoingChallenge;
-					payload.Payload.TryGetValue("challengeId", out challengeId);
-
-					if(challenge != null && challengeId == challenge.Id && payload.Payload.TryGetValue("winningAthleteId", out winnerId))
-					{
-						if(!_didPost)
-						{
-							PushChallengeDetailsPage(ViewModel.OngoingChallengeViewModel?.Challenge, true);
-						}
-					}
-
 					await ViewModel.RefreshLeague(true);
 					Device.BeginInvokeOnMainThread(() => {
+						RefreshChallengeCardViews();
 						rankStrip.Membership = ViewModel.CurrentMembership;
 					});
+
+					//var challenge = ViewModel.CurrentMembership?.OngoingChallenge;
+					//payload.Payload.TryGetValue("challengeId", out challengeId);
+
+					//if(challenge != null && challengeId == challenge.Id && payload.Payload.TryGetValue("winningAthleteId", out winnerId))
+					//{
+					//	if(!_didPost)
+					//	{
+					//		PushChallengeDetailsPage(ViewModel.OngoingChallengeViewModel?.Challenge, true);
+					//	}
+					//}
+
 				}
 			}
 		}
@@ -401,26 +483,26 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		async void OnCreateChallenge()
-		{
-			var membership = ViewModel.GetBestChallengee;
-			var conflict = membership.GetChallengeConflictReason(App.Instance.CurrentAthlete);
-			if(conflict != null)
-			{
-				conflict.ToToast();
-				return;
-			}
+		//async void OnCreateChallenge()
+		//{
+		//	var membership = ViewModel.GetBestChallengee;
+		//	var conflict = membership.GetChallengeConflictReason(App.Instance.CurrentAthlete);
+		//	if(conflict != null)
+		//	{
+		//		conflict.ToToast();
+		//		return;
+		//	}
 
-			var datePage = new ChallengeDatePage(membership.Athlete, membership.League);
+		//	var datePage = new ChallengeDatePage(membership.Athlete, membership.League);
 
-			datePage.OnChallengeSent = async (challenge) => {
-				ViewModel.NotifyPropertiesChanged();
-				await Navigation.PopModalAsync();
+		//	datePage.OnChallengeSent = async (challenge) => {
+		//		ViewModel.NotifyPropertiesChanged();
+		//		await Navigation.PopModalAsync();
 
-				"Challenge sent".Fmt(ViewModel.MembershipViewModel.Membership.Athlete.Name).ToToast(ToastNotificationType.Success);
-			};
-			await Navigation.PushModalAsync(datePage.WithinNavigationPage());
-		}
+		//		"Challenge sent".Fmt(ViewModel.MembershipViewModel.Membership.Athlete.Name).ToToast(ToastNotificationType.Success);
+		//	};
+		//	await Navigation.PushModalAsync(datePage.WithinNavigationPage());
+		//}
 
 		void HandleRulesClicked(object sender, EventArgs e)
 		{
@@ -442,10 +524,10 @@ namespace Sport.Mobile.Shared
 			OnJoinLeague();
 		}
 
-		void HandleChallengeClicked(object sender, EventArgs e)
-		{
-			OnCreateChallenge();
-		}
+		//void HandleChallengeClicked(object sender, EventArgs e)
+		//{
+		//	OnCreateChallenge();
+		//}
 
 		void HeapGloriousPraise()
 		{

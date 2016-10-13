@@ -20,7 +20,13 @@ namespace Sport
 			set;
 		}
 
-		public int CurrentRank
+		public float CurrentRating
+		{
+			get;
+			set;
+		} = 1200f;
+
+		public int NumberOfGamesPlayed
 		{
 			get;
 			set;

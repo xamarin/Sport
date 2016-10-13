@@ -192,20 +192,20 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		int _maxChallengeRange;
+		//int _maxChallengeRange;
 
-		public int MaxChallengeRange
-		{
-			get
-			{
-				return _maxChallengeRange;
-			}
-			set
-			{
-				SetPropertyChanged(ref _maxChallengeRange, value);
-				SetPropertyChanged("LeagueDetails");
-			}
-		}
+		//public int MaxChallengeRange
+		//{
+		//	get
+		//	{
+		//		return _maxChallengeRange;
+		//	}
+		//	set
+		//	{
+		//		SetPropertyChanged(ref _maxChallengeRange, value);
+		//		SetPropertyChanged("LeagueDetails");
+		//	}
+		//}
 
 		int _minHoursBetweenChallenge;
 
@@ -360,7 +360,6 @@ namespace Sport.Mobile.Shared
 			get
 			{
 				var sb = new StringBuilder();
-				sb.AppendLine($"• you may challenge up to {MaxChallengeRange} spot above your current rank");
 				sb.AppendLine(string.Format("• there {2} {0} game{1} to a match", MatchGameCount, MatchGameCount == 1 ? "" : "s", MatchGameCount == 1 ? "is" : "are"));
 				sb.AppendLine(string.Format("• you must wait {0} hour{1} before challenging after a loss", MinHoursBetweenChallenge, MinHoursBetweenChallenge == 1 ? "" : "s"));
 				sb.AppendLine("• declining a challenge 3 times results in a forfeit of rank");
@@ -375,7 +374,6 @@ namespace Sport.Mobile.Shared
 			EndDate = DateTime.Now.AddMonths(6);
 			//Memberships = new List<Membership>();
 
-			MaxChallengeRange = 1;
 			MinHoursBetweenChallenge = 48;
 			MatchGameCount = 3;
 

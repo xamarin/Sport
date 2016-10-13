@@ -6,6 +6,8 @@ using Microsoft.WindowsAzure.MobileServices;
 using Sport.Mobile.Shared;
 using Xamarin.Forms;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Sport.Mobile.Shared
 {
@@ -52,10 +54,22 @@ namespace Sport.Mobile.Shared
 						MobileServiceAuthenticationToken = Settings.AzureAuthToken
 					};
 
-					var success = await GetUserProfile();
+					try
+					{
+						var success = await GetUserProfile();
 
-					if (success)
-						return;
+						if (success)
+							return;
+					}
+					catch (MobileServiceInvalidOperationException e)
+					{
+						//Bad or stale credentials, clear out and retry
+						if(e.Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+						{
+							await LogOut(true);
+							await Authenticate();
+						}
+					}
 				}
 
 				try
@@ -67,6 +81,7 @@ namespace Sport.Mobile.Shared
 				}
 				catch (Exception e)
 				{
+					MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
 					Debug.WriteLine("**SPORT AUTHENTICATION ERROR**\n\n" + e.GetBaseException());
 					//InsightsManager.Report(e);
 				}
@@ -75,12 +90,24 @@ namespace Sport.Mobile.Shared
 
 		async Task SetIdentityValues(MobileServiceUser user)
 		{
-			var identity = await AzureService.Instance.Client.InvokeApiAsync("/.auth/me");
+			//Manually calling /.auth/me against remote server because InvokeApiAsync against a local instance of Azure will never hit the remote endpoint
+			//If you are not debugging your service locally, you can just use InvokeApiAsync("/.auth/me") 
+			JToken identity;
+			using(var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+				client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", AzureService.Instance.Client.CurrentUser.MobileServiceAuthenticationToken); 
+				var json = await client.GetStringAsync($"{Keys.AzureDomainRemote}/.auth/me");
+				identity = JsonConvert.DeserializeObject<JToken>(json);
+			}
 
-			Settings.GoogleAccessToken = identity[0].Value<string>("access_token");
-			Settings.GoogleRefreshToken = identity[0].Value<string>("refresh_token");
-			Settings.AzureUserId = user.UserId;
-			Settings.AzureAuthToken = user.MobileServiceAuthenticationToken;
+			if(identity != null)
+			{
+				Settings.GoogleAccessToken = identity[0].Value<string>("access_token");
+				Settings.GoogleRefreshToken = identity[0].Value<string>("refresh_token");
+				Settings.AzureUserId = user.UserId;
+				Settings.AzureAuthToken = user.MobileServiceAuthenticationToken;
+			}
 		}
 
 		/// <summary>
@@ -185,13 +212,20 @@ namespace Sport.Mobile.Shared
 			var task = GoogleApiService.Instance.GetUserProfile(Settings.AuthTokenAndType);
 			await RunSafe(task, false);
 
-			if(task.IsCompleted && (task.IsFaulted || task.Result == null))
+			if(task.IsCompleted && task.Result == null)
 			{
 				//Need to refresh the token
-				var refreshedUser = await AzureService.Instance.Client.RefreshUserAsync();
-				await SetIdentityValues(refreshedUser);
-				task = GoogleApiService.Instance.GetUserProfile(Settings.AuthTokenAndType);
-				await RunSafe(task, false);
+				try
+				{
+					var refreshedUser = await AzureService.Instance.Client.RefreshUserAsync();
+					await SetIdentityValues(refreshedUser);
+					task = GoogleApiService.Instance.GetUserProfile(Settings.AuthTokenAndType);
+					await RunSafe(task, false);
+				}
+				catch (MobileServiceInvalidOperationException)
+				{
+					throw;
+				}
 			}
 
 			if(task.IsCompleted && !task.IsFaulted && task.Result != null)
@@ -221,15 +255,15 @@ namespace Sport.Mobile.Shared
 			return AuthUserProfile != null;
 		}
 
-		public void LogOut(bool clearCookies)
+		async public Task LogOut(bool clearCookies)
 		{
-			//Utility.SetSecured("AuthToken", string.Empty, "xamarin.sport", "authentication");
-			//AzureService.Instance.Client.Logout();
+			await AzureService.Instance.Client.LogoutAsync();
 
 			AuthUserProfile = null;
 			Settings.GoogleAccessToken = null;
-			Settings.AthleteId = null;
-			Settings.GoogleUserId = null;
+			Settings.GoogleRefreshToken = null;
+			Settings.AzureUserId = null;
+			Settings.AzureAuthToken = null;
 
 			if(clearCookies)
 			{

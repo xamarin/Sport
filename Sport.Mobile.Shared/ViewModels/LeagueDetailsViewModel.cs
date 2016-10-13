@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Sport.Mobile.Shared
 {
@@ -33,11 +34,25 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public ChallengeDetailsViewModel OngoingChallengeViewModel
+		public ObservableCollection<ChallengeDetailsViewModel> OngoingChallengeViewModels
 		{
 			get;
 			set;
 		}
+
+		public override League League
+		{
+			get
+			{
+				return base.League;
+			}
+			set
+			{
+				base.League = value;
+				SetOngoingChallenges();
+			}
+		}
+		
 
 		#endregion
 
@@ -46,7 +61,6 @@ namespace Sport.Mobile.Shared
 			var membership = new Membership {
 				AthleteId = App.Instance.CurrentAthlete.Id,
 				LeagueId = League.Id,
-				CurrentRank = 0,
 			};
 
 			var success = await AzureService.Instance.MembershipManager.InsertAsync(membership);
@@ -66,7 +80,6 @@ namespace Sport.Mobile.Shared
 
 			await AzureService.Instance.MembershipManager.RemoveAsync(membership);
 			await AzureService.Instance.ChallengeManager.PullLatestAsync();
-			App.Instance.CurrentAthlete.LocalRefresh();
 
 			NotifyPropertiesChanged();
 		}
@@ -80,9 +93,26 @@ namespace Sport.Mobile.Shared
 			{
 				await AzureService.Instance.LeagueManager.GetItemAsync(League.Id, true);
 				await AzureService.Instance.ChallengeManager.PullLatestAsync();
+				await AzureService.Instance.AthleteManager.PullLatestAsync();
 
 				_praisePhrase = null;
 				NotifyPropertiesChanged();
+			}
+		}
+
+		void SetOngoingChallenges()
+		{
+			if(OngoingChallengeViewModels == null)
+				OngoingChallengeViewModels = new ObservableCollection<ChallengeDetailsViewModel>();
+
+			OngoingChallengeViewModels.Clear();
+
+			if(CurrentMembership != null)
+			{
+				foreach(var challenge in CurrentMembership.OngoingChallenges)
+				{
+					OngoingChallengeViewModels.Add(new ChallengeDetailsViewModel { Challenge = challenge });
+				}
 			}
 		}
 
@@ -94,24 +124,24 @@ namespace Sport.Mobile.Shared
 			App.Instance.CurrentAthlete.LocalRefresh();
 			League.LocalRefresh();
 
-			SetPropertyChanged("CurrentMembership");
 			CurrentMembership?.LocalRefresh();
+			SetPropertyChanged("CurrentMembership");
 
-			if(CurrentMembership?.OngoingChallenge == null)
-				OngoingChallengeViewModel = null;
-
-			if(CurrentMembership?.OngoingChallenge != null)
+			if(CurrentMembership?.OngoingChallenges == null)
 			{
-				if(OngoingChallengeViewModel == null)
-					OngoingChallengeViewModel = new ChallengeDetailsViewModel();
-
-				OngoingChallengeViewModel.Challenge = CurrentMembership.OngoingChallenge;
+				OngoingChallengeViewModels = new ObservableCollection<ChallengeDetailsViewModel>();
+			}
+			else if(CurrentMembership?.OngoingChallenges != null)
+			{
+				SetOngoingChallenges();
+			}
+			else
+			{
+				SetPropertyChanged("OngoingChallengeViewModels");
+				OngoingChallengeViewModels.ForEach(vm => vm.NotifyPropertiesChanged());
 			}
 
-			SetPropertyChanged("OngoingChallengeViewModel");
-
 			MembershipViewModel?.NotifyPropertiesChanged();
-			OngoingChallengeViewModel?.NotifyPropertiesChanged();
 		}
 	}
 }

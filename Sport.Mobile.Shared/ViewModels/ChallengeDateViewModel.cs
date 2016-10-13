@@ -49,11 +49,17 @@ namespace Sport.Mobile.Shared
 		async public Task<Challenge> PostChallenge()
 		{
 			Challenge.ProposedTime = SelectedDateTime.ToUniversalTime();				
-			await AzureService.Instance.ChallengeManager.InsertAsync(Challenge);
+			var success = await AzureService.Instance.ChallengeManager.InsertAsync(Challenge);
 
 			Challenge.League.LocalRefresh();
-			MessagingCenter.Send(App.Instance, Messages.ChallengesUpdated);
-			return Challenge;
+
+			if(success)
+			{
+				MessagingCenter.Send(App.Instance, Messages.ChallengesUpdated);
+				return Challenge;
+			}
+
+			return null;
 		}
 
 		public void CreateChallenge(Athlete challenger, Athlete challengee, League league)

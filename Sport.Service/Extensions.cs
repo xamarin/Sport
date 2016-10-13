@@ -122,7 +122,8 @@ namespace Sport.Service
 			{
 				Id = dto.Id,
 				UpdatedAt = dto.UpdatedAt,
-				CurrentRank = dto.CurrentRank,
+				CurrentRating = dto.CurrentRating,
+				NumberOfGamesPlayed = dto.NumberOfGamesPlayed,
 				AthleteId = dto.AthleteId,
 				IsAdmin = dto.IsAdmin,
 				LastRankChange = dto.LastRankChange,

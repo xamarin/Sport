@@ -10,7 +10,7 @@ using System.Web.Http.OData;
 
 namespace Sport.Service.Controllers
 {
-	[Authorize]
+	//[Authorize]
 	public class AthleteController : TableController<Athlete>
 	{
 		MobileServiceContext _context = new MobileServiceContext();

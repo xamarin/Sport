@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 namespace Sport.Mobile.Shared
 {
 	public class MembershipViewModel : BaseViewModel
