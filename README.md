@@ -1,8 +1,11 @@
 # Sport
 
 
-Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office.
-Athletes can join leagues, get ranked and challenge other athletes to move up the ladder. As of 8/30/2015, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
+Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office. Athletes can join leagues, get ranked and challenge other athletes to move up the ladder.
+
+Sport employs the [Elo Rating System](https://en.wikipedia.org/wiki/Elo_rating_system). Each new member of a league initially starts with a rating of 1200. Anyone can challenge anyone, above or below you in the ladder. The larger the delta between the two players will result in how significant your rating increases or decreases. Victor over an athlete with a much higher rating than yours and you'll see a nice bump in your rating.
+
+As of 11/11/2016, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
 
 [This is an example of an iOS athlete and an Android athlete conducting a challenge](https://www.youtube.com/watch?v=GmdvxDVluRA)
 
