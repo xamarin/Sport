@@ -59,7 +59,6 @@ namespace Sport.Mobile.Shared
 
 				Memberships.Clear();
 				League.Memberships.ForEach(i => Memberships.Add(new MembershipViewModel { Membership = i }));
-				Memberships.Sort(new MembershipSortComparer());
 
 				if(Memberships.Count == 0)
 				{

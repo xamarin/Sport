@@ -1,14 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Foundation;
 using Microsoft.WindowsAzure.MobileServices;
+using Sport.Mobile.Shared;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Sport.Mobile.Shared.iOS.Authenticator))]
+[assembly: Dependency(typeof(Sport.Mobile.iOS.Authenticator))]
 
-namespace Sport.Mobile.Shared.iOS
+namespace Sport.Mobile.iOS
 {
 	public class Authenticator : IAuthenticator
 	{
@@ -33,7 +34,7 @@ namespace Sport.Mobile.Shared.iOS
 			catch(Exception e)
 			{
 				Debug.WriteLine(e);
-				MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
+				MessagingCenter.Send(new object(), Shared.Messages.ExceptionOccurred, e);
 				//InsightsManager.Report(e);
 			}
 
@@ -42,13 +43,13 @@ namespace Sport.Mobile.Shared.iOS
 
 		public void ClearCookies()
 		{
-			//var store = NSHttpCookieStorage.SharedStorage;
-			//var cookies = store.Cookies;
+			var store = NSHttpCookieStorage.SharedStorage;
+			var cookies = store.Cookies;
 
-			//foreach(var c in cookies)
-			//{
-			//	store.DeleteCookie(c);
-			//}
+			foreach(var c in cookies)
+			{
+				store.DeleteCookie(c);
+			}
 		}
 	}
 }

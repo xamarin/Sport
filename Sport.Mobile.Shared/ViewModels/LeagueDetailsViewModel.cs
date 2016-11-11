@@ -100,20 +100,36 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		void SetOngoingChallenges()
+		public void SetOngoingChallenges()
 		{
 			if(OngoingChallengeViewModels == null)
 				OngoingChallengeViewModels = new ObservableCollection<ChallengeDetailsViewModel>();
 
-			OngoingChallengeViewModels.Clear();
-
-			if(CurrentMembership != null)
+			if(CurrentMembership?.OngoingChallenges != null)
 			{
 				foreach(var challenge in CurrentMembership.OngoingChallenges)
 				{
+					if(OngoingChallengeViewModels.Any(vm => vm.Challenge.Id == challenge.Id))
+						continue;
+
+					//Was added
 					OngoingChallengeViewModels.Add(new ChallengeDetailsViewModel { Challenge = challenge });
 				}
+
+				foreach(var vm in OngoingChallengeViewModels.ToList())
+				{
+					if(CurrentMembership.OngoingChallenges.Any(c => c.Id == vm.Challenge.Id))
+					{
+						vm.NotifyPropertiesChanged();
+						continue;
+					}
+
+					//Was removed
+					OngoingChallengeViewModels.Remove(vm);
+				}
 			}
+
+			SetPropertyChanged("OngoingChallengeViewModels");
 		}
 
 		public override void NotifyPropertiesChanged([CallerMemberName] string caller = "")

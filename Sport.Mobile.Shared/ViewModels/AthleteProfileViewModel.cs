@@ -26,10 +26,26 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public void RegisterForPushNotifications(Action onComplete)
+		bool _enablePushNotifications;
+		public bool EnablePushNotifications
+		{
+			get
+			{
+				return Settings.EnablePushNotifications;
+			}
+			set
+			{
+				SetPropertyChanged(ref _enablePushNotifications, value);
+				Settings.EnablePushNotifications = _enablePushNotifications;
+			}
+		}
+
+		public Task<bool> RegisterForPushNotifications()
 		{
 			//var e = new Exception("Push notifications are disabled in demo mode.");
 			//MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
+
+			var tcs = new TaskCompletionSource<bool>();
 
 			MessagingCenter.Subscribe<App>(this, Messages.RegisteredForRemoteNotifications, async (app) => {
 				if(App.Instance.CurrentAthlete.DeviceToken != null)
@@ -40,7 +56,7 @@ namespace Sport.Mobile.Shared
 					NotifyPropertiesChanged();
 				}
 
-				onComplete();
+				tcs.SetResult(App.Instance.CurrentAthlete.DeviceToken != null);
 
 				Device.BeginInvokeOnMainThread(() => {
 					IsBusy = false;
@@ -51,6 +67,8 @@ namespace Sport.Mobile.Shared
 			IsBusy = true;
 			var push = DependencyService.Get<IPushNotifications>();
 			push.RegisterForPushNotifications();
+
+			return tcs.Task;
 		}
 	}
 }

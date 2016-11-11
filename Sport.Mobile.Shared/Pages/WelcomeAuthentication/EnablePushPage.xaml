@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:EnablePushPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
 	x:Class="Sport.Mobile.Shared.EnablePushPage"
 	xmlns:local="clr-namespace:Sport.Mobile.Shared"
 	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
@@ -9,28 +10,47 @@
 			<Style TargetType="Label" BasedOn="{StaticResource whiteLabelStyle}" />
 		</ResourceDictionary>
     </local:EnablePushPageXaml.Resources>
+
+	<xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="150">
+           <xfg:GradientStep StepColor="#9C27B0" StepPercentage="0" />
+           <xfg:GradientStep StepColor="#E91E63" StepPercentage="1" />
+      </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+	
     <local:EnablePushPageXaml.Content>
 		<Grid VerticalOptions="Fill" HorizontalOptions="Fill">
 			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
-			<StackLayout>
-				<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
+			<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
 
-				<Label Margin="40" x:Name="label1" Scale="0" FontSize="Medium" XAlign="Center"
-					Text="Much obliged if you'd kindly enable push notifications." />
+			<StackLayout x:Name="centerStack" Grid.Row="1" Scale="0" VerticalOptions="CenterAndExpand" Spacing="50" Opacity="0">
+				<Label Margin="40,0" FontSize="Medium" XAlign="Center"
+					Text="Much obliged if you'd kindly enable push notifications. You'll be notified of new challenge requests and when someone in your leage wins a challenge. Much cool!" />
+
+				<StackLayout x:Name="switchStack" VerticalOptions="StartAndExpand" Orientation="Horizontal" Margin="40,0">
+					<Label FontSize="Medium" XAlign="Center" HorizontalOptions="StartAndExpand"
+						Text="Enable notifications" VerticalOptions="Center" />
+					
+					<Switch IsToggled="{Binding EnablePushNotifications}" xfg:SwitchGloss.OnTintColor="#6FFF" HorizontalOptions="End" VerticalOptions="Center" />
+				</StackLayout>
 			</StackLayout>
 
-			<StackLayout x:Name="buttonStack" Grid.Row="1" Spacing="14" Scale="0" VerticalOptions="End" Padding="24">
-				<local:SportButton x:Name="btnPush" AutomationId="pushButton" Text="ALLOW PUSH NOTIFICATIONS" BackgroundColor="{StaticResource purpleDark}"
-					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
-					TextColor="White" VerticalOptions="EndAndExpand" />
+			<StackLayout x:Name="buttonStack" Grid.Row="2" Spacing="14" Scale="0" VerticalOptions="End" Padding="24">
+
+				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
+					VerticalOptions="End" Margin="0,0,0,10" />
+
+				<Label Text="Doing things and stuff..." IsVisible="{Binding IsBusy}" FontSize="Medium" XAlign="Center"
+					YAlign="Center" VerticalOptions="End" Margin="0,0,0,10" />
 
 				<local:SportButton x:Name="btnCont" AutomationId="continueButton" Text="CONTINUE"
-					BackgroundColor="{StaticResource purpleLight}"
-					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" VerticalOptions="End" />
+					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					Style="{StaticResource wizardButton}" VerticalOptions="End" />
 			</StackLayout>
 		</Grid>
 	</local:EnablePushPageXaml.Content>

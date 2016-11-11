@@ -44,7 +44,6 @@ Athletes can join leagues, get ranked and challenge other athletes to move up th
   * verifies connectivity
   * gracefully handles and reports exceptions
 * Leagues are assigned a randomly selected themed color at runtime
-* Elo algorithm used to determine athlete's rating which is used to rank the leaderboard
 
 
 #### Keys

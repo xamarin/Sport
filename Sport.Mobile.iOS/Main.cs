@@ -1,6 +1,6 @@
-﻿using UIKit;
+using UIKit;
 
-namespace Sport.Mobile.Shared.iOS
+namespace Sport.Mobile.iOS
 {
 	public class Application
 	{

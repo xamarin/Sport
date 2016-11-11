@@ -126,7 +126,7 @@ namespace Sport.Mobile.Shared
 
 		async void OnRevokeChallenge()
 		{
-			var decline = await DisplayAlert("Really?", "Are you sure you want to revoke challenge?", "Yes", "No");
+			var decline = await DisplayAlert("Really?", "Are you sure you want to revoke this challenge?", "Yes", "No");
 		
 			if(!decline)
 				return;

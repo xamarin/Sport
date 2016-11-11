@@ -21,11 +21,9 @@ namespace Sport.Mobile.Shared
 		protected override void Initialize()
 		{
 			InitializeComponent();
-			Title = "Profile";
+			Title = "My Profile";
 
-			var theme = App.Instance.Theming.GetThemeFromColor("asphalt");
-			profileStack.Theme = theme;
-
+			BarBackgroundColor = Xamarin.Forms.Color.FromHex("#FF867C");
 			AddDoneButton();
 		}
 
@@ -33,7 +31,6 @@ namespace Sport.Mobile.Shared
 		{
 			base.OnAppearing();
 			btnSave.Clicked += OnSaveClicked;
-			btnRegister.Clicked += OnRegisterClicked;
 
 			ViewModel.Athlete.LocalRefresh();
 			ViewModel.Athlete.Memberships.ForEach(m => m.League.LocalRefresh());
@@ -43,14 +40,6 @@ namespace Sport.Mobile.Shared
 		{
 			base.OnDisappearing();
 			btnSave.Clicked -= OnSaveClicked;
-			btnRegister.Clicked -= OnRegisterClicked;
-		}
-
-		void OnRegisterClicked(object sender, EventArgs e)
-		{
-			ViewModel.RegisterForPushNotifications(async() =>
-			{
-			});
 		}
 
 		async void OnSaveClicked(object sender, EventArgs e)
@@ -61,19 +50,14 @@ namespace Sport.Mobile.Shared
 				return;
 			}
 
-			bool success;
-			using(new HUD("Saving..."))
-			{
-				success = await ViewModel.SaveAthlete();
-			}
+			var success = await ViewModel.SaveAthlete();
+			//if(ViewModel.EnablePushNotifications)
+			//{
+			//	await ViewModel.RegisterForPushNotifications();
+			//}
 
 			if(success)
-			{
-				"Your profile has been saved".ToToast();
-
-				if(OnSave != null)
-					OnSave();
-			}
+				OnSave?.Invoke();
 		}
 
 		protected override void TrackPage(Dictionary<string, string> metadata)

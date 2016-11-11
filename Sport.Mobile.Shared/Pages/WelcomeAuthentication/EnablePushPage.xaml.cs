@@ -25,77 +25,64 @@ namespace Sport.Mobile.Shared
 		{
 			InitializeComponent();
 			Title = "Enable Push";
-
-			var theme = App.Instance.Theming.GetThemeFromColor("purple");
-			BackgroundColor = theme.Primary;
 			profileStack.Opacity = 0;
-			profileStack.Theme = theme;
-
-			btnPush.Clicked += (sender, e) =>
-			{
-				if(_ignoreClicks)
-					return;
-
-				//_ignoreClicks = true;
-				ViewModel.RegisterForPushNotifications(RegisteredForPushNotificationSuccess);
-			};
 
 			btnCont.Clicked += async(sender, e) =>
 			{
 				if(_ignoreClicks)
 					return;
-				
+
 				_ignoreClicks = true;
-				await AnimateToMainPage();
+
+				if(ViewModel.EnablePushNotifications)
+				{
+					var success = await ViewModel.RegisterForPushNotifications();
+					if(success)
+					{
+						btnCont.Text = "THANKS! WE'LL BE IN TOUCH!";
+						await AnimateToMainPage();
+					}
+					else
+					{
+						_ignoreClicks = false;
+						"Unable to register for push notifications".ToToast();
+					}
+				}
+				else
+				{
+					await AnimateToMainPage();
+				}
 			};
 		}
 
 		protected async override void OnLoaded()
 		{
-			profileStack.Layout(new Rectangle(0, profileStack.Height * -1, profileStack.Width, profileStack.Height));
 			base.OnLoaded();
 
+			profileStack.Layout(new Rectangle(0, profileStack.Height * -1, profileStack.Width, profileStack.Height));
 			profileStack.Opacity = 1;
-			await Task.Delay(300);
-			await profileStack.LayoutTo(new Rectangle(0, 0, profileStack.Width, profileStack.Height), (uint)App.AnimationSpeed, Easing.SinIn);
-			await label1.ScaleTo(1, (uint)App.AnimationSpeed, Easing.SinIn);
-			await buttonStack.ScaleTo(1, (uint)App.AnimationSpeed, Easing.SinIn);
-		}
 
-		void RegisteredForPushNotificationSuccess()
-		{
-			Device.BeginInvokeOnMainThread(async() =>
-			{
-				if(App.Instance.CurrentAthlete.DeviceToken != null)
-				{
-					btnPush.Text = "Thanks! We'll be in touch";
-					await AnimateToMainPage();
-				}
-				else
-				{
-					_ignoreClicks = false;
-					"Unable to register for push notifications".ToToast();
-				}
-			});
+			await Task.Delay(App.DelaySpeed);
+			await profileStack.LayoutTo(new Rectangle(0, 0, profileStack.Width, profileStack.Height), App.AnimationSpeed, Easing.SinIn);
+
+			await Task.Delay(App.DelaySpeed);
+			centerStack.ScaleTo(1, App.AnimationSpeed, Easing.SinIn);
+			await centerStack.FadeTo(1, App.AnimationSpeed, Easing.SinIn);
+			await buttonStack.ScaleTo(1, App.AnimationSpeed, Easing.SinIn);
 		}
 
 		async Task AnimateToMainPage()
 		{
-			await Task.Delay(App.AnimationSpeed);
-			await label1.FadeTo(0, (uint)App.AnimationSpeed, Easing.SinIn);
-
-			var speed = (uint)App.AnimationSpeed;
+			var speed = App.AnimationSpeed;
 			var ease = Easing.SinIn;
 
+			await profileStack.ScaleTo(0, App.AnimationSpeed, Easing.SinIn);
+
 			//Animations are intentionally not await to allow or concurrent animations
-			var pushRect = new Rectangle(Content.Width, btnPush.Bounds.Y, btnPush.Bounds.Width, btnPush.Height);
-			btnPush.FadeTo(0, speed, ease);
-			await btnPush.LayoutTo(pushRect, speed, ease);
+			centerStack.FadeTo(0, speed, ease);
+			await centerStack.ScaleTo(0, speed, ease);
 
-			var continueRect = new Rectangle(Content.Width, btnCont.Bounds.Y, btnCont.Bounds.Width, btnCont.Height);
-			btnCont.FadeTo(0, speed, ease);
-			await btnCont.LayoutTo(continueRect, speed, ease);
-
+			await buttonStack.ScaleTo(0, speed, ease);
 			await MoveToMainPage();
 		}
 

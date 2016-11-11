@@ -208,7 +208,7 @@ namespace Sport.Mobile.Shared
 			if(AuthUserProfile != null)
 				return true;
 
-			AuthenticationStatus = "Getting Google user profile";
+			AuthenticationStatus = "Getting user profile";
 			var task = GoogleApiService.Instance.GetUserProfile(Settings.AuthTokenAndType);
 			await RunSafe(task, false);
 

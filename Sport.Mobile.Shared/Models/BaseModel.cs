@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 
@@ -76,8 +78,9 @@ namespace Sport.Mobile.Shared
 		{
 		}
 
-		public virtual void NotifyPropertiesChanged()
+		public virtual void NotifyPropertiesChanged([CallerMemberName] string caller = "")
 		{
+			Debug.WriteLine($"NotifyPropertiesChanged called for {GetType().Name} by {caller}");
 		}
 	}
 }

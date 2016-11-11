@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:MembershipDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.MembershipDetailsPage"
@@ -13,7 +13,7 @@
 				</Grid.RowDefinitions>
 			
 				<StackLayout>
-					<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Membership.Athlete}" />
+					<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Membership.Athlete}" TextColor="{StaticResource grayDark}" />
 
 					<StackLayout Padding="24,48,24,0" Spacing="8">
 						<Label FontSize="Medium" Text="ATHLETE STATS" TextColor="{StaticResource grayDark}" />
@@ -21,6 +21,11 @@
 						<StackLayout Orientation="Horizontal">
 							<Label FontSize="Small" Text="Rank" TextColor="{StaticResource grayDark}" />
 							<Label FontSize="Small" Text="{Binding Membership.RankDescription}" TextColor="{StaticResource grayDark}" HorizontalOptions="EndAndExpand" />
+						</StackLayout>
+						<BoxView BackgroundColor="{StaticResource grayPrimary}" HeightRequest=".5" HorizontalOptions="FillAndExpand" />
+						<StackLayout Orientation="Horizontal">
+							<Label FontSize="Small" Text="Rating" TextColor="{StaticResource grayDark}" />
+							<Label FontSize="Small" Text="{Binding Membership.CurrentRating}" TextColor="{StaticResource grayDark}" HorizontalOptions="EndAndExpand" />
 						</StackLayout>
 						<BoxView BackgroundColor="{StaticResource grayPrimary}" HeightRequest=".5" HorizontalOptions="FillAndExpand" />
 						<StackLayout Orientation="Horizontal">

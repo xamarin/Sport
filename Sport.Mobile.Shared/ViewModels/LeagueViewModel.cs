@@ -33,7 +33,7 @@ namespace Sport.Mobile.Shared
 		{
 			get
 			{
-				return App.Instance.CurrentAthlete?.Memberships.FirstOrDefault(m => m.LeagueId == League?.Id);
+				return League?.Memberships.FirstOrDefault(m => m.AthleteId == App.Instance.CurrentAthlete?.Id);
 			}
 		}
 

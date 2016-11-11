@@ -78,11 +78,10 @@ namespace Sport.Mobile.Shared
 
 		public virtual async Task<bool> UpdateAsync(T item)
 		{
-			Debug.WriteLine($"Before Update: {item.Version} - {item.UpdatedAt}");
-			#if DEBUG
-				var lookup = await GetItemAsync(item.Id, true);
-				Debug.WriteLine($"Before Lookup: {lookup.Version} - {lookup.UpdatedAt}");
-			#endif
+			//#if DEBUG
+				//var lookup = await GetItemAsync(item.Id, true);
+				//Debug.WriteLine($"Before Lookup: {lookup.Version} - {lookup.UpdatedAt}");
+			//#endif
 
 			var pull = await PullLatestAsync().ConfigureAwait(false);
 			await Table.UpdateAsync(item).ConfigureAwait(false);
@@ -92,7 +91,7 @@ namespace Sport.Mobile.Shared
 			item.Version = updated.Version;
 			item.UpdatedAt = updated.UpdatedAt;
 
-			Debug.WriteLine($"After Update: {item.Version} - {item.UpdatedAt}");
+			//Debug.WriteLine($"After Update: {item.Version} - {item.UpdatedAt}");
 			return pull && push;
 		}
 
@@ -113,7 +112,7 @@ namespace Sport.Mobile.Shared
 			}
 			try
 			{
-				Debug.WriteLine($"Pulling for table {Identifier}");
+				//Debug.WriteLine($"Pulling for table {Identifier}");
 				await Table.PullAsync($"all{Identifier}", Table.CreateQuery()).ConfigureAwait(false);
 			}
 			catch(Exception ex)

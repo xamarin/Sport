@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,22 +18,27 @@
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFit" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_200.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="264" y="264" width="72" height="72"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gradient_launch.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="88">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="icon_300.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                                <rect key="frame" x="240" y="240" width="120" height="120"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <constraints>
-                                    <constraint id="53" firstAttribute="width" constant="72"/>
-                                    <constraint id="54" firstAttribute="height" constant="72"/>
+                                    <constraint firstAttribute="width" constant="120" id="53"/>
+                                    <constraint firstAttribute="height" constant="120" id="54"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.12156862745098039" green="0.61960784313725492" blue="0.76078431372549016" alpha="1"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint id="83" firstItem="yd7-JS-zBw" firstAttribute="centerY" secondItem="23" secondAttribute="centerY" constant="0.0"/>
-                            <constraint id="84" firstItem="yd7-JS-zBw" firstAttribute="centerX" secondItem="23" secondAttribute="centerX" constant="0.0"/>
+                            <constraint firstAttribute="centerY" secondItem="23" secondAttribute="centerY" id="83"/>
+                            <constraint firstAttribute="centerX" secondItem="23" secondAttribute="centerX" id="84"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,40 +48,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60.png" width="180" height="180"/>
-        <image name="Default-568h.png" width="640" height="1136"/>
-        <image name="ic_add_white.png" width="72" height="72"/>
-        <image name="ic_menu_white.png" width="72" height="72"/>
-        <image name="ic_more_vert_white.png" width="72" height="72"/>
-        <image name="ic_control_point_white.png" width="84" height="84"/>
-        <image name="ic_thumb_down_white.png" width="72" height="72"/>
-        <image name="ic_thumb_up_white.png" width="72" height="72"/>
-        <image name="ic_fencing_white.png" width="72" height="72"/>
-        <image name="ic_trophy_gray.png" width="72" height="72"/>
-        <image name="ic_people_gray.png" width="72" height="72"/>
-        <image name="ic_send_white.png" width="72" height="72"/>
-        <image name="ic_time_gray.png" width="72" height="72"/>
-        <image name="segoeuil.ttf" width="0" height="0"/>
-        <image name="segoeuib.ttf" width="0" height="0"/>
-        <image name="segoeuii.ttf" width="0" height="0"/>
-        <image name="segoeuisb.ttf" width="0" height="0"/>
-        <image name="segoeuisl.ttf" width="0" height="0"/>
-        <image name="segoeuiz.ttf" width="0" height="0"/>
-        <image name="seguisb.ttf" width="0" height="0"/>
-        <image name="segoeui.ttf" width="0" height="0"/>
-        <image name="transparent.png" width="72" height="72"/>
-        <image name="ic_trending_up_white.png" width="72" height="72"/>
-        <image name="ic_person_add_white.png" width="72" height="72"/>
-        <image name="icon_120.png" width="120" height="120"/>
-        <image name="Default-Portrait.png" width="768" height="1004"/>
-        <image name="Icon-76.png" width="76" height="76"/>
-        <image name="Icon-72.png" width="72" height="72"/>
-        <image name="Default.png" width="320" height="480"/>
-        <image name="icon.png" width="393" height="393"/>
-        <image name="icon_clear_72.png" width="72" height="72"/>
-        <image name="icon_200.png" width="200" height="200"/>
-        <image name="ic_missing_photo_white.png" width="72" height="72"/>
-        <image name="ic_refresh_white.png" width="72" height="72"/>
-        <image name="ic_notifications_active_white.png" width="72" height="72"/>
+        <image name="gradient_launch.jpg" width="1600" height="1600"/>
+        <image name="icon_300.png" width="300" height="300"/>
     </resources>
 </document>

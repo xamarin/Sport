@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
@@ -7,8 +7,9 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using HockeyApp.iOS;
+using Sport.Mobile.Shared;
 
-namespace Sport.Mobile.Shared.iOS
+namespace Sport.Mobile.iOS
 {
 	[Register("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
@@ -28,6 +29,7 @@ namespace Sport.Mobile.Shared.iOS
 			SQLitePCL.CurrentPlatform.Init();
 			Forms.Init();
 			ImageCircleRenderer.Init();
+			XFGloss.iOS.Library.Init();
 
 			LoadApplication(new App());
 
@@ -39,7 +41,7 @@ namespace Sport.Mobile.Shared.iOS
 				{
 					var exception = ((Exception)e.ExceptionObject).GetBaseException();
 					Console.WriteLine("**SPORT UNHANDLED EXCEPTION**\n\n" + exception);
-					MessagingCenter.Send(new object(), Messages.ExceptionOccurred, exception);
+					MessagingCenter.Send(new object(), Shared.Messages.ExceptionOccurred, exception);
 					//InsightsManager.Report(ex, Xamarin.Insights.Severity.Critical);
 				}
 				catch
@@ -54,14 +56,14 @@ namespace Sport.Mobile.Shared.iOS
 		public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
 		{
 			App.Instance.CurrentAthlete.DeviceToken = deviceToken.Description.Trim('<', '>').Replace(" ", "");
-			MessagingCenter.Send(App.Instance, Messages.RegisteredForRemoteNotifications);
+			MessagingCenter.Send(App.Instance, Shared.Messages.RegisteredForRemoteNotifications);
 		}
 
 		public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
 		{
 			Debug.WriteLine("FailedToRegisterForRemoteNotifications called");
 			Debug.WriteLine(error);
-			MessagingCenter.Send(App.Instance, Messages.RegisteredForRemoteNotifications);
+			MessagingCenter.Send(App.Instance, Shared.Messages.RegisteredForRemoteNotifications);
 		}
 
 		public override void ReceivedRemoteNotification(UIApplication application, NSDictionary userInfo)
@@ -79,7 +81,7 @@ namespace Sport.Mobile.Shared.iOS
 				payloadValue = JsonConvert.DeserializeObject<NotificationPayload>(payload.ToString());
 				if(payloadValue != null)
 				{
-					MessagingCenter.Send(App.Instance, Messages.IncomingPayloadReceivedInternal, payloadValue);
+					MessagingCenter.Send(App.Instance, Shared.Messages.IncomingPayloadReceivedInternal, payloadValue);
 				}
 			}
 

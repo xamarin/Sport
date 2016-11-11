@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Sport.Mobile.Shared
 {
@@ -28,7 +29,8 @@ namespace Sport.Mobile.Shared
 			{
 				if(_athlete == null && AthleteId != null)
 				{
-					Task.Run(async () => {
+					Task.Run(async () =>
+					{
 						_athlete = await AzureService.Instance.AthleteManager.Table.LookupAsync(AthleteId);
 					}).Wait();
 				}
@@ -36,42 +38,11 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		//async public Task GetLeagues(bool forceRefresh = false)
-		//{
-		//	if(Athlete == null)
-		//		return;
-
-		//	if(!forceRefresh)
-		//	{
-		//		Athlete.LocalRefresh();
-		//		return;
-		//	}
-
-		//	if(IsBusy)
-		//		return;
-
-		//	using(new Busy(this))
-		//	{
-		//		Athlete.LocalRefresh();
-
-		//		var task = AzureService.Instance.GetAllLeaguesForAthlete();
-		//		await RunSafe(task);
-
-		//		if(task.IsFaulted)
-		//			return;
-
-		//		Athlete.LocalRefresh();
-		//		SetPropertyChanged("Athlete");
-		//	}
-
-		//	IsBusy = false;
-		//}
-
-		public override void NotifyPropertiesChanged([System.Runtime.CompilerServices.CallerMemberName] string caller = "")
+		public override void NotifyPropertiesChanged([CallerMemberName] string caller = "")
 		{
 			_athlete = null;
 			SetPropertyChanged("Athlete");
-			base.NotifyPropertiesChanged();
+			base.NotifyPropertiesChanged(caller);
 		}
 	}
 }

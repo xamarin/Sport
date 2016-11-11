@@ -1,10 +1,10 @@
-﻿using BigTed;
+using BigTed;
 using Sport.Mobile.Shared;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Sport.Mobile.Shared.iOS.HUDProvider))]
+[assembly: Dependency(typeof(Sport.Mobile.iOS.HUDProvider))]
 
-namespace Sport.Mobile.Shared.iOS
+namespace Sport.Mobile.iOS
 {
 	public class HUDProvider : IHUDProvider
 	{

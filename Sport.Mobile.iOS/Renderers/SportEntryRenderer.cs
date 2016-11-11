@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using Sport.Mobile.Shared;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(SportEntry), typeof(Sport.Mobile.Shared.iOS.SportEntryRenderer))]
+[assembly: ExportRenderer(typeof(SportEntry), typeof(Sport.Mobile.iOS.SportEntryRenderer))]
 
-namespace Sport.Mobile.Shared.iOS
+namespace Sport.Mobile.iOS
 {
 	public class SportEntryRenderer : EntryRenderer
 	{

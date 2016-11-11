@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <local:WelcomeStartPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
 	x:Class="Sport.Mobile.Shared.WelcomeStartPage"
 	xmlns:local="clr-namespace:Sport.Mobile.Shared">
     <local:WelcomeStartPageXaml.Resources>
@@ -9,15 +10,22 @@
 		</ResourceDictionary>
     </local:WelcomeStartPageXaml.Resources>
 
+	<xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="150">
+            <xfg:GradientStep StepColor="#03A9F4" StepPercentage="0" />
+            <xfg:GradientStep StepColor="#303F9F" StepPercentage="1" />
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+
     <local:WelcomeStartPageXaml.Content>
 		<Grid VerticalOptions="Fill" HorizontalOptions="Fill" Padding="24">
 			<StackLayout x:Name="label1" Padding="24,0" Scale="0" VerticalOptions="Center">
-				<Label AutomationId="label1" Text="It looks like this is your first time challenging sport and ranking match. Let's get you registered, athlete!"
+				<Label AutomationId="label1" Text="Welcome to Sport - a leaderboard app built with Xamarin and Azure. Join various leagues and challenge your way to the top!"
 					FontSize="Medium" XAlign="Center" />
 			</StackLayout>
 
 			<StackLayout x:Name="label2" Grid.Row="1" Padding="24,0" Scale="0" VerticalOptions="Center">
-				<Label AutomationId="label2" Text="First thing's first, you must log into the mainframe." FontSize="Medium" XAlign="Center" />
+				<Label AutomationId="label2" Text="Before we get going, lets get you registered." FontSize="Medium" XAlign="Center" />
 			</StackLayout>
 
 			<StackLayout x:Name="buttonStack" Spacing="0" Scale="0" Grid.Row="2" VerticalOptions="End">
@@ -27,8 +35,8 @@
 				<Label Text="{Binding AuthenticationStatus, StringFormat='\{0\}...'}" IsVisible="{Binding IsBusy}"  FontSize="Medium"
 					XAlign="Center" YAlign="Center" VerticalOptions="EndAndExpand" HeightRequest="70" />
 
-				<local:SportButton x:Name="btnAuthenticate" AutomationId="authButton" Text="LOG IN"
-					BackgroundColor="{StaticResource blueLight}" VerticalOptions="EndAndExpand" TextColor="White"
+				<local:SportButton x:Name="btnAuthenticate" AutomationId="authButton" Text="SIGN IN"
+					VerticalOptions="EndAndExpand" Style="{StaticResource wizardButton}"
 					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
 
 			</StackLayout>

@@ -50,8 +50,6 @@ namespace Sport.Mobile.Shared
 
 		public MainBaseContentPage()
 		{
-			//Debug.WriteLine("Constructor called for {0} {1}".Fmt(GetType().Name, GetHashCode()));
-
 			BarBackgroundColor = (Color)Application.Current.Resources["grayPrimary"];
 			BarTextColor = Color.White;
 			BackgroundColor = Color.White;
@@ -188,8 +186,8 @@ namespace Sport.Mobile.Shared
 			if(l == null || l.Theme == null)
 				return;
 			
-			BarBackgroundColor = l.Theme.Light;
-			BarTextColor = l.Theme.Dark;
+			BarBackgroundColor = l.Theme.Primary;
+			BarTextColor = Color.FromRgba(255, 255, 255, 220);
 		}
 
 		public void ApplyTheme(NavigationPage nav)
@@ -269,7 +267,7 @@ namespace Sport.Mobile.Shared
 
 		async protected void LogoutUser()
 		{
-			var decline = await DisplayAlert("Are you sure you want to log out?", null, "Yes", "No");
+			var decline = await DisplayAlert("Are you sure you want to log out of the mainframe?", null, "Yes", "No");
 
 			if(!decline)
 				return;

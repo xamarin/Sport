@@ -2,8 +2,10 @@
 <local:LeagueDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:Sport.Mobile.Shared"
-	BackgroundColor="{StaticResource grayLight}"
-	x:Class="Sport.Mobile.Shared.LeagueDetailsPage">
+	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+	BackgroundColor="{StaticResource grayUltraLight}"
+	x:Class="Sport.Mobile.Shared.LeagueDetailsPage"
+	x:Name="rootPage">
 
 	<local:LeagueDetailsXaml.ToolbarItems>
 		<ToolbarItem x:Name="btnRefresh" Text="Refresh" AutomationId="refreshButton" Icon="ic_refresh_white" />
@@ -23,7 +25,7 @@
 				<Grid>
 					<Image Source="ic_missing_photo_white" AutomationId="leaguePhoto" HorizontalOptions="Center" VerticalOptions="Center" />
 					<Image x:Name="photoImage" Source="{Binding League.ImageUrl}" HorizontalOptions="Fill" HeightRequest="200"
-						VerticalOptions="Center" Aspect="AspectFill" />
+						VerticalOptions="Center" Aspect="AspectFill" Opacity=".8" />
 
 					<StackLayout IsVisible="{Binding IsFirstPlace}" Orientation="Horizontal" VerticalOptions="End">
 						<AbsoluteLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,-1,-1" Padding="10">
@@ -36,9 +38,10 @@
 				</Grid>
 			</ContentView>
 
-			<StackLayout Grid.Row="1" Orientation="Vertical" Spacing="14" VerticalOptions="Fill" BackgroundColor="{StaticResource grayLight}">
+			<StackLayout Grid.Row="1" Orientation="Vertical" Spacing="14" VerticalOptions="Fill" BackgroundColor="{StaticResource grayUltraLight}">
 				<StackLayout Padding="24,8,24,0" Spacing="4" IsVisible="{Binding League.HasStarted}">
 					<Label Text="{Binding League.Name}" FontSize="Large" TextColor="{Binding League.Theme.Dark}" VerticalOptions="CenterAndExpand" />
+					<Label Text="{Binding League.Description}" FontSize="Small" TextColor="{Binding League.Theme.Light}" VerticalOptions="CenterAndExpand" />
 				</StackLayout>
 
 				<StackLayout Padding="24,14,24,14" Spacing="4" IsVisible="{Binding League.HasStarted, Converter={x:Static local:InverseBoolConverter.Instance}}">
@@ -86,7 +89,20 @@
 						<local:RankStripView x:Name="rankStrip" Margin="0,10" />
 					</ContentView>
 
-					<ContentView x:Name="controlView" Padding="0" />
+					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="200"
+						IsVisible="{Binding OngoingChallengeViewModels, Converter={x:Static local:IsEmptyConverter.Instance}}}">
+						<cv:CarouselView.ItemTemplate>
+							<DataTemplate>
+								<local:ChallengeCardView ViewModel="{Binding .}" Margin="3,0"
+										OnAccepted="{Binding Source={x:Reference rootPage}, Path=AcceptedCommand}"
+										OnPostResults="{Binding Source={x:Reference rootPage}, Path=PostResultsCommand}"
+										OnNudge="{Binding Source={x:Reference rootPage}, Path=NudgeCommand}"
+										OnDeclined="{Binding Source={x:Reference rootPage}, Path=DeclinedCommand}"
+										OnClicked="{Binding Source={x:Reference rootPage}, Path=ClickedCommand}"
+								/>
+							</DataTemplate>
+						</cv:CarouselView.ItemTemplate>
+					  </cv:CarouselView>
 				</StackLayout>
 			</StackLayout>
 
@@ -101,7 +117,7 @@
 				</StackLayout>
 
 				<StackLayout BackgroundColor="{StaticResource grayMedium}" Padding="18,14,24,0">
-					<Label Text="{Binding League.LeagueDetails}" TextColor="{StaticResource grayLight}" FontSize="Micro" />
+					<Label Text="{Binding League.LeagueDetails}" TextColor="White" FontSize="Micro" />
 				</StackLayout>
 			</StackLayout>
 		</Grid>

@@ -23,6 +23,7 @@ namespace Sport.Mobile.Shared
 		const string _registrationComplete = "registrationComplete";
 		const string _azureUserId = "azureUserId";
 		const string _azureAuthToken = "azureAuthToken";
+		const string _enablePushNotifications = "enablePushNotifications";
 
 		#endregion
 
@@ -127,6 +128,18 @@ namespace Sport.Mobile.Shared
 			set
 			{
 				AppSettings.AddOrUpdateValue(_azureAuthToken, value);
+			}
+		}
+
+		public static bool EnablePushNotifications
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault(_enablePushNotifications, false);
+			}
+			set
+			{
+				AppSettings.AddOrUpdateValue(_enablePushNotifications, value);
 			}
 		}
 	}

@@ -59,6 +59,8 @@ namespace Sport.Mobile.Shared
 					Task.Run(async () => {
 						_memberships = await AzureService.Instance.MembershipManager.Table.Where(i => i.LeagueId == Id && i.AbandonDate == null).ToListAsync();
 					}).Wait();
+
+					Sort();
 				}
 
 				return _memberships;
@@ -400,6 +402,13 @@ namespace Sport.Mobile.Shared
 		public override int GetHashCode()
 		{
 			return base.GetHashCode();
+		}
+
+		public void Sort()
+		{
+			_memberships.Sort(new MembershipSortComparer());
+			for(int i = 0; i < _memberships.Count(); i++)
+				_memberships[i].CurrentRank = i;
 		}
 	}
 

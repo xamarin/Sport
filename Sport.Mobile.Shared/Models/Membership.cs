@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Sport.Mobile.Shared
 {
@@ -122,29 +123,20 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		int? _currentRank;
+		int _currentRank;
 
 		[JsonIgnore]
 		public int CurrentRank
 		{
 			get
 			{
-				var changed = false;
-				if(_currentRank == null)
-				{
-					var list = League.Memberships.OrderByDescending(m => m.CurrentRating).ToList();
-					_currentRank = list.FindIndex(m => m.Id == Id);
-
-					changed = true;
-				}
-
-				if(changed)
-				{
-					SetPropertyChanged("CurrentRankDisplay");
-					SetPropertyChanged("CurrentRankOrdinal");
-				}
-
-				return _currentRank.Value;
+				return _currentRank;
+			}
+			set
+			{
+				SetPropertyChanged(ref _currentRank, value);
+				SetPropertyChanged("CurrentRankDisplay");
+				SetPropertyChanged("CurrentRankOrdinal");
 			}
 		}
 
@@ -231,13 +223,13 @@ namespace Sport.Mobile.Shared
 			NotifyPropertiesChanged();
 		}
 
-		public override void NotifyPropertiesChanged()
+		public override void NotifyPropertiesChanged([CallerMemberName] string caller = "")
 		{
-			base.NotifyPropertiesChanged();
 			SetPropertyChanged("LastRankChangeDate");
 			SetPropertyChanged("CurrentRank");
 			SetPropertyChanged("CurrentRankOrdinal");
 			//SetPropertyChanged("OngoingChallenge");
+			base.NotifyPropertiesChanged(caller);
 		}
 
 		public Challenge GetOngoingChallenge(Athlete athlete)
@@ -290,14 +282,19 @@ namespace Sport.Mobile.Shared
 		}
 	}
 
-	public class MembershipSortComparer : IComparer<MembershipViewModel>
+	public class MembershipSortComparer : IComparer<Membership>
 	{
-		public int Compare(MembershipViewModel x, MembershipViewModel y)
+		public int Compare(Membership x, Membership y)
 		{
-			if(x.Membership.CurrentRating == y.Membership.CurrentRating)
-				return 0;
+			if(x.CurrentRating == y.CurrentRating)
+			{
+				if(x.CreatedAt < y.CreatedAt)
+					return -1;
+
+				return 1;
+			}
 			
-			if(x.Membership.CurrentRating > y.Membership.CurrentRating)
+			if(x.CurrentRating > y.CurrentRating)
 				return -1;
 
 			return 1;

@@ -13,9 +13,12 @@ namespace Sport.Mobile.Shared
 					"red",
 					"green",
 					"blue",
+					"pink",
+					"teal",
 					"asphalt",
 					"yellow",
-					"purple"
+					"purple",
+					"orange",
 			};
 		}
 

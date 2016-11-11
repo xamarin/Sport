@@ -7,6 +7,12 @@ namespace Sport.Mobile.Shared
 {
 	public partial class ProfileStripView : ContentView
 	{
+		public ProfileStripView()
+		{
+			InitializeComponent();
+			root.BindingContext = this;
+		}
+
 		public static readonly BindableProperty AthleteProperty =
 			BindableProperty.Create("Athlete", typeof(Athlete), typeof(ProfileStripView), null);
 
@@ -19,6 +25,21 @@ namespace Sport.Mobile.Shared
 			set
 			{
 				SetValue(AthleteProperty, value);
+			}
+		}
+
+		public static readonly BindableProperty TextColorProperty =
+			BindableProperty.Create("TextColor", typeof(Color), typeof(ProfileStripView), Color.White);
+
+		public Color TextColor
+		{
+			get
+			{
+				return (Color)GetValue(TextColorProperty);
+			}
+			set
+			{
+				SetValue(TextColorProperty, value);
 			}
 		}
 
@@ -35,12 +56,6 @@ namespace Sport.Mobile.Shared
 			{
 				SetValue(ThemeProperty, value);
 			}
-		}
-
-		public ProfileStripView()
-		{
-			InitializeComponent();
-			root.BindingContext = this;
 		}
 	}
 }

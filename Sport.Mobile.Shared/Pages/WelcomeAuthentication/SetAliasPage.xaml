@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <local:SetAliasPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
 	x:Class="Sport.Mobile.Shared.SetAliasPage"
 	xmlns:local="clr-namespace:Sport.Mobile.Shared;assembly"
 	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
@@ -9,15 +10,21 @@
 			<Style TargetType="Label" BasedOn="{StaticResource whiteLabelStyle}" />
 		</ResourceDictionary>
     </local:SetAliasPageXaml.Resources>
-	
-    <local:SetAliasPageXaml.Content>
-    	<ScrollView AutomationId="scrollView">
 
+	<xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="150">
+           <xfg:GradientStep StepColor="#512DA8" StepPercentage="0" />
+           <xfg:GradientStep StepColor="#7B1FA2" StepPercentage="1" />
+      </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+
+    <local:SetAliasPageXaml.Content>
+		<ScrollView AutomationId="scrollView">
 		<Grid VerticalOptions="Fill">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
-				<RowDefinition Height="Auto" />
+				<RowDefinition Height="120" />
 			</Grid.RowDefinitions>
 
 			<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
@@ -29,15 +36,13 @@
 						FontSize="Medium" XAlign="Center" />
 				</StackLayout>
 
-				<StackLayout Grid.Row="1" x:Name="aliasBox" Scale="0" Spacing="0" VerticalOptions="Center">
-					<ContentView BackgroundColor="{StaticResource redDark}" HeightRequest=".5" HorizontalOptions="Fill" />
-					<StackLayout Orientation="Horizontal" Spacing="20" Padding="48,0" HeightRequest="56" HorizontalOptions="Fill">
+				<StackLayout Grid.Row="1" x:Name="aliasBox" Scale="0" Spacing="0" VerticalOptions="Center" BackgroundColor="#2FFF">
+					<StackLayout Orientation="Horizontal" Spacing="20" Padding="40,8" HeightRequest="56" HorizontalOptions="Fill">
 						<Label Text="Alias:" TextColor="White" VerticalOptions="Center" FontSize="Large" />
 
-						<local:SportEntry x:Name="txtAlias" AutomationId="aliasText" Text="{Binding Athlete.Alias}" Font="Large" TextColor="White" Opacity=".7"
+						<local:SportEntry x:Name="txtAlias" AutomationId="aliasText" Text="{Binding Athlete.Alias}" Font="Large" TextColor="White"
 							HasBorder="false" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="FillAndExpand" MaxLength="14" />
 					</StackLayout>
-					<ContentView BackgroundColor="{StaticResource redDark}" HeightRequest=".5" HorizontalOptions="Fill" />
 				</StackLayout>
 
 				<StackLayout Grid.Row="2" x:Name="label2" VerticalOptions="Center" Padding="24,0" Scale="0" HorizontalOptions="Center">
@@ -46,19 +51,19 @@
 				</StackLayout>
 			</Grid>
 
-			<StackLayout x:Name="buttonStack" Padding="24" Grid.Row="2" Scale="0" VerticalOptions="End" Spacing="10" HeightRequest="60">
+			<StackLayout x:Name="buttonStack" Padding="24" Grid.Row="2" Scale="0" VerticalOptions="End" Spacing="10">
 				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
-					VerticalOptions="End" />
+					VerticalOptions="End" Margin="0,0,0,10" />
 
-				<Label Text="Saving profile..." IsVisible="{Binding IsBusy}" FontSize="Medium" XAlign="Center" YAlign="Center" VerticalOptions="End" />
+				<Label Text="Saving profile..." IsVisible="{Binding IsBusy}" FontSize="Medium" XAlign="Center"
+					YAlign="Center" VerticalOptions="End" Margin="0,0,0,10" />
 
-				<local:SportButton x:Name="btnSave" Text="SAVE &amp; CONTINUE" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
-					BackgroundColor="{StaticResource redLight}" AutomationId="saveButton"
+				<local:SportButton x:Name="btnSave" Style="{StaticResource wizardButton}" Text="SAVE &amp; CONTINUE"
+					VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutomationId="saveButton" 
 					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
 			</StackLayout>
 		</Grid>
-
-    	</ScrollView>
+		</ScrollView>
 
 	</local:SetAliasPageXaml.Content>
 </local:SetAliasPageXaml>

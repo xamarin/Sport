@@ -24,7 +24,7 @@
 
 				<Grid Padding="0,24" HorizontalOptions="CenterAndExpand">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="40" />
+						<RowDefinition Height="40" x:Name="test" />
 						<RowDefinition Height="40" />
 						<RowDefinition Height="40" />
 					</Grid.RowDefinitions>
@@ -115,10 +115,10 @@
 				BackgroundColor="{Binding Challenge.League.Theme.Light}">
 				<StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="CenterAndExpand">
 					<Label Text="{Binding Challenge.WinningAthlete.Alias, StringFormat='this one goes to \{0\}'}" FontSize="Medium"
-						VerticalOptions="Center" TextColor="{Binding Challenge.League.Theme.Dark}" AutomationId="winningLabel" />
+						VerticalOptions="Center" TextColor="White" AutomationId="winningLabel" />
 
 					<Grid WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" VerticalOptions="Center">
-						<Button BackgroundColor="{Binding Challenge.League.Theme.Primary}" WidthRequest="48" HeightRequest="48" BorderRadius="24"
+						<Button BackgroundColor="{Binding Challenge.League.Theme.Dark}" WidthRequest="48" HeightRequest="48" BorderRadius="24"
 							VerticalOptions="Center" HorizontalOptions="Center" />
 						<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Challenge.WinningAthlete.ProfileImageUrl}"
 							HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" />

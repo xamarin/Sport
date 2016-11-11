@@ -82,10 +82,9 @@ namespace Sport.Mobile.Shared
 
 		#endregion
 
-
 		#region Commands
 
-		Command ClickedCommand
+		public Command ClickedCommand
 		{
 			get
 			{
@@ -95,7 +94,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		Command PostResultsCommand
+		public Command PostResultsCommand
 		{
 			get
 			{
@@ -121,7 +120,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		Command NudgeCommand
+		public Command NudgeCommand
 		{
 			get
 			{
@@ -137,7 +136,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		Command AcceptedCommand
+		public Command AcceptedCommand
 		{
 			get
 			{
@@ -158,7 +157,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		Command DeclinedCommand
+		public Command DeclinedCommand
 		{
 			get
 			{
@@ -192,8 +191,8 @@ namespace Sport.Mobile.Shared
 			Title = ViewModel.League?.Name;
 
 			rankStrip.Membership = ViewModel.CurrentMembership; //Binding is not working in XAML for some reason
-			scrollView.Scrolled += (sender, e) => Parallax();
 
+			scrollView.Scrolled += (sender, e) => Parallax();
 			Parallax();
 
 			btnRefresh.Clicked += async (sender, e) =>
@@ -202,7 +201,7 @@ namespace Sport.Mobile.Shared
 				{
 					await ViewModel.RefreshLeague(true);
 					rankStrip.Membership = ViewModel.CurrentMembership;
-					RefreshChallengeCardViews();
+					UpdateChallenageCarousel();
 				}
 			};
 
@@ -218,44 +217,25 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		void RefreshChallengeCardViews()
-		{
-			var stack = new StackLayout
-			{
-				Padding = 0,
-				Spacing = 16,
-				Orientation = StackOrientation.Vertical,
-			};
-
-			foreach(var challengeVm in ViewModel.OngoingChallengeViewModels)
-			{
-				var cardView = new ChallengeCardView
-				{
-					ViewModel = challengeVm,
-					OnClicked = ClickedCommand,
-					OnAccepted = AcceptedCommand,
-					OnDeclined = DeclinedCommand,
-					OnNudge = NudgeCommand,
-					OnPostResults = PostResultsCommand,
-				};
-				stack.Children.Add(cardView);
-			}
-
-			if(stack.Children.Count > 0)
-				controlView.Content = stack;
-		}
-
 		protected override void OnAppearing()
 		{
 			_didPost = false; //reset
 			UpdateMenuButtons();
 
+			UpdateChallenageCarousel();
 			ViewModel.NotifyPropertiesChanged();
 			rankStrip.Membership = ViewModel.CurrentMembership;
 
-			RefreshChallengeCardViews();
-			Debug.WriteLine("Nav stack count: " + Navigation.NavigationStack.Count);
 			base.OnAppearing();
+		}
+
+		void UpdateChallenageCarousel()
+		{
+			if(ViewModel.CurrentMembership?.OngoingChallenges?.Count > 0 &&
+			   	challengeCarousel.Position >= ViewModel.CurrentMembership?.OngoingChallenges?.Count)
+				challengeCarousel.Position = ViewModel.CurrentMembership.OngoingChallenges.Count - 1;
+		
+			ViewModel.SetOngoingChallenges();
 		}
 
 		protected override void SubscribeToMessages()
@@ -281,7 +261,6 @@ namespace Sport.Mobile.Shared
 		void OnChallengesUpdated(App app)
 		{
 			ViewModel.NotifyPropertiesChanged();
-			RefreshChallengeCardViews();
 		}
 
 		async void PushChallengeDetailsPage(Challenge challenge, bool refresh = false)
@@ -320,7 +299,7 @@ namespace Sport.Mobile.Shared
 				{
 					await ViewModel.RefreshLeague(true);
 					Device.BeginInvokeOnMainThread(() => {
-						RefreshChallengeCardViews();
+						UpdateChallenageCarousel();
 						rankStrip.Membership = ViewModel.CurrentMembership;
 					});
 

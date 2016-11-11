@@ -34,7 +34,9 @@ namespace Sport.Mobile.Shared
 		{
 			get
 			{
-				return Membership == null || Membership.League == null || Membership.League.Theme == null ? Color.Transparent : Membership.League.Theme.Light.AddLuminosity(-.1);
+				return Membership?.League?.Theme?.Dark ?? Color.Transparent;
+				//return Membership == null || Membership.League == null || Membership.League.Theme == null ?
+    //               Color.Transparent : Membership.League.Theme.Light.AddLuminosity(-.07);
 			}
 		}
 
@@ -42,7 +44,9 @@ namespace Sport.Mobile.Shared
 		{
 			get
 			{
-				return Membership == null || Membership.League == null || Membership.League.Theme == null ? Color.Transparent : Membership.League.Theme.Light.AddLuminosity(.07);
+				return Membership?.League?.Theme?.Light ?? Color.Transparent;
+				//return Membership == null || Membership.League == null || Membership.League.Theme == null ?
+    //               Color.Transparent : Membership.League.Theme.Light.AddLuminosity(.07);
 			}
 		}
 

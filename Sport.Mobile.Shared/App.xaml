@@ -1,39 +1,65 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     	xmlns:local="clr-namespace:Sport.Mobile.Shared"
 		x:Class="Sport.Mobile.Shared.App">
 	<Application.Resources>
       <ResourceDictionary>
-        	<Color x:Key="asphaltPrimary">#365271</Color>
-        	<Color x:Key="asphaltLight">#889DB5</Color>
-        	<Color x:Key="asphaltDark">#1C2B39</Color>
+        	<Color x:Key="orangeLight">#f76d45</Color>
+        	<Color x:Key="orangePrimary">#FF5722</Color>
+        	<Color x:Key="orangeDark">#E64A19</Color>
+
+        	<Color x:Key="pinkLight">#EA3874</Color>
+        	<Color x:Key="pinkPrimary">#E91E63</Color>
+        	<Color x:Key="pinkDark">#9C0A3C</Color>
 			
-        	<Color x:Key="bluePrimary">#1FAECE</Color>
-        	<Color x:Key="blueLight">#91E2F4</Color>
-        	<Color x:Key="blueDark">#2C7797</Color>
+        	<Color x:Key="asphaltLight">#6D8491</Color>
+			<Color x:Key="asphaltPrimary">#5c7d90</Color>
+        	<Color x:Key="asphaltDark">#233743</Color>
+			
+        	<Color x:Key="blueLight">#71E5FF</Color>
+        	<Color x:Key="bluePrimary">#4FCAE6</Color>
+        	<Color x:Key="blueDark">#258499</Color>
 
+        	<Color x:Key="indigoLight">#5362B6</Color>
+        	<Color x:Key="indigoPrimary">#3F51B5</Color>
+        	<Color x:Key="indigoDark">#172468</Color>
+			
+        	<Color x:Key="tealLight">#ACFFF4</Color>
+        	<Color x:Key="tealPrimary">#7AD5C9</Color>
+        	<Color x:Key="tealDark">#6FB1A8</Color>
+
+        	<Color x:Key="purpleLight">#A38FCE</Color>
         	<Color x:Key="purplePrimary">#9378CD</Color>
-        	<Color x:Key="purpleLight">#CEC0EC</Color>
-        	<Color x:Key="purpleDark">#614CA0</Color>
+        	<Color x:Key="purpleDark">#533D80</Color>
 
-        	<Color x:Key="greenPrimary">#B3E770</Color>
-        	<Color x:Key="greenLight">#CFEFA7</Color>
-        	<Color x:Key="greenDark">#5A8622</Color>
+        	<Color x:Key="greenLight">#9FE168</Color>
+        	<Color x:Key="greenPrimary">#91E04F</Color>
+        	<Color x:Key="greenDark">#579325</Color>
 
-        	<Color x:Key="redLight">#F69781</Color>
-        	<Color x:Key="redPrimary">#F56D4F</Color>
-        	<Color x:Key="redDark">#BC3C26</Color>
+        	<Color x:Key="redLight">#FF866D</Color>
+        	<Color x:Key="redPrimary">#F56D50</Color>
+        	<Color x:Key="redDark">#A83D26</Color>
         	
-        	<Color x:Key="yellowPrimary">#F1C40F</Color>
-        	<Color x:Key="yellowLight">#F7E28B</Color>
-        	<Color x:Key="yellowDark">#E7963B</Color>
+        	<Color x:Key="yellowLight">#FFE45C</Color>
+        	<Color x:Key="yellowPrimary">#F5D740</Color>
+        	<Color x:Key="yellowDark">#D1B941</Color>
 
-        	<Color x:Key="grayPrimary">#ADB7BE</Color>
-        	<Color x:Key="grayLight">#ECF0F1</Color>
-        	<Color x:Key="grayDark">#76828A</Color>
-        	<Color x:Key="grayMedium">#9AA4AB</Color>
+        	<Color x:Key="grayUltraLight">#FFFFFF</Color>
+        	<Color x:Key="grayLight">#F2F2F2</Color>
+        	<Color x:Key="grayPrimary">#B9B9B9</Color>
+        	<Color x:Key="grayDark">#959595</Color>
+        	<Color x:Key="grayMedium">#B9B9B9</Color>
 
+            <Style x:Key="defaultActivity" TargetType="ActivityIndicator">
+                <Setter Property="Scale">
+                	<Setter.Value>
+                		<OnPlatform x:TypeArguments="x:Double" iOS="2" Android="1" />
+                	</Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="ActivityIndicator" BasedOn="{StaticResource defaultActivity}" />
+			
             <Style x:Key="labelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource asphaltPrimary}" />
                 <Setter Property="FontSize">
@@ -45,7 +71,7 @@
             </Style>
             <Style x:Key="header" TargetType="Label" BasedOn="{StaticResource labelStyle}">
                 <Setter Property="FontFamily" Value="SegoeUI" />
-                <Setter Property="TextColor" Value="{StaticResource asphaltPrimary}" />
+                <Setter Property="TextColor" Value="{StaticResource grayLight}" />
             </Style>
             <Style TargetType="Label" BasedOn="{StaticResource labelStyle}" />
             <Style x:Key="whiteLabelStyle" TargetType="Label" BasedOn="{StaticResource labelStyle}">
@@ -59,8 +85,9 @@
             <Style x:Key="buttonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BorderRadius" Value="4" />
+                <Setter Property="HeightRequest" Value="50" />
             	<Setter Property="FontSize" Value="Medium" />
-                <Setter Property="BackgroundColor" Value="{StaticResource grayPrimary}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource grayDark}" />
             </Style>
             <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}" />
             <Style TargetType="local:SportButton" BasedOn="{StaticResource buttonStyle}" />
@@ -68,6 +95,14 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="{StaticResource redPrimary}" />
             </Style>
+
+            <Style x:Key="wizardButton" TargetType="local:SportButton" BasedOn="{StaticResource buttonStyle}">
+                <Setter Property="BackgroundColor" Value="#3FFF" />
+                <Setter Property="BorderColor" Value="#AFFF" />
+                <Setter Property="TextColor" Value="#CFFF" />
+                <Setter Property="BorderWidth" Value=".5" />
+            </Style>
+			
         </ResourceDictionary>
 	</Application.Resources>
 </Application>

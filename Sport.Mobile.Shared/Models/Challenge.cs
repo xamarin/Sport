@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Sport.Mobile.Shared
 {
@@ -385,7 +386,7 @@ namespace Sport.Mobile.Shared
 			_league = null;
 		}
 
-		public override void NotifyPropertiesChanged()
+		public override void NotifyPropertiesChanged([CallerMemberName] string caller = "")
 		{
 			SetPropertyChanged("League");
 			SetPropertyChanged("Summary");
@@ -406,7 +407,7 @@ namespace Sport.Mobile.Shared
 			SetPropertyChanged("IsChallengeeWinningAthlete");
 			SetPropertyChanged("IsChallengerWinningAthlete");
 
-			base.NotifyPropertiesChanged();
+			base.NotifyPropertiesChanged(caller);
 		}
 
 		public override bool Equals(object obj)

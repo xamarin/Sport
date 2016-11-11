@@ -10,6 +10,7 @@ namespace Sport.Mobile.Shared
 		{
 			Initialize();
 			Title = "About";
+			BarBackgroundColor = Color.FromHex("#9DCC5F");
 		}
 
 		protected override void Initialize()

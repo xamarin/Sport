@@ -1,28 +1,31 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <local:AuthenticationPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="Sport.Mobile.Shared.AuthenticationPage"
+	xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
 	xmlns:local="clr-namespace:Sport.Mobile.Shared"
-	BackgroundColor="{StaticResource redPrimary}">
+	x:Class="Sport.Mobile.Shared.AuthenticationPage">
+
+	<xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="150">
+           <xfg:GradientStep StepColor="#9C27B0" StepPercentage="0" />
+           <xfg:GradientStep StepColor="#E91E63" StepPercentage="1" />
+      </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+	
     <local:AuthenticationPageXaml.Content>
 
     	<Grid>
     		<Grid.RowDefinitions>
-    			<RowDefinition Height="5*" />
-    			<RowDefinition Height="5*" />
-    			<RowDefinition Height="Auto" />
+    			<RowDefinition Height="*" />
+    			<RowDefinition Height="*" />
     		</Grid.RowDefinitions>
 
-			<ActivityIndicator AutomationId="activity" IsRunning="{Binding IsBusy}" Color="White" VerticalOptions="End" />
-			<Label Grid.Row="1" AutomationId="status" TextColor="White" FontSize="Large" Style="{StaticResource header}" Text="{Binding AuthenticationStatus, StringFormat='\{0\}...'}"
-				IsVisible="{Binding AuthenticationStatus, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}" XAlign="Center" YAlign="Center" VerticalOptions="Start" />
-
-			<StackLayout Spacing="0" Grid.Row="2" VerticalOptions="End" Padding="24">
-				<Button x:Name="btnAuthenticate" AutomationId="authButton" Text="TRY AGAIN" IsVisible="false"
-					BackgroundColor="{StaticResource blueLight}" VerticalOptions="EndAndExpand" TextColor="White"
-					IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
-			</StackLayout>
-
+			<ActivityIndicator x:Name="activity" AutomationId="activity" IsRunning="{Binding IsBusy}" Color="White"
+				VerticalOptions="End" Margin="0,0,0,20" />
+			<Label Grid.Row="1" AutomationId="status" TextColor="White" FontSize="Large"
+				Style="{StaticResource header}" Text="{Binding AuthenticationStatus, StringFormat='\{0\}...'}"
+				IsVisible="{Binding AuthenticationStatus, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
+				XAlign="Center" YAlign="Center" VerticalOptions="Start" />
     	</Grid>
 
 	</local:AuthenticationPageXaml.Content>

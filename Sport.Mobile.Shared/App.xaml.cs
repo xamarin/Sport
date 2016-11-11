@@ -14,7 +14,8 @@ namespace Sport.Mobile.Shared
 	{
 		#region Fields & Properties
 
-		public static int AnimationSpeed = 250;
+		public static uint AnimationSpeed = 250;
+		public static int DelaySpeed = 300;
 		public IHUDProvider _hud;
 		static App _instance;
 

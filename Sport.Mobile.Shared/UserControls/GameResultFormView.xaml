@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.GameResultFormView"
@@ -29,16 +29,16 @@
 
 		<ContentView Grid.Row="2" HorizontalOptions="Center">
 			<local:SportEntry Text="{Binding GameResult.ChallengerScore, Converter={x:Static local:NullIntValueConverter.Instance}, Mode=TwoWay}"
-				TextColor="{Binding Challenge.League.Theme.Dark}" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" MaxLength="2"
-				BackgroundColor="{Binding Challenge.League.Theme.Light}" HasBorder="false" Font="36" XAlign="Center" TextChanged="TextChanged"
+				TextColor="White" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" MaxLength="2" HorizontalTextAlignment="Center"
+				BackgroundColor="{Binding Challenge.League.Theme.Light}" HasBorder="false" FontSize="36" XAlign="Center" TextChanged="TextChanged"
 				Keyboard="Numeric" Margin="0,10,0,0" />
 		</ContentView>
 
 		<ContentView Grid.Column="1" Grid.Row="2" HorizontalOptions="Center">
 			<local:SportEntry Text="{Binding GameResult.ChallengeeScore, Converter={x:Static local:NullIntValueConverter.Instance}, Mode=TwoWay}"
-				TextColor="{Binding Challenge.League.Theme.Dark}" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" MaxLength="2" Keyboard="Numeric"
-				BackgroundColor="{Binding Challenge.League.Theme.Light}" HasBorder="false" Font="36" XAlign="Center" TextChanged="TextChanged"
-				Margin="0,10,0,0" />
+				TextColor="White" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" MaxLength="2" Keyboard="Numeric"
+				BackgroundColor="{Binding Challenge.League.Theme.Light}" HasBorder="false" FontSize="36" XAlign="Center" TextChanged="TextChanged"
+				Margin="0,10,0,0" HorizontalTextAlignment="Center" />
 		</ContentView>
 	</Grid>
 </ContentView>

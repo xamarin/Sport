@@ -67,12 +67,9 @@ namespace Sport.Mobile.Shared
 
 		public override void NotifyPropertiesChanged([System.Runtime.CompilerServices.CallerMemberName] string caller = "")
 		{
-			base.NotifyPropertiesChanged();
-
 			Challenge.LocalRefresh();
 			Challenge.League?.LocalRefresh();
-
-			SetPropertyChanged("Challenge");
+			base.NotifyPropertiesChanged();
 		}
 	}
 }

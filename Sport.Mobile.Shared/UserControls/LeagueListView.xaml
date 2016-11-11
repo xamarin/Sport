@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.LeagueListView"
@@ -18,7 +18,7 @@
 							AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="30"
 								IsVisible="{Binding League, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
 
-							<Label Text="{Binding EmptyMessage}" FontSize="Large" Style="{StaticResource header}" XAlign="Center" />
+							<Label Text="{Binding EmptyMessage}" FontSize="Large" TextColor="{StaticResource grayDark}" XAlign="Center" />
 						</StackLayout>
 
 						<StackLayout Padding="0,0,.5,.5" BackgroundColor="{StaticResource grayPrimary}"
@@ -30,7 +30,7 @@
 									<Image Source="ic_missing_photo_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"
 										HeightRequest="24" WidthRequest="24" />
 									<Image x:Name="photoImage" Source="{Binding League.ImageUrl}" Aspect="AspectFill"
-										AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+										AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Opacity=".8" />
 
 									<AbsoluteLayout IsVisible="{Binding HasChallenge}"
 										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1,-1,-1" Padding="10">

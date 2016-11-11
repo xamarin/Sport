@@ -33,34 +33,79 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public Command OnClicked
-		{
-			get;
-			set;
-		}
-
-		public Command OnPostResults
-		{
-			get;
-			set;
-		}
-
-		public Command OnNudge
-		{
-			get;
-			set;
-		}
+		public static readonly BindableProperty OnAcceptedProperty =
+			BindableProperty.Create("OnAccepted", typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnAccepted
 		{
-			get;
-			set;
+			get
+			{
+				return (Command)GetValue(OnAcceptedProperty);
+			}
+			set
+			{
+				SetValue(OnAcceptedProperty, value);
+			}
 		}
+
+		public static readonly BindableProperty OnDeclinedProperty =
+			BindableProperty.Create("OnDeclined", typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnDeclined
 		{
-			get;
-			set;
+			get
+			{
+				return (Command)GetValue(OnDeclinedProperty);
+			}
+			set
+			{
+				SetValue(OnDeclinedProperty, value);
+			}
+		}
+
+		public static readonly BindableProperty OnNudgeProperty =
+			BindableProperty.Create("OnNudge", typeof(Command), typeof(ChallengeCardView), null);
+
+		public Command OnNudge
+		{
+			get
+			{
+				return (Command)GetValue(OnNudgeProperty);
+			}
+			set
+			{
+				SetValue(OnNudgeProperty, value);
+			}
+		}
+
+		public static readonly BindableProperty OnPostResultsProperty =
+			BindableProperty.Create("OnPostResults", typeof(Command), typeof(ChallengeCardView), null);
+
+		public Command OnPostResults
+		{
+			get
+			{
+				return (Command)GetValue(OnPostResultsProperty);
+			}
+			set
+			{
+				SetValue(OnPostResultsProperty, value);
+			}
+		}
+
+		public static readonly BindableProperty OnClickedProperty =
+			BindableProperty.Create("OnClicked", typeof(Command), typeof(ChallengeCardView), null);
+
+		public Command OnClicked
+		{
+			get
+			{
+				return (Command)GetValue(OnClickedProperty);
+			}
+			set
+			{
+				SetValue(OnClickedProperty, value);
+			}
 		}
 
 		void HandlePostResults(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -7,9 +7,9 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(ThemedNavigationPage), typeof(Sport.Mobile.Shared.iOS.ThemedNavigationRenderer))]
+[assembly: ExportRenderer(typeof(ThemedNavigationPage), typeof(Sport.Mobile.iOS.ThemedNavigationRenderer))]
 
-namespace Sport.Mobile.Shared.iOS
+namespace Sport.Mobile.iOS
 {
 	/// <summary>
 	/// This custom NavigationRender is only necessary on iOS so we can change the navigation bar color prior to navigating instead of after

@@ -78,6 +78,7 @@ namespace Sport.Mobile.Shared
 
 		public virtual void NotifyPropertiesChanged([CallerMemberName] string caller = "")
 		{
+			Debug.WriteLine($"NotifyPropertiesChanged called for {GetType().Name} by {caller}");
 		}
 
 		public async Task RunSafe(Task task, bool notifyOnError = true, [CallerMemberName] string caller = null, [CallerLineNumber] long line = 0, [CallerFilePath] string path = null)
