@@ -9,6 +9,7 @@ Athletes can join leagues, get ranked and challenge other athletes to move up th
 <img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_auth.png" alt="Authenticate with Google" Width="210" />
 <img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_alias.png" alt="Set an alias for your athlete profile" Width="210" />
 <img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_push.png" alt="Optionally enable push notifications" Width="210" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/about.png" alt="A list of stuff used in this app and a link to the source code" Width="210" />
 <img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/league_list.png" alt="A list of leagues you are a member of" Width="210" />
 <img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/league_details.png" alt="League details with at least one challenge (challenge cards are swipeable left and right)" Width="210" />
 <img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/leaderboard.png" alt="List of league members ordered by ranking" Width="210" />
