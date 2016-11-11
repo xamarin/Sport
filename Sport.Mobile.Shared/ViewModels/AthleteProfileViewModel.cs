@@ -42,12 +42,12 @@ namespace Sport.Mobile.Shared
 
 		public Task<bool> RegisterForPushNotifications()
 		{
-			//var e = new Exception("Push notifications are disabled in demo mode.");
-			//MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
-
 			var tcs = new TaskCompletionSource<bool>();
 
 			MessagingCenter.Subscribe<App>(this, Messages.RegisteredForRemoteNotifications, async (app) => {
+				System.Diagnostics.Debug.WriteLine("THIS WAS CALLED");
+				MessagingCenter.Unsubscribe<App>(this, Messages.RegisteredForRemoteNotifications);
+
 				if(App.Instance.CurrentAthlete.DeviceToken != null)
 				{
 					App.Instance.CurrentAthlete.IsDirty = true;
@@ -56,11 +56,10 @@ namespace Sport.Mobile.Shared
 					NotifyPropertiesChanged();
 				}
 
-				tcs.SetResult(App.Instance.CurrentAthlete.DeviceToken != null);
-
-				Device.BeginInvokeOnMainThread(() => {
+				tcs.TrySetResult(App.Instance.CurrentAthlete.DeviceToken != null);
+				Device.BeginInvokeOnMainThread(() =>
+				{
 					IsBusy = false;
-					MessagingCenter.Unsubscribe<App>(this, Messages.RegisteredForRemoteNotifications);
 				});
 			});
 

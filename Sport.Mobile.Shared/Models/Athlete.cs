@@ -43,13 +43,6 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-
-		//public List<string> MembershipIds
-		//{
-		//	get;
-		//	set;
-		//}
-
 		string _userId;
 
 		public string UserId
@@ -85,8 +78,8 @@ namespace Sport.Mobile.Shared
 			get
 			{
 				//For demo purposes
-				//if(App.Instance.CurrentAthlete?.Id != Id && !string.IsNullOrEmpty(_name))
-				//	return _name.Split(' ')[0];
+				if(App.Instance.CurrentAthlete?.Id != Id && !string.IsNullOrEmpty(_name))
+					return _name.Split(' ')[0];
 
 				return _name;
 			}

@@ -27,9 +27,6 @@ namespace Sport.Service.Controllers
 
 		public async Task NotifyByTags(string message, List<string> tags, NotificationPayload payload = null, int? badgeCount = null)
 		{
-			if (Startup.IsDemoMode)
-				return;
-
 			var notification = new Dictionary<string, string> { { "message", message } };
 
 			if(payload != null)
@@ -130,11 +127,6 @@ namespace Sport.Service.Controllers
 		[Route("api/sendTestPushNotification")]
 		public async Task SendTestPushNotification(string athleteId)
 		{
-			if(Startup.IsDemoMode)
-			{
-				throw "Push notifications are disabled in DEMO mode".ToException(Request);
-			}
-
 			if(athleteId != null)
 			{
 				var message = "Push notifications are working for you - excellent!";

@@ -28,7 +28,7 @@
 			<local:SportButton BackgroundColor="{Binding Membership.League.Theme.Primary}" BorderRadius="3"
 				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
 
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0" Opacity=".80">
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
 				<Label Text="{Binding Membership.CurrentRankOrdinal}" FontSize="28" TextColor="White"
 					VerticalOptions="Center" HorizontalOptions="Center" />
 				<Label Text="*You*" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
@@ -45,7 +45,7 @@
 			<local:SportButton  BackgroundColor="{Binding LightColor}" BorderRadius="3" 
 				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,0,1,1" />
 
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0" Opacity=".65">
+			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
 				<Label Text="{Binding LowerMembership.CurrentRankOrdinal}" FontSize="28" TextColor="White"
 					VerticalOptions="Center" HorizontalOptions="Center" />
 				<Label Text="{Binding LowerMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center"

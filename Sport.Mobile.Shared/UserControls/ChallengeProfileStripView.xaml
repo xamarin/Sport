@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.ChallengeProfileStripView"
@@ -41,9 +41,9 @@
 
 				<StackLayout Spacing="6" Grid.Column="2" HorizontalOptions="Start">
 					<StackLayout Spacing="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="56">
-						<Label Text="{Binding Challenge.ChallengerAthlete.Alias}" FontSize="Large"
+						<Label Text="{Binding Challenge.ChallengerAthlete.Alias}" FontSize="Large" TextColor="{StaticResource grayDark}"
 							Style="{StaticResource header}" HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
-						<Label Text="{Binding Challenge.ChallengerAthlete.Name}" FontSize="Micro" TextColor="{StaticResource grayDark}"
+						<Label Text="{Binding Challenge.ChallengerAthlete.Name}" FontSize="Small" TextColor="{StaticResource grayPrimary}"
 							HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
 					</StackLayout>
 
@@ -52,9 +52,9 @@
 					</ContentView>
 
 					<StackLayout Spacing="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="56">
-						<Label Text="{Binding Challenge.ChallengeeAthlete.Alias}" FontSize="Large"
+						<Label Text="{Binding Challenge.ChallengeeAthlete.Alias}" FontSize="Large" TextColor="{StaticResource grayDark}"
 							Style="{StaticResource header}" HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
-						<Label Text="{Binding Challenge.ChallengeeAthlete.Name}" FontSize="Micro" TextColor="{StaticResource grayDark}"
+						<Label Text="{Binding Challenge.ChallengeeAthlete.Name}" FontSize="Small" TextColor="{StaticResource grayPrimary}"
 							HorizontalOptions="Center" XAlign="Center" YAlign="Center" />
 					</StackLayout>
 				</StackLayout>

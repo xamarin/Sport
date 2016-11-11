@@ -82,15 +82,6 @@ namespace Sport.Mobile.Shared
 				if(_client == null)
 				{
 					var handler = new NativeMessageHandler();
-
-					#if __IOS__
-					//Use ModernHttpClient for caching and to allow traffic to be routed through Charles/Fiddler/etc
-					handler = new ModernHttpClient.NativeMessageHandler() {
-						Proxy = CoreFoundation.CFNetwork.GetDefaultProxy(),
-						UseProxy = true,
-					};
-					#endif
-
 					_client = new MobileServiceClient(Keys.AzureDomain, new HttpMessageHandler[] {
 						handler,
 					});

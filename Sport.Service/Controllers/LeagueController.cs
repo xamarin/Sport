@@ -130,7 +130,11 @@ namespace Sport.Service.Controllers
 				Action = PushActions.LeagueStarted,
 				Payload = { { "leagueId", league.Id } }
 			};
-			_notificationController.NotifyByTag(message, "All", payload);
+
+			if(!Startup.IsDemoMode)
+			{
+				_notificationController.NotifyByTag(message, "All", payload);
+			}
 		}
 
 		// POST tables/League
@@ -163,7 +167,11 @@ namespace Sport.Service.Controllers
 				Action = PushActions.LeagueEnded,
 				Payload = { { "leagueId", id } }
 			};
-			_notificationController.NotifyByTag(message, league.Id, payload);
+
+			if(!Startup.IsDemoMode)
+			{
+				_notificationController.NotifyByTag(message, league.Id, payload);
+			}
 
 			return DeleteAsync(id);
 		}

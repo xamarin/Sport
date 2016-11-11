@@ -268,7 +268,10 @@ namespace Sport.Service.Controllers
 						{"losingAthleteId", loser.Id} }
 				};
 
-				_notificationController.NotifyByTag(message, challenge.LeagueId, payload);
+				if(!Startup.IsDemoMode)
+				{
+					_notificationController.NotifyByTag(message, challenge.LeagueId, payload);
+				}
 			}
 			catch (DbEntityValidationException e)
 			{
@@ -373,6 +376,9 @@ namespace Sport.Service.Controllers
 		[Route("api/nudgeAthlete")]
 		public async Task NudgeAthlete(string challengeId)
 		{
+			if (Startup.IsDemoMode)
+				throw "Nudging is disabled in Demo Mode.".ToException(Request);
+
 			var challenge = Lookup(challengeId).Queryable.FirstOrDefault();
 
 			if (challenge == null)

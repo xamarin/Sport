@@ -131,7 +131,11 @@ namespace Sport.Service.Controllers
 				var leagueName = _context.Leagues.Where(l => l.Id == item.LeagueId).Select(l => l.Name).ToList().First();
 				var athlete = _context.Athletes.Where(a => a.Id == item.AthleteId).First();
 				var message = "{0} joined the {1} league".Fmt(athlete.Alias, leagueName);
-				await _notificationController.NotifyByTag(message, item.LeagueId);
+
+				if(!Startup.IsDemoMode)
+				{
+					await _notificationController.NotifyByTag(message, item.LeagueId);
+				}
 			}
 			catch(Exception e)
 			{
@@ -158,29 +162,32 @@ namespace Sport.Service.Controllers
 				var membership = _context.Memberships.SingleOrDefault(m => m.Id == id);
 
 				//Need to remove all the ongoing challenges (not past challenges since those should be locked and sealed in time for eternity for all to see)
-				var challenges = _context.Challenges.Where(c => c.LeagueId == membership.LeagueId && c.DateCompleted == null
+				var challenges = _context.Challenges.Where(c => c.LeagueId == membership.LeagueId && c.DateCompleted == null && !c.Deleted
 					&& (c.ChallengerAthleteId == membership.AthleteId || c.ChallengeeAthleteId == membership.AthleteId)).ToList();
 
-				foreach(var c in challenges)
+				if(!Startup.IsDemoMode)
 				{
-					try
+					foreach (var c in challenges)
 					{
-						var league = _context.Leagues.SingleOrDefault(l => l.Id == c.LeagueId);
-						var payload = new NotificationPayload
+						try
 						{
-							Action = PushActions.ChallengeDeclined,
-							Payload = { { "leagueId", c.LeagueId }, { "challengeId", c.Id } }
-						};
-						var message = "You challenge with {0} has ben removed because they abandoned the {1} league".Fmt(membership.Athlete.Alias, league.Name);
-						_notificationController.NotifyByTag(message, c.Opponent(membership.AthleteId).Id, payload);
-					}
-					catch(Exception e)
-					{
-						//TODO log to Insights
-						Console.WriteLine(e);
+							var league = _context.Leagues.SingleOrDefault(l => l.Id == c.LeagueId);
+							var payload = new NotificationPayload
+							{
+								Action = PushActions.ChallengeDeclined,
+								Payload = { { "leagueId", c.LeagueId }, { "challengeId", c.Id } }
+							};
+							var message = "You challenge with {0} has ben removed because they abandoned the {1} league".Fmt(membership.Athlete.Alias, league.Name);
+							_notificationController.NotifyByTag(message, c.Opponent(membership.AthleteId).Id, payload);
+						}
+						catch (Exception e)
+						{
+							//TODO log to Insights
+							Console.WriteLine(e);
+						}
 					}
 				}
-				
+
 				membership.AbandonDate = DateTime.UtcNow;
 				challenges.ForEach(c => c.Deleted = true);
 				_context.SaveChanges();
