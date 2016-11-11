@@ -6,13 +6,13 @@ Athletes can join leagues, get ranked and challenge other athletes to move up th
 
 [This is an example of an iOS athlete and an Android athlete conducting a challenge](https://www.youtube.com/watch?v=GmdvxDVluRA)
 
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_auth.png" alt="Authenticate with Google" Width="360" />
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_alias.png" alt="Set an alias for your athlete profile" Width="360" />
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_push.png" alt="Optionally enable push notifications" Width="360" />
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/league_list.png" alt="A list of leagues you are a member of" Width="360" />
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/league_details.png" alt="League details with at least one challenge (challenge cards are swipeable left and right)" Width="360" />
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/leaderboard.png" alt="List of league members ordered by ranking" Width="360" />
-<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/challenge_result.png" alt="The result of a challenge" Width="360" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_auth.png" alt="Authenticate with Google" Width="240" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_alias.png" alt="Set an alias for your athlete profile" Width="240" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/welcome_push.png" alt="Optionally enable push notifications" Width="240" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/league_list.png" alt="A list of leagues you are a member of" Width="240" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/league_details.png" alt="League details with at least one challenge (challenge cards are swipeable left and right)" Width="240" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/leaderboard.png" alt="List of league members ordered by ranking" Width="240" />
+<img src="https://raw.githubusercontent.com/xamarin/Sport/master/Resources/Screenshots/challenge_result.png" alt="The result of a challenge" Width="240" />
 
 
 #### This project exercises the following platforms, frameworks or features:
