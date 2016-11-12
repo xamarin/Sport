@@ -178,10 +178,10 @@ namespace Sport.Mobile.Shared
 							msg = dict["message"].ToString();
 					}
 
-					if(msg.Length > 300)
-						msg = msg.Substring(0, 300);
+					//if(msg.Length > 300)
+					//	msg = msg.Substring(0, 300);
 
-					msg.ToToast(ToastNotificationType.Error, "Uh oh");
+					//msg.ToToast(ToastNotificationType.Error, "Uh oh");
 				}
 				catch(Exception e)
 				{

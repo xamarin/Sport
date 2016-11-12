@@ -146,12 +146,16 @@ namespace Sport.Mobile.Shared
 					using(new HUD("Accepting challenge..."))
 					{
 						success = await arg.AcceptChallenge();
+						await ViewModel.RefreshLeague();
 					}
 
 					if(success)
 					{
-						await ViewModel.RefreshLeague();
 						"Accepted - Game on!".ToToast();
+					}
+					else
+					{
+						"This challenge is no longer available.".ToToast();
 					}
 				});
 			}
@@ -231,11 +235,13 @@ namespace Sport.Mobile.Shared
 
 		void UpdateChallenageCarousel()
 		{
-			if(ViewModel.CurrentMembership?.OngoingChallenges?.Count > 0 &&
-			   	challengeCarousel.Position >= ViewModel.CurrentMembership?.OngoingChallenges?.Count)
-				challengeCarousel.Position = ViewModel.CurrentMembership.OngoingChallenges.Count - 1;
-		
+			//if(ViewModel.CurrentMembership?.OngoingChallenges?.Count > 0 &&
+			//   	challengeCarousel.Position >= ViewModel.CurrentMembership?.OngoingChallenges?.Count)
+			//	challengeCarousel.Position = ViewModel.CurrentMembership.OngoingChallenges.Count - 1;
+
+			challengeCarousel.BatchBegin();
 			ViewModel.SetOngoingChallenges();
+			challengeCarousel.BatchCommit();
 		}
 
 		protected override void SubscribeToMessages()

@@ -11,13 +11,17 @@ namespace Sport.Mobile.Shared
 		async public Task<bool> AcceptChallenge()
 		{
 			Challenge.DateAccepted = DateTime.UtcNow;
-			await AzureService.Instance.ChallengeManager.UpdateAsync(Challenge);
+			var success = await AzureService.Instance.ChallengeManager.UpdateAsync(Challenge);
 
-			Challenge.League.LocalRefresh();
-			NotifyPropertiesChanged();
+			if(success)
+			{
+				Challenge.League.LocalRefresh();
+				NotifyPropertiesChanged();
 
-			MessagingCenter.Send(App.Instance, Messages.ChallengesUpdated);
-			return true;
+				MessagingCenter.Send(App.Instance, Messages.ChallengesUpdated);
+			}
+
+			return success;
 		}
 
 		async public Task<bool> DeclineChallenge()
