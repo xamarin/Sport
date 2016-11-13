@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace Sport.Mobile.Shared
 {
@@ -54,21 +55,35 @@ namespace Sport.Mobile.Shared
 						MobileServiceAuthenticationToken = Settings.AzureAuthToken
 					};
 
+					bool clearCookies = true;
+					bool didErr = false;
 					try
 					{
 						var success = await GetUserProfile();
 
-						if (success)
+						if(success)
 							return;
 					}
-					catch (MobileServiceInvalidOperationException e)
+					catch(MobileServiceInvalidOperationException mse)
 					{
 						//Bad or stale credentials, clear out and retry
-						if(e.Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+						if(mse.Response.StatusCode == HttpStatusCode.Forbidden)
 						{
-							await LogOut(true);
-							await Authenticate();
+							clearCookies = false;
 						}
+						didErr = true;
+						Debug.WriteLine(mse);
+					}
+					catch(Exception e)
+					{
+						Debug.WriteLine(e);
+						didErr = true;
+					}
+
+					if(didErr)
+					{
+						await LogOut(clearCookies);
+						await Authenticate();
 					}
 				}
 
@@ -222,8 +237,9 @@ namespace Sport.Mobile.Shared
 					task = GoogleApiService.Instance.GetUserProfile(Settings.AuthTokenAndType);
 					await RunSafe(task, false);
 				}
-				catch (MobileServiceInvalidOperationException)
+				catch(MobileServiceInvalidOperationException ex)
 				{
+					Debug.WriteLine("Error refreshing token: " + ex);
 					throw;
 				}
 			}
@@ -262,6 +278,7 @@ namespace Sport.Mobile.Shared
 			AuthUserProfile = null;
 			Settings.GoogleAccessToken = null;
 			Settings.GoogleRefreshToken = null;
+			Settings.GoogleUserId = null;
 			Settings.AzureUserId = null;
 			Settings.AzureAuthToken = null;
 

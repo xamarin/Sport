@@ -273,8 +273,7 @@ namespace Sport.Mobile.Shared
 				return;
 
 			var authViewModel = new AuthenticationViewModel();
-			authViewModel.LogOut(true);
-
+			await authViewModel.LogOut(true);
 			App.Instance.StartRegistrationFlow(); 
 		}
 

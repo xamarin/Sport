@@ -27,7 +27,7 @@ namespace Sport.Mobile.iOS
 						current = current.PresentedViewController;
 					}
 
-					var user = await AzureService.Instance.Client.LoginAsync(window.RootViewController, MobileServiceAuthenticationProvider.Google, new Dictionary<string, string>() { { "access_type", "offline" } });
+					var user = await AzureService.Instance.Client.LoginAsync(current, MobileServiceAuthenticationProvider.Google, new Dictionary<string, string>() { { "access_type", "offline" } });
 					return user;
 				}
 			}
