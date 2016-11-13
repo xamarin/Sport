@@ -84,6 +84,7 @@ namespace Sport.Mobile.Shared
 					{
 						await LogOut(clearCookies);
 						await Authenticate();
+						return;
 					}
 				}
 
