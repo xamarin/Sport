@@ -45,7 +45,6 @@ namespace Sport.Mobile.Shared
 			var tcs = new TaskCompletionSource<bool>();
 
 			MessagingCenter.Subscribe<App>(this, Messages.RegisteredForRemoteNotifications, async (app) => {
-				System.Diagnostics.Debug.WriteLine("THIS WAS CALLED");
 				MessagingCenter.Unsubscribe<App>(this, Messages.RegisteredForRemoteNotifications);
 
 				if(App.Instance.CurrentAthlete.DeviceToken != null)

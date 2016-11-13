@@ -276,6 +276,7 @@ namespace Sport.Mobile.Shared
 		{
 			await AzureService.Instance.Client.LogoutAsync();
 
+			App.Instance.CurrentAthlete = null;
 			AuthUserProfile = null;
 			Settings.GoogleAccessToken = null;
 			Settings.GoogleRefreshToken = null;
