@@ -16,9 +16,9 @@ namespace Sport.Mobile.iOS
 	{
 		public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 		{
-			#if ENABLE_TEST_CLOUD
+			//#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
-            #endif
+            //#endif
 
 			//Uncomment when a HockeyApp iOS App ID is provided in Keys.cs
             //var manager = BITHockeyManager.SharedHockeyManager;

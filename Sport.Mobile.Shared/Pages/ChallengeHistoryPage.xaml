@@ -16,7 +16,7 @@
 									IsVisible="{Binding EmptyMessage, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}">
 
 									<Label Text="{Binding EmptyMessage}" FontSize="Large" Style="{StaticResource header}" XAlign="Center"
-										TextColor="{StaticResource grayPrimary}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
+										TextColor="{StaticResource grayDark}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
 								</AbsoluteLayout>
 
 								<StackLayout Orientation="Horizontal" VerticalOptions="Center"

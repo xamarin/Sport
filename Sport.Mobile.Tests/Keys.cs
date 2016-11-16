@@ -2,7 +2,8 @@
 {
 	public class Keys
 	{
-		public static readonly string TestEmail = "rob.testcloud@gmail.com";
-		public static readonly string TestPassword = "XamarinXTC";
+		public static readonly string TestEmail = "";
+		public static readonly string TestPassword = "";
+		public static readonly string TestAlias = "";
 	}
 }

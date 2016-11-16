@@ -25,9 +25,9 @@
         	<Color x:Key="indigoPrimary">#3F51B5</Color>
         	<Color x:Key="indigoDark">#172468</Color>
 			
-        	<Color x:Key="tealLight">#ACFFF4</Color>
-        	<Color x:Key="tealPrimary">#7AD5C9</Color>
-        	<Color x:Key="tealDark">#6FB1A8</Color>
+        	<Color x:Key="tealLight">#7AD5C9</Color>
+        	<Color x:Key="tealPrimary">#6AB9AF</Color>
+        	<Color x:Key="tealDark">#457972</Color>
 
         	<Color x:Key="purpleLight">#A38FCE</Color>
         	<Color x:Key="purplePrimary">#9378CD</Color>

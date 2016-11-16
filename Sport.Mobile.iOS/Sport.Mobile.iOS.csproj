@@ -26,7 +26,7 @@
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
@@ -265,18 +265,9 @@
     <BundleResource Include="Resources\ic_trophy_gray%403x.png" />
     <BundleResource Include="Resources\ic_trophy_white%402x.png" />
     <BundleResource Include="Resources\ic_trophy_white%403x.png" />
-    <BundleResource Include="Resources\icon_120.png" />
-    <BundleResource Include="Resources\icon_200.png" />
-    <BundleResource Include="Resources\icon_clear_72.png" />
-    <BundleResource Include="Resources\Icon-72.png" />
-    <BundleResource Include="Resources\Icon-72%402x.png" />
-    <BundleResource Include="Resources\Icon-76.png" />
-    <BundleResource Include="Resources\Icon-76%402x.png" />
-    <BundleResource Include="Resources\icon.png" />
     <BundleResource Include="Resources\logos.png" />
     <BundleResource Include="Resources\transparent%402x.png" />
     <BundleResource Include="Resources\transparent%403x.png" />
-    <BundleResource Include="Resources\icon_300.png" />
     <BundleResource Include="Resources\gradient_launch.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

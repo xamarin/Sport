@@ -34,45 +34,60 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("authButton");
 			app.Tap("When the app starts", "authButton");
 
-			app.WaitForElement(e => e.Css("#Email"));
-			app.EnterText(e => e.Css("#Email"), Keys.TestEmail, "And I enter my email address");
+			var emailId = "#Email";
+			var passwordId = "#Passwd";
+			var nextButtonEmailId = "#next";
+			var nextButtonPasswordId = "#signIn";
+
+
+			//Thread.Sleep(5000);
+			//if(app.Query(e => e.Css("#identifierId")).Length > 0)
+			{
+				emailId = "#identifierId";
+				passwordId = "#password";
+				nextButtonEmailId = "#identifierNext";
+				nextButtonPasswordId = "#passwordNext";
+			}
+
+			//app.Repl();
+			app.WaitForElement(e => e.Css(emailId));
+			app.EnterText(e => e.Css(emailId), Keys.TestEmail, "And I enter my email address");
 			app.DismissKeyboard();
 
-			if(app.Query(e => e.Css("#next")).Length > 0)
+			if(app.Query(e => e.Css(nextButtonEmailId)).Length > 0)
 			{
-				Thread.Sleep(2000); //Can't wait for element because it will show but is disabled
-				app.Tap(e => e.Css("#next"));
+				app.Tap(e => e.Css(nextButtonEmailId));
 			}
 
 			if(TestEnvironment.IsTestCloud)
 				Thread.Sleep(10000); //Need to wait for form fields to animate over
 
-			app.Tap(e => e.Css("#Passwd"));
-			app.EnterText(e => e.Css("#Passwd"), Keys.TestPassword, "And I enter my super secret password");
+			app.Tap(e => e.Css(passwordId));
+			app.EnterText(e => e.Css(passwordId), Keys.TestPassword, "And I enter my super secret password");
 			app.DismissKeyboard();
+			app.Tap(e => e.Css(nextButtonPasswordId));
 
-			app.Tap("And I click the Sign In button", e => e.Css("#signIn"));
+			//app.Tap("And I click the Sign In button", e => e.Css("#signIn"));
 
-			Thread.Sleep(2000); //Can't wait here because the dialog is conditional
-			if(app.Query(e => e.Button("Remember")).Length > 0)
-				app.Back();
+			//Thread.Sleep(2000); //Can't wait here because the dialog is conditional
+			//if(app.Query(e => e.Button("Remember")).Length > 0)
+			//	app.Back();
 
-			Thread.Sleep(5000);
-			if(app.Query(e => e.Css("#grant_heading")).Length > 0)
-			{
-				app.ScrollDownTo(e => e.Css("#submit_approve_access"));
-				app.Tap("And I accept the terms", e => e.Css("#submit_approve_access"));
-			}
+			//Thread.Sleep(5000);
+			//if(app.Query(e => e.Css("#grant_heading")).Length > 0)
+			//{
+			//	app.ScrollDownTo(e => e.Css("#submit_approve_access"));
+			//	app.Tap("And I accept the terms", e => e.Css("#submit_approve_access"));
+			//}
 
-			app.WaitForElement(e => e.Marked("aliasText"));
+			app.WaitForElement(e => e.Marked("aliasText"), "Timed out waiting for aliasText", TimeSpan.FromMinutes(5));
 			app.ClearText(e => e.Marked("aliasText"));
-			app.EnterText(e => e.Marked("aliasText"), "XTC Tester", "And I enter my alias");
+			app.EnterText(e => e.Marked("aliasText"), Keys.TestAlias, "And I enter my alias");
 			app.DismissKeyboard();
-
-			app.Tap("And I save my profile", e => e.Marked("saveButton"));
-
 			Thread.Sleep(3000);
-			app.WaitForElement("continueButton");
+			
+			app.Tap("And I save my profile", e => e.Marked("saveButton"));
+			app.WaitForElement("continueButton", "Timed out waiting for the Continue button", TimeSpan.FromMinutes(5));
 			Thread.Sleep(3000);
 			app.Tap("Continue button", e => e.Marked("continueButton"));
 
@@ -117,13 +132,8 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			app.ScrollDownTo("Rob TestCloud", "leaderboardList");
-
-			Thread.Sleep(1000); //Let scrolling settle
-
-			var result = app.Query(e => e.Text("Rob TestCloud"))[0];
-			var row = app.Query("memberItemRoot")[0];
-			app.TapCoordinates(result.Rect.X, result.Rect.Y - row.Rect.Height); //Select player above self
+			app.ScrollDownTo("10");
+			app.Tap("10");
 			app.WaitForElement("memberDetailsRoot");
 			app.Screenshot("Member details page");
 
