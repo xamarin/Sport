@@ -110,7 +110,7 @@
     <Compile Include="Models\Challenge.cs" />
     <Compile Include="Models\FlikrResult.cs" />
     <Compile Include="Models\GameResult.cs" />
-    <Compile Include="Models\GoogleUserProfile.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\BaseNotify.cs" />
@@ -127,7 +127,6 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\TaskRunner.cs" />
     <Compile Include="Helpers\Theming.cs" />
-    <Compile Include="Services\GoogleApiService.cs" />
     <Compile Include="Interfaces\IToastNotifier.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Pages\AuthenticationPage.xaml.cs">
@@ -221,6 +220,7 @@
     <Compile Include="Services\Managers\ChallengeManager.cs" />
     <Compile Include="Services\Managers\GameResultManager.cs" />
     <Compile Include="Interfaces\IStatusBarManager.cs" />
+    <Compile Include="Interfaces\IUserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernHttpClient">

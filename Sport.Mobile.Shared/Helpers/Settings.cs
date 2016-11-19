@@ -51,7 +51,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public static string GoogleRefreshToken
+		public static string RefreshToken
 		{
 			get
 			{
@@ -63,7 +63,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public static string GoogleAccessToken
+		public static string AccessToken
 		{
 			get
 			{
@@ -75,11 +75,11 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public static string AuthTokenAndType
+		public static string AccessTokenAndType
 		{
 			get
 			{
-				return GoogleAccessToken == null ? null : $"Bearer {GoogleAccessToken}";
+				return AccessToken == null ? null : $"Bearer {AccessToken}";
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace Sport.Mobile.Shared
 			}
 		}
 
-		public static string GoogleUserId
+		public static string ProviderUserId
 		{
 			get
 			{

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Sport.Mobile.Shared
 {
-	public class GoogleUserProfile
+	public class GoogleUserProfile : IUserProfile
 	{
 		[JsonProperty("id")]
 		public string Id
@@ -56,7 +56,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		[JsonProperty("picture")]
-		public string Picture
+		public string PhotoUrl
 		{
 			get;
 			set;
@@ -126,6 +126,88 @@ namespace Sport.Mobile.Shared
 		{
 			get;
 			set;
+		}
+	}
+
+
+	public class ActiveDirectoryUserProfile : IUserProfile
+	{
+		public string Email
+		{
+			get;
+			set;
+		}
+
+		public string Id
+		{
+			get;
+			set;
+		}
+
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		public string PhotoUrl
+		{
+			get;
+			set;
+		}
+	}
+
+	public class UserClaim
+	{
+		[JsonProperty("typ")]
+		public string Typ
+		{
+			get; set;
+		}
+
+		[JsonProperty("val")]
+		public string Val
+		{
+			get; set;
+		}
+	}
+
+	public class AppServiceIdentity
+	{
+		[JsonProperty("id_token")]
+		public string IdToken
+		{
+			get; set;
+		}
+
+		[JsonProperty("provider_name")]
+		public string ProviderName
+		{
+			get; set;
+		}
+
+		[JsonProperty("user_claims")]
+		public List<UserClaim> UserClaims
+		{
+			get; set;
+		}
+
+		[JsonProperty("user_id")]
+		public string UserId
+		{
+			get; set;
+		}
+
+		[JsonProperty("access_token")]
+		public string AccessToken
+		{
+			get; set;
+		}
+
+		[JsonProperty("refresh_token")]
+		public string RefreshToken
+		{
+			get; set;
 		}
 	}
 }

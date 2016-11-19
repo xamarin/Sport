@@ -12,12 +12,12 @@ namespace Sport.Mobile.Shared
 			Initialize();
 		}
 
-		public Athlete(GoogleUserProfile profile)
+		public Athlete(IUserProfile profile)
 		{
 			Name = profile.Name;
 			Email = profile.Email;
 			AuthenticationId = profile.Id;
-			ProfileImageUrl = profile.Picture;
+			ProfileImageUrl = profile.PhotoUrl;
 			Initialize();
 		}
 
