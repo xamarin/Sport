@@ -9,6 +9,28 @@ namespace Sport.Mobile.Shared
 {
 	public static partial class Extensions
 	{
+		public static void Track(this Exception ex)
+		{
+			try
+			{
+				//Log exception to Mobile Center
+				var baseException = ex.GetBaseException();
+				var stack = baseException.StackTrace;
+
+				if(stack.Length > 101)
+					stack = stack.Substring(0, 100);
+
+				Microsoft.Azure.Mobile.Analytics.Analytics.TrackEvent("Exception Occurred", new Dictionary<string, string>
+				{
+					{ "Message", baseException.Message },
+					{ "StackTrace", stack}
+				});
+			}
+			catch
+			{
+			}
+		}
+
 		public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
 		{
 			foreach(T item in source)

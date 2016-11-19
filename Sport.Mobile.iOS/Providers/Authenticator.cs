@@ -15,27 +15,18 @@ namespace Sport.Mobile.iOS
 	{
 		public async Task<MobileServiceUser> Authenticate()
 		{
-			try
+			var window = UIKit.UIApplication.SharedApplication.KeyWindow;
+			var root = window.RootViewController;
+			if(root != null)
 			{
-				var window = UIKit.UIApplication.SharedApplication.KeyWindow;
-				var root = window.RootViewController;
-				if(root != null)
+				var current = root;
+				while(current.PresentedViewController != null)
 				{
-					var current = root;
-					while(current.PresentedViewController != null)
-					{
-						current = current.PresentedViewController;
-					}
-
-					var user = await AzureService.Instance.Client.LoginAsync(current, MobileServiceAuthenticationProvider.Google, new Dictionary<string, string>() { { "access_type", "offline" } });
-					return user;
+					current = current.PresentedViewController;
 				}
-			}
-			catch(Exception e)
-			{
-				Debug.WriteLine(e);
-				MessagingCenter.Send(new object(), Shared.Messages.ExceptionOccurred, e);
-				//InsightsManager.Report(e);
+
+				var user = await AzureService.Instance.Client.LoginAsync(current, Keys.AuthenticationProvider, new Dictionary<string, string>() { { "access_type", "offline" } });
+				return user;
 			}
 
 			return null;

@@ -6,10 +6,10 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Views;
 using ImageCircle.Forms.Plugin.Droid;
+using Microsoft.Azure.Mobile;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 using Sport.Mobile.Shared;
-using HockeyApp.Android;
 
 namespace Sport.Mobile.Droid
 {
@@ -24,15 +24,12 @@ namespace Sport.Mobile.Droid
 
 		protected override void OnCreate(global::Android.OS.Bundle bundle)
 		{
-			//Uncomment when a HockeyApp iOS App ID is provided in Keys.cs
-			//CrashManager.Register(this, Keys.HockeyAppId_Android);
-
             AppDomain.CurrentDomain.UnhandledException += (sender, e) => {
 				try
 				{
 					var exception = ((Exception)e.ExceptionObject).GetBaseException();
 					Console.WriteLine("**SPORT UNHANDLED EXCEPTION**\n\n" + exception);
-					//InsightsManager.Report(ex, Xamarin.Insights.Severity.Critical);
+					exception.Track();
 				}
 				catch
 				{
@@ -49,6 +46,7 @@ namespace Sport.Mobile.Droid
 				Xamarin.Forms.Forms.Init(this, bundle);
 				ImageCircleRenderer.Init();
 
+				MobileCenter.Configure(Keys.MobileCenterKeyAndroid);
 				LoadApplication(new App());
 				XFGloss.Droid.Library.Init(this, bundle);
 

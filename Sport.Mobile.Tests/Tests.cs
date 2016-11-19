@@ -39,9 +39,12 @@ namespace Sport.Mobile.Tests
 			var nextButtonEmailId = "#next";
 			var nextButtonPasswordId = "#signIn";
 
+			//Give the Google auth form time to load
+			Thread.Sleep(15000);
 
-			//Thread.Sleep(5000);
-			//if(app.Query(e => e.Css("#identifierId")).Length > 0)
+			var query = app.Query(e => e.Css("#identifierId"));
+
+			if(query.Length > 0)
 			{
 				emailId = "#identifierId";
 				passwordId = "#password";
@@ -49,7 +52,6 @@ namespace Sport.Mobile.Tests
 				nextButtonPasswordId = "#passwordNext";
 			}
 
-			//app.Repl();
 			app.WaitForElement(e => e.Css(emailId));
 			app.EnterText(e => e.Css(emailId), Keys.TestEmail, "And I enter my email address");
 			app.DismissKeyboard();
@@ -62,6 +64,7 @@ namespace Sport.Mobile.Tests
 			if(TestEnvironment.IsTestCloud)
 				Thread.Sleep(10000); //Need to wait for form fields to animate over
 
+			//app.Repl();
 			app.Tap(e => e.Css(passwordId));
 			app.EnterText(e => e.Css(passwordId), Keys.TestPassword, "And I enter my super secret password");
 			app.DismissKeyboard();

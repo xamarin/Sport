@@ -92,14 +92,20 @@ namespace Sport.Mobile.Shared
 				{
 					AuthenticationStatus = "Loading...";
 					MobileServiceUser user = await _authenticator.Authenticate();
-					await SetIdentityValues(user);
-					await GetUserProfile();
+
+					if(user != null)
+					{
+						await SetIdentityValues(user);
+						await GetUserProfile();
+					}
 				}
-				catch (Exception e)
+				catch(InvalidOperationException ie)
+				{
+					//User cancelled
+				}
+				catch(Exception e)
 				{
 					MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
-					Debug.WriteLine("**SPORT AUTHENTICATION ERROR**\n\n" + e.GetBaseException());
-					//InsightsManager.Report(e);
 				}
 			}
 		}

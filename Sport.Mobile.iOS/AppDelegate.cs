@@ -6,8 +6,8 @@ using System;
 using Xamarin.Forms;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using HockeyApp.iOS;
 using Sport.Mobile.Shared;
+using Microsoft.Azure.Mobile;
 
 namespace Sport.Mobile.iOS
 {
@@ -20,17 +20,13 @@ namespace Sport.Mobile.iOS
 			Xamarin.Calabash.Start();
             //#endif
 
-			//Uncomment when a HockeyApp iOS App ID is provided in Keys.cs
-            //var manager = BITHockeyManager.SharedHockeyManager;
-            //manager.Configure(Keys.HockeyAppId_iOS);
-            //manager.StartManager();
-
             CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
 			Forms.Init();
 			ImageCircleRenderer.Init();
 			XFGloss.iOS.Library.Init();
 
+			MobileCenter.Configure(Keys.MobileCenterKeyiOS);
 			LoadApplication(new App());
 
 			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
@@ -41,8 +37,7 @@ namespace Sport.Mobile.iOS
 				{
 					var exception = ((Exception)e.ExceptionObject).GetBaseException();
 					Console.WriteLine("**SPORT UNHANDLED EXCEPTION**\n\n" + exception);
-					MessagingCenter.Send(new object(), Shared.Messages.ExceptionOccurred, exception);
-					//InsightsManager.Report(ex, Xamarin.Insights.Severity.Critical);
+					exception.Track();
 				}
 				catch
 				{

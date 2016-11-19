@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -76,6 +79,7 @@ namespace Sport.Mobile.Shared
 		public App()
 		{
 			_instance = this;
+			MobileCenter.Start(typeof(Analytics), typeof(Crashes));
 
 			SetDefaultPropertyValues();
 			InitializeComponent();
@@ -158,36 +162,10 @@ namespace Sport.Mobile.Shared
 
 		void OnAppExceptionOccurred(object sender, Exception exception)
 		{
-			Device.BeginInvokeOnMainThread(async () => {
-				try
-				{
-					if(_hud != null)
-					{
-						_hud.Dismiss();
-					}
+			if(exception == null)
+				return;
 
-					var msg = exception.Message;
-					var mse = exception as MobileServiceInvalidOperationException;
-
-					if(mse != null)
-					{
-						var body = await mse.Response.Content.ReadAsStringAsync();
-						var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(body);
-
-						if(dict != null && dict.ContainsKey("message"))
-							msg = dict["message"].ToString();
-					}
-
-					//if(msg.Length > 300)
-					//	msg = msg.Substring(0, 300);
-
-					//msg.ToToast(ToastNotificationType.Error, "Uh oh");
-				}
-				catch(Exception e)
-				{
-					Debug.WriteLine(e);
-				}
-			});
+			exception.Track();
 		}
 
 		void SetDefaultPropertyValues()

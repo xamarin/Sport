@@ -14,18 +14,7 @@ namespace Sport.Android
 	{
 		public async Task<MobileServiceUser> Authenticate()
 		{
-			try
-			{
-				return await AzureService.Instance.Client.LoginAsync(Forms.Context, MobileServiceAuthenticationProvider.Google, new Dictionary<string, string>() { { "access_type", "offline" } });
-			}
-			catch(Exception e)
-			{
-				Debug.WriteLine(e);
-				MessagingCenter.Send(new object(), Messages.ExceptionOccurred, e);
-				//InsightsManager.Report(e);
-			}
-
-			return null;
+			return await AzureService.Instance.Client.LoginAsync(Forms.Context, Keys.AuthenticationProvider, new Dictionary<string, string>() { { "access_type", "offline" } });
 		}
 
 		public void ClearCookies()
