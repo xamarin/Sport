@@ -2968,32 +2968,32 @@ namespace Sport.Mobile.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f060067
-			public const int abc_background_cache_hint_selector_material_dark = 2131099751;
+			// aapt resource value: 0x7f06005a
+			public const int abc_background_cache_hint_selector_material_dark = 2131099738;
 			
-			// aapt resource value: 0x7f060068
-			public const int abc_background_cache_hint_selector_material_light = 2131099752;
+			// aapt resource value: 0x7f06005b
+			public const int abc_background_cache_hint_selector_material_light = 2131099739;
 			
-			// aapt resource value: 0x7f060069
-			public const int abc_color_highlight_material = 2131099753;
+			// aapt resource value: 0x7f06005c
+			public const int abc_color_highlight_material = 2131099740;
 			
 			// aapt resource value: 0x7f06001f
 			public const int abc_input_method_navigation_guard = 2131099679;
 			
-			// aapt resource value: 0x7f06006a
-			public const int abc_primary_text_disable_only_material_dark = 2131099754;
+			// aapt resource value: 0x7f06005d
+			public const int abc_primary_text_disable_only_material_dark = 2131099741;
 			
-			// aapt resource value: 0x7f06006b
-			public const int abc_primary_text_disable_only_material_light = 2131099755;
+			// aapt resource value: 0x7f06005e
+			public const int abc_primary_text_disable_only_material_light = 2131099742;
 			
-			// aapt resource value: 0x7f06006c
-			public const int abc_primary_text_material_dark = 2131099756;
+			// aapt resource value: 0x7f06005f
+			public const int abc_primary_text_material_dark = 2131099743;
 			
-			// aapt resource value: 0x7f06006d
-			public const int abc_primary_text_material_light = 2131099757;
+			// aapt resource value: 0x7f060060
+			public const int abc_primary_text_material_light = 2131099744;
 			
-			// aapt resource value: 0x7f06006e
-			public const int abc_search_url_text = 2131099758;
+			// aapt resource value: 0x7f060061
+			public const int abc_search_url_text = 2131099745;
 			
 			// aapt resource value: 0x7f060020
 			public const int abc_search_url_text_normal = 2131099680;
@@ -3004,11 +3004,11 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f060022
 			public const int abc_search_url_text_selected = 2131099682;
 			
-			// aapt resource value: 0x7f06006f
-			public const int abc_secondary_text_material_dark = 2131099759;
+			// aapt resource value: 0x7f060062
+			public const int abc_secondary_text_material_dark = 2131099746;
 			
-			// aapt resource value: 0x7f060070
-			public const int abc_secondary_text_material_light = 2131099760;
+			// aapt resource value: 0x7f060063
+			public const int abc_secondary_text_material_light = 2131099747;
 			
 			// aapt resource value: 0x7f060023
 			public const int accent_material_dark = 2131099683;
@@ -3027,15 +3027,6 @@ namespace Sport.Mobile.Droid
 			
 			// aapt resource value: 0x7f060028
 			public const int background_material_light = 2131099688;
-			
-			// aapt resource value: 0x7f06005e
-			public const int blueDark = 2131099742;
-			
-			// aapt resource value: 0x7f06005f
-			public const int blueLight = 2131099743;
-			
-			// aapt resource value: 0x7f06005d
-			public const int bluePrimary = 2131099741;
 			
 			// aapt resource value: 0x7f060029
 			public const int bright_foreground_disabled_material_dark = 2131099689;
@@ -3076,8 +3067,8 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f060008
 			public const int common_action_bar_splitter = 2131099656;
 			
-			// aapt resource value: 0x7f060071
-			public const int common_google_signin_btn_text_dark = 2131099761;
+			// aapt resource value: 0x7f060064
+			public const int common_google_signin_btn_text_dark = 2131099748;
 			
 			// aapt resource value: 0x7f060009
 			public const int common_google_signin_btn_text_dark_default = 2131099657;
@@ -3091,8 +3082,8 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f06000a
 			public const int common_google_signin_btn_text_dark_pressed = 2131099658;
 			
-			// aapt resource value: 0x7f060072
-			public const int common_google_signin_btn_text_light = 2131099762;
+			// aapt resource value: 0x7f060065
+			public const int common_google_signin_btn_text_light = 2131099749;
 			
 			// aapt resource value: 0x7f06000d
 			public const int common_google_signin_btn_text_light_default = 2131099661;
@@ -3106,8 +3097,8 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f06000e
 			public const int common_google_signin_btn_text_light_pressed = 2131099662;
 			
-			// aapt resource value: 0x7f060073
-			public const int common_plus_signin_btn_text_dark = 2131099763;
+			// aapt resource value: 0x7f060066
+			public const int common_plus_signin_btn_text_dark = 2131099750;
 			
 			// aapt resource value: 0x7f060000
 			public const int common_plus_signin_btn_text_dark_default = 2131099648;
@@ -3121,8 +3112,8 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f060001
 			public const int common_plus_signin_btn_text_dark_pressed = 2131099649;
 			
-			// aapt resource value: 0x7f060074
-			public const int common_plus_signin_btn_text_light = 2131099764;
+			// aapt resource value: 0x7f060067
+			public const int common_plus_signin_btn_text_light = 2131099751;
 			
 			// aapt resource value: 0x7f060004
 			public const int common_plus_signin_btn_text_light_default = 2131099652;
@@ -3183,27 +3174,6 @@ namespace Sport.Mobile.Droid
 			
 			// aapt resource value: 0x7f060036
 			public const int foreground_material_light = 2131099702;
-			
-			// aapt resource value: 0x7f060062
-			public const int grayDark = 2131099746;
-			
-			// aapt resource value: 0x7f060061
-			public const int grayLight = 2131099745;
-			
-			// aapt resource value: 0x7f060063
-			public const int grayMedium = 2131099747;
-			
-			// aapt resource value: 0x7f060060
-			public const int grayPrimary = 2131099744;
-			
-			// aapt resource value: 0x7f06005c
-			public const int greenDark = 2131099740;
-			
-			// aapt resource value: 0x7f06005b
-			public const int greenLight = 2131099739;
-			
-			// aapt resource value: 0x7f06005a
-			public const int greenPrimary = 2131099738;
 			
 			// aapt resource value: 0x7f060037
 			public const int highlighted_text_material_dark = 2131099703;
@@ -3277,12 +3247,6 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f06004e
 			public const int primary_text_disabled_material_light = 2131099726;
 			
-			// aapt resource value: 0x7f060064
-			public const int purpleDark = 2131099748;
-			
-			// aapt resource value: 0x7f060065
-			public const int purplePrimary = 2131099749;
-			
 			// aapt resource value: 0x7f06004f
 			public const int ripple_material_dark = 2131099727;
 			
@@ -3307,20 +3271,17 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f060056
 			public const int switch_thumb_disabled_material_light = 2131099734;
 			
-			// aapt resource value: 0x7f060075
-			public const int switch_thumb_material_dark = 2131099765;
+			// aapt resource value: 0x7f060068
+			public const int switch_thumb_material_dark = 2131099752;
 			
-			// aapt resource value: 0x7f060076
-			public const int switch_thumb_material_light = 2131099766;
+			// aapt resource value: 0x7f060069
+			public const int switch_thumb_material_light = 2131099753;
 			
 			// aapt resource value: 0x7f060057
 			public const int switch_thumb_normal_material_dark = 2131099735;
 			
 			// aapt resource value: 0x7f060058
 			public const int switch_thumb_normal_material_light = 2131099736;
-			
-			// aapt resource value: 0x7f060066
-			public const int textPrimary = 2131099750;
 			
 			// aapt resource value: 0x7f060059
 			public const int white = 2131099737;
@@ -5227,9 +5188,6 @@ namespace Sport.Mobile.Droid
 			
 			// aapt resource value: 0x7f070043
 			public const int abc_toolbar_collapse_description = 2131165251;
-			
-			// aapt resource value: 0x7f070046
-			public const int app_name = 2131165254;
 			
 			// aapt resource value: 0x7f07002e
 			public const int appbar_scrolling_view_behavior = 2131165230;
