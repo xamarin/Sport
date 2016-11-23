@@ -20,7 +20,7 @@
     <local:WelcomeStartPageXaml.Content>
 		<Grid VerticalOptions="Fill" HorizontalOptions="Fill" Padding="24">
 			<StackLayout x:Name="label1" Padding="24,0" Scale="0" VerticalOptions="Center">
-				<Label AutomationId="label1" Text="Welcome to Sport - a leaderboard app built with Xamarin and Azure. Join various leagues and challenge your way to the top!"
+				<Label AutomationId="label1" Text="Welcome to Sport - a leaderboard app built with Xamarin Forms and Azure. Join various leagues and challenge your way to the top!"
 					FontSize="Medium" XAlign="Center" />
 			</StackLayout>
 

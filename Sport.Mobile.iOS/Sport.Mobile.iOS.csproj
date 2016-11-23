@@ -284,6 +284,7 @@
     <BundleResource Include="Resources\transparent%402x.png" />
     <BundleResource Include="Resources\transparent%403x.png" />
     <BundleResource Include="Resources\gradient_launch.jpg" />
+    <BundleResource Include="Resources\icon_300.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

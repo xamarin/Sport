@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using Android.App;
 using Android.Content.PM;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.OS;
 using Android.Views;
 using ImageCircle.Forms.Plugin.Droid;
 using Microsoft.Azure.Mobile;
@@ -13,7 +13,8 @@ using Sport.Mobile.Shared;
 
 namespace Sport.Mobile.Droid
 {
-	[Activity(Label = "Sport", Icon = "@drawable/icon", Theme = "@style/GrayTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "Sport", Icon = "@drawable/icon", Theme = "@style/DefaultTheme", MainLauncher = false,
+	          ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		public static bool IsRunning
@@ -22,7 +23,7 @@ namespace Sport.Mobile.Droid
 			private set;
 		}
 
-		protected override void OnCreate(global::Android.OS.Bundle bundle)
+		protected override void OnCreate(Bundle bundle)
 		{
             AppDomain.CurrentDomain.UnhandledException += (sender, e) => {
 				try
@@ -40,6 +41,7 @@ namespace Sport.Mobile.Droid
 			try
 			{
 				base.OnCreate(bundle);
+
 				Window.SetSoftInputMode(SoftInput.AdjustPan);
 
 				CurrentPlatform.Init();
@@ -57,20 +59,19 @@ namespace Sport.Mobile.Droid
 			}
 			catch(Exception e)
 			{
-				Debug.WriteLine(e);
+				Console.WriteLine("**SPORT LAUNCH EXCEPTION**\n\n" + e);
+				e.Track();
 			}
 		}
 
 		protected override void OnPause()
 		{
-			Debug.WriteLine("PAUSE");
 			IsRunning = false;
 			base.OnPause();
 		}
 
 		protected override void OnResume()
 		{
-			Debug.WriteLine("RESUME");
 			IsRunning = true;
 
 			ProcessNotificationPayload();
@@ -79,13 +80,11 @@ namespace Sport.Mobile.Droid
 
 		protected override void OnStop()
 		{
-			Debug.WriteLine("STOP");
 			base.OnStop();
 		}
 
 		protected override void OnStart()
 		{
-			Debug.WriteLine("START");
 			base.OnStart();
 		}
 

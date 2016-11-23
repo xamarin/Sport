@@ -29,10 +29,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
-    <AndroidSupportedAbis>x86;x86_64;armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
+<AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -204,6 +205,7 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Providers\StatusBarManager.cs" />
     <Compile Include="Renderers\SportEntryRenderer.cs" />
+    <Compile Include="LaunchActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -215,7 +217,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
-    <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
@@ -273,6 +274,12 @@
     <AndroidResource Include="Resources\drawable\logos.png" />
     <AndroidResource Include="Resources\drawable\transparent.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\gradient_launch.jpg" />
+    <AndroidResource Include="Resources\drawable\LaunchView.axml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon_transparent.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon_transparent.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon_transparent.png" />
+    <AndroidResource Include="Resources\drawable\icon_transparent.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sport.Mobile.Shared\Sport.Mobile.Shared.csproj">
