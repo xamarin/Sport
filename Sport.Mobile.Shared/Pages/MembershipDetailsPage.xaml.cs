@@ -14,6 +14,11 @@ namespace Sport.Mobile.Shared
 			set;
 		}
 
+		public MembershipDetailsPage ()
+		{
+			Initialize ();
+		}
+
 		public MembershipDetailsPage(Membership membership)
 		{
 			ViewModel.Membership = membership;

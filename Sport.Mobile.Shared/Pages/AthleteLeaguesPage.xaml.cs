@@ -7,6 +7,11 @@ namespace Sport.Mobile.Shared
 {
 	public partial class AthleteLeaguesPage : AthleteLeaguesXaml
 	{
+		public AthleteLeaguesPage ()
+		{
+			Initialize ();
+		}
+
 		public AthleteLeaguesPage(Athlete athlete)
 		{
 			//ViewModel is newed up in the ViewModel getter of BaseContentPage

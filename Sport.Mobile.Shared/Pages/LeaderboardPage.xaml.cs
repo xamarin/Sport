@@ -6,6 +6,11 @@ namespace Sport.Mobile.Shared
 {
 	public partial class LeaderboardPage : LeaderboardXaml
 	{
+		public LeaderboardPage ()
+		{
+			Initialize ();
+		}
+
 		public LeaderboardPage(League league)
 		{
 			ViewModel.League = league;

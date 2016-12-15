@@ -18,6 +18,11 @@ namespace Sport.Mobile.Shared
 
 		#endregion
 
+		public LeagueDetailsPage ()
+		{
+			Initialize ();
+		}
+
 		public LeagueDetailsPage(League league)
 		{
 			league.LocalRefresh();

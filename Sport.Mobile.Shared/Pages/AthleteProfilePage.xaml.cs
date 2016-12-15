@@ -12,6 +12,12 @@ namespace Sport.Mobile.Shared
 			set;
 		}
 
+
+		public AthleteProfilePage ()
+		{
+			Initialize ();
+		}
+
 		public AthleteProfilePage(string athleteId)
 		{
 			ViewModel.AthleteId = athleteId;
