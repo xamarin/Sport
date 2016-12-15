@@ -12,6 +12,11 @@ namespace Sport.Mobile.Shared
 			set;
 		}
 
+		public MatchResultsFormPage ()
+		{
+			Initialize ();
+		}
+
 		public MatchResultsFormPage(Challenge challenge)
 		{
 			ViewModel.Challenge = challenge;

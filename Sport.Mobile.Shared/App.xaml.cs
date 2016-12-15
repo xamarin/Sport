@@ -79,25 +79,22 @@ namespace Sport.Mobile.Shared
 		public App()
 		{
 			_instance = this;
-			MobileCenter.Start(typeof(Analytics), typeof(Crashes));
-
-			SetDefaultPropertyValues();
-			InitializeComponent();
-			MessagingCenter.Subscribe<object, Exception>(this, Messages.ExceptionOccurred, OnAppExceptionOccurred);
-
-			if(Settings.AthleteId == null || !Settings.RegistrationComplete)
-			{
-				StartRegistrationFlow();
-			}
-			else
-			{
-				StartAuthenticationFlow();
-			}
+			SetDefaultPropertyValues ();
+			InitializeComponent ();
 		}
 
 		protected override void OnStart()
 		{
 			// Handle when your app starts
+			MobileCenter.Start (typeof (Analytics), typeof (Crashes));
+			MessagingCenter.Subscribe<object, Exception> (this, Messages.ExceptionOccurred, OnAppExceptionOccurred);
+
+			if (Settings.AthleteId == null || !Settings.RegistrationComplete) {
+				StartRegistrationFlow ();
+			}
+			else {
+				StartAuthenticationFlow ();
+			}
 		}
 
 		protected override void OnSleep()

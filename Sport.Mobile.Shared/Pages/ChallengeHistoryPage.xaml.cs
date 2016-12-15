@@ -6,6 +6,11 @@ namespace Sport.Mobile.Shared
 {
 	public partial class ChallengeHistoryPage : ChallengeHistoryPageXaml
 	{
+		public ChallengeHistoryPage ()
+		{
+			Initialize ();
+		}
+
 		public ChallengeHistoryPage(Membership membership)
 		{
 			ViewModel.Membership = membership;

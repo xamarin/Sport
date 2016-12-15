@@ -24,6 +24,11 @@ namespace Sport.Mobile.Shared
 			private set;
 		}
 
+		public ChallengeDatePage ()
+		{
+			Initialize ();
+		}
+
 		public ChallengeDatePage(Athlete challengee, League league)
 		{
 			SetTheme(league);

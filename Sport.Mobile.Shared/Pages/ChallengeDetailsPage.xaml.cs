@@ -30,6 +30,11 @@ namespace Sport.Mobile.Shared
 
 		Challenge _challenge;
 
+		public ChallengeDetailsPage ()
+		{
+			Initialize ();
+		}
+
 		public ChallengeDetailsPage(Challenge challenge)
 		{
 			_challenge = challenge;
