@@ -51,25 +51,25 @@
         	<Color x:Key="grayDark">#959595</Color>
         	<Color x:Key="grayMedium">#B9B9B9</Color>
 
-            <Style x:Key="defaultActivity" TargetType="ActivityIndicator">
-                <Setter Property="Scale">
+           <Style x:Key="defaultActivity" TargetType="ActivityIndicator" >
+                <!--<Setter Property="Scale">
                 	<Setter.Value>
                 		<OnPlatform x:TypeArguments="x:Double" iOS="2" Android="1" />
                 	</Setter.Value>
-                </Setter>
+                </Setter>-->
             </Style>
             <Style TargetType="ActivityIndicator" BasedOn="{StaticResource defaultActivity}" />
 			
             <Style x:Key="labelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource asphaltPrimary}" />
-                <Setter Property="FontSize">
+                <!--<Setter Property="FontSize">
                 	<Setter.Value>
                 		<OnPlatform x:TypeArguments="x:Double" iOS="14" Android="12" />
                 	</Setter.Value>
-                </Setter>
+                </Setter>-->
                 <Setter Property="FontFamily" Value="SegoeUI" />
             </Style>
-            <Style x:Key="header" TargetType="Label" BasedOn="{StaticResource labelStyle}">
+             <Style x:Key="header" TargetType="Label" BasedOn="{StaticResource labelStyle}">
                 <Setter Property="FontFamily" Value="SegoeUI" />
                 <Setter Property="TextColor" Value="{StaticResource grayLight}" />
             </Style>
@@ -96,7 +96,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource redPrimary}" />
             </Style>
 
-            <Style x:Key="wizardButton" TargetType="local:SportButton" BasedOn="{StaticResource buttonStyle}">
+           <Style x:Key="wizardButton" TargetType="local:SportButton" BasedOn="{StaticResource buttonStyle}">
                 <Setter Property="BackgroundColor" Value="#3FFF" />
                 <Setter Property="BorderColor" Value="#AFFF" />
                 <Setter Property="TextColor" Value="#CFFF" />

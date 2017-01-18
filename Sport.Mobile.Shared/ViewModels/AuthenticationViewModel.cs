@@ -330,6 +330,14 @@ namespace Sport.Mobile.Shared
 						Debug.WriteLine(e);
 						return null;
 					}
+				//case MobileServiceAuthenticationProvider.Facebook:
+				//	try {
+				//	var request = new OAuth2Request ("GET", new Uri ("https://graph.facebook.com/me?fields=email,first_name,last_name,gender,picture"), null, e.Account);
+				//	}
+				//					catch(Exception e) {
+				//	Debug.WriteLine (e);
+				//	return null;
+				//}
 
 				case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
 

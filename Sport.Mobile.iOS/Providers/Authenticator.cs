@@ -6,6 +6,7 @@ using Foundation;
 using Microsoft.WindowsAzure.MobileServices;
 using Sport.Mobile.Shared;
 using Xamarin.Forms;
+using Newtonsoft.Json.Linq;
 
 [assembly: Dependency(typeof(Sport.Mobile.iOS.Authenticator))]
 
@@ -25,7 +26,12 @@ namespace Sport.Mobile.iOS
 					current = current.PresentedViewController;
 				}
 
-				var user = await AzureService.Instance.Client.LoginAsync(current, Keys.AuthenticationProvider, new Dictionary<string, string>() { { "access_type", "offline" } });
+				var manager = new Facebook.LoginKit.LoginManager ();
+				manager.LoginBehavior = Facebook.LoginKit.LoginBehavior.Native;
+				var result = await manager.LogInWithReadPermissionsAsync (new string [] { "public_profile","email" }, current);
+
+				var user = await  AzureService.Instance.Client.LoginAsync (MobileServiceAuthenticationProvider.Facebook, new JObject( result.Token));
+				//var user = await AzureService.Instance.Client.LoginAsync(current, Keys.AuthenticationProvider, new Dictionary<string, string>() { { "access_type", "offline" } });
 				return user;
 			}
 
