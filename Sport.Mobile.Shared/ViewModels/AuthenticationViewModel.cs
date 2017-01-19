@@ -330,15 +330,21 @@ namespace Sport.Mobile.Shared
 						Debug.WriteLine(e);
 						return null;
 					}
-				//case MobileServiceAuthenticationProvider.Facebook:
-				//	try {
-				//	var request = new OAuth2Request ("GET", new Uri ("https://graph.facebook.com/me?fields=email,first_name,last_name,gender,picture"), null, e.Account);
-				//	}
-				//					catch(Exception e) {
-				//	Debug.WriteLine (e);
-				//	return null;
-				//}
+				case MobileServiceAuthenticationProvider.Facebook:
+					try {
+					var userInfo = await AzureService.Instance.Client.InvokeApiAsync ("getUserInfo", HttpMethod.Get, null);
+					//var request = new OAuth2Request ("GET", new Uri ("https://graph.facebook.com/me?fields=email,first_name,last_name,gender,picture"), null, e.Account);
+						
+					var profile = JsonConvert.DeserializeObject<FacebookUserObject> (userInfo.ToString ());
+					
 
+					return profile.facebook;
+					}
+					catch(Exception e) {
+						Debug.WriteLine (e);
+						return null;
+					}
+					break;
 				case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
 
 					if(_identity == null)
