@@ -4,6 +4,25 @@ using System.Collections.Generic;
 
 namespace Sport.Mobile.Shared
 {
+	public class FacebookUserProfile: IUserProfile
+	{
+		[JsonProperty ("name")]
+		public string Name { get; set; }
+		[JsonProperty ("email")]
+		public string Email { get; set; }
+		[JsonProperty ("id")]
+		public string Id { get; set; }
+
+		public string PhotoUrl {
+			get ;set;
+		}
+	}
+
+	public class FacebookUserObject
+	{
+		public FacebookUserProfile facebook { get; set; }
+	}
+
 	public class GoogleUserProfile : IUserProfile
 	{
 		[JsonProperty("id")]

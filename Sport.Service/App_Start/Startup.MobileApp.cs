@@ -61,7 +61,9 @@ namespace Sport.Service
 
 			app.UseWebApi(config);
 
-			var migrator = new DbMigrator(new Configuration());
+            var migrationConfig = new Configuration();
+
+            var migrator = new DbMigrator(migrationConfig);
 			migrator.Update();
 		}
 	}

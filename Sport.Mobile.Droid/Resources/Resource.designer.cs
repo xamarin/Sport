@@ -64,7 +64,6 @@ namespace Sport.Mobile.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Sport.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Gcm.Client.Resource.String.library_name = global::Sport.Mobile.Droid.Resource.String.library_name;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Sport.Mobile.Droid.Resource.Attribute.actionBarSize;
 			global::XFGloss.Droid.Resource.Animation.abc_fade_in = global::Sport.Mobile.Droid.Resource.Animation.abc_fade_in;
 			global::XFGloss.Droid.Resource.Animation.abc_fade_out = global::Sport.Mobile.Droid.Resource.Animation.abc_fade_out;
 			global::XFGloss.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::Sport.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -1850,6 +1849,7 @@ namespace Sport.Mobile.Droid
 			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_id = global::Sport.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Sport.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::Sport.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Sport.Mobile.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
