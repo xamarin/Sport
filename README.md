@@ -70,4 +70,4 @@ As of 11/11/2016, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
 
 
 #### Copyright and license
-* Code and documentation copyright 2017 Microsoft Corp. Code released under the [MIT license](https://opensource.org/licenses/MIT).
+* Code and documentation copyright 2017 Microsoft Corp. Code released under the [MIT license](https://opensource.org/licenses/MIT)
