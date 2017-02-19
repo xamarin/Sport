@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Diagnostics;
@@ -19,7 +19,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty ViewModelProperty =
-			BindableProperty.Create("ViewModel", typeof(ChallengeDetailsViewModel), typeof(ChallengeCardView), null);
+			BindableProperty.Create(nameof(ViewModel), typeof(ChallengeDetailsViewModel), typeof(ChallengeCardView), null);
 
 		public ChallengeDetailsViewModel ViewModel
 		{
@@ -34,7 +34,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty OnAcceptedProperty =
-			BindableProperty.Create("OnAccepted", typeof(Command), typeof(ChallengeCardView), null);
+			BindableProperty.Create(nameof(OnAccepted), typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnAccepted
 		{
@@ -49,7 +49,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty OnDeclinedProperty =
-			BindableProperty.Create("OnDeclined", typeof(Command), typeof(ChallengeCardView), null);
+			BindableProperty.Create(nameof(OnDeclined), typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnDeclined
 		{
@@ -64,7 +64,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty OnNudgeProperty =
-			BindableProperty.Create("OnNudge", typeof(Command), typeof(ChallengeCardView), null);
+			BindableProperty.Create(nameof(OnNudge), typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnNudge
 		{
@@ -79,7 +79,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty OnPostResultsProperty =
-			BindableProperty.Create("OnPostResults", typeof(Command), typeof(ChallengeCardView), null);
+			BindableProperty.Create(nameof(OnPostResults), typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnPostResults
 		{
@@ -94,7 +94,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty OnClickedProperty =
-			BindableProperty.Create("OnClicked", typeof(Command), typeof(ChallengeCardView), null);
+			BindableProperty.Create(nameof(OnClicked), typeof(Command), typeof(ChallengeCardView), null);
 
 		public Command OnClicked
 		{

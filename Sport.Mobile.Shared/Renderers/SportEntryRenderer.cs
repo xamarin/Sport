@@ -10,7 +10,7 @@ namespace Sport.Mobile.Shared
 	public class SportEntry : Entry
 	{
 		public static readonly BindableProperty HasBorderProperty =
-			BindableProperty.Create("HasBorder", typeof(bool), typeof(SportEntry), true);
+			BindableProperty.Create(nameof(HasBorder), typeof(bool), typeof(SportEntry), true);
 
 		public bool HasBorder
 		{
@@ -25,7 +25,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty FontProperty =
-			BindableProperty.Create("Font", typeof(Font), typeof(SportEntry), new Font());
+			BindableProperty.Create(nameof(Font), typeof(Font), typeof(SportEntry), new Font());
 
 		public Font Font
 		{
@@ -40,7 +40,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty FontFamilyProperty =
-			BindableProperty.Create("FontFamily", typeof(string), typeof(SportEntry), null);
+			BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(SportEntry), null);
 
 		public string FontFamily
 		{
@@ -55,7 +55,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty MaxLengthProperty =
-			BindableProperty.Create("MaxLength", typeof(int), typeof(SportEntry), int.MaxValue);
+			BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(SportEntry), int.MaxValue);
 
 		public int MaxLength
 		{
@@ -70,7 +70,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty XAlignProperty =
-			BindableProperty.Create("XAlign", typeof(TextAlignment), typeof(SportEntry), TextAlignment.Start);
+			BindableProperty.Create(nameof(XAlign), typeof(TextAlignment), typeof(SportEntry), TextAlignment.Start);
 
 		public TextAlignment XAlign
 		{

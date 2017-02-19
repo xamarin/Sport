@@ -78,21 +78,23 @@ namespace Sport.Mobile.Shared
 
 		public virtual async Task<bool> UpdateAsync(T item)
 		{
-			//#if DEBUG
-				//var lookup = await GetItemAsync(item.Id, true);
-				//Debug.WriteLine($"Before Lookup: {lookup.Version} - {lookup.UpdatedAt}");
-			//#endif
+			try
+			{
+				var pull = await PullLatestAsync().ConfigureAwait(false);
+				await Table.UpdateAsync(item).ConfigureAwait(false);
+				var push = await SyncAsync().ConfigureAwait(false);
+				var updated = await GetItemAsync(item.Id, false).ConfigureAwait(false);
 
-			var pull = await PullLatestAsync().ConfigureAwait(false);
-			await Table.UpdateAsync(item).ConfigureAwait(false);
-			var push = await SyncAsync().ConfigureAwait(false);
-			var updated = await GetItemAsync(item.Id, false).ConfigureAwait(false);
+				item.Version = updated.Version;
+				item.UpdatedAt = updated.UpdatedAt;
 
-			item.Version = updated.Version;
-			item.UpdatedAt = updated.UpdatedAt;
-
-			//Debug.WriteLine($"After Update: {item.Version} - {item.UpdatedAt}");
-			return pull && push;
+				return pull && push;
+			}
+			catch(Exception e)
+			{
+				Debug.WriteLine(e);
+				return false;
+			}
 		}
 
 		public virtual async Task<bool> RemoveAsync(T item)

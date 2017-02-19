@@ -222,7 +222,7 @@
     <Compile Include="Interfaces\IStatusBarManager.cs" />
     <Compile Include="Interfaces\IUserProfile.cs" />
     <Compile Include="UserControls\CircleView.cs" />
-    <Compile Include="UserControls\RoundedButton.cs" />
+    <Compile Include="UserControls\RoundedRectangleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernHttpClient">

@@ -1,4 +1,4 @@
-﻿using Xamarin.Forms;
+using Xamarin.Forms;
 using System;
 using System.Windows.Input;
 
@@ -9,7 +9,7 @@ namespace Sport.Mobile.Shared
 		public event EventHandler Clicked;
 
 		public static readonly BindableProperty CommandProperty =
-			BindableProperty.Create("Command", typeof(ICommand), typeof(Button), null);
+			BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Button), null);
 
 		public ICommand Command
 		{
@@ -24,7 +24,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty ButtonBackgroundColorProperty =
-			BindableProperty.Create("ButtonBackgroundColor", typeof(Color), typeof(ImageButton), Color.Transparent);
+			BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(Color), typeof(ImageButton), Color.Transparent);
 
 		public Color ButtonBackgroundColor
 		{
@@ -39,7 +39,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty TextProperty =
-			BindableProperty.Create("Text", typeof(string), typeof(ImageButton), null);
+			BindableProperty.Create(nameof(Text), typeof(string), typeof(ImageButton), null);
 
 		public string Text
 		{
@@ -54,7 +54,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty SourceProperty =
-			BindableProperty.Create("Source", typeof(FileImageSource), typeof(ImageButton), null);
+			BindableProperty.Create(nameof(Source), typeof(FileImageSource), typeof(ImageButton), null);
 
 		public FileImageSource Source
 		{

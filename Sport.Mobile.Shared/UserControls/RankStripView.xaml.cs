@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty MembershipProperty =
-			BindableProperty.Create("Membership", typeof(Membership), typeof(RankStripView), null);
+			BindableProperty.Create(nameof(Membership), typeof(Membership), typeof(RankStripView), null);
 
 		public Membership Membership
 		{
@@ -82,15 +82,15 @@ namespace Sport.Mobile.Shared
 
 		void HandleAthleteClicked(object sender, EventArgs e)
 		{
-			var btn = sender as RoundedButton;
+			var btn = sender as RoundedRectangleView;
 			OnAthleteClicked?.Invoke(btn.CommandParameter as Membership);
 		}
 
 		void LocalRefresh()
 		{
-			OnPropertyChanged("Membership");
-			OnPropertyChanged("DarkColor");
-			OnPropertyChanged("LightColor");
+			OnPropertyChanged(nameof(Membership));
+			OnPropertyChanged(nameof(DarkColor));
+			OnPropertyChanged(nameof(LightColor));
 
 			if(Membership != null)
 			{
@@ -103,8 +103,8 @@ namespace Sport.Mobile.Shared
 				LowerMembership = null;
 			}
 
-			OnPropertyChanged("UpperMembership");
-			OnPropertyChanged("LowerMembership");
+			OnPropertyChanged(nameof(UpperMembership));
+			OnPropertyChanged(nameof(LowerMembership));
 		}
 	}
 }

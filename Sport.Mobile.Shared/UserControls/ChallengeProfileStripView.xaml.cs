@@ -5,7 +5,7 @@ namespace Sport.Mobile.Shared
 	public partial class ChallengeProfileStripView : ContentView
 	{
 		public static readonly BindableProperty ChallengeProperty =
-			BindableProperty.Create("Challenge", typeof(Challenge), typeof(ChallengeProfileStripView), null);
+			BindableProperty.Create(nameof(Challenge), typeof(Challenge), typeof(ChallengeProfileStripView), null);
 
 		public Challenge Challenge
 		{

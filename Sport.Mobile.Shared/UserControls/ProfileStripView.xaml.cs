@@ -14,7 +14,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty AthleteProperty =
-			BindableProperty.Create("Athlete", typeof(Athlete), typeof(ProfileStripView), null);
+			BindableProperty.Create(nameof(Athlete), typeof(Athlete), typeof(ProfileStripView), null);
 
 		public Athlete Athlete
 		{
@@ -29,7 +29,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty TextColorProperty =
-			BindableProperty.Create("TextColor", typeof(Color), typeof(ProfileStripView), Color.White);
+			BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(ProfileStripView), Color.White);
 
 		public Color TextColor
 		{
@@ -44,7 +44,7 @@ namespace Sport.Mobile.Shared
 		}
 
 		public static readonly BindableProperty ThemeProperty =
-			BindableProperty.Create("Theme", typeof(ColorTheme), typeof(ProfileStripView), null);
+			BindableProperty.Create(nameof(Theme), typeof(ColorTheme), typeof(ProfileStripView), null);
 
 		public ColorTheme Theme
 		{

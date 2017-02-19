@@ -32,19 +32,21 @@
 									<Image x:Name="photoImage" Source="{Binding League.ImageUrl}" Aspect="AspectFill"
 										AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Opacity=".8" />
 
-									<AbsoluteLayout IsVisible="{Binding HasChallenge}"
-										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1,-1,-1" Padding="10">
-										<local:SportButton BorderRadius="2" BackgroundColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36"
-											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" TextColor="White" />
-										<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
-									</AbsoluteLayout>
+									<local:RoundedRectangleView IsVisible="{Binding IsFirstPlace}" Padding="10" CornerRadius="10"
+										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,-1,-1"
+										FillColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36">
+										<local:RoundedRectangleView.InnerContent>
+											<Image Source="ic_trophy_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
+										</local:RoundedRectangleView.InnerContent>
+									</local:RoundedRectangleView>
 
-									<AbsoluteLayout IsVisible="{Binding IsFirstPlace}"
-										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1,-1,-1" Padding="10">
-										<local:SportButton BorderRadius="2" BackgroundColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36"
-											AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" TextColor="White" />
-										<Image Source="ic_trophy_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
-									</AbsoluteLayout>
+									<local:RoundedRectangleView IsVisible="{Binding HasChallenge}" Padding="10" CornerRadius="10"
+										AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+										FillColor="{Binding League.Theme.Light}" Opacity=".75" HeightRequest="36" WidthRequest="36">
+										<local:RoundedRectangleView.InnerContent>
+											<Image Source="ic_fencing_white" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"/>
+										</local:RoundedRectangleView.InnerContent>
+									</local:RoundedRectangleView>
 								</AbsoluteLayout>
 
 								<StackLayout Padding="16,10" Spacing="4">
@@ -63,11 +65,8 @@
 											<RowDefinition Height="36" />
 										</Grid.RowDefinitions>
 										
-										<local:CircleView FillColor="{Binding League.Theme.Light}" Text="{Binding CurrentMembership.CurrentRankOrdinal}">
-											<local:CircleView.TextSize>
-												<OnPlatform x:TypeArguments="x:Double" iOS="40" Android="52" />
-											</local:CircleView.TextSize>
-										</local:CircleView>
+										<local:CircleView FillColor="{Binding League.Theme.Light}" TextSize="12"
+											Text="{Binding CurrentMembership.CurrentRankOrdinal}" />
 										<Label Grid.Column="1" Text="{Binding CurrentMembership.RankDescription, StringFormat='You\'ve been ranked \{0\}'}"
 											VerticalOptions="Center" Style="{StaticResource sub}" IsVisible="true" />
 									</Grid>

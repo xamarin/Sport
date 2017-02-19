@@ -8,41 +8,48 @@
 	<StackLayout x:Name="root" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="4">
 		<AbsoluteLayout IsVisible="{Binding UpperMembership, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
 			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-			<local:RoundedButton FillColor="{Binding DarkColor}" Clicked="HandleAthleteClicked" CommandParameter="{Binding UpperMembership}"
-				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
-
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" Padding="10" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
-				<Label Text="{Binding UpperMembership.CurrentRankOrdinal}" FontSize="20" TextColor="White"
-					VerticalOptions="Center" HorizontalOptions="Center" />
-				<Label Text="{Binding UpperMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center"
-					TextColor="White" FontSize="Small" LineBreakMode="TailTruncation" />
-			</StackLayout>
+			<local:RoundedRectangleView FillColor="{Binding DarkColor}" Clicked="HandleAthleteClicked" CommandParameter="{Binding UpperMembership}"
+				AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<local:RoundedRectangleView.InnerContent>
+					<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" Padding="10" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
+						<Label Text="{Binding UpperMembership.CurrentRankOrdinal}" FontSize="20" TextColor="White"
+							VerticalOptions="Center" HorizontalOptions="Center" />
+						<Label Text="{Binding UpperMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center"
+							TextColor="White" FontSize="Small" LineBreakMode="TailTruncation" />
+					</StackLayout>
+				</local:RoundedRectangleView.InnerContent>
+			</local:RoundedRectangleView>
 		</AbsoluteLayout>
 
 		<AbsoluteLayout IsVisible="{Binding Membership, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
 			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-			<local:RoundedButton FillColor="{Binding Membership.League.Theme.Primary}" Clicked="HandleAthleteClicked"
-				CommandParameter="{Binding Membership}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+			<local:RoundedRectangleView FillColor="{Binding Membership.League.Theme.Primary}" Clicked="HandleAthleteClicked"
+				CommandParameter="{Binding Membership}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<local:RoundedRectangleView.InnerContent>
+					<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
+						<Label Text="{Binding Membership.CurrentRankOrdinal}" FontSize="20" TextColor="White"
+							VerticalOptions="Center" HorizontalOptions="Center" />
+						<Label Text="*You*" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
+							FontSize="Small" LineBreakMode="TailTruncation" />
+					</StackLayout>
+				</local:RoundedRectangleView.InnerContent>
+			</local:RoundedRectangleView>
 
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
-				<Label Text="{Binding Membership.CurrentRankOrdinal}" FontSize="20" TextColor="White"
-					VerticalOptions="Center" HorizontalOptions="Center" />
-				<Label Text="*You*" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
-					FontSize="Small" LineBreakMode="TailTruncation" />
-			</StackLayout>
 		</AbsoluteLayout>
 
 		<AbsoluteLayout IsVisible="{Binding LowerMembership, Converter={x:Static local:IsNotNullToBoolConverter.Instance}}"
 			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-			<local:RoundedButton FillColor="{Binding LightColor}" Clicked="HandleAthleteClicked"
-				CommandParameter="{Binding LowerMembership}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
-
-			<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" Padding="10" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
-				<Label Text="{Binding LowerMembership.CurrentRankOrdinal}" FontSize="20" TextColor="White"
-					VerticalOptions="Center" HorizontalOptions="Center" />
-				<Label Text="{Binding LowerMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center"
-					TextColor="White" FontSize="Small" LineBreakMode="TailTruncation" />
-			</StackLayout>
+			<local:RoundedRectangleView FillColor="{Binding LightColor}" Clicked="HandleAthleteClicked"
+				CommandParameter="{Binding LowerMembership}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<local:RoundedRectangleView.InnerContent>
+					<StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" Padding="10" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" Spacing="0">
+						<Label Text="{Binding LowerMembership.CurrentRankOrdinal}" FontSize="20" TextColor="White"
+							VerticalOptions="Center" HorizontalOptions="Center" />
+						<Label Text="{Binding LowerMembership.Athlete.Alias}" VerticalOptions="Center" HorizontalOptions="Center"
+							TextColor="White" FontSize="Small" LineBreakMode="TailTruncation" />
+					</StackLayout>
+				</local:RoundedRectangleView.InnerContent>
+			</local:RoundedRectangleView>
 		</AbsoluteLayout>
 		
 	</StackLayout>

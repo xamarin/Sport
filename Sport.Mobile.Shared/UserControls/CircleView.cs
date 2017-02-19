@@ -72,12 +72,18 @@ namespace Sport.Mobile.Shared
 		#endregion
 
 		SKCanvasView _canvasView;
+		Label _textLabel;
+		Grid _root;
 
 		public CircleView()
 		{
 			_canvasView = new SKCanvasView();
 			_canvasView.PaintSurface += PaintContents;
-			Content = _canvasView;
+
+			_root = new Grid();
+			_root.Children.Add(_canvasView);
+
+			Content = _root;
 		}
 
 		void PaintContents(object sender, SKPaintSurfaceEventArgs e)
@@ -98,18 +104,35 @@ namespace Sport.Mobile.Shared
 
 			if(!string.IsNullOrWhiteSpace(Text))
 			{
-				using(var paint = new SKPaint
+				if(_textLabel == null)
 				{
-					IsAntialias = true,
-					Color = TextColor.ToSKColor(),
-					TextSize = (float)TextSize,
-				})
-				{
-					var tw = paint.MeasureText(Text);
-					var w = b.MidX - (tw / 2);
-					var h = b.MidY + (paint.TextSize / 2) - 6;
-					canvas.DrawText(Text, w, h, paint);
+					//Using a label here instead of drawing text because Skia text size is non-DPI pixels
+					_textLabel = new Label
+					{
+						FontSize = TextSize,
+						TextColor = TextColor,
+						Margin = new Thickness(4),
+						VerticalOptions = LayoutOptions.Center,
+						HorizontalOptions = LayoutOptions.Center,
+					};
+
+					_root.Children.Add(_textLabel);
 				}
+
+				_textLabel.Text = Text;
+
+				//using(var paint = new SKPaint
+				//{
+				//	IsAntialias = true,
+				//	Color = TextColor.ToSKColor(),
+				//	TextSize = (float)TextSize,
+				//})
+				//{
+				//	var tw = paint.MeasureText(Text);
+				//	var w = b.MidX - (tw / 2);
+				//	var h = b.MidY + (paint.TextSize / 2) - 6;
+				//	canvas.DrawText(Text, w, h, paint);
+				//}
 			}
 		}
 
