@@ -82,7 +82,7 @@ namespace Sport.Mobile.Shared
 
 		void HandleAthleteClicked(object sender, EventArgs e)
 		{
-			var btn = sender as Button;
+			var btn = sender as RoundedButton;
 			OnAthleteClicked?.Invoke(btn.CommandParameter as Membership);
 		}
 

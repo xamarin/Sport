@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using SkiaSharp;
 using Xamarin.Forms;
 
 namespace Sport.Mobile.Shared
@@ -142,6 +143,11 @@ namespace Sport.Mobile.Shared
 				var toaster = DependencyService.Get<IToastNotifier>();
 				toaster?.Notify(type, title ?? type.ToString().ToUpper(), message, TimeSpan.FromSeconds(2.5f));
 			});
+		}
+
+		public static SKColor ToSKColor(this Color c)
+		{
+			return new SKColor((byte)(c.R*255), (byte)(c.G*255), (byte)(c.B*255), (byte)(c.A*255));
 		}
 	}
 }

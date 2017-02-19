@@ -118,7 +118,7 @@
 						VerticalOptions="Center" TextColor="White" AutomationId="winningLabel" />
 
 					<Grid WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" VerticalOptions="Center">
-						<Button BackgroundColor="{Binding Challenge.League.Theme.Dark}" WidthRequest="48" HeightRequest="48" BorderRadius="24"
+						<local:CircleView FillColor="{Binding Challenge.League.Theme.Dark}" WidthRequest="48" HeightRequest="48"
 							VerticalOptions="Center" HorizontalOptions="Center" />
 						<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Challenge.WinningAthlete.ProfileImageUrl}"
 							HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" />

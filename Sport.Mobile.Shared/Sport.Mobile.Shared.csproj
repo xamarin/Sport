@@ -221,6 +221,8 @@
     <Compile Include="Services\Managers\GameResultManager.cs" />
     <Compile Include="Interfaces\IStatusBarManager.cs" />
     <Compile Include="Interfaces\IUserProfile.cs" />
+    <Compile Include="UserControls\CircleView.cs" />
+    <Compile Include="UserControls\RoundedButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernHttpClient">
@@ -300,6 +302,12 @@
     </Reference>
     <Reference Include="Plugin.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.2.5.4\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\packages\SkiaSharp.1.56.1\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\packages\SkiaSharp.Views.Forms.1.56.1\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

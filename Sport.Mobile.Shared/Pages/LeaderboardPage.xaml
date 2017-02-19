@@ -30,8 +30,9 @@
 
 									<StackLayout Spacing="20" Orientation="Horizontal">
 										<AbsoluteLayout WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" VerticalOptions="Center">
-											<Button BackgroundColor="{Binding Membership.League.Theme.Light}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" 
-												BorderRadius="24" WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsFirstPlace}" />
+											<local:CircleView FillColor="{Binding Membership.League.Theme.Light}"
+												AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" 
+												WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsFirstPlace}" />
 											<controls:CircleImage WidthRequest="36" HeightRequest="36" Source="{Binding Membership.Athlete.ProfileImageUrl}"
 												HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"
 												AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />

@@ -1850,6 +1850,7 @@ namespace Sport.Mobile.Droid
 			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Sport.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::Sport.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Sport.Mobile.Droid.Resource.Attribute.actionBarSize;
+			global::ModernHttpClient.Resource.String.library_name = global::Sport.Mobile.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Animation

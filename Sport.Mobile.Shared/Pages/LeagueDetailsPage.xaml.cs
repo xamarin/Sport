@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using SkiaSharp.Views.Forms;
+using SkiaSharp;
 
 namespace Sport.Mobile.Shared
 {

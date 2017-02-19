@@ -53,16 +53,18 @@
 					<ContentView IsVisible="{Binding IsMember}">
 						<Grid Padding="0,0,0,6" IsVisible="{Binding League.HasStarted}">
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="44" />
+								<ColumnDefinition Width="36" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="36" />
+							</Grid.RowDefinitions>
 
-							<AbsoluteLayout HeightRequest="36" WidthRequest="36" HorizontalOptions="Start">
-								<local:SportButton BorderRadius="18" BackgroundColor="{Binding League.Theme.Primary}"
-									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" />
-								<Label Text="{Binding CurrentMembership.CurrentRankOrdinal}" FontSize="Small" TextColor="White"
-									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" XAlign="Center" YAlign="Center" />
-							</AbsoluteLayout>
+							<local:CircleView FillColor="{Binding League.Theme.Primary}" Text="{Binding CurrentMembership.CurrentRankOrdinal}">
+								<local:CircleView.TextSize>
+									<OnPlatform x:TypeArguments="x:Double" iOS="40" Android="52" />
+								</local:CircleView.TextSize>
+							</local:CircleView>
 							<Label Grid.Column="1" Text="{Binding CurrentMembership.RankDescription, StringFormat='You\'ve been ranked \{0\}'}"
 								VerticalOptions="Center" Style="{StaticResource sub}" IsVisible="true" />
 						</Grid>
@@ -70,16 +72,18 @@
 					<ContentView IsVisible="{Binding HasLeaderOtherThanSelf}">
 						<Grid Padding="0,0,0,6">
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="44" />
+								<ColumnDefinition Width="36" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="36" />
+							</Grid.RowDefinitions>
 
-							<AbsoluteLayout HeightRequest="36" WidthRequest="36" HorizontalOptions="Start">
-								<local:SportButton BorderRadius="18" BackgroundColor="{StaticResource grayPrimary}"
-									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" />
-								<Label Text="{Binding LeaderMembership.CurrentRankOrdinal}" FontSize="Small" TextColor="White"
-									AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1" XAlign="Center" YAlign="Center" />
-							</AbsoluteLayout>
+							<local:CircleView FillColor="{StaticResource grayPrimary}" Text="{Binding LeaderMembership.CurrentRankOrdinal}">
+								<local:CircleView.TextSize>
+									<OnPlatform x:TypeArguments="x:Double" iOS="40" Android="52" />
+								</local:CircleView.TextSize>
+							</local:CircleView>
 							<Label Grid.Column="1" Text="{Binding League.LeaderRankDescription}"
 								VerticalOptions="Center" Style="{StaticResource sub}" IsVisible="true" />
 						</Grid>
@@ -89,7 +93,7 @@
 						<local:RankStripView x:Name="rankStrip" Margin="0,10" />
 					</ContentView>
 
-					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="200"
+					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="220"
 						IsVisible="{Binding OngoingChallengeViewModels, Converter={x:Static local:IsEmptyConverter.Instance}}}">
 						<cv:CarouselView.ItemTemplate>
 							<DataTemplate>
