@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<style name="DefaultTheme" parent="DefaultTheme.Base">
+	</style>
+	<style name="DefaultTheme.Base" parent="Theme.AppCompat.NoActionBar">
+		<item name="windowActionModeOverlay">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+	</style>
+	<style name="LaunchTheme" parent="Theme.AppCompat.NoActionBar">
+		<item name="windowActionModeOverlay">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowBackground">@drawable/LaunchView</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+	</style>
+</resources>

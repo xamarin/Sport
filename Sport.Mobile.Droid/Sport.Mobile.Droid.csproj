@@ -242,7 +242,6 @@
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\values-v21\Styles.xml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_add_white.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_fencing_white.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_menu_white.png" />
@@ -299,8 +298,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon_transparent.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_transparent.png" />
     <AndroidResource Include="Resources\drawable\icon_transparent.png" />
-    <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\drawable-xhdpi\gradient_launch.jpg" />
+    <AndroidResource Include="Resources\values\style.xml" />
+    <AndroidResource Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sport.Mobile.Shared\Sport.Mobile.Shared.csproj">

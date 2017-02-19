@@ -68,24 +68,22 @@ namespace Sport.Mobile.Shared
 
 		void SubscribeToIncomingPayload()
 		{
-			var weakSelf = new WeakReference(this);
-			Action<App, NotificationPayload> action = (app, payload) =>
-			{
-				var self = (MainBaseContentPage)weakSelf.Target;
-				self.OnIncomingPayload(payload);
-			};
-			MessagingCenter.Subscribe(weakSelf.Target, Messages.IncomingPayloadReceived, action);
+			MessagingCenter.Subscribe<App, NotificationPayload>(this, Messages.IncomingPayloadReceived, HandleIncomingPayload);
 		}
 
 		void SubscribeToAuthentication()
 		{
-			var weakSelf = new WeakReference(this);
-			Action<AuthenticationViewModel> action = (vm) =>
-			{
-				var self = (MainBaseContentPage)weakSelf.Target;
-				self.OnAuthenticated();
-			};
-			MessagingCenter.Subscribe(this, Messages.UserAuthenticated, action);
+			MessagingCenter.Subscribe<App>(this, Messages.UserAuthenticated, HandleAuthenticated);
+		}
+		void HandleAuthenticated(App sender)
+		{
+			OnAuthenticated();
+		}
+
+		void HandleIncomingPayload(App sender, NotificationPayload payload)
+		{
+			if(payload != null)
+				OnIncomingPayload(payload);
 		}
 
 		public bool HasInitialized

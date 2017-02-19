@@ -14,7 +14,7 @@ namespace Sport.Mobile.Shared
 		{
 			try
 			{
-				//Log exception to Mobile Center
+				//Log exception to Mobile Center - temp workaround until handled exceptions are implemented
 				var baseException = ex.GetBaseException();
 				var stack = baseException.StackTrace;
 
