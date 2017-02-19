@@ -199,6 +199,7 @@ namespace Sport.Mobile.Shared
 		public void AddDoneButton(string text = "Done", ContentPage page = null)
 		{
 			var btnDone = new ToolbarItem {
+				AutomationId = "doneButton",
 				Text = text,
 			};
 

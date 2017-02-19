@@ -14,7 +14,7 @@
 			<ViewCell>
 				<ViewCell.View>
 					<AbsoluteLayout Padding="{Binding IsLast, Converter={x:Static local:LeaguePaddingValueConverter.Instance}}">
-						<StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Fill"
+						<StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Fill" AutomationId="noLeaguesRow"
 							AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="30"
 								IsVisible="{Binding League, Converter={x:Static local:IsNullToBoolConverter.Instance}}">
 

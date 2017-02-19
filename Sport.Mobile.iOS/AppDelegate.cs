@@ -18,7 +18,7 @@ namespace Sport.Mobile.iOS
 		{
 			//#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
-            //#endif
+			//#endif
 
             CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
@@ -28,6 +28,7 @@ namespace Sport.Mobile.iOS
 
 			MobileCenter.Configure(Keys.MobileCenterKeyiOS);
 			LoadApplication(new App());
+
 
 			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
 			UIBarButtonItem.Appearance.SetBackButtonTitlePositionAdjustment(new UIOffset(0, -100), UIBarMetrics.Default);

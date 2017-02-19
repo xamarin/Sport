@@ -24,82 +24,10 @@ namespace Sport.Mobile.Tests
 			app = AppInitializer.StartApp(platform);
 		}
 
-		[Test]
-		public void JoinLeagueAndChallenge()
+		public void JoinLeague()
 		{
-			Func<AppQuery, AppQuery> menuButton = e => e.Marked("ic_more_vert_white");
-			if(platform == Platform.Android)
-				menuButton = e => e.Marked("NoResourceEntry-0").Index(app.Query(ee => ee.Marked("NoResourceEntry-0")).Length - 1);
-
-			app.WaitForElement("authButton");
-			app.Tap("When the app starts", "authButton");
-
-			var emailId = "#Email";
-			var passwordId = "#Passwd";
-			var nextButtonEmailId = "#next";
-			var nextButtonPasswordId = "#signIn";
-
-			//Give the Google auth form time to load
-			Thread.Sleep(15000);
-
-			var query = app.Query(e => e.Css("#identifierId"));
-
-			if(query.Length > 0)
-			{
-				emailId = "#identifierId";
-				passwordId = "#password";
-				nextButtonEmailId = "#identifierNext";
-				nextButtonPasswordId = "#passwordNext";
-			}
-
-			app.WaitForElement(e => e.Css(emailId));
-			app.EnterText(e => e.Css(emailId), Keys.TestEmail, "And I enter my email address");
-			app.DismissKeyboard();
-
-			if(app.Query(e => e.Css(nextButtonEmailId)).Length > 0)
-			{
-				app.Tap(e => e.Css(nextButtonEmailId));
-			}
-
-			if(TestEnvironment.IsTestCloud)
-				Thread.Sleep(10000); //Need to wait for form fields to animate over
-
-			//app.Repl();
-			app.Tap(e => e.Css(passwordId));
-			app.EnterText(e => e.Css(passwordId), Keys.TestPassword, "And I enter my super secret password");
-			app.DismissKeyboard();
-			app.Tap(e => e.Css(nextButtonPasswordId));
-
-			//app.Tap("And I click the Sign In button", e => e.Css("#signIn"));
-
-			//Thread.Sleep(2000); //Can't wait here because the dialog is conditional
-			//if(app.Query(e => e.Button("Remember")).Length > 0)
-			//	app.Back();
-
-			//Thread.Sleep(5000);
-			//if(app.Query(e => e.Css("#grant_heading")).Length > 0)
-			//{
-			//	app.ScrollDownTo(e => e.Css("#submit_approve_access"));
-			//	app.Tap("And I accept the terms", e => e.Css("#submit_approve_access"));
-			//}
-
-			app.WaitForElement(e => e.Marked("aliasText"), "Timed out waiting for aliasText", TimeSpan.FromMinutes(5));
-			app.ClearText(e => e.Marked("aliasText"));
-			app.EnterText(e => e.Marked("aliasText"), Keys.TestAlias, "And I enter my alias");
-			app.DismissKeyboard();
-			Thread.Sleep(3000);
-			
-			app.Tap("And I save my profile", e => e.Marked("saveButton"));
-			app.WaitForElement("continueButton", "Timed out waiting for the Continue button", TimeSpan.FromMinutes(5));
-			Thread.Sleep(3000);
-			app.Tap("Continue button", e => e.Marked("continueButton"));
-
-			app.WaitForElement(e => e.Marked("leagueRow"));
-			app.Screenshot("Now I should see a list of leagues I have joined");
-
-			//Available leagues
-			//			Helpers.OnAndroid("NoResourceEntry-0".Tap);
-			//			Helpers.OniOS("ic_add_white".Tap);
+			Authenticate();
+			RegisterAthlete();
 
 			if(platform == Platform.Android)
 				app.Tap("NoResourceEntry-0");
@@ -107,6 +35,46 @@ namespace Sport.Mobile.Tests
 				app.Tap("ic_add_white");
 
 			//Thread.Sleep(5000);
+			app.WaitForElement(e => e.Marked("leagueRow"));
+
+			if(TestEnvironment.IsTestCloud)
+				Thread.Sleep(10000); //Need to wait for list images to load
+
+			app.Screenshot("Then I should see a list of leagues to join");
+			app.ScrollDownTo(Keys.TestLeagueName, "leagueList");
+			app.Tap(Keys.TestLeagueName);
+
+			app.WaitForElement("leaguePhoto");
+			app.Screenshot("Then I should see the league details");
+
+			app.ScrollDownTo("joinButton", "scrollView");
+			app.Tap("joinButton");
+
+			app.WaitForElement("doneButton");
+			app.Tap("doneButton");
+
+			app.Tap(Keys.TestLeagueName);
+			app.WaitForElement("leaguePhoto");
+		}
+
+		[Test]
+		public void JoinLeagueAndChallenge()
+		{
+			Authenticate();
+			RegisterAthlete();
+
+			Func<AppQuery, AppQuery> menuButton = e => e.Marked("ic_more_vert_white");
+			if(platform == Platform.Android)
+				menuButton = e => e.Marked("NoResourceEntry-0").Index(app.Query(ee => ee.Marked("NoResourceEntry-0")).Length - 1);
+
+			app.WaitForElement(e => e.Marked("leagueRow"));
+			app.Screenshot("Now I should see a list of leagues I have joined");
+
+			if(platform == Platform.Android)
+				app.Tap("NoResourceEntry-0");
+			else if(platform == Platform.iOS)
+				app.Tap("ic_add_white");
+
 			app.WaitForElement(e => e.Marked("leagueRow"));
 
 			if(TestEnvironment.IsTestCloud)
@@ -223,6 +191,62 @@ namespace Sport.Mobile.Tests
 
 			//			Helpers.OnAndroid(app.Back);
 			//			Helpers.OniOS("Done".Tap);
+		}
+
+		void Authenticate()
+		{
+			app.WaitForElement("authButton");
+			app.Tap("When the app starts", "authButton");
+
+			var emailId = "#Email";
+			var passwordId = "#Passwd";
+			var nextButtonEmailId = "#next";
+			var nextButtonPasswordId = "#signIn";
+
+			//Give the Google auth form time to load
+			Thread.Sleep(15000);
+
+			var query = app.Query(e => e.Css("#identifierId"));
+
+			if(query.Length > 0)
+			{
+				emailId = "#identifierId";
+				passwordId = "#password";
+				nextButtonEmailId = "#identifierNext";
+				nextButtonPasswordId = "#passwordNext";
+			}
+
+			app.WaitForElement(e => e.Css(emailId));
+			app.EnterText(e => e.Css(emailId), Keys.TestEmail, "And I enter my email address");
+			app.DismissKeyboard();
+
+			if(app.Query(e => e.Css(nextButtonEmailId)).Length > 0)
+			{
+				app.Tap(e => e.Css(nextButtonEmailId));
+			}
+
+			if(TestEnvironment.IsTestCloud)
+				Thread.Sleep(10000); //Need to wait for form fields to animate over
+
+			//app.Repl();
+			app.Tap(e => e.Css(passwordId));
+			app.EnterText(e => e.Css(passwordId), Keys.TestPassword, "And I enter my super secret password");
+			app.DismissKeyboard();
+			app.Tap(e => e.Css(nextButtonPasswordId));
+		}
+
+		void RegisterAthlete()
+		{
+			app.WaitForElement(e => e.Marked("aliasText"), "Timed out waiting for aliasText", TimeSpan.FromMinutes(5));
+			app.ClearText(e => e.Marked("aliasText"));
+			app.EnterText(e => e.Marked("aliasText"), Keys.TestAlias, "And I enter my alias");
+			app.DismissKeyboard();
+			Thread.Sleep(3000);
+
+			app.Tap("And I save my profile", e => e.Marked("saveButton"));
+			app.WaitForElement("continueButton", "Timed out waiting for the Continue button", TimeSpan.FromMinutes(5));
+			Thread.Sleep(3000);
+			app.Tap("Continue button", e => e.Marked("continueButton"));
 		}
 	}
 }
