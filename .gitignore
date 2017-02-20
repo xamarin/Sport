@@ -194,3 +194,5 @@ run_Android_XTC.sh
 com.xamarin.sport_public.apk
 com.xamarin.sport_public.ipa
 device_sets.txt
+
+com.xamarin.sport_public-Signed.apk
