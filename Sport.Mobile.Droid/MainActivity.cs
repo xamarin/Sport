@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Sport.Mobile.Shared;
 using Xamarin.Forms.Platform.Android;
 using Android;
+using Android.Support.V4.Content;
 
 namespace Sport.Mobile.Droid
 {
@@ -41,19 +42,14 @@ namespace Sport.Mobile.Droid
 
 			try
 			{
+				AdjustStatusBar();
+
 				base.OnCreate(bundle);
-
-				Window.DecorView.SystemUiVisibility = StatusBarVisibility.Hidden;
-
-				//var attrs = Window.Attributes;
-				//var _originalFlags = attrs.Flags;
-				//attrs.Flags |= WindowManagerFlags.Fullscreen;
-				//Window.Attributes = attrs;
-
-				//this.Window.ClearFlags(WindowManagerFlags.Fullscreen);
 				ToolbarResource = Resource.Layout.Toolbar;
 
-				Window.SetSoftInputMode(SoftInput.AdjustPan);
+				Window.SetSoftInputMode(SoftInput.AdjustResize);
+				Window.DecorView.SystemUiVisibility = StatusBarVisibility.Visible;
+
 				CurrentPlatform.Init();
 				Xamarin.Forms.Forms.Init(this, bundle);
 				ImageCircleRenderer.Init();
@@ -61,11 +57,33 @@ namespace Sport.Mobile.Droid
 				MobileCenter.Configure(Keys.MobileCenterKeyAndroid);
 				LoadApplication(new App());
 				XFGloss.Droid.Library.Init(this, bundle);
+
+				//if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+				//{
+				//	Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+				//	var barBackground = new global::Android.Graphics.Color(ContextCompat.GetColor(Xamarin.Forms.Forms.Context, Resource.Color.primaryDark));
+				//	Window.SetStatusBarColor(barBackground);
+				//	SetStatusBarColor(barBackground);
+				//}
+
 			}
 			catch(Exception e)
 			{
 				Console.WriteLine("**SPORT LAUNCH EXCEPTION**\n\n" + e);
 				e.Track();
+			}
+		}
+
+		void AdjustStatusBar()
+		{
+			//Temp hack until the FormsAppCompatActivity works for full screen
+			if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+			{
+				var statusBarHeightInfo = typeof(FormsAppCompatActivity).GetField("_statusBarHeight",
+											  System.Reflection.BindingFlags.Instance |
+											  System.Reflection.BindingFlags.NonPublic);
+
+				statusBarHeightInfo.SetValue(this, 0);
 			}
 		}
 

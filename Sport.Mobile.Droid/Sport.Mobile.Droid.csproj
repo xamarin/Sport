@@ -215,6 +215,12 @@
     <Reference Include="OkHttp">
       <HintPath>..\packages\modernhttpclient.2.4.2\lib\MonoAndroid\OkHttp.dll</HintPath>
     </Reference>
+    <Reference Include="FAB.Droid">
+      <HintPath>..\packages\FAB.Forms.2.1.1\lib\MonoAndroid10\FAB.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="FAB.Forms">
+      <HintPath>..\packages\FAB.Forms.2.1.1\lib\MonoAndroid10\FAB.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -302,6 +308,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\gradient_launch.jpg" />
     <AndroidResource Include="Resources\values\style.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
+    <AndroidResource Include="Resources\drawable\action_bar_background.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sport.Mobile.Shared\Sport.Mobile.Shared.csproj">

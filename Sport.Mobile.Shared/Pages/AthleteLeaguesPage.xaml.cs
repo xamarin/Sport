@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using FAB.Forms;
 
 namespace Sport.Mobile.Shared
 {
 	public partial class AthleteLeaguesPage : AthleteLeaguesXaml
 	{
-		public AthleteLeaguesPage ()
+		public AthleteLeaguesPage()
 		{
-			Initialize ();
+			Initialize();
 		}
 
 		public AthleteLeaguesPage(Athlete athlete)
@@ -23,17 +24,40 @@ namespace Sport.Mobile.Shared
 		{
 			InitializeComponent();
 			Title = "Leagues";
+
+			if(Device.OS != TargetPlatform.Android)
+			{
+				var item = new ToolbarItem
+				{
+					Icon = "ic_add_white",
+					AutomationId = "joinLeagueButton",
+				};
+				item.Clicked += OnJoinClicked;
+				ToolbarItems.Insert(0, item);
+			}
+			else
+			{
+				var fab = new FloatingActionButton
+				{
+					Source = "ic_add_white",
+					Size = FabSize.Normal,
+					NormalColor = (Color)Application.Current.Resources["pinkPrimary"],
+					HorizontalOptions = LayoutOptions.End,
+					VerticalOptions = LayoutOptions.End,
+					Margin = new Thickness(0, 0, 24, 50),
+					HasShadow = false,
+				};
+
+				root.Children.Add(fab);
+				fab.Clicked += OnJoinClicked;
+			}
 		}
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
 
-			btnJoin.Clicked += OnJoinClicked;
 			list.ItemSelected += OnListItemSelected;
-
-			//foreach(var l in ViewModel.Leagues)
-			//	l.NotifyPropertiesChanged();
 		}
 
 		public async override Task<bool> EnsureUserAuthenticated()
@@ -53,7 +77,6 @@ namespace Sport.Mobile.Shared
 
 		protected override void OnDisappearing()
 		{
-			btnJoin.Clicked -= OnJoinClicked;
 			list.ItemSelected -= OnListItemSelected;
 
 			base.OnDisappearing();
@@ -63,7 +86,8 @@ namespace Sport.Mobile.Shared
 		{
 			var weakSelf = new WeakReference(this);
 			var page = new AvailableLeaguesPage();
-			page.OnJoinedLeague = async (l) => {
+			page.OnJoinedLeague = async (l) =>
+			{
 				var self = (AthleteLeaguesPage)weakSelf.Target;
 				if(self == null)
 					return;
@@ -84,13 +108,16 @@ namespace Sport.Mobile.Shared
 			var vm = list.SelectedItem as LeagueViewModel;
 			list.SelectedItem = null; //Deselect the item
 
-			if(vm.LeagueId == null) //Ensure the league is a valid league - some items in this list are used to display an empty message and do not have a LeagueId
+			//Ensure the league is a valid league some items in this list are
+			//used to display an empty message and do not have a LeagueId
+			if(vm.LeagueId == null)
 				return;
 
 			//Referencing 'this' in the body of delegate will prevent the page from being collected once it's popped
 			var weakSelf = new WeakReference(this);
 			var page = new LeagueDetailsPage(vm.League);
-			page.OnAbandondedLeague = (async (l) => {
+			page.OnAbandondedLeague = (async (l) =>
+			{
 				var self = (AthleteLeaguesPage)weakSelf.Target;
 				if(self == null)
 					return;
@@ -131,10 +158,6 @@ namespace Sport.Mobile.Shared
 		{
 			var lst = new List<string>();
 			lst.Add(_profile);
-
-			//			if(App.Instance.CurrentAthlete.IsAdmin)
-			//				lst.Add(_admin);
-
 			lst.Add(_about);
 			lst.Add(_logout);
 
@@ -151,9 +174,6 @@ namespace Sport.Mobile.Shared
 
 			if(action == _profile)
 				OnProfileSelected();
-
-			//if(action == _admin)
-			//	OnAdminSelected();
 
 			if(action == _about)
 				OnAboutSelected();
@@ -173,11 +193,6 @@ namespace Sport.Mobile.Shared
 			page.OnSave = async () => await Navigation.PopModalAsync();
 			await Navigation.PushModalAsync(page.WithinNavigationPage());
 		}
-
-		//async void OnAdminSelected()
-		//{
-		//	await Navigation.PushModalAsync(new AdminPage().WithinNavigationPage());
-		//}
 
 		async void OnAboutSelected()
 		{
