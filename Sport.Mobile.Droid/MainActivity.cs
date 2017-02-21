@@ -42,7 +42,7 @@ namespace Sport.Mobile.Droid
 
 			try
 			{
-				AdjustStatusBar();
+				//AdjustStatusBar();
 
 				base.OnCreate(bundle);
 				ToolbarResource = Resource.Layout.Toolbar;
