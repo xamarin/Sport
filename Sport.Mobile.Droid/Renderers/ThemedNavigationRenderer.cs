@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Android.Support.V4.App;
 using Sport.Mobile.Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -16,6 +17,11 @@ namespace Sport.Mobile.Droid
 	{
 		public ThemedNavigationRenderer()
 		{
+		}
+
+		protected override void SetupPageTransition(FragmentTransaction transaction, bool isPush)
+		{
+			base.SetupPageTransition(transaction, isPush);
 		}
 
 		protected override void OnElementChanged(ElementChangedEventArgs<NavigationPage> e)
