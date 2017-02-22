@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Sport.Mobile.Shared.ChallengeCardView"
@@ -11,7 +11,7 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0">
 
 		<StackLayout BackgroundColor="{StaticResource grayPrimary}" Orientation="Horizontal"
-			HorizontalOptions="FillAndExpand" Padding="14">
+			HorizontalOptions="FillAndExpand" Padding="14,8">
 			<Image Source="ic_fencing_white" />
 			<Label Text="Challenge" FontSize="Medium" TextColor="White" VerticalOptions="Center" LineBreakMode="NoWrap" />
 			<Label Text="{Binding ViewModel.Challenge.ProposedTime, StringFormat='\{0:g\}'}" FontSize="Medium" TextColor="White"

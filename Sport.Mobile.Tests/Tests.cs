@@ -24,57 +24,16 @@ namespace Sport.Mobile.Tests
 			app = AppInitializer.StartApp(platform);
 		}
 
-		public void JoinLeague()
-		{
-			Authenticate();
-			RegisterAthlete();
-
-			if(platform == Platform.Android)
-				app.Tap("NoResourceEntry-0");
-			else if(platform == Platform.iOS)
-				app.Tap("ic_add_white");
-
-			//Thread.Sleep(5000);
-			app.WaitForElement(e => e.Marked("leagueRow"));
-
-			if(TestEnvironment.IsTestCloud)
-				Thread.Sleep(10000); //Need to wait for list images to load
-
-			app.Screenshot("Then I should see a list of leagues to join");
-			app.ScrollDownTo(Keys.TestLeagueName, "leagueList");
-			app.Tap(Keys.TestLeagueName);
-
-			app.WaitForElement("leaguePhoto");
-			app.Screenshot("Then I should see the league details");
-
-			app.ScrollDownTo("joinButton", "scrollView");
-			app.Tap("joinButton");
-
-			app.WaitForElement("doneButton");
-			app.Tap("doneButton");
-
-			app.Tap(Keys.TestLeagueName);
-			app.WaitForElement("leaguePhoto");
-		}
-
 		[Test]
 		public void JoinLeagueAndChallenge()
 		{
 			Authenticate();
 			RegisterAthlete();
 
-			Func<AppQuery, AppQuery> menuButton = e => e.Marked("ic_more_vert_white");
-			if(platform == Platform.Android)
-				menuButton = e => e.Marked("NoResourceEntry-0").Index(app.Query(ee => ee.Marked("NoResourceEntry-0")).Length - 1);
-
-			app.WaitForElement(e => e.Marked("leagueRow"));
+			app.WaitForElement(e => e.Marked("leagueRow"), "Timed out waiting for league row", TimeSpan.FromMinutes(2));
 			app.Screenshot("Now I should see a list of leagues I have joined");
 
-			if(platform == Platform.Android)
-				app.Tap("NoResourceEntry-0");
-			else if(platform == Platform.iOS)
-				app.Tap("ic_add_white");
-
+			app.Tap("joinLeagueButton");
 			app.WaitForElement(e => e.Marked("leagueRow"));
 
 			if(TestEnvironment.IsTestCloud)
@@ -85,7 +44,7 @@ namespace Sport.Mobile.Tests
 			Thread.Sleep(1000);
 			app.Tap("leagueRow");
 
-			app.WaitForElement("leaderboardButton");
+			app.ScrollDownTo("leaderboardButton", "leagueDetailsScrollView");
 			app.Screenshot("Then I should see a league I can join");
 
 			app.Back(platform);
@@ -97,14 +56,14 @@ namespace Sport.Mobile.Tests
 
 			app.WaitForElement("leaguePhoto");
 			app.Screenshot("Then I should see the league details");
-			app.ScrollDownTo("leaderboardButton", "scrollView");
+			app.ScrollDownTo("leaderboardButton", "leagueDetailsScrollView");
 			app.Tap("leaderboardButton");
 
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			app.ScrollDownTo("10");
-			app.Tap("10");
+			app.ScrollDownTo("12");
+			app.Tap("12");
 			app.WaitForElement("memberDetailsRoot");
 			app.Screenshot("Member details page");
 
@@ -154,7 +113,7 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("Leaderboard");
 			app.Back(platform);
 
-			app.Tap(menuButton);
+			app.Tap("moreButton");
 			app.Tap("Cowardly Abandon League");
 
 			app.Screenshot("Confirm");
@@ -163,7 +122,7 @@ namespace Sport.Mobile.Tests
 			app.Back(platform);
 			app.Screenshot("End");
 
-			app.Tap(menuButton);
+			app.Tap("moreButton");
 			app.Screenshot("More options menu");
 			app.Tap(e => e.Marked("About"), "About page");
 
@@ -173,7 +132,7 @@ namespace Sport.Mobile.Tests
 
 			app.Tap("Done");
 
-			app.Tap(menuButton);
+			app.Tap("moreButton");
 			app.Tap(e => e.Marked("My Profile"), "Profile page");
 			app.ScrollDownTo("saveButton", "scrollView");
 			app.Tap("Saving profile", e => e.Marked("saveButton"));

@@ -8,12 +8,12 @@
 	x:Name="rootPage">
 
 	<local:LeagueDetailsXaml.ToolbarItems>
-		<ToolbarItem x:Name="btnRefresh" Text="Refresh" AutomationId="refreshButton" Icon="ic_refresh_white" />
-		<ToolbarItem x:Name="btnMore" Icon="ic_more_vert_white" Clicked="OnMoreClicked" AutomationId="moreButton" />
+		<ToolbarItem x:Name="btnRefresh" Text="refreshButton" AutomationId="refreshButton" Icon="ic_refresh_white" />
+		<ToolbarItem x:Name="btnMore" Text="moreButton" Icon="ic_more_vert_white" Clicked="OnMoreClicked" AutomationId="moreButton" />
 	</local:LeagueDetailsXaml.ToolbarItems>
 
 	<local:LeagueDetailsXaml.Content>
-	<ScrollView x:Name="scrollView" AutomationId="scrollView">
+	<ScrollView x:Name="scrollView" AutomationId="leagueDetailsScrollView">
 		<Grid x:Name="root" VerticalOptions="Fill">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
@@ -88,7 +88,7 @@
 						<local:RankStripView x:Name="rankStrip" Margin="0,10" />
 					</ContentView>
 
-					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="220"
+					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="186"
 						IsVisible="{Binding OngoingChallengeViewModels, Converter={x:Static local:IsEmptyConverter.Instance}}}">
 						<cv:CarouselView.ItemTemplate>
 							<DataTemplate>

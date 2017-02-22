@@ -14,7 +14,8 @@
 	</local:AthleteLeaguesXaml.Content>
 
 	<local:AthleteLeaguesXaml.ToolbarItems>
-		<ToolbarItem Icon="ic_more_vert_white" Clicked="OnMoreClicked" AutomationId="moreButton" />
+		<ToolbarItem x:Name="joinButton" Icon="ic_add_white" Clicked="OnJoinClicked" AutomationId="joinLeagueButton" />
+		<ToolbarItem Icon="ic_more_vert_white" Clicked="OnMoreClicked" Text="moreButton" AutomationId="moreButton" />
 	</local:AthleteLeaguesXaml.ToolbarItems>
 
 </local:AthleteLeaguesXaml>

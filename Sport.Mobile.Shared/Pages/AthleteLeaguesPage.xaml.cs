@@ -26,18 +26,9 @@ namespace Sport.Mobile.Shared
 			Title = "Leagues";
 			BarBackgroundColor = (Color)Application.Current.Resources["grayPrimary"];
 
-			if(Device.OS != TargetPlatform.Android)
+			if(Device.OS == TargetPlatform.Android)
 			{
-				var item = new ToolbarItem
-				{
-					Icon = "ic_add_white",
-					AutomationId = "joinLeagueButton",
-				};
-				item.Clicked += OnJoinClicked;
-				ToolbarItems.Insert(0, item);
-			}
-			else
-			{
+				ToolbarItems.Remove(joinButton);
 				var fab = new FloatingActionButton
 				{
 					Source = "ic_add_white",
@@ -45,6 +36,7 @@ namespace Sport.Mobile.Shared
 					NormalColor = (Color)Application.Current.Resources["pinkPrimary"],
 					HorizontalOptions = LayoutOptions.End,
 					VerticalOptions = LayoutOptions.End,
+					AutomationId = "joinLeagueButton",
 					Margin = new Thickness(0, 0, 24, 50),
 					HasShadow = false,
 				};
