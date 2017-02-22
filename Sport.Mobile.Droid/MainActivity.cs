@@ -42,7 +42,7 @@ namespace Sport.Mobile.Droid
 
 			try
 			{
-				//AdjustStatusBar();
+				AdjustStatusBar(0);
 
 				base.OnCreate(bundle);
 				ToolbarResource = Resource.Layout.Toolbar;
@@ -57,15 +57,6 @@ namespace Sport.Mobile.Droid
 				MobileCenter.Configure(Keys.MobileCenterKeyAndroid);
 				LoadApplication(new App());
 				XFGloss.Droid.Library.Init(this, bundle);
-
-				//if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-				//{
-				//	Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-				//	var barBackground = new global::Android.Graphics.Color(ContextCompat.GetColor(Xamarin.Forms.Forms.Context, Resource.Color.primaryDark));
-				//	Window.SetStatusBarColor(barBackground);
-				//	SetStatusBarColor(barBackground);
-				//}
-
 			}
 			catch(Exception e)
 			{
@@ -74,7 +65,7 @@ namespace Sport.Mobile.Droid
 			}
 		}
 
-		void AdjustStatusBar()
+		public void AdjustStatusBar(int size)
 		{
 			//Temp hack until the FormsAppCompatActivity works for full screen
 			if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
@@ -83,7 +74,7 @@ namespace Sport.Mobile.Droid
 											  System.Reflection.BindingFlags.Instance |
 											  System.Reflection.BindingFlags.NonPublic);
 
-				statusBarHeightInfo.SetValue(this, 0);
+				statusBarHeightInfo.SetValue(this, size);
 			}
 		}
 
@@ -96,7 +87,6 @@ namespace Sport.Mobile.Droid
 		protected override void OnResume()
 		{
 			IsRunning = true;
-
 			ProcessNotificationPayload();
 			base.OnResume();
 		}

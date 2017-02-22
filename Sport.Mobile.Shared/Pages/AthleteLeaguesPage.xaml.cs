@@ -24,6 +24,7 @@ namespace Sport.Mobile.Shared
 		{
 			InitializeComponent();
 			Title = "Leagues";
+			BarBackgroundColor = (Color)Application.Current.Resources["grayPrimary"];
 
 			if(Device.OS != TargetPlatform.Android)
 			{
@@ -191,7 +192,9 @@ namespace Sport.Mobile.Shared
 
 			var page = new AthleteProfilePage(App.Instance.CurrentAthlete.Id);
 			page.OnSave = async () => await Navigation.PopModalAsync();
-			await Navigation.PushModalAsync(page.WithinNavigationPage());
+
+			var nav = new ThemedNavigationPage(page);
+			await Navigation.PushModalAsync(nav);
 		}
 
 		async void OnAboutSelected()

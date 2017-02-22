@@ -23,6 +23,7 @@ namespace Sport.Mobile.Shared
 			InitializeComponent();
 			Title = "Available Leagues";
 
+			BarBackgroundColor = (Color)Application.Current.Resources["grayPrimary"];
 			list.ItemSelected += OnItemSelected;
 			AddDoneButton();
 

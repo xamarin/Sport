@@ -50,7 +50,6 @@ namespace Sport.Mobile.Shared
 
 		public MainBaseContentPage()
 		{
-			BarBackgroundColor = (Color)Application.Current.Resources["grayPrimary"];
 			BarTextColor = Color.White;
 			BackgroundColor = Color.White;
 
