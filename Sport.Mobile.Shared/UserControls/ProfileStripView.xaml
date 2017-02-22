@@ -15,7 +15,7 @@
 
 			<StackLayout Padding="0,18,0,0" HorizontalOptions="Start" VerticalOptions="Start">
 				<Label Text="{Binding Athlete.Name}" FontSize="Large" HorizontalOptions="StartAndExpand" TextColor="{Binding TextColor}" />
-				<Label Text="{Binding Athlete.Email}" FontSize="Micro" HorizontalOptions="StartAndExpand" TextColor="{Binding TextColor}" />
+				<Label Text="user@demo.com" FontSize="Micro" HorizontalOptions="StartAndExpand" TextColor="{Binding TextColor}" />
 				<Label Text="{Binding Athlete.Alias, StringFormat='AKA \{0\}'}" FontSize="Small" TextColor="{Binding TextColor}" Margin="0,18,0,0" />
 			</StackLayout>
 		</StackLayout>

@@ -95,10 +95,6 @@ namespace Sport.Mobile.Shared
 		{
 			get
 			{
-				//For demo purposes
-				//if(App.Instance.CurrentAthlete?.Id != null)
-				//	return "user@demo.com";
-
 				return _email;
 			}
 			set

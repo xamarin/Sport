@@ -88,7 +88,7 @@
 						<local:RankStripView x:Name="rankStrip" Margin="0,10" />
 					</ContentView>
 
-					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="186"
+					<cv:CarouselView ItemsSource="{Binding OngoingChallengeViewModels}" x:Name="challengeCarousel" HeightRequest="182"
 						IsVisible="{Binding OngoingChallengeViewModels, Converter={x:Static local:IsEmptyConverter.Instance}}}">
 						<cv:CarouselView.ItemTemplate>
 							<DataTemplate>

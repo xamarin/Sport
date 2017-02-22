@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using Xamarin.UITest;
@@ -56,14 +57,21 @@ namespace Sport.Mobile.Tests
 
 			app.WaitForElement("leaguePhoto");
 			app.Screenshot("Then I should see the league details");
-			app.ScrollDownTo("leaderboardButton", "leagueDetailsScrollView");
+			app.ScrollDownTo("leaderboardButton", "leagueDetailsScrollView", ScrollStrategy.Gesture, .67, 1000, true, TimeSpan.FromMinutes(1));
 			app.Tap("leaderboardButton");
 
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			app.ScrollDownTo("12");
-			app.Tap("12");
+			//Want to tap on the row above test player, RowHeight=80 in source code
+			app.ScrollDownTo("*You*", "leaderboardList", ScrollStrategy.Gesture, .67, 1000, true, TimeSpan.FromMinutes(1));
+
+			var results = app.Query("aliasLabel");
+			var previous = results.TakeWhile(e => e.Text != "*You*").LastOrDefault();
+
+			//Tap the row previous to the test user
+			app.TapCoordinates(previous.Rect.CenterX, previous.Rect.CenterY);
+
 			app.WaitForElement("memberDetailsRoot");
 			app.Screenshot("Member details page");
 
@@ -187,7 +195,6 @@ namespace Sport.Mobile.Tests
 			if(TestEnvironment.IsTestCloud)
 				Thread.Sleep(10000); //Need to wait for form fields to animate over
 
-			//app.Repl();
 			app.Tap(e => e.Css(passwordId));
 			app.EnterText(e => e.Css(passwordId), Keys.TestPassword, "And I enter my super secret password");
 			app.DismissKeyboard();
@@ -205,7 +212,24 @@ namespace Sport.Mobile.Tests
 			app.Tap("And I save my profile", e => e.Marked("saveButton"));
 			app.WaitForElement("continueButton", "Timed out waiting for the Continue button", TimeSpan.FromMinutes(5));
 			Thread.Sleep(3000);
+
+			ToggleSwitch("pushToggle", true);
+			app.Screenshot("And I enable push notifications");
+			ToggleSwitch("pushToggle", false);
+			
 			app.Tap("Continue button", e => e.Marked("continueButton"));
+		}
+
+		void ToggleSwitch(string marked, bool isToggled)
+		{
+			if(platform == Platform.iOS)
+			{
+				app.Query(e => e.Marked(marked).Invoke("setOn", Convert.ToInt32(isToggled), "animated", 1));
+			}
+			else if (platform == Platform.Android)
+			{
+				app.Query(e => e.Marked(marked).Invoke("setChecked", isToggled));
+			}
 		}
 	}
 }

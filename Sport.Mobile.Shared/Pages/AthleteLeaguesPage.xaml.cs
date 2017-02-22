@@ -33,7 +33,7 @@ namespace Sport.Mobile.Shared
 				{
 					Source = "ic_add_white",
 					Size = FabSize.Normal,
-					NormalColor = (Color)Application.Current.Resources["pinkPrimary"],
+					NormalColor = (Color)Application.Current.Resources["grayDark"],
 					HorizontalOptions = LayoutOptions.End,
 					VerticalOptions = LayoutOptions.End,
 					AutomationId = "joinLeagueButton",

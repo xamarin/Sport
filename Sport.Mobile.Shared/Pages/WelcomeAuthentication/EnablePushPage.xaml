@@ -36,7 +36,8 @@
 					<Label FontSize="Medium" XAlign="Center" HorizontalOptions="StartAndExpand"
 						Text="Enable notifications" VerticalOptions="Center" />
 					
-					<Switch IsToggled="{Binding EnablePushNotifications}" xfg:SwitchGloss.OnTintColor="#6FFF" HorizontalOptions="End" VerticalOptions="Center" />
+					<Switch IsToggled="{Binding EnablePushNotifications}" xfg:SwitchGloss.OnTintColor="#6FFF" xfg:SwitchGloss.ThumbOnTintColor="White"
+						AutomationId="pushToggle" HorizontalOptions="End" VerticalOptions="Center" />
 				</StackLayout>
 			</StackLayout>
 

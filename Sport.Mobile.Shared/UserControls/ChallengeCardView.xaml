@@ -7,7 +7,7 @@
 	BackgroundColor="{StaticResource grayMedium}"
 	Padding="0,0,.5,.5">
 
-	<StackLayout x:Name="root" Orientation="Vertical" Spacing="0" VerticalOptions="Fill" BackgroundColor="White"
+	<StackLayout x:Name="root" Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand" BackgroundColor="White"
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0">
 
 		<StackLayout BackgroundColor="{StaticResource grayPrimary}" Orientation="Horizontal"
@@ -37,33 +37,30 @@
 			</StackLayout>
 		</StackLayout>
 
-		<StackLayout Orientation="Horizontal" Spacing="14" HorizontalOptions="EndAndExpand" Padding="14" VerticalOptions="Center"
+		<StackLayout Orientation="Horizontal" Spacing="14" HorizontalOptions="EndAndExpand" Padding="14" VerticalOptions="FillAndExpand"
 			IsVisible="{Binding ViewModel.CanAccept}">
 
-			<local:ImageButton Text="ACCEPT" WidthRequest="160" HeightRequest="50" Source="ic_thumb_up_white"
+			<local:ImageButton Text="ACCEPT" WidthRequest="160" Source="ic_thumb_up_white" VerticalOptions="End"
 				ButtonBackgroundColor="{StaticResource greenPrimary}" Clicked="HandleAccepted" /> 
 
-			<local:ImageButton Text="DECLINE" WidthRequest="160" HeightRequest="50" Source="ic_thumb_down_white"
-				ButtonBackgroundColor="{StaticResource redPrimary}" Clicked="HandleDeclined" /> 
+			<local:ImageButton Text="DECLINE" WidthRequest="160" Source="ic_thumb_down_white" VerticalOptions="End"
+				ButtonBackgroundColor="{StaticResource redPrimary}" Clicked="HandleDeclined" />
 
 		</StackLayout>
 
-		<StackLayout Orientation="Horizontal" Spacing="14" HorizontalOptions="EndAndExpand" Padding="14" VerticalOptions="Center"
+		<StackLayout Orientation="Horizontal" Spacing="14" HorizontalOptions="EndAndExpand" Padding="14" VerticalOptions="FillAndExpand"
 			IsVisible="{Binding ViewModel.CanPostMatchResults}">
 
-			<local:ImageButton Text="POST RESULTS" WidthRequest="200" HeightRequest="40" Clicked="HandlePostResults"
-				Source="ic_send_white" ButtonBackgroundColor="{Binding ViewModel.Challenge.League.Theme.Primary}" /> 
+			<local:ImageButton Text="POST RESULTS" WidthRequest="200" Clicked="HandlePostResults" VerticalOptions="End"
+				Source="ic_send_white" ButtonBackgroundColor="{Binding ViewModel.Challenge.League.Theme.Primary}" />
 		</StackLayout>
 
-		<StackLayout Orientation="Vertical" Spacing="14" HorizontalOptions="EndAndExpand" Padding="0,0,14,14" VerticalOptions="Center"
+		<StackLayout Orientation="Vertical" Spacing="14" HorizontalOptions="EndAndExpand" Padding="0,0,14,14" VerticalOptions="FillAndExpand"
 			IsVisible="{Binding ViewModel.AwaitingDecision}">
 
-			<local:ImageButton Text="NUDGE ATHLETE" WidthRequest="200" HeightRequest="40" Clicked="HandleNudgeAthlete" HorizontalOptions="End"
-				Source="ic_notifications_active_white" ButtonBackgroundColor="{Binding ViewModel.Challenge.League.Theme.Primary}" /> 
-
-			<Label Text="{Binding ViewModel.Opponent.Alias, StringFormat='awaiting \{0\} to accept or decline'}"
-				TextColor="{Binding ViewModel.Challenge.League.Theme.Dark}" />
-
+			<local:ImageButton Text="NUDGE ATHLETE" WidthRequest="200" Clicked="HandleNudgeAthlete" HorizontalOptions="End"
+				VerticalOptions="EndAndExpand" Source="ic_notifications_active_white"
+				ButtonBackgroundColor="{Binding ViewModel.Challenge.League.Theme.Primary}" /> 
 		</StackLayout>
 	</StackLayout>
 </ContentView>

@@ -39,7 +39,7 @@
 										</AbsoluteLayout>
 
 										<StackLayout Spacing="0" VerticalOptions="Center">
-											<Label Text="{Binding Alias}" FontSize="Medium" LineBreakMode="TailTruncation" />
+											<Label Text="{Binding Alias}" FontSize="Medium" LineBreakMode="TailTruncation" AutomationId="aliasLabel" />
 											<Label Text="{Binding Membership.Athlete.Name}" FontSize="Micro" TextColor="{StaticResource grayPrimary}"  LineBreakMode="TailTruncation" />
 										</StackLayout>
 									</StackLayout>

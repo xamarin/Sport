@@ -20,6 +20,7 @@ namespace Sport.Mobile.iOS
 			Xamarin.Calabash.Start();
 			//#endif
 
+
             CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
 			Forms.Init();
