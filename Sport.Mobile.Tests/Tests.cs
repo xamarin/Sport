@@ -63,10 +63,10 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			//Want to tap on the row above test player, RowHeight=80 in source code
-			app.ScrollDownTo("*You*", "leaderboardList", ScrollStrategy.Gesture, .67, 1000, true, TimeSpan.FromMinutes(1));
+			app.ScrollDownTo("*You*", "leaderboardList", ScrollStrategy.Gesture, .67, 300, true, TimeSpan.FromMinutes(1));
 
 			var results = app.Query("aliasLabel");
+			//var previous = results.SingleOrDefault(e => e.Text == "*You*");
 			var previous = results.TakeWhile(e => e.Text != "*You*").LastOrDefault();
 
 			//Tap the row previous to the test user
@@ -75,7 +75,7 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("memberDetailsRoot");
 			app.Screenshot("Member details page");
 
-			app.ScrollDownTo("pastButton", "scrollView");
+			app.ScrollDownTo("pastButton");
 			app.Tap("Bottom of member details page", e => e.Marked("pastButton"));
 
 			app.WaitForElement("challengeItemRoot");
@@ -90,7 +90,7 @@ namespace Sport.Mobile.Tests
 				app.WaitForElement("challengeRoot");
 				app.Screenshot("Challenge result page");
 
-				app.ScrollDownTo("winningLabel", "scrollView");
+				app.ScrollDownTo("winningLabel");
 				app.Screenshot("Challenge result page bottom");
 				app.Back(platform);
 				app.Tap("Done");
@@ -135,14 +135,14 @@ namespace Sport.Mobile.Tests
 			app.Tap(e => e.Marked("About"), "About page");
 
 			app.WaitForElement("aboutPage");
-			app.ScrollDownTo("sourceButton", "scrollView");
+			app.ScrollDownTo("sourceButton");
 			app.Screenshot("Bottom of About page");
 
 			app.Tap("Done");
 
 			app.Tap("moreButton");
 			app.Tap(e => e.Marked("My Profile"), "Profile page");
-			app.ScrollDownTo("saveButton", "scrollView");
+			app.ScrollDownTo("saveButton");
 			app.Tap("Saving profile", e => e.Marked("saveButton"));
 
 			app.WaitForElement(e => e.Marked("leagueRow"));

@@ -13,7 +13,7 @@
     </xfg:ContentPageGloss.BackgroundGradient>
 	
 	<local:AboutPageXaml.Content>
-		<ScrollView AutomationId="scrollView">
+		<ScrollView AutomationId="aboutScrollView">
 			<Grid VerticalOptions="Fill" AutomationId="aboutPage">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*" />

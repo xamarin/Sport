@@ -26,12 +26,15 @@
 			<Color x:Key="greenLight">#9FE168</Color>
 			<Color x:Key="greenPrimary">#91E04F</Color>
 			<Color x:Key="greenDark">#579325</Color>
+			
 			<Color x:Key="redLight">#FF866D</Color>
 			<Color x:Key="redPrimary">#F56D50</Color>
 			<Color x:Key="redDark">#A83D26</Color>
+			
 			<Color x:Key="yellowLight">#FFE45C</Color>
 			<Color x:Key="yellowPrimary">#F5D740</Color>
 			<Color x:Key="yellowDark">#D1B941</Color>
+			
 			<Color x:Key="grayUltraLight">#FFFFFF</Color>
 			<Color x:Key="grayLight">#F2F2F2</Color>
 			<Color x:Key="grayPrimary">#B9B9B9</Color>
@@ -69,9 +72,13 @@
 			<Style x:Key="buttonStyle" TargetType="Button">
 				<Setter Property="TextColor" Value="White" />
 				<Setter Property="BorderRadius" Value="4" />
-				<Setter Property="HeightRequest" Value="50" />
 				<Setter Property="FontSize" Value="Medium" />
 				<Setter Property="BackgroundColor" Value="{StaticResource grayDark}" />
+				<Setter Property="HeightRequest">
+					<Setter.Value>
+						<OnPlatform x:TypeArguments="x:Double" iOS="40" Android="50" />
+					</Setter.Value>
+				</Setter>
 			</Style>
 			<Style TargetType="Button" BasedOn="{StaticResource buttonStyle}" />
 			<Style TargetType="local:SportButton" BasedOn="{StaticResource buttonStyle}" />
