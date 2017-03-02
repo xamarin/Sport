@@ -11,6 +11,7 @@ using Sport.Mobile.Shared;
 using Xamarin.Forms.Platform.Android;
 using Android;
 using Android.Support.V4.Content;
+using NControl.Controls.Droid;
 
 namespace Sport.Mobile.Droid
 {
@@ -52,6 +53,7 @@ namespace Sport.Mobile.Droid
 
 				CurrentPlatform.Init();
 				Xamarin.Forms.Forms.Init(this, bundle);
+				NControls.Init();
 				ImageCircleRenderer.Init();
 
 				MobileCenter.Configure(Keys.MobileCenterKeyAndroid);

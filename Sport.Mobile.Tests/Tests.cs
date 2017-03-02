@@ -63,11 +63,18 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			app.ScrollDownTo("*You*", "leaderboardList", ScrollStrategy.Gesture, .67, 300, true, TimeSpan.FromMinutes(1));
+			AppResult previous = null;
+			int tries = 0;
 
-			var results = app.Query("aliasLabel");
-			//var previous = results.SingleOrDefault(e => e.Text == "*You*");
-			var previous = results.TakeWhile(e => e.Text != "*You*").LastOrDefault();
+			while(previous == null && tries < 10)
+			{
+				app.ScrollDownTo("*You*", null, ScrollStrategy.Gesture, .67, 300, true, TimeSpan.FromMinutes(1));
+				Thread.Sleep(1000);
+				var results = app.Query("aliasLabel");
+				//var previous = results.SingleOrDefault(e => e.Text == "*You*");
+				previous = results.TakeWhile(e => e.Text != "*You*").LastOrDefault();
+				tries++;
+			}
 
 			//Tap the row previous to the test user
 			app.TapCoordinates(previous.Rect.CenterX, previous.Rect.CenterY);
@@ -196,7 +203,8 @@ namespace Sport.Mobile.Tests
 				Thread.Sleep(10000); //Need to wait for form fields to animate over
 
 			app.Tap(e => e.Css(passwordId));
-			app.EnterText(e => e.Css(passwordId), Keys.TestPassword, "And I enter my super secret password");
+			app.Screenshot("And I enter my super secret password");
+			app.EnterText(e => e.Css(passwordId), Keys.TestPassword);
 			app.DismissKeyboard();
 			app.Tap(e => e.Css(nextButtonPasswordId));
 		}

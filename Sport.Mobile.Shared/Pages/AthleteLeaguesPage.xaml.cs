@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Threading.Tasks;
-using FAB.Forms;
+using NControl.Controls;
 
 namespace Sport.Mobile.Shared
 {
@@ -29,20 +29,19 @@ namespace Sport.Mobile.Shared
 			if(Device.OS == TargetPlatform.Android)
 			{
 				ToolbarItems.Remove(joinButton);
-				var fab = new FloatingActionButton
+				var fab = new ActionButton
 				{
-					Source = "ic_add_white",
-					Size = FabSize.Normal,
-					NormalColor = (Color)Application.Current.Resources["grayDark"],
+					ButtonColor = (Color)Application.Current.Resources["grayDark"],
 					HorizontalOptions = LayoutOptions.End,
 					VerticalOptions = LayoutOptions.End,
 					AutomationId = "joinLeagueButton",
-					Margin = new Thickness(0, 0, 24, 50),
-					HasShadow = false,
+					HeightRequest = 56,
+					WidthRequest = 56,
+					Margin = new Thickness(0, 0, 24, 32),
 				};
 
 				root.Children.Add(fab);
-				fab.Clicked += OnJoinClicked;
+				fab.Command = new Command((obj) => { OnJoinClicked(obj); });
 			}
 		}
 
@@ -75,7 +74,7 @@ namespace Sport.Mobile.Shared
 			base.OnDisappearing();
 		}
 
-		async void OnJoinClicked(object sender, EventArgs e)
+		async void OnJoinClicked(object sender)
 		{
 			var weakSelf = new WeakReference(this);
 			var page = new AvailableLeaguesPage();
