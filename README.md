@@ -44,7 +44,8 @@ As of 11/11/2016, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
   * WebAPI
   * Entity Framework
   * Offline Sync
-  * Cross-platform templated push notifications
+  * Notification Hubs
+  * Authentication (Azure AD, Google)
 
 
 #### This project employs a few patterns listed below:
