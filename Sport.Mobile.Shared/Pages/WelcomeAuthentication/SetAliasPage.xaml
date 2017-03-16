@@ -31,12 +31,12 @@
 
 			<Grid VerticalOptions="Fill" Grid.Row="1">
 
-				<StackLayout x:Name="label1" Padding="24,0" Scale="0" HorizontalOptions="Center" VerticalOptions="Center">
+				<StackLayout x:Name="label1" Padding="24,0" HorizontalOptions="Center" VerticalOptions="Center">
 					<Label AutomationId="label1" Text="{Binding Athlete.Name, StringFormat='Greetings \{0\}. It behooves you to specify an alias.'}"
 						FontSize="Medium" XAlign="Center" />
 				</StackLayout>
 
-				<StackLayout Grid.Row="1" x:Name="aliasBox" Scale="0" Spacing="0" VerticalOptions="Center" BackgroundColor="#2FFF">
+				<StackLayout Grid.Row="1" x:Name="aliasBox" Spacing="0" VerticalOptions="Center" BackgroundColor="#2FFF">
 					<StackLayout Orientation="Horizontal" Spacing="20" Padding="40,8" HeightRequest="56" HorizontalOptions="Fill">
 						<Label Text="Alias:" TextColor="White" VerticalOptions="Center" FontSize="Large" />
 
@@ -45,13 +45,13 @@
 					</StackLayout>
 				</StackLayout>
 
-				<StackLayout Grid.Row="2" x:Name="label2" VerticalOptions="Center" Padding="24,0" Scale="0" HorizontalOptions="Center">
+				<StackLayout Grid.Row="2" x:Name="label2" VerticalOptions="Center" Padding="24,0" HorizontalOptions="Center">
 					<Label AutomationId="label2" Text="Your alias will show on the leaderboard and in challenges so make it count!"
 						FontSize="Medium" XAlign="Center" />
 				</StackLayout>
 			</Grid>
 
-			<StackLayout x:Name="buttonStack" Padding="24" Grid.Row="2" Scale="0" VerticalOptions="End" Spacing="10">
+			<StackLayout x:Name="buttonStack" Padding="24" Grid.Row="2" VerticalOptions="End" Spacing="10">
 				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
 					VerticalOptions="End" Margin="0,0,0,10" />
 
@@ -60,7 +60,8 @@
 
 				<local:SportButton x:Name="btnSave" Style="{StaticResource wizardButton}" Text="SAVE &amp; CONTINUE"
 					VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutomationId="saveButton" 
-					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					Clicked="SaveButtonClicked" />
 			</StackLayout>
 		</Grid>
 		</ScrollView>

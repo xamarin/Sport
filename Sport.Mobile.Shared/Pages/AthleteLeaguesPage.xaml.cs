@@ -41,7 +41,7 @@ namespace Sport.Mobile.Shared
 				};
 
 				root.Children.Add(fab);
-				fab.Command = new Command((obj) => { OnJoinClicked(obj); });
+				fab.Command = new Command((obj) => { OnJoinClicked(obj, null); });
 			}
 		}
 
@@ -74,7 +74,7 @@ namespace Sport.Mobile.Shared
 			base.OnDisappearing();
 		}
 
-		async void OnJoinClicked(object sender)
+		async void OnJoinClicked(object sender, EventArgs e)
 		{
 			var weakSelf = new WeakReference(this);
 			var page = new AvailableLeaguesPage();

@@ -154,7 +154,7 @@ namespace Sport.Mobile.Shared
 		/// </summary>
 		internal void StartRegistrationFlow()
 		{
-			MainPage = new WelcomeStartPage().WithinNavigationPage();
+			MainPage = new WelcomeStartPage(true).WithinNavigationPage();
 		}
 
 		void OnAppExceptionOccurred(object sender, Exception exception)

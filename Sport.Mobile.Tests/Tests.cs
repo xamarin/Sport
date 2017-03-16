@@ -63,79 +63,82 @@ namespace Sport.Mobile.Tests
 			app.WaitForElement("memberItemRoot");
 			app.Screenshot("Leaderboard listview");
 
-			AppResult previous = null;
-			int tries = 0;
+			#region Challenge
+			//AppResult previous = null;
+			//int tries = 0;
 
-			while(previous == null && tries < 10)
-			{
-				app.ScrollDownTo("*You*", null, ScrollStrategy.Gesture, .67, 300, true, TimeSpan.FromMinutes(1));
-				Thread.Sleep(1000);
-				var results = app.Query("aliasLabel");
-				//var previous = results.SingleOrDefault(e => e.Text == "*You*");
-				previous = results.TakeWhile(e => e.Text != "*You*").LastOrDefault();
-				tries++;
-			}
+			//while(previous == null && tries < 10)
+			//{
+			//	app.ScrollDownTo("*You*", null, ScrollStrategy.Gesture, .67, 300, true, TimeSpan.FromMinutes(1));
+			//	Thread.Sleep(1000);
+			//	var results = app.Query("aliasLabel");
+			//	//var previous = results.SingleOrDefault(e => e.Text == "*You*");
+			//	previous = results.TakeWhile(e => e.Text != "*You*").LastOrDefault();
+			//	tries++;
+			//}
 
-			//Tap the row previous to the test user
-			app.TapCoordinates(previous.Rect.CenterX, previous.Rect.CenterY);
+			////Tap the row previous to the test user
+			//app.TapCoordinates(previous.Rect.CenterX, previous.Rect.CenterY);
 
-			app.WaitForElement("memberDetailsRoot");
-			app.Screenshot("Member details page");
+			//app.WaitForElement("memberDetailsRoot");
+			//app.Screenshot("Member details page");
 
-			app.ScrollDownTo("pastButton");
-			app.Tap("Bottom of member details page", e => e.Marked("pastButton"));
+			//app.ScrollDownTo("pastButton");
+			//app.Tap("Bottom of member details page", e => e.Marked("pastButton"));
 
-			app.WaitForElement("challengeItemRoot");
-			app.Screenshot("Challenge history page");
+			//app.WaitForElement("challengeItemRoot");
+			//app.Screenshot("Challenge history page");
 
-			if(TestEnvironment.IsTestCloud)
-				Thread.Sleep(10000); //Need to wait for list to load
+			//if(TestEnvironment.IsTestCloud)
+			//	Thread.Sleep(10000); //Need to wait for list to load
 
-			if(app.Query("resultItemRoot").Length > 0)
-			{
-				app.Tap("resultItemRoot");
-				app.WaitForElement("challengeRoot");
-				app.Screenshot("Challenge result page");
+			//if(app.Query("resultItemRoot").Length > 0)
+			//{
+			//	app.Tap("resultItemRoot");
+			//	app.WaitForElement("challengeRoot");
+			//	app.Screenshot("Challenge result page");
 
-				app.ScrollDownTo("winningLabel");
-				app.Screenshot("Challenge result page bottom");
-				app.Back(platform);
-				app.Tap("Done");
-			}
-			else
-			{
-				app.Tap("Done");
-			}
+			//	app.ScrollDownTo("winningLabel");
+			//	app.Screenshot("Challenge result page bottom");
+			//	app.Back(platform);
+			//	app.Tap("Done");
+			//}
+			//else
+			//{
+			//	app.Tap("Done");
+			//}
 
-			app.Tap("challengeButton");
-			app.Screenshot("Challenge date page");
+			//app.Tap("challengeButton");
+			//app.Screenshot("Challenge date page");
 
-			app.Tap("datePicker");
-			app.Screenshot("Challenge date picker");
+			//app.Tap("datePicker");
+			//app.Screenshot("Challenge date picker");
 
-			DismissPicker();
-			app.Screenshot("End");
+			//DismissPicker();
+			//app.Screenshot("End");
 
-			app.Tap("timePicker");
-			app.Screenshot("Challenge time picker");
+			//app.Tap("timePicker");
+			//app.Screenshot("Challenge time picker");
 
-			DismissPicker();
-			app.Tap("Cancel");
+			//DismissPicker();
+			//app.Tap("Cancel");
 
-			app.WaitForElement("Membership Info");
+			//app.WaitForElement("Membership Info");
+			//app.Back(platform);
+
+			//app.WaitForElement("Leaderboard");
+			//app.Back(platform);
+
+			//app.Tap("moreButton");
+			//app.Tap("Cowardly Abandon League");
+
+			//app.Screenshot("Confirm");
+			//app.Tap("No");
+			#endregion
+
 			app.Back(platform);
-
-			app.WaitForElement("Leaderboard");
 			app.Back(platform);
-
-			app.Tap("moreButton");
-			app.Tap("Cowardly Abandon League");
-
-			app.Screenshot("Confirm");
-			app.Tap("No");
-
-			app.Back(platform);
-			app.Screenshot("End");
+			//app.Screenshot("End");
 
 			app.Tap("moreButton");
 			app.Screenshot("More options menu");
@@ -170,7 +173,9 @@ namespace Sport.Mobile.Tests
 		void Authenticate()
 		{
 			app.WaitForElement("authButton");
-			app.Tap("When the app starts", "authButton");
+
+			app.Screenshot("When the app starts");
+			app.Tap("authButton");
 
 			var emailId = "#Email";
 			var passwordId = "#Passwd";

@@ -19,16 +19,16 @@
 
     <local:WelcomeStartPageXaml.Content>
 		<Grid VerticalOptions="Fill" HorizontalOptions="Fill" Padding="24">
-			<StackLayout x:Name="label1" Padding="24,0" Scale="0" VerticalOptions="Center">
+			<StackLayout x:Name="label1" Padding="24,0" VerticalOptions="Center">
 				<Label AutomationId="label1" Text="Welcome to Sport - a leaderboard app built with Xamarin Forms and Azure. Join various leagues and challenge your way to the top!"
 					FontSize="Medium" XAlign="Center" />
 			</StackLayout>
 
-			<StackLayout x:Name="label2" Grid.Row="1" Padding="24,0" Scale="0" VerticalOptions="Center">
+			<StackLayout x:Name="label2" Grid.Row="1" Padding="24,0" VerticalOptions="Center">
 				<Label AutomationId="label2" Text="Before we get going, lets get you registered." FontSize="Medium" XAlign="Center" />
 			</StackLayout>
 
-			<StackLayout x:Name="buttonStack" Spacing="0" Scale="0" Grid.Row="2" VerticalOptions="End">
+			<StackLayout x:Name="buttonStack" Spacing="0" Grid.Row="2" VerticalOptions="End">
 				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
 					VerticalOptions="EndAndExpand" />
 
@@ -37,7 +37,8 @@
 
 				<local:SportButton x:Name="btnAuthenticate" AutomationId="authButton" Text="SIGN IN"
 					VerticalOptions="EndAndExpand" Style="{StaticResource wizardButton}"
-					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}" />
+					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					Clicked="AuthButtonClicked" />
 
 			</StackLayout>
 		</Grid>

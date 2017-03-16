@@ -28,7 +28,7 @@
 
 			<local:ProfileStripView x:Name="profileStack" Athlete="{Binding Athlete}" />
 
-			<StackLayout x:Name="centerStack" Grid.Row="1" Scale="0" VerticalOptions="CenterAndExpand" Spacing="50" Opacity="0">
+			<StackLayout x:Name="centerStack" Grid.Row="1" VerticalOptions="CenterAndExpand" Spacing="50">
 				<Label Margin="40,0" FontSize="Medium" XAlign="Center"
 					Text="Much obliged if you'd kindly enable push notifications. You'll be notified of new challenge requests and when someone in your leage wins a challenge. Much cool!" />
 
@@ -41,7 +41,7 @@
 				</StackLayout>
 			</StackLayout>
 
-			<StackLayout x:Name="buttonStack" Grid.Row="2" Spacing="14" Scale="0" VerticalOptions="End" Padding="24">
+			<StackLayout x:Name="buttonStack" Grid.Row="2" Spacing="14" VerticalOptions="End" Padding="24">
 
 				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
 					VerticalOptions="End" Margin="0,0,0,10" />
@@ -51,7 +51,7 @@
 
 				<local:SportButton x:Name="btnCont" AutomationId="continueButton" Text="CONTINUE"
 					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
-					Style="{StaticResource wizardButton}" VerticalOptions="End" />
+					Style="{StaticResource wizardButton}" VerticalOptions="End" Clicked="ContinueButtonClicked" />
 			</StackLayout>
 		</Grid>
 	</local:EnablePushPageXaml.Content>

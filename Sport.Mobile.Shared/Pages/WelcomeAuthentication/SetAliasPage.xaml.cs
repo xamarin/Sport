@@ -14,50 +14,64 @@ namespace Sport.Mobile.Shared
 
 		public SetAliasPage()
 		{
-			NavigationPage.SetHasNavigationBar(this, false);
-			ViewModel.AthleteId = App.Instance.CurrentAthlete.Id;
-
 			Initialize();
+		}
+
+		public SetAliasPage(bool isRuntime)
+		{
+			Initialize();
+
+			if(isRuntime)
+			{
+				NavigationPage.SetHasNavigationBar(this, false);
+				ViewModel.AthleteId = App.Instance.CurrentAthlete.Id;
+				Initialize();
+
+				profileStack.Opacity = 0;
+				label1.Scale = 0;
+				label2.Scale = 0;
+				buttonStack.Scale = 0;
+				aliasBox.Scale = 0;
+			}
 		}
 
 		protected override void Initialize()
 		{
 			InitializeComponent();
 			Title = "Athlete Alias";
-			profileStack.Opacity = 0;
+		}
 
-			btnSave.Clicked += async(sender, e) =>
+		async void SaveButtonClicked(object sender, EventArgs e)
+		{
+			if(string.IsNullOrWhiteSpace(ViewModel.Athlete.Alias))
 			{
-				if(string.IsNullOrWhiteSpace(ViewModel.Athlete.Alias))
-				{
-					"Please enter an alias.".ToToast(ToastNotificationType.Warning);
-					return;
-				}
+				"Please enter an alias.".ToToast(ToastNotificationType.Warning);
+				return;
+			}
 
-				bool success;
-				success = await ViewModel.SaveAthlete();
+			bool success;
+			success = await ViewModel.SaveAthlete();
 
-				//Will get offline sync conflict errors for all but one device, ignore and proceed if running in XTC
-				if(App.Instance.CurrentAthlete.Email.StartsWith("rob.testcloud"))
-					success = true;
+			//Will get offline sync conflict errors for all but one device, ignore and proceed if running in XTC
+			if(App.Instance.CurrentAthlete.Email.StartsWith("rob.testcloud"))
+				success = true;
 
-				if(success)
-				{
-					if(OnSave != null)
-						OnSave();
+			if(success)
+			{
+				if(OnSave != null)
+					OnSave();
 
-					await profileStack.LayoutTo(new Rectangle(0, Content.Width * -1, profileStack.Width, profileStack.Height), App.AnimationSpeed, Easing.SinIn);
-					await label1.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
-					await aliasBox.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
-					await label2.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
-					await buttonStack.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await profileStack.LayoutTo(new Rectangle(0, Content.Width * -1, profileStack.Width, profileStack.Height), App.AnimationSpeed, Easing.SinIn);
+				await label1.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await aliasBox.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await label2.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await buttonStack.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
 
-					var page = new EnablePushPage();
-					page.ViewModel.AthleteId = ViewModel.AthleteId;
+				var page = new EnablePushPage(true);
+				page.ViewModel.AthleteId = ViewModel.AthleteId;
 
-					await Navigation.PushAsync(page);
-				}
-			};
+				await Navigation.PushAsync(page);
+			}
 		}
 
 		protected async override void OnLoaded()

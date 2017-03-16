@@ -17,50 +17,61 @@ namespace Sport.Mobile.Shared
 
 		public EnablePushPage()
 		{
-			NavigationPage.SetHasNavigationBar(this, false);
 			Initialize();
+		}
+
+		public EnablePushPage(bool isRuntime)
+		{
+			Initialize();
+
+			if(isRuntime)
+			{
+				centerStack.Scale = 0;
+				centerStack.Opacity = 0;
+				buttonStack.Scale = 0;
+				profileStack.Opacity = 0;
+			}
 		}
 
 		protected override void Initialize()
 		{
+			NavigationPage.SetHasNavigationBar(this, false);
 			InitializeComponent();
 			Title = "Enable Push";
-			profileStack.Opacity = 0;
+		}
 
-			btnCont.Clicked += async(sender, e) =>
+		async void ContinueButtonClicked(object sender, EventArgs e)
+		{
+			if(_ignoreClicks)
+				return;
+
+			_ignoreClicks = true;
+
+			if(ViewModel.EnablePushNotifications)
 			{
-				if(_ignoreClicks)
-					return;
-
-				_ignoreClicks = true;
-
-				if(ViewModel.EnablePushNotifications)
+				var success = await ViewModel.RegisterForPushNotifications();
+				if(success)
 				{
-					var success = await ViewModel.RegisterForPushNotifications();
-					if(success)
-					{
-						btnCont.Text = "THANKS! WE'LL BE IN TOUCH!";
-						await AnimateToMainPage();
-					}
-					else
-					{
-						_ignoreClicks = false;
-						"Unable to register for push notifications".ToToast();
-					}
+					btnCont.Text = "THANKS! WE'LL BE IN TOUCH!";
+					await AnimateToMainPage();
 				}
 				else
 				{
-					await AnimateToMainPage();
+					_ignoreClicks = false;
+					"Unable to register for push notifications".ToToast();
 				}
-			};
+			}
+			else
+			{
+				await AnimateToMainPage();
+			}
 		}
 
 		protected async override void OnLoaded()
 		{
-			base.OnLoaded();
-
 			profileStack.Layout(new Rectangle(0, profileStack.Height * -1, profileStack.Width, profileStack.Height));
 			profileStack.Opacity = 1;
+			base.OnLoaded();
 
 			await Task.Delay(App.DelaySpeed);
 			await profileStack.LayoutTo(new Rectangle(0, 0, profileStack.Width, profileStack.Height), App.AnimationSpeed, Easing.SinIn);

@@ -8,27 +8,39 @@ namespace Sport.Mobile.Shared
 	{
 		public WelcomeStartPage()
 		{
-			NavigationPage.SetHasNavigationBar(this, false);
 			Initialize();
+		}
+
+		public WelcomeStartPage(bool isRuntime)
+		{
+			Initialize();
+
+			if(isRuntime)
+			{
+				label1.Scale = 0;
+				label2.Scale = 0;
+				buttonStack.Scale = 0;
+			}
 		}
 
 		protected override void Initialize()
 		{
+			NavigationPage.SetHasNavigationBar(this, false);
 			InitializeComponent();
 			Title = "Welcome!";
+		}
 
-			btnAuthenticate.Clicked += async(sender, e) =>
+		async void AuthButtonClicked(object sender, EventArgs e)
+		{
+			await ViewModel.Authenticate();
+
+			if(App.Instance.CurrentAthlete != null)
 			{
-				await ViewModel.Authenticate();
-
-				if(App.Instance.CurrentAthlete != null)
-				{
-					await label1.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
-					await label2.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
-					await buttonStack.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
-					await Navigation.PushAsync(new SetAliasPage());
-				}
-			};
+				await label1.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await label2.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await buttonStack.FadeTo(0, App.AnimationSpeed, Easing.SinIn);
+				await Navigation.PushAsync(new SetAliasPage(true));
+			}
 		}
 
 		protected async override void OnLoaded()
