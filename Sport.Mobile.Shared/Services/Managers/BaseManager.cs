@@ -61,7 +61,6 @@ namespace Sport.Mobile.Shared
 
 		public virtual async Task<bool> InsertAsync(T item)
 		{
-			var pull = await PullLatestAsync().ConfigureAwait(false);
 			await Table.InsertAsync(item).ConfigureAwait(false);
 			var push = await SyncAsync().ConfigureAwait(false);
 
@@ -73,14 +72,13 @@ namespace Sport.Mobile.Shared
 
 			}
 
-			return pull && push;
+			return push;
 		}
 
 		public virtual async Task<bool> UpdateAsync(T item)
 		{
 			try
 			{
-				var pull = await PullLatestAsync().ConfigureAwait(false);
 				await Table.UpdateAsync(item).ConfigureAwait(false);
 				var push = await SyncAsync().ConfigureAwait(false);
 				var updated = await GetItemAsync(item.Id, false).ConfigureAwait(false);
@@ -88,7 +86,7 @@ namespace Sport.Mobile.Shared
 				item.Version = updated.Version;
 				item.UpdatedAt = updated.UpdatedAt;
 
-				return pull && push;
+				return push;
 			}
 			catch(Exception e)
 			{
@@ -99,10 +97,9 @@ namespace Sport.Mobile.Shared
 
 		public virtual async Task<bool> RemoveAsync(T item)
 		{
-			var pull = await PullLatestAsync().ConfigureAwait(false);
 			await Table.DeleteAsync(item).ConfigureAwait(false);
 			var push = await SyncAsync().ConfigureAwait(false);
-			return pull && push;
+			return push;
 		}
 
 		public async Task<bool> PullLatestAsync()

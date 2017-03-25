@@ -162,10 +162,9 @@ namespace Sport.Mobile.Shared
 			}
 			else
 			{
-				athlete.ProfileImageUrl = AuthUserProfile.PhotoUrl;
-
-				if(athlete.IsDirty)
+				if(AuthUserProfile.PhotoUrl != athlete.ProfileImageUrl)
 				{
+					athlete.ProfileImageUrl = AuthUserProfile.PhotoUrl;
 					await AzureService.Instance.AthleteManager.UpsertAsync(athlete);
 				}
 			}
