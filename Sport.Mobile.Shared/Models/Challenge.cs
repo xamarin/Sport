@@ -293,7 +293,7 @@ namespace Sport.Mobile.Shared
 			get
 			{
 				var date = ProposedTimeLocal.LocalDateTime;
-				return $"{date.ToString("t")} {date.ToString("t")}";
+				return $"{date.ToString("t")}";
 			}
 		}
 

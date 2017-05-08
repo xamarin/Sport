@@ -26,7 +26,7 @@ namespace Sport.Mobile.Tests
 		}
 
 		[Test]
-		public void JoinLeagueAndChallenge()
+		public void JoinLeague()
 		{
 			Authenticate();
 			RegisterAthlete();
@@ -42,7 +42,9 @@ namespace Sport.Mobile.Tests
 
 			app.Screenshot("Then I should see a list of leagues to join");
 
-			Thread.Sleep(1000);
+			if(TestEnvironment.IsTestCloud)
+				Thread.Sleep(1000);
+
 			app.Tap("leagueRow");
 
 			app.ScrollDownTo("leaderboardButton", "leagueDetailsScrollView");
@@ -55,7 +57,6 @@ namespace Sport.Mobile.Tests
 			app.ScrollDownTo("Billiards");
 			app.Tap("Billiards");
 
-			app.WaitForElement("leaguePhoto");
 			app.Screenshot("Then I should see the league details");
 			app.ScrollDownTo("leaderboardButton", "leagueDetailsScrollView", ScrollStrategy.Gesture, .67, 1000, true, TimeSpan.FromMinutes(1));
 			app.Tap("leaderboardButton");
@@ -183,7 +184,8 @@ namespace Sport.Mobile.Tests
 			var nextButtonPasswordId = "#signIn";
 
 			//Give the Google auth form time to load
-			Thread.Sleep(15000);
+			if(TestEnvironment.IsTestCloud)
+				Thread.Sleep(60000);
 
 			var query = app.Query(e => e.Css("#identifierId"));
 
@@ -220,11 +222,15 @@ namespace Sport.Mobile.Tests
 			app.ClearText(e => e.Marked("aliasText"));
 			app.EnterText(e => e.Marked("aliasText"), Keys.TestAlias, "And I enter my alias");
 			app.DismissKeyboard();
-			Thread.Sleep(3000);
+
+			if(TestEnvironment.IsTestCloud)
+				Thread.Sleep(3000);
 
 			app.Tap("And I save my profile", e => e.Marked("saveButton"));
 			app.WaitForElement("continueButton", "Timed out waiting for the Continue button", TimeSpan.FromMinutes(5));
-			Thread.Sleep(3000);
+
+			if(TestEnvironment.IsTestCloud)
+				Thread.Sleep(3000);
 
 			ToggleSwitch("pushToggle", true);
 			app.Screenshot("And I enable push notifications");

@@ -126,6 +126,7 @@ namespace Sport.Mobile.Shared
 				if(athlete.Id == null || athlete.DeviceToken == null)
 					return;
 
+				//Add all tags here
 				var tags = new List<string> {
 					athlete.Id,
 					"All",
@@ -140,6 +141,7 @@ namespace Sport.Mobile.Shared
 					Platform = athlete.DevicePlatform,
 					Tags = tags.ToArray()
 				};
+
 
 				var registrationId = Client.InvokeApiAsync<DeviceRegistration, string>("registerWithHub", reg, HttpMethod.Put, null).Result;
 				athlete.NotificationRegistrationId = registrationId;

@@ -13,13 +13,13 @@
 
 	<xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient Rotation="150">
-            <xfg:GradientStep StepColor="#FF867C" StepPercentage="0" />
-            <xfg:GradientStep StepColor="#F55548" StepPercentage="1" />
+           <xfg:GradientStep StepColor="#512DA8" StepPercentage="0" />
+           <xfg:GradientStep StepColor="#7B1FA2" StepPercentage="1" />
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
 
 	<local:AthleteProfilePageXaml.Content>
-	<ScrollView AutomationId="scrollView">
+	<ScrollView>
 		<Grid VerticalOptions="Fill">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
@@ -37,19 +37,18 @@
 					<local:SportEntry x:Name="txtAlias" AutomationId="aliasText" Text="{Binding Athlete.Alias}" Font="Large" TextColor="White"
 						HasBorder="false" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="FillAndExpand" MaxLength="14" />
 				</StackLayout>
-
-				<!--<StackLayout Padding="40,0" Orientation="Horizontal">
-					<Label FontSize="Medium" XAlign="Center" HorizontalOptions="StartAndExpand" Text="Enable notifications" VerticalOptions="Center" />
-					<Switch IsToggled="{Binding EnablePushNotifications}" xfg:SwitchGloss.OnTintColor="#6FFF" VerticalOptions="Center" />
-				</StackLayout>-->
 			</StackLayout>
 
-			<StackLayout Padding="24" Grid.Row="2" Spacing="14" VerticalOptions="EndAndExpand">
+			<StackLayout Padding="24" Grid.Row="2" Spacing="14" VerticalOptions="EndAndExpand" x:Name="buttonStack">
 				<ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="White" HorizontalOptions="Center"
 					VerticalOptions="End" />
 
 				<Label Text="Doing stuff and things..." IsVisible="{Binding IsBusy}" FontSize="Medium" XAlign="Center"
 					YAlign="Center" VerticalOptions="End" Margin="0,0,0,10" />
+
+				<local:SportButton x:Name="btnSend" Text="SEND PUSH NOTIFICATION" VerticalOptions="End" HorizontalOptions="FillAndExpand"
+					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"
+					Style="{StaticResource wizardButton}" AutomationId="sendButton" />
 					
 				<local:SportButton x:Name="btnSave" Text="SAVE" VerticalOptions="End" HorizontalOptions="FillAndExpand"
 					IsVisible="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}"

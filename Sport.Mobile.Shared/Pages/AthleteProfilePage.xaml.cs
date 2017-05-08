@@ -29,23 +29,30 @@ namespace Sport.Mobile.Shared
 			InitializeComponent();
 			Title = "My Profile";
 
-			BarBackgroundColor = Xamarin.Forms.Color.FromHex("#FF867C");
+			BarBackgroundColor = Xamarin.Forms.Color.FromHex("#512DA8");
 			AddDoneButton();
+
+			btnSave.Clicked += OnSaveClicked;
+			btnSend.Clicked += OnSendPushClicked;
 		}
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			btnSave.Clicked += OnSaveClicked;
 
-			ViewModel.Athlete.LocalRefresh();
-			ViewModel.Athlete.Memberships.ForEach(m => m.League.LocalRefresh());
+			if (ViewModel?.Athlete != null)
+			{
+				ViewModel.Athlete.LocalRefresh();
+				ViewModel.Athlete.Memberships.ForEach(m => m.League.LocalRefresh());
+
+				if (!ViewModel.EnablePushNotifications)
+					buttonStack.Children.Remove(btnSend);
+			}
 		}
 
-		protected override void OnDisappearing()
+		async void OnSendPushClicked(object sender, EventArgs e)
 		{
-			base.OnDisappearing();
-			btnSave.Clicked -= OnSaveClicked;
+			await ViewModel.RegisterForPushNotifications();
 		}
 
 		async void OnSaveClicked(object sender, EventArgs e)
@@ -57,25 +64,9 @@ namespace Sport.Mobile.Shared
 			}
 
 			var success = await ViewModel.SaveAthlete();
-			//if(ViewModel.EnablePushNotifications)
-			//{
-			//	await ViewModel.RegisterForPushNotifications();
-			//}
 
-			//Will get offline sync conflict errors for all but one device, ignore and proceed if running in XTC
-			if(App.Instance.CurrentAthlete.Email.StartsWith("rob.testcloud"))
-				success = true;
-
-			if(success)
+			if (success)
 				OnSave?.Invoke();
-		}
-
-		protected override void TrackPage(Dictionary<string, string> metadata)
-		{
-			if(ViewModel?.Athlete != null)
-				metadata.Add("athleteId", ViewModel.Athlete.Id);
-
-			base.TrackPage(metadata);
 		}
 	}
 
