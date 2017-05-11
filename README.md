@@ -1,5 +1,7 @@
 # Sport
 
+**Google has disallowed in-app webviews for authentication. I am working on a solution for this**
+
 
 Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office. Athletes can join leagues, get ranked and challenge other athletes to move up the ladder.
 
