@@ -53,7 +53,12 @@ namespace Sport.Mobile.iOS
 
 			return base.FinishedLaunching(uiApplication, launchOptions);
 		}
-
+		public override bool OpenUrl (UIApplication app, NSUrl url, NSDictionary options)
+		{
+			if (SimpleAuth.Native.OpenUrl (app, url, options))
+				return true;
+			return base.OpenUrl (app, url, options);
+		}
 		public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
 		{
 			App.Instance.CurrentAthlete.DeviceToken = deviceToken.Description.Trim('<', '>').Replace(" ", "");
