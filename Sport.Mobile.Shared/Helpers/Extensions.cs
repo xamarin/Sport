@@ -111,6 +111,9 @@ namespace Sport.Mobile.Shared
 
 		public static string GetChallengeConflictReason(this Membership membership, Athlete athlete)
 		{
+			if (membership == null)
+				return null;
+
 			if(!membership.League.HasStarted)
 				return "The league hasn't started yet";
 
