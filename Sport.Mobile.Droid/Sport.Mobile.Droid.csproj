@@ -283,7 +283,6 @@
     <Compile Include="Providers\StatusBarManager.cs" />
     <Compile Include="Renderers\SportEntryRenderer.cs" />
     <Compile Include="LaunchActivity.cs" />
-    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
