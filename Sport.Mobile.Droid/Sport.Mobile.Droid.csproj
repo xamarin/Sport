@@ -138,12 +138,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleAuth">
-      <HintPath>..\packages\Clancey.SimpleAuth.1.0.38\lib\MonoAndroid\SimpleAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleAuth.Google.Droid">
-      <HintPath>..\packages\Clancey.SimpleAuth.Google.Droid.1.0.3\lib\MonoAndroid\SimpleAuth.Google.Droid.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Basement">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.42.1021.1\lib\MonoAndroid70\Xamarin.GooglePlayServices.Basement.dll</HintPath>
     </Reference>
@@ -269,6 +263,12 @@
     </Reference>
     <Reference Include="SkiaSharp.Views.Forms">
       <HintPath>..\packages\SkiaSharp.Views.Forms.1.58.0\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleAuth">
+      <HintPath>..\packages\Clancey.SimpleAuth.1.0.39\lib\MonoAndroid\SimpleAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleAuth.Google.Droid">
+      <HintPath>..\packages\Clancey.SimpleAuth.Google.Droid.1.0.5\lib\MonoAndroid\SimpleAuth.Google.Droid.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
