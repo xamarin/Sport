@@ -250,10 +250,10 @@
       <HintPath>..\packages\SkiaSharp.Views.Forms.1.58.0\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
     <Reference Include="SimpleAuth">
-      <HintPath>..\packages\Clancey.SimpleAuth.1.0.39\lib\MonoAndroid\SimpleAuth.dll</HintPath>
+      <HintPath>..\packages\Clancey.SimpleAuth.1.0.40\lib\MonoAndroid\SimpleAuth.dll</HintPath>
     </Reference>
     <Reference Include="SimpleAuth.Google.Droid">
-      <HintPath>..\packages\Clancey.SimpleAuth.Google.Droid.1.0.6\lib\MonoAndroid\SimpleAuth.Google.Droid.dll</HintPath>
+      <HintPath>..\packages\Clancey.SimpleAuth.Google.Droid.1.0.7\lib\MonoAndroid\SimpleAuth.Google.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Basement">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.42.1001.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Basement.dll</HintPath>
