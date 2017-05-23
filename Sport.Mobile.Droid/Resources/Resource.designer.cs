@@ -3362,17 +3362,25 @@ namespace Sport.Mobile.Droid
 			global::SimpleAuth.Google.Droid.Resource.Color.common_google_signin_btn_text_light_pressed = global::Sport.Mobile.Droid.Resource.Color.common_google_signin_btn_text_light_pressed;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_full_open_on_phone = global::Sport.Mobile.Droid.Resource.Drawable.common_full_open_on_phone;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_dark = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_dark;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_disabled = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_disabled;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_focused = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_focused;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_normal = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_normal;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_pressed = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_dark_pressed;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_light = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_light;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_light_disabled = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_light_disabled;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_light_focused = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_light_focused;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_light_normal = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_light_normal;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_icon_light_pressed = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_icon_light_pressed;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_dark = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_dark;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_dark_disabled = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_dark_disabled;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_dark_focused = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_dark_focused;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_dark_normal = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_dark_normal;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_dark_pressed = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_dark_pressed;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_light = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_light;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_light_disabled = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_light_disabled;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_light_focused = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_light_focused;
 			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_light_normal = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_light_normal;
+			global::SimpleAuth.Google.Droid.Resource.Drawable.common_google_signin_btn_text_light_pressed = global::Sport.Mobile.Droid.Resource.Drawable.common_google_signin_btn_text_light_pressed;
 			global::SimpleAuth.Google.Droid.Resource.Id.adjust_height = global::Sport.Mobile.Droid.Resource.Id.adjust_height;
 			global::SimpleAuth.Google.Droid.Resource.Id.adjust_width = global::Sport.Mobile.Droid.Resource.Id.adjust_width;
 			global::SimpleAuth.Google.Droid.Resource.Id.auto = global::Sport.Mobile.Droid.Resource.Id.auto;
@@ -6405,14 +6413,11 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f090007
 			public const int common_google_signin_btn_text_light_pressed = 2131296263;
 			
-			// aapt resource value: 0x7f09006d
-			public const int common_google_signin_btn_tint = 2131296365;
-			
 			// aapt resource value: 0x7f090047
 			public const int design_bottom_navigation_shadow_color = 2131296327;
 			
-			// aapt resource value: 0x7f09006e
-			public const int design_error = 2131296366;
+			// aapt resource value: 0x7f09006d
+			public const int design_error = 2131296365;
 			
 			// aapt resource value: 0x7f090048
 			public const int design_fab_shadow_end_color = 2131296328;
@@ -6444,8 +6449,8 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f090051
 			public const int design_textinput_error_color_light = 2131296337;
 			
-			// aapt resource value: 0x7f09006f
-			public const int design_tint_password_toggle = 2131296367;
+			// aapt resource value: 0x7f09006e
+			public const int design_tint_password_toggle = 2131296366;
 			
 			// aapt resource value: 0x7f09001f
 			public const int dim_foreground_disabled_material_dark = 2131296287;
@@ -6573,11 +6578,11 @@ namespace Sport.Mobile.Droid
 			// aapt resource value: 0x7f090044
 			public const int switch_thumb_disabled_material_light = 2131296324;
 			
-			// aapt resource value: 0x7f090070
-			public const int switch_thumb_material_dark = 2131296368;
+			// aapt resource value: 0x7f09006f
+			public const int switch_thumb_material_dark = 2131296367;
 			
-			// aapt resource value: 0x7f090071
-			public const int switch_thumb_material_light = 2131296369;
+			// aapt resource value: 0x7f090070
+			public const int switch_thumb_material_light = 2131296368;
 			
 			// aapt resource value: 0x7f090045
 			public const int switch_thumb_normal_material_dark = 2131296325;
@@ -7338,79 +7343,79 @@ namespace Sport.Mobile.Droid
 			public const int common_google_signin_btn_icon_dark = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int common_google_signin_btn_icon_dark_focused = 2130837592;
+			public const int common_google_signin_btn_icon_dark_disabled = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int common_google_signin_btn_icon_dark_normal = 2130837593;
+			public const int common_google_signin_btn_icon_dark_focused = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int common_google_signin_btn_icon_dark_normal_background = 2130837594;
+			public const int common_google_signin_btn_icon_dark_normal = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int common_google_signin_btn_icon_disabled = 2130837595;
+			public const int common_google_signin_btn_icon_dark_pressed = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
 			public const int common_google_signin_btn_icon_light = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int common_google_signin_btn_icon_light_focused = 2130837597;
+			public const int common_google_signin_btn_icon_light_disabled = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int common_google_signin_btn_icon_light_normal = 2130837598;
+			public const int common_google_signin_btn_icon_light_focused = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int common_google_signin_btn_icon_light_normal_background = 2130837599;
+			public const int common_google_signin_btn_icon_light_normal = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int common_google_signin_btn_text_dark = 2130837600;
+			public const int common_google_signin_btn_icon_light_pressed = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int common_google_signin_btn_text_dark_focused = 2130837601;
+			public const int common_google_signin_btn_text_dark = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int common_google_signin_btn_text_dark_normal = 2130837602;
+			public const int common_google_signin_btn_text_dark_disabled = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int common_google_signin_btn_text_dark_normal_background = 2130837603;
+			public const int common_google_signin_btn_text_dark_focused = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int common_google_signin_btn_text_disabled = 2130837604;
+			public const int common_google_signin_btn_text_dark_normal = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int common_google_signin_btn_text_light = 2130837605;
+			public const int common_google_signin_btn_text_dark_pressed = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int common_google_signin_btn_text_light_focused = 2130837606;
+			public const int common_google_signin_btn_text_light = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int common_google_signin_btn_text_light_normal = 2130837607;
+			public const int common_google_signin_btn_text_light_disabled = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int common_google_signin_btn_text_light_normal_background = 2130837608;
+			public const int common_google_signin_btn_text_light_focused = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int design_bottom_navigation_item_background = 2130837609;
+			public const int common_google_signin_btn_text_light_normal = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int design_fab_background = 2130837610;
+			public const int common_google_signin_btn_text_light_pressed = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int design_ic_visibility = 2130837611;
+			public const int design_bottom_navigation_item_background = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int design_ic_visibility_off = 2130837612;
+			public const int design_fab_background = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int design_password_eye = 2130837613;
+			public const int design_ic_visibility = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int design_snackbar_background = 2130837614;
+			public const int design_ic_visibility_off = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int googleg_disabled_color_18 = 2130837615;
+			public const int design_password_eye = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int googleg_standard_color_18 = 2130837616;
+			public const int design_snackbar_background = 2130837616;
 			
 			// aapt resource value: 0x7f020071
 			public const int gradient_launch = 2130837617;

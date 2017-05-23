@@ -29,8 +29,7 @@ namespace Sport.Android
 				const string clientId = "381689253740-p0m6strndvpajfqe2o5ia1b3si075snn.apps.googleusercontent.com";
 				const string serverID = "381689253740-2scljkrh5i7fjfvsuh438cde54hfoo5i.apps.googleusercontent.com";
 
-				var api = new GoogleApi ("google", clientId) {
-					ServerClientId = serverID,
+				var api = new GoogleApi ("google", serverID) {
 					Scopes = scopes,
 				};
 				api.ResetData ();
