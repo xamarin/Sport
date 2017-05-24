@@ -20,10 +20,9 @@ namespace Sport.Mobile.iOS
 			Xamarin.Calabash.Start();
 			//#endif
 
-		    //Hack until Microsoft.Azure.Mobile.Client nuget package supports latest OAuth requirements from Google
-			string userAgent = "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36";
-			NSDictionary dictionary = NSDictionary.FromObjectAndKey(NSObject.FromObject(userAgent), NSObject.FromObject("UserAgent"));
-			NSUserDefaults.StandardUserDefaults.RegisterDefaults(dictionary);
+			Keys.GoogleClientId = Keys.GoogleClientIdiOS;
+			Keys.GoogleServerID = Keys.GoogleServerIdiOS;
+			SimpleAuth.Providers.Google.Init ();
 
 			CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
@@ -53,7 +52,12 @@ namespace Sport.Mobile.iOS
 
 			return base.FinishedLaunching(uiApplication, launchOptions);
 		}
-
+		public override bool OpenUrl (UIApplication app, NSUrl url, NSDictionary options)
+		{
+			if (SimpleAuth.Native.OpenUrl (app, url, options))
+				return true;
+			return base.OpenUrl (app, url, options);
+		}
 		public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
 		{
 			App.Instance.CurrentAthlete.DeviceToken = deviceToken.Description.Trim('<', '>').Replace(" ", "");

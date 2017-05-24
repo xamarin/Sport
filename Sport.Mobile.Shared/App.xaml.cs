@@ -44,12 +44,6 @@ namespace Sport.Mobile.Shared
 			private set;
 		}
 
-		public IAuthenticator Authenticator
-		{
-			get;
-			private set;
-		}
-
 		public Theming Theming
 		{
 			get;

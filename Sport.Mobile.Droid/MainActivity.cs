@@ -12,108 +12,120 @@ using Xamarin.Forms.Platform.Android;
 using Android;
 using Android.Support.V4.Content;
 using NControl.Controls.Droid;
+using Android.Content;
 
 namespace Sport.Mobile.Droid
 {
-	[Activity(Label = "Sport", Icon = "@drawable/icon", Theme = "@style/DefaultTheme", MainLauncher = false,
-			  ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity : FormsAppCompatActivity
-	{
-		public static bool IsRunning
-		{
-			get;
-			private set;
-		}
+    [Activity(Label = "Sport", Icon = "@drawable/icon", Theme = "@style/DefaultTheme", MainLauncher = false,
+              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : FormsAppCompatActivity
+    {
+        public static bool IsRunning
+        {
+            get;
+            private set;
+        }
 
-		protected override void OnCreate(Bundle bundle)
-		{
-			AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-			{
-				try
-				{
-					var exception = ((Exception)e.ExceptionObject).GetBaseException();
-					Console.WriteLine("**SPORT UNHANDLED EXCEPTION**\n\n" + exception);
-					exception.Track();
-				}
-				catch
-				{
-					throw;
-				}
-			};
+        protected override void OnCreate(Bundle bundle)
+        {
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            {
+                try
+                {
+                    var exception = ((Exception)e.ExceptionObject).GetBaseException();
+                    Console.WriteLine("**SPORT UNHANDLED EXCEPTION**\n\n" + exception);
+                    exception.Track();
+                }
+                catch
+                {
+                    throw;
+                }
+            };
 
-			try
-			{
-				AdjustStatusBar(0);
+            try
+            {
+                AdjustStatusBar(0);
 
-				base.OnCreate(bundle);
-				ToolbarResource = Resource.Layout.Toolbar;
+                Keys.GoogleClientId = Keys.GoogleClientIdAndroid;
+                Keys.GoogleServerID = Keys.GoogleServerIdAndroid;
 
-				Window.SetSoftInputMode(SoftInput.AdjustResize);
-				Window.DecorView.SystemUiVisibility = StatusBarVisibility.Visible;
+                base.OnCreate(bundle);
+                SimpleAuth.Providers.Google.Init(Application);
 
-				CurrentPlatform.Init();
-				Xamarin.Forms.Forms.Init(this, bundle);
-				NControls.Init();
-				ImageCircleRenderer.Init();
+                ToolbarResource = Resource.Layout.Toolbar;
 
-				MobileCenter.Configure(Keys.MobileCenterKeyAndroid);
-				LoadApplication(new App());
-				XFGloss.Droid.Library.Init(this, bundle);
-			}
-			catch(Exception e)
-			{
-				Console.WriteLine("**SPORT LAUNCH EXCEPTION**\n\n" + e);
-				e.Track();
-			}
-		}
+                Window.SetSoftInputMode(SoftInput.AdjustResize);
+                Window.DecorView.SystemUiVisibility = StatusBarVisibility.Visible;
 
-		public void AdjustStatusBar(int size)
-		{
-			//Temp hack until the FormsAppCompatActivity works for full screen
-			if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-			{
-				var statusBarHeightInfo = typeof(FormsAppCompatActivity).GetField("_statusBarHeight",
-											  System.Reflection.BindingFlags.Instance |
-											  System.Reflection.BindingFlags.NonPublic);
+                CurrentPlatform.Init();
+                Xamarin.Forms.Forms.Init(this, bundle);
+                NControls.Init();
+                ImageCircleRenderer.Init();
 
-				statusBarHeightInfo.SetValue(this, size);
-			}
-		}
+                MobileCenter.Configure(Keys.MobileCenterKeyAndroid);
+                LoadApplication(new App());
+                XFGloss.Droid.Library.Init(this, bundle);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("**SPORT LAUNCH EXCEPTION**\n\n" + e);
+                e.Track();
+            }
+        }
 
-		protected override void OnPause()
-		{
-			IsRunning = false;
-			base.OnPause();
-		}
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            SimpleAuth.Native.OnActivityResult(requestCode, resultCode, data);
+        }
 
-		protected override void OnResume()
-		{
-			IsRunning = true;
-			ProcessNotificationPayload();
-			base.OnResume();
-		}
+        public void AdjustStatusBar(int size)
+        {
+            //Temp hack until the FormsAppCompatActivity works for full screen
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                var statusBarHeightInfo = typeof(FormsAppCompatActivity).GetField("_statusBarHeight",
+                                              System.Reflection.BindingFlags.Instance |
+                                              System.Reflection.BindingFlags.NonPublic);
 
-		protected override void OnStop()
-		{
-			base.OnStop();
-		}
+                statusBarHeightInfo.SetValue(this, size);
+            }
+        }
 
-		protected override void OnStart()
-		{
-			base.OnStart();
-		}
+        protected override void OnPause()
+        {
+            IsRunning = false;
+            base.OnPause();
+        }
 
-		void ProcessNotificationPayload()
-		{
-			if(Intent != null && Intent.Extras != null)
-			{
-				if(Intent.Extras.ContainsKey("payload"))
-				{
-					var payload = Intent.Extras.GetString("payload");
-					var np = JsonConvert.DeserializeObject<NotificationPayload>(payload);
-					App.Instance.OnIncomingPayload(np);
-				}
-			}
-		}
-	}
+        protected override void OnResume()
+        {
+            IsRunning = true;
+            ProcessNotificationPayload();
+            base.OnResume();
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+        }
+
+        void ProcessNotificationPayload()
+        {
+            if (Intent != null && Intent.Extras != null)
+            {
+                if (Intent.Extras.ContainsKey("payload"))
+                {
+                    var payload = Intent.Extras.GetString("payload");
+                    var np = JsonConvert.DeserializeObject<NotificationPayload>(payload);
+                    App.Instance.OnIncomingPayload(np);
+                }
+            }
+        }
+    }
 }
