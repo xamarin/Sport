@@ -1,7 +1,7 @@
 # Sport
 
->**To use Google OAuth with Android, even debug builds need to be signed - you may have to set this to an absolute path if using Visual Studio on Windows**
-* If you encounter a jarsigner.exe error, set the path to the keystore (Sport.Mobile.Droid/Resources/Security/androiddebugkey.keystore) manually in the Sport.Mobile.Droid.csproj file
+>**To use Google OAuth with Android, even debug builds need to be signed**
+* If you encounter a jarsigner.exe error in VS2017, set the path to the keystore (Sport.Mobile.Droid/Resources/Security/androiddebugkey.keystore) manually in the Sport.Mobile.Droid.csproj file
 * If you get a build error related to MultiDex, make sure you don't have any spaces in the path to your Android SDK.
 
 
