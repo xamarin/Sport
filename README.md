@@ -69,7 +69,7 @@ If you just want to run the sample, everything should be included in the project
 
 Google now requires you to use CustomTabs to select the Google profile and authenticate using their Google Auth SDK. In the Google Console API, you need to generate an iOS App, Android App and a WebApp (for the backend Azure server). To get the Client ID of the Android App, you need to use keytool to generate a SHA1 based on the keystore you plan to sign it with.
 
-### Steps:
+##### Steps:
 * Generate a keystore using Visual Studio. Or you can use a generic one provided in `Sport.Mobile.Droid/Resources/Security/androiddebugkey.keystore`
   * alias: androiddebugkey
   * password: android
