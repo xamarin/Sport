@@ -1,6 +1,8 @@
 # Sport
 
-**To use Google OAuth with Android, even debug builds need to be signed - you may have to set this to an absolute path if using Visual Studio on Windows**
+>**To use Google OAuth with Android, even debug builds need to be signed - you may have to set this to an absolute path if using Visual Studio on Windows**
+* If you encounter a jarsigner.exe error, set the path to the keystore (Sport.Mobile.Droid/Resources/Security/androiddebugkey.keystore) manually in the Sport.Mobile.Droid.csproj file
+* If you get a build error related to MultiDex, make sure you don't have any spaces in the path to your Android SDK.
 
 
 Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office. Athletes can join leagues, get ranked and challenge other athletes to move up the ladder.
