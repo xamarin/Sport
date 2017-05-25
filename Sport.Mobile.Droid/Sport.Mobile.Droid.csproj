@@ -39,7 +39,7 @@
 <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
 <AndroidTlsProvider>btls</AndroidTlsProvider>
 <AndroidKeyStore>True</AndroidKeyStore>
-<AndroidSigningKeyStore>/Users/rob/Projects/Sport/Sport.Mobile.Droid/Resources/Security/androiddebugkey.keystore</AndroidSigningKeyStore>
+<AndroidSigningKeyStore>$(ProjectDir)Resources\Security\androiddebugkey.keystore</AndroidSigningKeyStore>
 <AndroidSigningStorePass>android</AndroidSigningStorePass>
 <AndroidSigningKeyAlias>androiddebugkey</AndroidSigningKeyAlias>
 <AndroidSigningKeyPass>android</AndroidSigningKeyPass>

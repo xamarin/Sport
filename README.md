@@ -1,6 +1,6 @@
 # Sport
 
-**Google has disallowed in-app webviews for authentication. I am working on a solution for this**
+**To use Google OAuth with Android, even debug builds need to be signed - you may have to set this to an absolute path if using Visual Studio on Windows**
 
 
 Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office. Athletes can join leagues, get ranked and challenge other athletes to move up the ladder.

@@ -354,6 +354,12 @@ namespace Sport.Mobile.Shared
 
 			if(clearCookies)
 			{
+				var api = new GoogleApi("google", Keys.GoogleClientId)
+				{
+					ServerClientId = Keys.GoogleServerID,
+				};
+
+                api.ResetData();
 				Settings.RegistrationComplete = false;
 			}
 		}
@@ -393,16 +399,6 @@ namespace Sport.Mobile.Shared
 					ad.Id = _identity.UserClaims.SingleOrDefault(c => c.Typ == "http://schemas.microsoft.com/identity/claims/objectidentifier")?.Val;
 					ad.Email = _identity.UserClaims.SingleOrDefault(c => c.Typ == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Val;
 					ad.Name = _identity.UserClaims.SingleOrDefault(c => c.Typ == "name")?.Val;
-
-					//using(var client = new HttpClient())
-					//{
-					//	client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
-					//	client.DefaultRequestHeaders.Add("Authorization", "Bearer " + AzureService.Instance.Client.CurrentUser.MobileServiceAuthenticationToken);
-					//	client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", AzureService.Instance.Client.CurrentUser.MobileServiceAuthenticationToken);
-					//	var json = client.GetStringAsync("https://graph.microsoft.com/v1.0/me/").Result;
-					//	Debug.WriteLine(json);
-					//	//identity = JsonConvert.DeserializeObject<JToken>(json);
-					//}
 
 					return ad;
 
