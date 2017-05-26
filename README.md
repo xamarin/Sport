@@ -75,7 +75,7 @@ Google now requires you to use CustomTabs to select the Google profile and authe
   * password: `android`
 * Create an Android App and Web App OAuth key in [Google API Console](https://console.developers.google.com/apis/credentials)
 * For the Web App, set the callback to your Azure website, for instance `https://xamarin-sportv2.azurewebsites.net/.auth/login/google/callback`
-* Replace the ClientIDs for Android and Azure in the Sport.Shared/Keys.cs
+* Replace the ClientIDs for Android and Azure in the `Sport.Shared/Keys.cs`
 * You will need to sign every build if you want to authenticate with Google. In Visual Studio for Mac, open `Android project options > Build > Android Package Signing` and complete the form so even your debug builds are signed.
   * If you are using Visual Studio 2017 on Windows, you will need to specify this data in the .csproj as there is no similar screen in VS to configure the auto-sign data. But if the build task exists in the .csproj, VS will honor that and sign.
 
