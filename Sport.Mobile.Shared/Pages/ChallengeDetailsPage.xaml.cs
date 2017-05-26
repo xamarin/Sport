@@ -223,12 +223,12 @@ namespace Sport.Mobile.Shared
 			return lst;
 		}
 
-		void OnRefreshClicked()
+		void OnRefreshClicked(object sender, EventArgs e)
 		{
 			OnRefreshChallenge();
 		}
 
-		async void OnMoreClicked()
+		async void OnMoreClicked(object sender, EventArgs e)
 		{
 			var lst = GetMoreMenuOptions();
 			var action = await DisplayActionSheet("Additional actions", "Cancel", null, lst.ToArray());
