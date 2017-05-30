@@ -63,7 +63,7 @@ As of 11/11/2016, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
 
 
 #### Authentication
-Sport employs Google OAuth2 authentication and exchanges the access_token from Google for an Azure authorization code.
+Sport employs Google OAuth2 authentication and exchanges the access_token from Google for an Azure authorization code using the [SimpleAuth](https://github.com/Clancey/SimpleAuth) library written by James Clancey.
 
 If you just want to run the sample, everything should be included in the project (keystore, ClientIDs, etc). If you want to integrate w/ your own Google ClientID's and Azure instance, here are the steps I followed:
 
