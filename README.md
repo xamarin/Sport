@@ -26,11 +26,7 @@ As of 11/11/2016, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
   * Custom Controls
   * Cross Plugins
   * XFGloss
-* HockeyApp Crash Reporting
-* Xamarin Test Cloud
-  * UITest
-  * Extensions
-  * Single code-base for iOS & Android
+* Visual Studio Mobile Center Integration
 * Azure Mobile Services
   * C# backend
   * WebAPI
@@ -60,7 +56,7 @@ As of 11/11/2016, Sport features 93.6% code share (3.3% iOS / 3.1% Android).
 #### Notes
 * You will need a valid Google account to log into the application
 * Parallax feature should be tested on a device - simulator will cause jitter
-
+* UITests no longer work due to Google's move to untestable UI - SFSafariViewController and CustomTabs UI is not queryable using UITest
 
 #### Authentication
 Sport employs Google OAuth2 authentication and exchanges the access_token from Google for an Azure authorization code using the [SimpleAuth](https://github.com/Clancey/SimpleAuth) library written by James Clancey.
