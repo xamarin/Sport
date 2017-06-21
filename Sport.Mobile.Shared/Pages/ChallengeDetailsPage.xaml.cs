@@ -60,9 +60,12 @@ namespace Sport.Mobile.Shared
 				list.SelectedItem = null;
 			};
 
-			var count = ViewModel.Challenge.League.MatchGameCount;
+			var count = 0;
 
-			if(ViewModel.Challenge.MatchResult != null && ViewModel.Challenge.MatchResult.Count > 0)
+			if (ViewModel != null && ViewModel.Challenge != null)
+				count = ViewModel.Challenge.League.MatchGameCount;
+
+			if (ViewModel != null && ViewModel.Challenge != null && ViewModel.Challenge.MatchResult != null && ViewModel.Challenge.MatchResult.Count > 0)
 				count = ViewModel.Challenge.MatchResult.Count;
 
 			list.HeightRequest = list.RowHeight * count + 50;
