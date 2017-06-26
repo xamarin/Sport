@@ -43,7 +43,7 @@ namespace Sport.Mobile.Shared
 
 			SubscribeToChallenges();
 
-			if(ViewModel.League != null)
+			if(ViewModel?.League != null)
 				await ViewModel.LocalRefresh();
 		}
 

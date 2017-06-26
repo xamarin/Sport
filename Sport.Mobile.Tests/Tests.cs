@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using Xamarin.UITest;
+using Xamarin.UITest.Configuration;
 using Xamarin.UITest.Queries;
 
 namespace Sport.Mobile.Tests
@@ -19,14 +20,29 @@ namespace Sport.Mobile.Tests
 			this.platform = platform;
 		}
 
-		[SetUp]
-		public void BeforeEachTest()
-		{
-			app = AppInitializer.StartApp(platform);
+        [SetUp]
+        public void BeforeEachTest()
+        {
+	        if(platform == Platform.iOS)
+	        {
+    			app = ConfigureApp.iOS.StartApp(AppDataMode.DoNotClear);
+			}
+			else
+			{
+			    app = ConfigureApp.Android.StartApp(AppDataMode.DoNotClear);
+			}
 		}
 
+        [Test]
+        public void NewTest()
+        {
+			app.Tap("Connect 4");
+			app.Tap("leaderboardButton");
+			app.ScrollDownTo("*You*");
+			app.Tap("*You*");        }
+
 		[Test]
-		public void JoinLeague()
+		public void JoinLeagueAndChallenge()
 		{
 			Authenticate();
 			RegisterAthlete();
@@ -37,13 +53,7 @@ namespace Sport.Mobile.Tests
 			app.Tap("joinLeagueButton");
 			app.WaitForElement(e => e.Marked("leagueRow"));
 
-			if(TestEnvironment.IsTestCloud)
-				Thread.Sleep(10000); //Need to wait for list images to load
-
 			app.Screenshot("Then I should see a list of leagues to join");
-
-			if(TestEnvironment.IsTestCloud)
-				Thread.Sleep(1000);
 
 			app.Tap("leagueRow");
 
@@ -166,9 +176,6 @@ namespace Sport.Mobile.Tests
 				app.Back();
 			else
 				app.Tap("Done");
-
-			//			Helpers.OnAndroid(app.Back);
-			//			Helpers.OniOS("Done".Tap);
 		}
 
 		void Authenticate()
@@ -177,6 +184,8 @@ namespace Sport.Mobile.Tests
 
 			app.Screenshot("When the app starts");
 			app.Tap("authButton");
+
+            app.Repl();
 
 			var emailId = "#Email";
 			var passwordId = "#Passwd";

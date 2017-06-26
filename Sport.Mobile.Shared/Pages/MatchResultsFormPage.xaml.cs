@@ -30,18 +30,23 @@ namespace Sport.Mobile.Shared
 			InitializeComponent();
 			Title = "Match Score";
 
-			ViewModel.Challenge.MatchResult.Clear();
-			for(int i = 0; i < ViewModel.Challenge.League.MatchGameCount; i++)
-			{
-				var gameResult = new GameResult {
-					Index = i,
-					ChallengeId = ViewModel.Challenge.Id,
-				};
+			ViewModel?.Challenge?.MatchResult?.Clear();
 
-				ViewModel.Challenge.MatchResult.Add(gameResult);
+            if(ViewModel.Challenge != null)
+            {
+				for (int i = 0; i < ViewModel.Challenge.League.MatchGameCount; i++)
+				{
+					var gameResult = new GameResult
+					{
+						Index = i,
+						ChallengeId = ViewModel.Challenge.Id,
+					};
 
-				var form = new GameResultFormView(ViewModel.Challenge, gameResult, i);
-				games.Children.Add(form);
+					ViewModel.Challenge.MatchResult.Add(gameResult);
+
+					var form = new GameResultFormView(ViewModel.Challenge, gameResult, i);
+					games.Children.Add(form);
+				}
 			}
 
 			btnSubmit.Clicked += async(sender, e) =>

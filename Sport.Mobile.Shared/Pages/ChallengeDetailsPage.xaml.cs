@@ -217,11 +217,14 @@ namespace Sport.Mobile.Shared
 		{
 			var lst = new List<string>();
 
-			if(ViewModel.CanRevoke)
-				lst.Add(_revoke);
-		
-			if(ViewModel.CanDecline || ViewModel.CanDeclineAfterAccept)
-				lst.Add(_decline);
+            if(ViewModel != null)
+            {
+				if (ViewModel.CanRevoke)
+					lst.Add(_revoke);
+
+				if (ViewModel.CanDecline || ViewModel.CanDeclineAfterAccept)
+					lst.Add(_decline);
+			}
 		
 			return lst;
 		}

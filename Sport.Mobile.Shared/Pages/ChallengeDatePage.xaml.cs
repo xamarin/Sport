@@ -78,7 +78,7 @@ namespace Sport.Mobile.Shared
 
 		protected override void OnDisappearing()
 		{
-			ViewModel.CancelTasks();
+			ViewModel?.CancelTasks();
 			base.OnDisappearing();
 		}
 

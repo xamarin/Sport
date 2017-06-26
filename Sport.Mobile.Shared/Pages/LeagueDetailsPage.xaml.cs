@@ -199,9 +199,9 @@ namespace Sport.Mobile.Shared
 		protected override void Initialize()
 		{
 			InitializeComponent();
-			Title = ViewModel.League?.Name;
+			Title = ViewModel?.League?.Name;
 
-			rankStrip.Membership = ViewModel.CurrentMembership; //Binding is not working in XAML for some reason
+			rankStrip.Membership = ViewModel?.CurrentMembership; //Binding is not working in XAML for some reason
 
 			scrollView.Scrolled += (sender, e) => Parallax();
 			Parallax();
@@ -222,7 +222,7 @@ namespace Sport.Mobile.Shared
 				await Navigation.PushAsync(page);
 			};
 
-			if (ViewModel.CurrentMembership != null && ViewModel.CurrentMembership.CurrentRank == 0)
+			if (ViewModel?.CurrentMembership != null && ViewModel?.CurrentMembership?.CurrentRank == 0)
 			{
 				HeapGloriousPraise();
 			}
@@ -234,8 +234,8 @@ namespace Sport.Mobile.Shared
 			UpdateMenuButtons();
 
 			UpdateChallenageCarousel();
-			ViewModel.NotifyPropertiesChanged();
-			rankStrip.Membership = ViewModel.CurrentMembership;
+			ViewModel?.NotifyPropertiesChanged();
+			rankStrip.Membership = ViewModel?.CurrentMembership;
 
 			base.OnAppearing();
 		}

@@ -47,7 +47,7 @@ namespace Sport.Mobile.Shared
 
 			_ignoreClicks = true;
 
-			if(ViewModel.EnablePushNotifications)
+			if(ViewModel != null && ViewModel.EnablePushNotifications)
 			{
 				var success = await ViewModel.RegisterForPushNotifications();
 				if(success)

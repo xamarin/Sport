@@ -27,7 +27,7 @@ namespace Sport.Mobile.Shared
 			list.ItemSelected += OnItemSelected;
 			AddDoneButton();
 
-			await ViewModel.GetAvailableLeagues();
+			await ViewModel?.GetAvailableLeagues();
 		}
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -61,7 +61,7 @@ namespace Sport.Mobile.Shared
 
 		protected override void OnDisappearing()
 		{
-			ViewModel.CancelTasks();
+			ViewModel?.CancelTasks();
 			base.OnDisappearing();
 		}
 	}

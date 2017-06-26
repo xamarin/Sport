@@ -72,8 +72,8 @@ namespace Sport.Mobile.Shared
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			ViewModel.Membership.LocalRefresh();
-			ViewModel.NotifyPropertiesChanged();
+			ViewModel?.Membership?.LocalRefresh();
+			ViewModel?.NotifyPropertiesChanged();
 		}
 
 		protected override void TrackPage(Dictionary<string, string> metadata)

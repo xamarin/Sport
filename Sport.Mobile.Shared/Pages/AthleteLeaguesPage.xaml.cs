@@ -26,7 +26,7 @@ namespace Sport.Mobile.Shared
 			Title = "Leagues";
 			BarBackgroundColor = (Color)Application.Current.Resources["grayPrimary"];
 
-			if(Device.OS == TargetPlatform.Android)
+			if(Device.RuntimePlatform == Device.Android)
 			{
 				ToolbarItems.Remove(joinButton);
 				var fab = new ActionButton
