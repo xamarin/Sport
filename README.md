@@ -1,6 +1,7 @@
 # Sport
 
-## This project is no longer actively maintained and the services are no longer running in Azure. All source code should still be applicable but will need to stand up your own Azure App Services instance.
+### This project is no longer actively maintained and the services are no longer running in Azure. All source code should still be applicable but will need to stand up your own Azure App Services instance.
+
 
 Sport is a Xamarin.Forms app initially built for Xamarin employees as a way to facilitate leaderboards for a few ping-pong tables and darts we have around the office. Athletes can join leagues, get ranked and challenge other athletes to move up the ladder.
 
